@@ -36,8 +36,16 @@ jobs:
           RESULT=$(python -m schedule)
           echo "should_run=$RESULT" >> "$GITHUB_OUTPUT"
 
+      # Safety cap, not a tuning target: today's 7-company scan finishes in
+      # seconds, but this must not be allowed to run indefinitely and burn
+      # the free-tier Actions-minute budget uncontrolled once the company
+      # list grows. Scoped to this step specifically (not job-level) so it
+      # only bounds run.py itself, not checkout/setup/install or the
+      # commit/push step. See ARCHITECTURE.md §9a for what happens to
+      # scan_results.db/usage_log.json if this timeout actually fires.
       - name: Run scan
         if: steps.gate.outputs.should_run == 'true'
+        timeout-minutes: 20
         run: python run.py
 
       # This is the automated job committing its own generated scan

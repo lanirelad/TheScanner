@@ -354,6 +354,38 @@ something requiring a commit to the workflow itself. A `workflow_dispatch`
 manual trigger always runs a full scan regardless of `schedule_config.json`,
 since that's explicit human intent, not a check-in.
 
+**`schedule_config.json`'s default mode is `"on_demand"` (Session 10):**
+scheduling exists as a switchable option, not something active by
+default — `scans_per_day`/`times_utc` stay in the file, inactive but
+ready, for whenever it's switched back to `"scheduled"`. Until then, the
+scan only ever runs via the manual `workflow_dispatch` button.
+
+**Scan-step timeout and what a kill actually does to stored data (Session
+10):** the "Run scan" step in `.github/workflows/scan.yml` has
+`timeout-minutes: 20` — a safety cap, not a tuning target (today's 7-company
+scan finishes in seconds; this matters once the company list grows and a
+hang or a slow/unresponsive company shouldn't be able to burn the free-tier
+Actions-minute budget indefinitely). Confirmed, deliberate answer to what
+happens if it fires: **nothing partial gets saved, and nothing partial
+*can* get saved with `run.py`'s current design.** `run.py`'s `run()`
+fetches every company concurrently via a single `asyncio.gather(...)` call,
+and only calls `upsert_jobs()`/`record_scan_run()` once, after that whole
+call returns. If the step is killed mid-fetch, execution never reaches
+that point at all — `scan_results.db` and `usage_log.json` are left
+byte-for-byte as they were before the step ran, not partially written.
+Separately, GitHub Actions' own step semantics mean the following "Commit
+and push" step would be skipped anyway on a timeout: an `if:` condition
+without an explicit status-check function (`always()`, `failure()`, etc.)
+implicitly requires `success()` too, and a timed-out step counts as failed.
+So today, a timeout kill means a clean no-op — the repo is left exactly as
+the last successful run left it, and the only lost work is that run's own
+progress, not any prior state. This was an explicit design confirmation,
+not a change made this session: making partial progress survive a timeout
+would need `run.py` to persist incrementally (e.g. per-company, as each
+`fetch_company()` call resolves, rather than once at the end) — a real
+change to `run.py`'s structure, flagged here as a possible future session,
+not built now.
+
 ## 10. Local-only preferences and application status (ADR-0011, ADR-0014)
 
 Two things are **never** written back to the shared repo or any backend —

@@ -282,3 +282,70 @@ None — all decisions needed to start building are now in place.
   explaining which fields are deliberately not populated yet; §3 gained
   entries for the storage/core dedup split and for `run.py` itself.
 - Still nothing committed — git init still deferred.
+
+## Addendum — Session 9 executed: git init, first push, scheduled workflow (2026-08-09)
+- Discovered before touching git: `roles.json` had grown three new
+  categories (`npi`, `software_development`, `project_manager`) since
+  Session 8 — real, intentional config evolution (ADR-0007), not
+  something this session changed. It broke 6 existing tests that asserted
+  stale "no match" expectations against real fixture data whose meaning
+  had legitimately changed. Fixed all 6 to reflect current correct
+  behavior (some became positive-match tests, one was repurposed since
+  its only example job now matches) before doing anything else — the
+  first-ever commit needed a genuinely green suite, not a silently-broken
+  one. Re-ran `run.py` afterward so `scan_results.db`/`usage_log.json`
+  reflect accurate current-config data (15 matches, up from the stale 2)
+  before it became permanent history.
+- Built `schedule/gate.py` (`should_run_full_scan`, ADR-0028) and
+  `schedule_config.json`. New `schedule/` package, same reasoning as
+  `usage/`: a distinct concern gets its own small module. CLI entry point
+  is `python -m schedule` (deliberately in `schedule/__main__.py`, not a
+  `__main__` block inside `gate.py`, to avoid a real double-import
+  RuntimeWarning that pattern produces when a package's `__init__.py`
+  also imports that same submodule).
+- Built `.github/workflows/scan.yml`: hourly cheap check-in +
+  `workflow_dispatch`, gate-check step decides whether to actually run
+  `run.py`, then commits/pushes `scan_results.db`/`usage_log.json`/
+  `robots_cache.json` back to the repo as a bot commit.
+- **Part 0, git init and first push — done, with explicit confirmation at
+  each step per ADR-0004:** staged all 62 files, showed the full
+  `git status` and flagged two things before asking (the 6MB Palantir
+  fixture, still untrimmed since Session 3; the two PNG assets that
+  appeared externally in Session 6) — Elad confirmed committing as-is.
+  Committed, then separately asked before adding the remote/pushing —
+  confirmed separately. Renamed `master` to `main` before the push (free,
+  since nothing had been pushed yet). Pushed to
+  `https://github.com/lanirelad/TheScanner.git`. This is the first thing
+  that has ever left the local sandbox in this project.
+- Test suite: 67/67 passing (was 57 before this session: 6 fixed for the
+  roles.json drift, 1 new for the now-matching Wiz Backend Engineer case,
+  9 new schedule-gate tests), 0 real network calls.
+- Documented in ARCHITECTURE.md: §9a gained the cron-cadence-vs-real-
+  schedule distinction the task specifically asked for; §3 gained a
+  `schedule/` entry.
+- Not yet done, explicitly out of scope this session: verifying a live
+  GitHub Actions run actually completes successfully — that needs real
+  wall-clock time to pass after the push. Elad can check the Actions tab.
+
+## Addendum — Session 10 executed: on_demand mode, scan timeout cap (2026-08-09)
+- schedule_config.json's `mode` is now `"on_demand"` — manual-only for
+  now, per Elad's actual preference (the `"scheduled"` value shipped in
+  Session 9 was just the task prompt's example, not a real decision to
+  turn scheduling on). `scans_per_day`/`times_utc` untouched, ready for
+  whenever it's switched back.
+- Confirmed, not rebuilt: schedule/gate.py's test suite plus a direct
+  check against the real file — schedule-triggered check-ins now always
+  return False, workflow_dispatch always True. 67/67 tests unchanged.
+- Added `timeout-minutes: 20` to the "Run scan" step (not job-level) in
+  the workflow — a safety cap for once the company list grows past
+  today's 7, not a tuning target.
+- Worked out and documented in ARCHITECTURE.md §9a exactly what happens
+  if that timeout fires: nothing partial gets saved. run.py only writes
+  to scan_results.db/usage_log.json once, after the entire concurrent
+  fetch phase returns — a kill mid-fetch means execution never reaches
+  that point, so the files are left exactly as the last successful run
+  left them. Separately confirmed GitHub Actions' own step semantics
+  would skip the commit/push step after a timed-out step anyway. A clean,
+  deliberate no-op on timeout, not an accident.
+- No test/code changes beyond the two files above — this was a
+  deliberately small, single-purpose session.

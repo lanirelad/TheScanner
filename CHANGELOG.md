@@ -255,3 +255,55 @@
 - Implements ADR-0028's config-gated schedule: the workflow's registered
   cron is a cheap, frequent check-in; the real "scans per day" logic lives
   in schedule_config.json, editable without touching the workflow file.
+
+## 2026-08-09 — Session 9: git init, first push, and the scheduled workflow
+- Found roles.json had grown three new categories (npi,
+  software_development, project_manager) since Session 8 — legitimate
+  config evolution per ADR-0007. Fixed the 6 existing tests this broke to
+  reflect current correct behavior before doing anything else, and
+  re-ran run.py so the committed scan_results.db/usage_log.json would
+  reflect real, current-config data (15 matches) rather than stale
+  pre-expansion results (2 matches) at the moment they became permanent
+  history.
+- Built schedule/gate.py (should_run_full_scan, ADR-0028) and
+  schedule_config.json. New schedule/ package, mirroring usage/'s
+  precedent for a distinct cross-cutting concern. CLI entry point lives
+  in schedule/__main__.py specifically to avoid a double-import
+  RuntimeWarning that a __main__ block inside gate.py itself would cause
+  (gate.py is also imported by schedule/__init__.py's re-export).
+- Built .github/workflows/scan.yml: hourly cheap cron + workflow_dispatch,
+  a gate-check step, conditional run.py execution, and a bot commit/push
+  of the three shared-state files back to the repo.
+- Git init, first commit, first push — each step gated by an explicit,
+  separate confirmation per ADR-0004, exactly as the task specified.
+  Showed the full git status before committing and flagged two things
+  worth Elad's attention first: the 6MB Palantir fixture (flagged since
+  Session 3, still present as-is) and the two PNG assets that appeared
+  externally in Session 6. Confirmed to commit as-is. Confirmed
+  separately to add the remote and push. Renamed master to main before
+  the push (free, nothing had been pushed yet). Now live at
+  https://github.com/lanirelad/TheScanner.git.
+- 67/67 tests passing (was 57: 6 fixed for the roles.json drift, 1 new,
+  9 new for the schedule gate), 0 real network calls.
+- ARCHITECTURE.md §9a now explicitly documents the cron-cadence-vs-real-
+  schedule distinction; §3 gained a schedule/ entry.
+
+## 2026-08-09 — Session 10: schedule_config.json to on_demand, scan timeout cap
+- schedule_config.json's mode changed from "scheduled" to "on_demand" —
+  Elad wants manual-only operation for now, scheduling available as a
+  switchable option later, not active by default. scans_per_day/
+  times_utc left in place, inactive but ready.
+- Confirmed (not rebuilt) via schedule/gate.py's existing test suite plus
+  a direct check against the real file: schedule-triggered check-ins now
+  return False unconditionally, workflow_dispatch still always returns
+  True. 67/67 tests unchanged.
+- Added timeout-minutes: 20 to the "Run scan" step specifically (not
+  job-level) in .github/workflows/scan.yml — a safety cap against the
+  free-tier budget once the company list grows, not a tuning target.
+- Confirmed and documented in ARCHITECTURE.md §9a exactly what a timeout
+  kill does: nothing partial gets saved, because run.py's current
+  all-companies-concurrently-then-write-once design means there's nothing
+  partial to save in the first place if the process is killed mid-fetch —
+  and separately, GitHub Actions' own default step semantics would skip
+  the commit/push step after a timed-out step regardless. A clean no-op,
+  not data corruption — confirmed deliberately, not left as an accident.
