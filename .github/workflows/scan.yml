@@ -1,0 +1,57 @@
+# TheScanner scan workflow (ADR-0009, ADR-0028).
+#
+# The cron below is a cheap, frequent CHECK-IN, not the real scan
+# schedule — it fires hourly and exits almost immediately unless the
+# gate-check (schedule/gate.py, ADR-0028) says this specific check-in
+# should run a full scan. The real schedule lives entirely in
+# schedule_config.json, editable without ever touching this file. See
+# ARCHITECTURE.md §9a.
+name: Scan
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Gate check (ADR-0028) — decide whether this check-in runs a full scan
+        id: gate
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+        run: |
+          RESULT=$(python -m schedule)
+          echo "should_run=$RESULT" >> "$GITHUB_OUTPUT"
+
+      - name: Run scan
+        if: steps.gate.outputs.should_run == 'true'
+        run: python run.py
+
+      # This is the automated job committing its own generated scan
+      # output (scan_results.db, usage_log.json, robots_cache.json) —
+      # not a new manual-approval-requiring action per ADR-0004, which
+      # governs commits/pushes Claude Code makes on Elad's behalf during a
+      # session. A scheduled workflow committing its own run's data back
+      # to the repo is the deployment architecture ADR-0009 already
+      # describes and Elad already approved by merging this workflow file.
+      - name: Commit and push updated scan data
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add scan_results.db usage_log.json robots_cache.json
+          git diff --cached --quiet || git commit -m "Automated scan run: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git push

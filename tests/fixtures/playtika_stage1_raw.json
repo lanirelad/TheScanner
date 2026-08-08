@@ -1,0 +1,1333 @@
+{
+  "jobs": [
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4943620101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4508111101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": "Hybrid",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Creative",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "WSOP",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4943620101,
+      "updated_at": "2026-08-04T04:31:23-04:00",
+      "requisition_id": "20246",
+      "title": "2D Animator",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-08-04T04:30:27-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4945469101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4508892101,
+      "location": {
+        "name": "Warsaw"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": "Hybrid",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Creative",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "BX",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4945469101,
+      "updated_at": "2026-08-06T03:54:46-04:00",
+      "requisition_id": null,
+      "title": "3D Character Animator",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-08-05T08:36:33-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4901047101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4488639101,
+      "location": {
+        "name": "Israel"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": "Hybrid",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Creative",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "BX",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4901047101,
+      "updated_at": "2026-08-06T04:26:24-04:00",
+      "requisition_id": "26203",
+      "title": "3D Character Animator",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-06-21T10:58:06-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4940501101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4506707101,
+      "location": {
+        "name": "Israel"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Finance & Legal",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Finance",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4940501101,
+      "updated_at": "2026-08-04T11:14:42-04:00",
+      "requisition_id": "22895",
+      "title": "Bookkeeper - Maternity Leave Replacement",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-08-04T10:30:46-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4660259101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4372250101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Analytics",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4660259101,
+      "updated_at": "2026-07-27T06:09:45-04:00",
+      "requisition_id": null,
+      "title": "Business Analyst",
+      "company_name": "Playtika Ltd",
+      "first_published": "2025-08-27T08:41:24-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4869081101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4471827101,
+      "location": {
+        "name": "Israel"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": "Hybrid",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Creative",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "BX",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4869081101,
+      "updated_at": "2026-08-02T05:57:26-04:00",
+      "requisition_id": "26197",
+      "title": "Creative Manager",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-06-18T02:41:56-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4921275101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4498190101,
+      "location": {
+        "name": "Warsaw"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "R&D",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Shared Tech",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4921275101,
+      "updated_at": "2026-07-31T09:20:12-04:00",
+      "requisition_id": "21815",
+      "title": "Data Ops Engineer",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-07-07T10:06:57-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4913460101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4494341101,
+      "location": {
+        "name": "Kyiv; Vinnytsia"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "R&D",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Shared Tech",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4913460101,
+      "updated_at": "2026-07-27T08:14:41-04:00",
+      "requisition_id": "25088",
+      "title": "Data Ops Engineer",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-07-02T09:10:45-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4928657101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4501628101,
+      "location": {
+        "name": "Poland"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Data & AI",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Shared Tech",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4928657101,
+      "updated_at": "2026-07-27T08:14:41-04:00",
+      "requisition_id": null,
+      "title": "Data Science Expert",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-07-15T07:13:48-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4912795101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4494023101,
+      "location": {
+        "name": "Israel"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Data & AI",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Shared Tech",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4912795101,
+      "updated_at": "2026-07-27T06:09:49-04:00",
+      "requisition_id": "22489",
+      "title": "Data Science Expert",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-07-01T14:46:54-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4868944101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4471774101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Security It",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Shared Tech",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4868944101,
+      "updated_at": "2026-07-27T06:09:46-04:00",
+      "requisition_id": "23636",
+      "title": "DevSecOps",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-05-28T05:50:37-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4871873101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4473564101,
+      "location": {
+        "name": "Israel"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Security It",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Shared Tech",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4871873101,
+      "updated_at": "2026-07-27T06:09:47-04:00",
+      "requisition_id": "5168",
+      "title": "Director of Information Security",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-05-25T03:09:49-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4664186101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4374445101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Analytics",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4664186101,
+      "updated_at": "2026-07-27T06:09:45-04:00",
+      "requisition_id": null,
+      "title": "Game Economy Manager",
+      "company_name": "Playtika Ltd",
+      "first_published": "2025-08-28T16:37:55-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4869647101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4472020101,
+      "location": {
+        "name": "Israel"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Hr & Administration",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "HR",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4869647101,
+      "updated_at": "2026-07-27T06:09:47-04:00",
+      "requisition_id": "5070",
+      "title": " HRIS Project Manager - Maternity leave replacement ",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-05-24T06:56:04-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4880526101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4477790101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Finance & Legal",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Finance",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4880526101,
+      "updated_at": "2026-07-27T06:09:47-04:00",
+      "requisition_id": "21224",
+      "title": "Investor Relations Director",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-06-04T09:15:03-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4902765101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4489548101,
+      "location": {
+        "name": "Warsaw"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": "Hybrid",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "R&D",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Shared Tech",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4902765101,
+      "updated_at": "2026-07-27T08:14:41-04:00",
+      "requisition_id": "21370",
+      "title": "Java Developer",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-06-24T09:52:41-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4230024101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4151535101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Monetization & CRM",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4230024101,
+      "updated_at": "2026-07-27T06:09:45-04:00",
+      "requisition_id": null,
+      "title": "Monetization Manager",
+      "company_name": "Playtika Ltd",
+      "first_published": "2023-11-13T15:58:54-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4869431101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4471930101,
+      "location": {
+        "name": "Israel"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Finance & Legal",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Legal",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4869431101,
+      "updated_at": "2026-07-27T06:09:47-04:00",
+      "requisition_id": "6587",
+      "title": "Senior Corporate Counsel",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-05-27T02:55:30-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4863293101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4467963101,
+      "location": {
+        "name": "Israel"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Data & AI",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Shared Tech",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4863293101,
+      "updated_at": "2026-07-27T06:09:46-04:00",
+      "requisition_id": "22405",
+      "title": "Senior Data Scientist ",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-05-14T03:29:28-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4897183101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4487115101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": "Hybrid",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Finance & Legal",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Legal",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4897183101,
+      "updated_at": "2026-07-27T06:09:48-04:00",
+      "requisition_id": "26243",
+      "title": "Senior Regulatory Counsel",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-06-16T04:48:35-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4842045101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4458035101,
+      "location": {
+        "name": "Poland"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "R&D",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Games R&D",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4842045101,
+      "updated_at": "2026-07-27T08:14:41-04:00",
+      "requisition_id": "26193",
+      "title": "Technical Artist",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-04-22T05:11:41-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4879553101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4477418101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": "Hybrid",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Creative",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "SGH",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4879553101,
+      "updated_at": "2026-08-06T03:31:21-04:00",
+      "requisition_id": "24711",
+      "title": "Technical Artist ",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-06-03T11:34:11-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4887135101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4481869101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": "Hybrid",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "R&D",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Shared Tech",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4887135101,
+      "updated_at": "2026-07-27T06:09:48-04:00",
+      "requisition_id": "10122",
+      "title": "Tech Program Manager",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-06-08T03:59:47-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4654602101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4368966101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Marketing",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4654602101,
+      "updated_at": "2026-07-30T07:55:54-04:00",
+      "requisition_id": null,
+      "title": "User Acquisition - Israel",
+      "company_name": "Playtika Ltd",
+      "first_published": "2025-08-18T02:53:03-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4879967101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4477615101,
+      "location": {
+        "name": "Herzliya"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Marketing",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": "Marketing",
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4879967101,
+      "updated_at": "2026-07-27T06:09:47-04:00",
+      "requisition_id": "20530",
+      "title": "User Acquisition Manager - Maternity leave replacement",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-06-07T09:30:59-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.playtika.com/position/?gh_jid=4747021101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4412514101,
+      "location": {
+        "name": "Israel"
+      },
+      "metadata": [
+        {
+          "id": 5749609101,
+          "name": "Workplace Type",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5749606101,
+          "name": "Website Group",
+          "value": "Customer Service",
+          "value_type": "single_select"
+        },
+        {
+          "id": 6178529101,
+          "name": "Business Unit",
+          "value": null,
+          "value_type": "single_select"
+        },
+        {
+          "id": 5973435101,
+          "name": "Video URL",
+          "value": null,
+          "value_type": "url"
+        }
+      ],
+      "id": 4747021101,
+      "updated_at": "2026-08-06T04:45:37-04:00",
+      "requisition_id": null,
+      "title": "VIP Account Manager",
+      "company_name": "Playtika Ltd",
+      "first_published": "2026-01-05T10:17:06-05:00",
+      "language": "en",
+      "application_deadline": null
+    }
+  ],
+  "meta": {
+    "total": 26
+  }
+}

@@ -1,0 +1,257 @@
+# CHANGELOG.md
+
+## 2026-08-07 — Scaffolding
+- Created initial living-docs set (README, CLAUDE.md, ARCHITECTURE.md,
+  DECISIONS.md, PLAN.md, PROGRESS.md, this file, DEPLOY.md,
+  CLAUDE_CODE_GUIDE.md).
+- Adapted the reusable work-architecture template (from the Goblet of
+  Operations / calibpro lineage) for a job-scanning domain.
+- Recorded ADR-0001 through ADR-0006 covering ATS-API-first strategy,
+  compliance gate, no-PII policy, commit/push approval boundary, no-AI-agent
+  default, and fixture-based sandbox.
+- No functional code yet.
+
+## 2026-08-07 — Deployment architecture decided
+- Decided the full deployment shape: GitHub Actions (compute, schedule +
+  manual trigger) + GitHub Pages (dashboard) + Cloudflare Worker (write path
+  for application status) + Telegram (alerts, default/unconfirmed).
+- Changed scan frequency from the earlier hourly assumption to twice daily,
+  plus an on-demand manual "Run now" button.
+- Added `scan_status` (new/still_open) and `application_status`
+  (not_applied/applied) to the canonical job schema.
+- Recorded ADR-0009, ADR-0010, ADR-0011 covering the above.
+- Estimated full-scan time for ~1,500 companies at roughly 15-30 minutes,
+  confirmed this fits comfortably within GitHub Actions' free-tier minutes
+  even at twice-daily frequency.
+
+## 2026-08-07 — Client architecture: PWA, local-only preferences, Web Push
+- Decided the client is a Progressive Web App (ADR-0013), not a plain
+  static dashboard and not a native Play Store build — installable on
+  Android, works as a laptop browser tab, dark/light theme.
+- Decided preferences (role/tag filters) and `application_status` are
+  stored entirely on-device, never in a shared backend (ADR-0011,
+  ADR-0014) — this also resolves the "what if someone else uses it"
+  concern, since every install is independent with no shared state.
+- Replaced the Telegram-bot alert assumption with native Web Push
+  notifications via a Cloudflare Worker (ADR-0012) — no third-party
+  messaging account needed.
+- Replaced the Cloudflare-Worker-as-write-path design (original ADR-0011)
+  with the Worker's new, simpler job: storing push subscriptions and
+  sending notifications. No write-back path for job data exists anymore.
+- Added ADR-0015: every job links directly to its real application page.
+
+## 2026-08-07 — Two-stage fetch + location filtering (ADR-0016)
+- Elad flagged that scanning ~1,500 companies for *all* their roles across
+  *all* countries is wasteful, especially for multinational companies that
+  post globally under one career page.
+- Redesigned the fetch pipeline into two stages: a cheap lightweight job
+  list (title, department, location) per company, and a full-description
+  fetch only for roles that survive the early filters and remain ambiguous.
+- Added `locations.json` — accepted locations (EN + HE), same config-driven
+  pattern as `roles.json` — checked at Stage 1, before any heavy fetch.
+- Updated ARCHITECTURE.md §1/§1b and PLAN.md Phase 1 accordingly.
+
+## 2026-08-07 — First real build task: seed configs + CC task prompt
+- Created `roles.json` (devops + technical_support, starter EN/HE tags) and
+  `locations.json` (Israel-area locations, EN/HE) as real files.
+- Verified two companies against the live Greenhouse API this session
+  (Wiz -> `wizinc`, Playtika -> `playtikaltd`) rather than inventing a
+  placeholder list — seeded `companies.json` with just these two, explicitly
+  marked as a starter/test set, not the ~1,500-company target.
+- Wrote `CC_TASK_001.md`: the first Claude Code task prompt — repo
+  skeleton, Greenhouse adapter (Stage 1 only, per ADR-0016), Compliance
+  Agent, location+title filter, fixture-based tests. Explicitly scoped out:
+  Lever/Comeet, Stage 2, storage, the app, the Worker, and full company
+  harvesting — those are later sessions.
+
+## 2026-08-07 — Session 1 handoff reviewed; standing rules added
+- Reviewed Session 1 handoff: repo skeleton, Greenhouse Stage 1 adapter,
+  Compliance Agent, location+title filter, 5/5 fixture tests passing, 0
+  network calls in tests, live smoke test against Wiz + Playtika confirmed
+  working. Noted a real finding: Greenhouse's lightweight endpoint never
+  returns `department` — added as an empirical note in ARCHITECTURE.md.
+- Added ADR-0017: all future Claude Code handoffs must be a single
+  triple-backtick fenced code block, plain text, no markdown formatting
+  inside — for one-click copy.
+- Added ADR-0018: code-style standard — OOP where it genuinely fits (not
+  everywhere), mandatory why-focused docstrings/comments, and all data
+  shapes written with the eventual PWA/Android client in mind.
+- Updated CLAUDE.md and CLAUDE_CODE_GUIDE.md so these are standing rules
+  for every future session, not just this task.
+- Wrote `CC_TASK_002.md`: directory-structure review (show it, propose
+  reorg if warranted, then apply) plus a code-style pass on Session 1's
+  three files against ADR-0018.
+
+## 2026-08-07 — Session 2 accepted; first commit deferred
+- Reviewed and accepted Session 2's handoff: directory structure confirmed
+  clean (no reorg needed — CC_TASK files were never actually written to
+  disk, so nothing to move), `Adapter` base class added ahead of Lever/Comeet,
+  `core/filters.py` refactored into a `RoleLocationFilter` class (real
+  shared state — config loaded once, reused per job), `storage/__init__.py`
+  now has an explanatory docstring, ADR citations double-checked for
+  accuracy (declined to attribute the 1.5s rate-limit value to ADR-0002
+  itself). 7/7 tests passing, 0 network calls, new test confirms the Stage
+  1 job shape is JSON-serializable (mobile-client-awareness check).
+- Elad decided to defer the first `git init`/commit — more building first,
+  not yet ready to lock in history. This has now been asked and answered
+  once; don't re-raise it as an open question every session, only surface
+  it again if something changes (e.g. Elad asks, or risk of losing
+  uncommitted work becomes concrete).
+
+## 2026-08-07 — companies.json widened to Lever; CC_TASK_003 written
+- Verified two real Lever companies with Israel offices: Palantir
+  (`palantir`) and Smarsh (`smarsh`) — added to `companies.json`, same
+  starter/test-set framing as the Greenhouse pair.
+- Wrote `CC_TASK_003.md`: build `LeverAdapter` implementing the `Adapter`
+  base class from Session 2, explicitly instructed to inspect Lever's real
+  API shape empirically rather than assume it matches Greenhouse's, live
+  smoke test against Palantir/Smarsh, fixture tests extended to cover it.
+
+## 2026-08-07 — Session 3 accepted: LeverAdapter built, real Lever-specific finding
+- Reviewed and accepted Session 3's handoff. `LeverAdapter(Adapter)` built
+  cleanly — the base class held up for a genuinely different internal shape
+  (flat list vs. jobs-key object, `text` vs `title`, nested `categories` vs
+  flat `location`) without any change to `adapters/base.py`. Real second
+  data point for the abstraction, not just Greenhouse-shaped duplication.
+- **Real architectural finding:** Lever has no lightweight-vs-full-content
+  mode at all — every posting always includes full description fields; a
+  `content=false` param made no difference. For Lever, "Stage 1" is a
+  parsing-layer distinction only, not a fetch-cost saving the way it is for
+  Greenhouse. Documented in ARCHITECTURE.md §1 as a per-ATS caveat; Comeet's
+  adapter must verify this empirically too rather than assume either
+  pattern. This has real implications for the ~1,500-company time estimate
+  if a meaningful share turn out to be Lever-hosted.
+- Live smoke test: Palantir (305 postings) and Smarsh (42 postings), both
+  compliant (robots.txt honored, rate-limited). No Stage 1 matches yet at
+  either company — 3 Israel-located roles found total, none matching
+  current devops/technical_support tags. Same "0 matches is not a bug"
+  situation as Playtika in Session 1.
+- 13/13 tests passing, 0 network calls in the test suite.
+- Call-count disclosure accepted at face value and treated as a good
+  practice, not a violation: 12 live calls were made against api.lever.co
+  during schema discovery (vs. the "one fetch each" the task specified),
+  all rate-limited and robots.txt-compliant, fully disclosed rather than
+  glossed over. This is now the model for how future sessions should handle
+  an unfamiliar ATS's undocumented schema — see PLAN.md open item to
+  formalize this as a standing rule next session.
+- Git init/commit remains deliberately deferred — Elad reconfirmed this
+  explicitly rather than it just going unaddressed again.
+
+## 2026-08-08 — Mascot chosen, app-UX requirements logged
+- Mascot: bat — real biological sonar (echolocation), nocturnal/dark-theme
+  fit, distinct from generic AI-mascot defaults. Alternatives considered:
+  dolphin (also strong sonar association, friendlier/lighter feel), meerkat
+  (lookout/vigilance framing rather than literal sonar). Bat chosen as
+  primary; Elad can override.
+- Logged app-side UX requirements to PLAN.md: background push delivery
+  (inherent to PWA/Web Push, needs verification once built) and precise
+  exit-warning scope (only for app-tracked in-progress actions, never for
+  the independent cloud-side scheduled scan).
+
+## 2026-08-08 — Session 4 accepted: async retrofit, robots.txt cache, usage log
+- Reviewed and accepted. Race condition fix verified both by dedicated
+  timing tests (fake HTTP client, real timestamp assertions) and by a live
+  smoke test against real Greenhouse/Lever traffic — Wiz+Playtika (same
+  domain) spaced 1.673s apart, Palantir (different domain) proceeded before
+  the Greenhouse pair finished. Exactly the behavior ADR-0021 was built for.
+- robots_cache.json working as designed, with a notably careful concurrency
+  choice: cache-file I/O and per-domain fetch locking use separate locks,
+  so cold-cache robots.txt fetches for different domains still run
+  concurrently — only the near-instant file write serializes.
+- Measured speedup: 1.07x — modest and honestly reported, with correct
+  diagnosis (only 2 real domains at this test scale; the real payoff is at
+  hundreds/thousands of domains, i.e. the actual ~8-9k target). Confirms
+  the reasoning from the async-vs-threads discussion empirically rather
+  than just theoretically.
+- Resolved `usage_log.py`'s module placement: new `usage/` module, parallel
+  to `storage/`/`compliance/`/`core/`/`adapters/` (see ARCHITECTURE.md §13).
+- Doc-sync markdown corruption in transit: Claude Code caught it, disclosed
+  it, and reconstructed proper formatting matching the existing ADR style
+  rather than doing a broken literal paste or a silent fix. Elad should
+  still eyeball the actual DECISIONS.md/PLAN.md on the laptop to confirm
+  the reconstruction reads as intended.
+- 22/22 tests passing, 0 real network calls in the suite.
+- Git init/commit still deferred, unchanged.
+
+## 2026-08-08 — companies.json widened to Comeet; CC_TASK_005 written
+- Verified two real Comeet-hosted companies with Israel presence: AT&T
+  Israel R&D Center (joinattil, 38.00A) and Enlight Renewable Energy
+  (enlightenergy, 99.006). Both show zero current openings live — a valid
+  test state, not a reason to pick different companies.
+- Wrote CC_TASK_005.md: build ComeetAdapter, async-native from the start
+  (no retrofit needed this time since async is now the established
+  pattern), empirically discovering Comeet's real integration shape rather
+  than assuming it matches Greenhouse or Lever.
+
+## 2026-08-08 — companies.json widened to a custom career page; CC_TASK_006 written
+- Verified monday.com's career page has no ATS fingerprint (UUID-based job
+  URLs, not any known platform's ID pattern) — genuinely custom/in-house,
+  not a white-labeled ATS. Found a real live match at verification time:
+  "DevOps Tech Lead (BigBrain)," Tel Aviv — a genuine positive-match test
+  case, not another zero-result company.
+- Wrote CC_TASK_006.md: build the custom/non-ATS fallback adapter, with an
+  explicit pre-check for whether the page needs JS execution to reveal job
+  data (and an explicit instruction to stop and flag rather than silently
+  reach for Playwright if so) — plus a config-driven design (selectors per
+  company in a new config file) rather than one bespoke Python class per
+  custom company, so the "custom bucket" from ARCHITECTURE.md §4a can
+  actually scale via configuration.
+
+## 2026-08-08 — Session 6 accepted; Ashby promoted to a real adapter (ADR-0024)
+- Reviewed and accepted Session 6: CustomAdapter built config-driven as
+  asked, with an honest scope-limiting docstring (it scales via config only
+  for companies sharing the same script-tag-JSON-blob rendering pattern —
+  not a universal scraper, and doesn't pretend to be). The "exactly once"
+  sanity check on the recursive key search before trusting it is exactly
+  the right instinct.
+- Real find: monday.com's positions are tagged `source: "ashby"` —
+  confirmed independently that Ashby publishes a real public posting API
+  (api.ashbyhq.com/posting-api/job-board/{clientname}), same tier as
+  Greenhouse/Lever. Recorded as ADR-0024: Ashby gets a proper adapter, not
+  a custom-bucket config entry. monday.com will move out of the custom
+  bucket once verified against the real Ashby API.
+- 42/42 tests passing, exact match count (1, the DevOps Tech Lead role)
+  locked in as a regression assertion.
+
+## 2026-08-08 — Session 7 accepted: Ashby correctly abandoned, not built
+- Reviewed and accepted Session 7's handoff — one of the most important
+  sessions so far, precisely because nothing got built. The Compliance
+  Agent blocked api.ashbyhq.com's robots.txt (401) before any product-data
+  fetch, and Claude Code correctly stopped rather than attempting any
+  workaround, disclosing the one out-of-band robots.txt-only diagnostic
+  call it made to confirm the block was real rather than a bug.
+- Confirmed via further research: api.ashbyhq.com hosts both Ashby's
+  authenticated admin API and its public posting-api under one domain —
+  our domain-level robots.txt check has no safe way to separate "this path
+  is fine" from "this domain restricts automated access."
+- ADR-0024 marked Superseded by ADR-0025: Ashby integration abandoned,
+  monday.com stays permanently on CustomAdapter (Session 6). Explicitly
+  corrected the record — ADR-0024's original "verified independently"
+  claim rested on third-party sources, not an actual robots.txt check by
+  planning-Claude. Own error, caught by the system working as designed.
+- Adapter roster is now settled: Greenhouse, Lever, Comeet, and
+  config-driven CustomAdapter. Phase 2 is functionally complete.
+
+## 2026-08-08 — CC_TASK_008 written: storage, dedup, first real CLI run
+- This is the session that finally ties everything built so far (4
+  adapters, filter, compliance, usage log) into one real, runnable scan
+  producing an actual result set.
+- Explicit schema boundary called out in the task: application_status
+  must NOT appear in shared/backend storage, per ADR-0011/ADR-0014 —
+  device-local only.
+- Elad requested a companies-scanned counter; specified in the task as
+  part of the CLI's summary output (total attempted, succeeded/failed,
+  matches new vs. still_open) — reuses the company_count field already in
+  usage_log's schema rather than adding a separate tracking mechanism.
+
+## 2026-08-08 — CC_TASK_009 written: finally git init + the real scheduled workflow
+- This session finally addresses the git init deferral — not by choice
+  anymore, but because Phase 3 (GitHub Actions) genuinely cannot exist
+  without the repo being on GitHub.
+- Task structured with an explicit, separate confirmation gate before any
+  push happens, per ADR-0004 — the first-ever commit gets the same
+  approval discipline as every future one, not treated as a special
+  one-time exception.
+- Implements ADR-0028's config-gated schedule: the workflow's registered
+  cron is a cheap, frequent check-in; the real "scans per day" logic lives
+  in schedule_config.json, editable without touching the workflow file.

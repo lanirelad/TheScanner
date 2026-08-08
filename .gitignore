@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets — never commit these, even if one shows up later
+.env
+.env.*
+*.pem
+*secret*
+*credential*

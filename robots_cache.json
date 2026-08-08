@@ -1,0 +1,27 @@
+{
+  "boards-api.greenhouse.io": {
+    "domain": "boards-api.greenhouse.io",
+    "allowed": true,
+    "checked_at": 1786211162.2232175
+  },
+  "api.lever.co": {
+    "domain": "api.lever.co",
+    "allowed": true,
+    "checked_at": 1786211163.7340117
+  },
+  "www.comeet.com": {
+    "domain": "www.comeet.com",
+    "allowed": true,
+    "checked_at": 1786213383.5819902
+  },
+  "monday.com": {
+    "domain": "monday.com",
+    "allowed": true,
+    "checked_at": 1786214757.0707302
+  },
+  "api.ashbyhq.com": {
+    "domain": "api.ashbyhq.com",
+    "allowed": false,
+    "checked_at": 1786216312.7955863
+  }
+}

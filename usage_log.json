@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-08-08",
+    "duration_minutes": 0.1122,
+    "company_count": 4,
+    "track": "stable"
+  },
+  {
+    "date": "2026-08-08",
+    "duration_minutes": 0.10229842166882008,
+    "company_count": 7,
+    "track": "stable"
+  },
+  {
+    "date": "2026-08-08",
+    "duration_minutes": 0.08499222999671474,
+    "company_count": 7,
+    "track": "stable"
+  },
+  {
+    "date": "2026-08-08",
+    "duration_minutes": 0.09799063500249758,
+    "company_count": 7,
+    "track": "stable"
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "devops": {
+    "label_en": "DevOps Engineer",
+    "label_he": "מהנדס DevOps",
+    "tags_en": [
+      "devops", "dev ops", "sre", "site reliability", "platform engineer",
+      "infrastructure engineer", "cloud engineer", "ci/cd engineer",
+      "kubernetes engineer", "release engineer"
+    ],
+    "tags_he": [
+      "דיבאופס", "דב אופס", "מהנדס תשתיות", "מהנדס פלטפורמה",
+      "אבטחת אתרים ותפעול"
+    ]
+  },
+  "technical_support": {
+    "label_en": "Technical Support Engineer",
+    "label_he": "מהנדס תמיכה טכנית",
+    "tags_en": [
+      "technical support", "support engineer", "customer support engineer",
+      "application support", "helpdesk engineer", "field support engineer",
+      "field engineer", "solutions support"
+    ],
+    "tags_he": [
+      "תמיכה טכנית", "מהנדס תמיכה", "תמיכה ללקוחות", "מהנדס שטח",
+      "תמיכה יישומים"
+    ]
+  },
+  "npi": {
+    "label_en": "NPI Engineer",
+    "label_he": "מהנדס NPI",
+    "tags_en": [
+      "npi", "new product introduction", "npi engineer",
+      "npi program manager", "npi project manager",
+      "product introduction engineer"
+    ],
+    "tags_he": [
+      "NPI", "הכנסת מוצר חדש", "מהנדס NPI"
+    ]
+  },
+  "software_development": {
+    "label_en": "Software Developer",
+    "label_he": "מפתח תוכנה",
+    "tags_en": [
+      "software developer", "software engineer", "backend developer",
+      "backend engineer", "frontend developer", "frontend engineer",
+      "full stack developer", "full stack engineer", "swe"
+    ],
+    "tags_he": [
+      "מפתח תוכנה", "מהנדס תוכנה", "מפתח backend", "מפתח frontend",
+      "מפתח full stack"
+    ]
+  },
+  "project_manager": {
+    "label_en": "Project Manager",
+    "label_he": "מנהל פרויקטים",
+    "tags_en": [
+      "project manager", "technical project manager", "program manager",
+      "delivery manager", "tpm"
+    ],
+    "tags_he": [
+      "מנהל פרויקטים", "מנהל פרויקט", "מנהל תוכנית", "מנהל תכנית"
+    ]
+  }
+}

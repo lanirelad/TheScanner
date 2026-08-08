@@ -1,0 +1,13 @@
+{
+  "monday.com": {
+    "career_page_url": "https://monday.com/careers",
+    "script_id": "__NEXT_DATA__",
+    "positions_key": "positions",
+    "field_map": {
+      "title": "name",
+      "department": "department",
+      "location": "location.name"
+    },
+    "url_template": "https://monday.com/careers/{uid}"
+  }
+}

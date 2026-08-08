@@ -1,0 +1,4264 @@
+{
+  "jobs": [
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4667217006/:title?gh_jid=4667217006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4540726006,
+      "location": {
+        "name": "Washington, D.C."
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4667217006,
+      "updated_at": "2026-07-30T10:06:37-04:00",
+      "requisition_id": "4750",
+      "title": "Account Executive, Federal Civilian",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-07T10:18:12-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4603280006/:title?gh_jid=4603280006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4513018006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4603280006,
+      "updated_at": "2026-05-14T14:09:33-04:00",
+      "requisition_id": "4236",
+      "title": "Account Executive Public & Defense Sector",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-11-30T08:52:18-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702187006/:title?gh_jid=4702187006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557981006,
+      "location": {
+        "name": "New York City"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-11-16",
+          "value_type": "date"
+        }
+      ],
+      "id": 4702187006,
+      "updated_at": "2026-08-06T14:37:07-04:00",
+      "requisition_id": "5025",
+      "title": "Accounting Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T11:56:11-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4696827006/:title?gh_jid=4696827006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4555378006,
+      "location": {
+        "name": "New York City"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-30",
+          "value_type": "date"
+        }
+      ],
+      "id": 4696827006,
+      "updated_at": "2026-07-16T16:20:17-04:00",
+      "requisition_id": "4990",
+      "title": "Accounts Receivable & Billing Specialist",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-16T16:20:17-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4659437006/:title?gh_jid=4659437006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4536740006,
+      "location": {
+        "name": "Remote - United Kingdom"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4659437006,
+      "updated_at": "2026-05-14T14:09:39-04:00",
+      "requisition_id": "4667",
+      "title": " AI Security Researcher",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-03-04T08:04:32-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4659435006/:title?gh_jid=4659435006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4536740006,
+      "location": {
+        "name": "London, UK"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4659435006,
+      "updated_at": "2026-05-14T14:09:39-04:00",
+      "requisition_id": "4667",
+      "title": " AI Security Researcher",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-03-04T08:04:31-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4681239006/:title?gh_jid=4681239006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4547612006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4681239006,
+      "updated_at": "2026-05-17T07:24:28-04:00",
+      "requisition_id": "4867",
+      "title": "AI Security Researcher   ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-05-17T07:23:41-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4692874006/:title?gh_jid=4692874006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4553392006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4692874006,
+      "updated_at": "2026-07-01T10:59:43-04:00",
+      "requisition_id": "4964",
+      "title": "Applied Security Researcher",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-01T10:59:43-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4615162006/:title?gh_jid=4615162006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4519095006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4615162006,
+      "updated_at": "2026-05-14T14:09:33-04:00",
+      "requisition_id": "4335",
+      "title": "Backend Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-11-04T07:16:58-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4621708006/:title?gh_jid=4621708006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4521735006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4621708006,
+      "updated_at": "2026-06-01T10:28:48-04:00",
+      "requisition_id": "4374",
+      "title": "Brand & Data Visualization Designer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-12-01T04:31:36-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4677156006/:title?gh_jid=4677156006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4545560006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-14",
+          "value_type": "date"
+        }
+      ],
+      "id": 4677156006,
+      "updated_at": "2026-07-29T13:30:13-04:00",
+      "requisition_id": "4849",
+      "title": "Business Development Representative",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-29T17:36:10-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4703232006/:title?gh_jid=4703232006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557868006,
+      "location": {
+        "name": "Remote - United Kingdom"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4703232006,
+      "updated_at": "2026-08-07T02:53:39-04:00",
+      "requisition_id": "5020",
+      "title": "Business Development Representative - UK",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-07T02:51:31-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4645199006/:title?gh_jid=4645199006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4529675006,
+      "location": {
+        "name": "Remote - Germany"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4645199006,
+      "updated_at": "2026-05-14T14:09:37-04:00",
+      "requisition_id": "4541",
+      "title": "Commercial Counsel - German speaking",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-01-20T05:26:00-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4621534006/:title?gh_jid=4621534006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4522206006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4621534006,
+      "updated_at": "2026-05-14T14:09:34-04:00",
+      "requisition_id": "4379",
+      "title": "Data Scientist Expert",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-12-03T03:35:27-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702872006/:title?gh_jid=4702872006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4558330006,
+      "location": {
+        "name": "Remote - United Kingdom"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4702872006,
+      "updated_at": "2026-08-06T12:25:01-04:00",
+      "requisition_id": "5029",
+      "title": "Deal Desk Analyst, International Downmarket",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-06T12:25:01-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4650548006/:title?gh_jid=4650548006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4532343006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4650548006,
+      "updated_at": "2026-06-24T10:50:14-04:00",
+      "requisition_id": "4603",
+      "title": "Detection Software Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-02-10T09:41:38-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4615172006/:title?gh_jid=4615172006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4519101006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4615172006,
+      "updated_at": "2026-05-14T14:09:33-04:00",
+      "requisition_id": "4337",
+      "title": "DevOps Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-11-04T07:23:35-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4675902006/:title?gh_jid=4675902006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4544958006,
+      "location": {
+        "name": "Remote - Germany"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4675902006,
+      "updated_at": "2026-05-14T14:09:46-04:00",
+      "requisition_id": "4838",
+      "title": "Employment Law Counsel",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-29T09:45:10-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4687589006/:title?gh_jid=4687589006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4550815006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-01",
+          "value_type": "date"
+        }
+      ],
+      "id": 4687589006,
+      "updated_at": "2026-06-08T14:02:25-04:00",
+      "requisition_id": "4936",
+      "title": "Enablement Content Developer - Interactive & Simulations",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-08T14:02:25-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4687591006/:title?gh_jid=4687591006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4550816006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-01",
+          "value_type": "date"
+        }
+      ],
+      "id": 4687591006,
+      "updated_at": "2026-06-08T14:04:21-04:00",
+      "requisition_id": "4935",
+      "title": "Enablement Content Developer - Multimedia & AI Production",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-08T14:04:21-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4671510006/:title?gh_jid=4671510006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4542740006,
+      "location": {
+        "name": "Remote - Sweden"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4671510006,
+      "updated_at": "2026-05-14T14:09:44-04:00",
+      "requisition_id": "4786",
+      "title": "Enterprise Account Executive",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-09T14:41:40-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4692215006/:title?gh_jid=4692215006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4553109006,
+      "location": {
+        "name": "Remote - Brazil"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4692215006,
+      "updated_at": "2026-07-06T11:17:35-04:00",
+      "requisition_id": "4959",
+      "title": "Enterprise Account Executive, Brazil",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-29T12:55:45-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4687221006/:title?gh_jid=4687221006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4550656006,
+      "location": {
+        "name": "Chicago, Illinois"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4687221006,
+      "updated_at": "2026-07-30T10:06:56-04:00",
+      "requisition_id": "4929",
+      "title": "Enterprise Account Executive, Central",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-05T17:28:14-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4684213006/:title?gh_jid=4684213006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4549130006,
+      "location": {
+        "name": "Munich, Germany"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4684213006,
+      "updated_at": "2026-06-30T06:25:38-04:00",
+      "requisition_id": "4890",
+      "title": "Enterprise Account Executive, DACH",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-30T06:25:38-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665096006/:title?gh_jid=4665096006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4539673006,
+      "location": {
+        "name": "Remote - Singapore"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4665096006,
+      "updated_at": "2026-05-14T14:09:40-04:00",
+      "requisition_id": "4703",
+      "title": "Enterprise Account Executive - Indonesia & Malaysia",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-21T02:01:10-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4692217006/:title?gh_jid=4692217006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4553110006,
+      "location": {
+        "name": "Remote - Mexico"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4692217006,
+      "updated_at": "2026-07-06T11:16:26-04:00",
+      "requisition_id": "4960",
+      "title": "Enterprise Account Executive, Mexico ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-30T16:55:36-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4590784006/:title?gh_jid=4590784006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4507016006,
+      "location": {
+        "name": "Remote - Singapore"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4590784006,
+      "updated_at": "2026-05-14T14:09:33-04:00",
+      "requisition_id": "4137",
+      "title": "Enterprise Account Executive - Philippines & Thailand",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-08-11T05:12:03-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4684253006/:title?gh_jid=4684253006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4549147006,
+      "location": {
+        "name": "Bengaluru, India"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4684253006,
+      "updated_at": "2026-07-14T03:58:23-04:00",
+      "requisition_id": "4895",
+      "title": "Enterprise Account Executive - South India",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-14T03:58:23-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4668802006/:title?gh_jid=4668802006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4541375006,
+      "location": {
+        "name": "Mumbai, India"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4668802006,
+      "updated_at": "2026-05-14T14:09:43-04:00",
+      "requisition_id": "4756",
+      "title": "Enterprise Account Executive - West India",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-02T00:07:21-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4615211006/:title?gh_jid=4615211006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4519121006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4615211006,
+      "updated_at": "2026-07-09T04:01:17-04:00",
+      "requisition_id": "4339",
+      "title": "Expert Backend Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-11-04T07:21:55-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4614638006/:title?gh_jid=4614638006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4518854006,
+      "location": {
+        "name": "London, UK"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4614638006,
+      "updated_at": "2026-05-14T14:09:33-04:00",
+      "requisition_id": "4332",
+      "title": "Expert Backend Engineer ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-11-10T10:20:47-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4615218006/:title?gh_jid=4615218006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4519123006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4615218006,
+      "updated_at": "2026-07-07T12:34:57-04:00",
+      "requisition_id": "4341",
+      "title": "Expert Frontend Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-11-04T07:16:42-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4698358006/:title?gh_jid=4698358006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4556099006,
+      "location": {
+        "name": "Tallahassee, Florida"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-30",
+          "value_type": "date"
+        }
+      ],
+      "id": 4698358006,
+      "updated_at": "2026-07-22T16:43:27-04:00",
+      "requisition_id": "4996",
+      "title": "Federal Account Executive, SLED East",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-22T16:43:27-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4699167006/:title?gh_jid=4699167006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4556482006,
+      "location": {
+        "name": "Seattle, Washington"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-30",
+          "value_type": "date"
+        }
+      ],
+      "id": 4699167006,
+      "updated_at": "2026-07-23T14:49:00-04:00",
+      "requisition_id": "5000",
+      "title": "Federal Account Executive, SLED West",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-23T14:49:00-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702745006/:title?gh_jid=4702745006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4556482006,
+      "location": {
+        "name": "Chicago, Illinois"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-30",
+          "value_type": "date"
+        }
+      ],
+      "id": 4702745006,
+      "updated_at": "2026-08-05T14:22:15-04:00",
+      "requisition_id": "5000",
+      "title": "Federal Account Executive, SLED West",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-05T14:22:15-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4654701006/:title?gh_jid=4654701006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4534372006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4654701006,
+      "updated_at": "2026-05-14T14:09:39-04:00",
+      "requisition_id": "4635",
+      "title": "Growth Account Executive, Japan (SMB)",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-02-18T01:11:33-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702328006/:title?gh_jid=4702328006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4558052006,
+      "location": {
+        "name": "Remote - Spain"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4702328006,
+      "updated_at": "2026-08-05T05:31:25-04:00",
+      "requisition_id": "5026",
+      "title": "Growth Account Executive, Spain ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-05T05:31:25-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4696159006/:title?gh_jid=4696159006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4555017006,
+      "location": {
+        "name": "Remote - Singapore"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4696159006,
+      "updated_at": "2026-07-20T22:30:22-04:00",
+      "requisition_id": "4986",
+      "title": "Growth Account Executive - Taiwan & Hong Kong",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-20T22:30:22-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4686990006/:title?gh_jid=4686990006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4550534006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-04",
+          "value_type": "date"
+        }
+      ],
+      "id": 4686990006,
+      "updated_at": "2026-07-30T10:37:35-04:00",
+      "requisition_id": "4926",
+      "title": "Growth Account Executive - West",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-04T16:58:12-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4698763006/:title?gh_jid=4698763006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4556288006,
+      "location": {
+        "name": "Chicago, Illinois; New York City; San Francisco Bay Area"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-10-01",
+          "value_type": "date"
+        }
+      ],
+      "id": 4698763006,
+      "updated_at": "2026-07-22T08:09:48-04:00",
+      "requisition_id": "4998",
+      "title": "GTM FP&A Associate",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-22T08:09:48-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4690856006/:title?gh_jid=4690856006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4552483006,
+      "location": {
+        "name": "London, UK"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4690856006,
+      "updated_at": "2026-06-30T09:42:37-04:00",
+      "requisition_id": "4947",
+      "title": "Incident Responder",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-30T09:41:34-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4690860006/:title?gh_jid=4690860006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4552484006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4690860006,
+      "updated_at": "2026-06-30T09:44:21-04:00",
+      "requisition_id": "4948",
+      "title": "Incident Responder",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-30T09:44:21-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4698920006/:title?gh_jid=4698920006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4556367006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4698920006,
+      "updated_at": "2026-07-30T01:15:40-04:00",
+      "requisition_id": "4999",
+      "title": "Instructional Designer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-22T12:02:02-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4687150006/:title?gh_jid=4687150006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4550621006,
+      "location": {
+        "name": "Paris, France"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4687150006,
+      "updated_at": "2026-06-08T02:55:28-04:00",
+      "requisition_id": "4928",
+      "title": "Major Account Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-08T02:55:28-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4671758006/:title?gh_jid=4671758006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4542876006,
+      "location": {
+        "name": "Remote - South Korea"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4671758006,
+      "updated_at": "2026-05-14T14:09:44-04:00",
+      "requisition_id": "4790",
+      "title": "Majors Account Executive",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-11T02:40:54-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4687413006/:title?gh_jid=4687413006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4550747006,
+      "location": {
+        "name": "San Francisco Bay Area"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-04",
+          "value_type": "date"
+        }
+      ],
+      "id": 4687413006,
+      "updated_at": "2026-07-30T10:37:55-04:00",
+      "requisition_id": "4932",
+      "title": "Majors Account Executive, Bay Area",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-09T12:20:40-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4700523006/:title?gh_jid=4700523006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557148006,
+      "location": {
+        "name": "Seattle, Washington"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-11",
+          "value_type": "date"
+        }
+      ],
+      "id": 4700523006,
+      "updated_at": "2026-07-30T10:38:23-04:00",
+      "requisition_id": "5007",
+      "title": "Majors Account Executive, PNW",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-29T10:22:35-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665968006/:title?gh_jid=4665968006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4540100006,
+      "location": {
+        "name": "Washington, D.C."
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4665968006,
+      "updated_at": "2026-06-26T12:23:42-04:00",
+      "requisition_id": "4742",
+      "title": "Manager, Solution Engineering, Public Sector",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-03-24T10:12:20-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4627167006/:title?gh_jid=4627167006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4525023006,
+      "location": {
+        "name": "Remote - Australia"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4627167006,
+      "updated_at": "2026-05-14T14:09:35-04:00",
+      "requisition_id": "4437",
+      "title": "Manager, Solutions Engineering",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-12-19T00:17:11-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4671793006/:title?gh_jid=4671793006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4542894006,
+      "location": {
+        "name": "Remote - South Korea"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4671793006,
+      "updated_at": "2026-05-14T14:09:45-04:00",
+      "requisition_id": "4805",
+      "title": "Manager, Solutions Engineering",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-15T03:10:20-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4643703006/:title?gh_jid=4643703006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4528961006,
+      "location": {
+        "name": "Vancouver, British Columbia"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4643703006,
+      "updated_at": "2026-05-14T14:09:36-04:00",
+      "requisition_id": "4529",
+      "title": "Manager, Solutions Engineering, Western Canada",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-01-13T16:38:15-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4659646006/:title?gh_jid=4659646006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4528961006,
+      "location": {
+        "name": "Calgary, Alberta"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4659646006,
+      "updated_at": "2026-05-14T14:09:36-04:00",
+      "requisition_id": "4529",
+      "title": "Manager, Solutions Engineering, Western Canada",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-03-03T17:00:59-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4695082006/:title?gh_jid=4695082006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4546019006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-01",
+          "value_type": "date"
+        }
+      ],
+      "id": 4695082006,
+      "updated_at": "2026-07-15T17:30:56-04:00",
+      "requisition_id": "4852",
+      "title": "Manager, Solutions Support Engineering - East",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-07T11:04:03-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665115006/:title?gh_jid=4665115006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4539682006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4665115006,
+      "updated_at": "2026-07-31T03:38:36-04:00",
+      "requisition_id": "4706",
+      "title": "Mid-Enterprise Account Executive",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-31T03:38:36-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4699704006/:title?gh_jid=4699704006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4556743006,
+      "location": {
+        "name": "Chicago, Illinois"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4699704006,
+      "updated_at": "2026-07-27T11:22:10-04:00",
+      "requisition_id": "5002",
+      "title": "Mid-Enterprise Account Executive, Central",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-27T11:22:10-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4701955006/:title?gh_jid=4701955006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557871006,
+      "location": {
+        "name": "Remote - United Kingdom"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4701955006,
+      "updated_at": "2026-08-04T12:33:37-04:00",
+      "requisition_id": "5023",
+      "title": "Mid-Enterprise Account Executive (Public Sector) - UK",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T12:33:37-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4684255006/:title?gh_jid=4684255006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4549148006,
+      "location": {
+        "name": "Bengaluru, India"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4684255006,
+      "updated_at": "2026-06-08T00:52:13-04:00",
+      "requisition_id": "4896",
+      "title": "Mid-Enterprise Account Executive - South India",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-08T00:52:13-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4685271006/:title?gh_jid=4685271006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4549638006,
+      "location": {
+        "name": "Mumbai, India"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4685271006,
+      "updated_at": "2026-06-08T01:08:58-04:00",
+      "requisition_id": "4910",
+      "title": "Mid-Enterprise Account Executive - West India",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-08T01:08:22-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4671637006/:title?gh_jid=4671637006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4542806006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-07",
+          "value_type": "date"
+        }
+      ],
+      "id": 4671637006,
+      "updated_at": "2026-07-24T11:22:00-04:00",
+      "requisition_id": "4787",
+      "title": "Partner Marketing Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-09T11:05:55-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4686011006/:title?gh_jid=4686011006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4550007006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4686011006,
+      "updated_at": "2026-06-17T05:19:21-04:00",
+      "requisition_id": "4918",
+      "title": "Partner Solutions Engineer, Israel ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-17T05:19:21-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4645081006/:title?gh_jid=4645081006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4529622006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4645081006,
+      "updated_at": "2026-07-02T05:25:49-04:00",
+      "requisition_id": "4538",
+      "title": "Pentest Product Associate",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-01-20T09:23:40-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4693943006/:title?gh_jid=4693943006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4525031006,
+      "location": {
+        "name": "Remote - Spain"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4693943006,
+      "updated_at": "2026-07-02T04:19:39-04:00",
+      "requisition_id": "4440",
+      "title": "Principal Solutions Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-02T04:19:39-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4693945006/:title?gh_jid=4693945006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4525031006,
+      "location": {
+        "name": "Remote - Netherlands"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4693945006,
+      "updated_at": "2026-07-02T04:19:41-04:00",
+      "requisition_id": "4440",
+      "title": "Principal Solutions Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-02T04:19:41-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4693944006/:title?gh_jid=4693944006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4525031006,
+      "location": {
+        "name": "Remote - Sweden"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4693944006,
+      "updated_at": "2026-07-02T04:19:40-04:00",
+      "requisition_id": "4440",
+      "title": "Principal Solutions Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-02T04:19:40-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4693220006/:title?gh_jid=4693220006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4525031006,
+      "location": {
+        "name": "Remote - Germany"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4693220006,
+      "updated_at": "2026-06-30T04:12:25-04:00",
+      "requisition_id": "4440",
+      "title": "Principal Solutions Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-30T04:12:25-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4691241006/:title?gh_jid=4691241006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4552678006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4691241006,
+      "updated_at": "2026-07-01T07:27:41-04:00",
+      "requisition_id": "4953",
+      "title": "Principal Solutions Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-01T07:27:41-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4677842006/:title?gh_jid=4677842006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4525031006,
+      "location": {
+        "name": "Remote - Germany"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4677842006,
+      "updated_at": "2026-05-14T14:09:35-04:00",
+      "requisition_id": "4440",
+      "title": "Principal Solutions Engineer - Application Security",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-30T04:30:26-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4694622006/:title?gh_jid=4694622006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4554260006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-14",
+          "value_type": "date"
+        }
+      ],
+      "id": 4694622006,
+      "updated_at": "2026-07-06T13:10:41-04:00",
+      "requisition_id": "4979",
+      "title": "Principal Solutions Engineer, Central",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-06T13:10:41-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4681323006/:title?gh_jid=4681323006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4547663006,
+      "location": {
+        "name": "Washington, D.C."
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-10-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4681323006,
+      "updated_at": "2026-06-01T13:58:43-04:00",
+      "requisition_id": "4868",
+      "title": "Principal Strategist, Public Sector (Executive Engagements)",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-01T13:58:43-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4599708006/:title?gh_jid=4599708006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4511189006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4599708006,
+      "updated_at": "2026-05-14T14:09:33-04:00",
+      "requisition_id": "4344",
+      "title": "Product Designer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-09-09T04:30:23-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665810006/:title?gh_jid=4665810006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4540025006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-14",
+          "value_type": "date"
+        }
+      ],
+      "id": 4665810006,
+      "updated_at": "2026-05-14T14:09:42-04:00",
+      "requisition_id": "4741",
+      "title": "Product Marketing Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-02T10:32:16-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4668815006/:title?gh_jid=4668815006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4541382006,
+      "location": {
+        "name": "Delhi, India"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4668815006,
+      "updated_at": "2026-05-14T14:09:43-04:00",
+      "requisition_id": "4758",
+      "title": "Public Sector Account Executive - North India",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-02T00:10:18-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4671764006/:title?gh_jid=4671764006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4542879006,
+      "location": {
+        "name": "Remote - South Korea"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4671764006,
+      "updated_at": "2026-05-14T14:09:44-04:00",
+      "requisition_id": "4793",
+      "title": "Regional Director, Sales",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-11T02:29:29-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4685263006/:title?gh_jid=4685263006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4549634006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4685263006,
+      "updated_at": "2026-05-31T23:32:07-04:00",
+      "requisition_id": "4907",
+      "title": "Regional Partner Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-05-31T23:32:07-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665308006/:title?gh_jid=4665308006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4539768006,
+      "location": {
+        "name": "London, UK"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4665308006,
+      "updated_at": "2026-05-14T14:09:41-04:00",
+      "requisition_id": "4721",
+      "title": "Regional Partner Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-03-25T07:10:36-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4700604006/:title?gh_jid=4700604006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557196006,
+      "location": {
+        "name": "Remote - Mexico"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4700604006,
+      "updated_at": "2026-08-06T13:39:42-04:00",
+      "requisition_id": "5008",
+      "title": "Regional Partner Manager, LATAM",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-06T13:39:42-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4703063006/:title?gh_jid=4703063006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557196006,
+      "location": {
+        "name": "Remote - Brazil"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4703063006,
+      "updated_at": "2026-08-06T13:40:38-04:00",
+      "requisition_id": "5008",
+      "title": "Regional Partner Manager, LATAM",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-06T13:40:38-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665310006/:title?gh_jid=4665310006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4539769006,
+      "location": {
+        "name": "Remote - Singapore"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4665310006,
+      "updated_at": "2026-05-14T14:09:41-04:00",
+      "requisition_id": "4722",
+      "title": "Regional Partner Manager - SEA",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-05-10T22:30:11-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4700026006/:title?gh_jid=4700026006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4556902006,
+      "location": {
+        "name": "Washington, D.C."
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-30",
+          "value_type": "date"
+        }
+      ],
+      "id": 4700026006,
+      "updated_at": "2026-08-04T14:07:32-04:00",
+      "requisition_id": "5003",
+      "title": "Regional Sales Director, SLED East",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T14:07:32-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4682673006/:title?gh_jid=4682673006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4548346006,
+      "location": {
+        "name": "Madrid, Spain; Remote - Spain"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4682673006,
+      "updated_at": "2026-05-21T03:48:01-04:00",
+      "requisition_id": "4878",
+      "title": "Renewals Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-05-21T03:48:01-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4422889006/:title?gh_jid=4422889006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4439952006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4422889006,
+      "updated_at": "2026-05-14T14:09:32-04:00",
+      "requisition_id": "3184",
+      "title": "Security Engineer ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2024-12-08T11:42:52-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702176006/:title?gh_jid=4702176006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4534374006,
+      "location": {
+        "name": "Paris, France; Remote - France"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4702176006,
+      "updated_at": "2026-08-04T06:01:17-04:00",
+      "requisition_id": "4637",
+      "title": "Security Engineer - Product",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T06:01:17-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702175006/:title?gh_jid=4702175006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4534374006,
+      "location": {
+        "name": "Amsterdam, Netherlands; Remote - Netherlands"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4702175006,
+      "updated_at": "2026-08-04T06:01:16-04:00",
+      "requisition_id": "4637",
+      "title": "Security Engineer - Product",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T06:01:16-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702174006/:title?gh_jid=4702174006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4534374006,
+      "location": {
+        "name": "Berlin, Germany; Munich, Germany; Remote - Germany"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4702174006,
+      "updated_at": "2026-08-04T06:01:16-04:00",
+      "requisition_id": "4637",
+      "title": "Security Engineer - Product",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T06:01:16-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4654705006/:title?gh_jid=4654705006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4534374006,
+      "location": {
+        "name": "London, UK; Remote - United Kingdom"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4654705006,
+      "updated_at": "2026-08-04T05:57:37-04:00",
+      "requisition_id": "4637",
+      "title": "Security Engineer - Product",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T05:57:37-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702178006/:title?gh_jid=4702178006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4534374006,
+      "location": {
+        "name": "Madrid, Spain; Remote - Spain"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4702178006,
+      "updated_at": "2026-08-04T06:01:19-04:00",
+      "requisition_id": "4637",
+      "title": "Security Engineer - Product",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T06:01:19-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702177006/:title?gh_jid=4702177006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4534374006,
+      "location": {
+        "name": "Remote - Ireland"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4702177006,
+      "updated_at": "2026-08-04T06:01:18-04:00",
+      "requisition_id": "4637",
+      "title": "Security Engineer - Product",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T06:01:18-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4675390006/:title?gh_jid=4675390006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4544760006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-21",
+          "value_type": "date"
+        }
+      ],
+      "id": 4675390006,
+      "updated_at": "2026-08-05T16:29:23-04:00",
+      "requisition_id": "4833",
+      "title": "Senior Customer Experience Manager (Central)",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-05-04T11:26:14-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702516006/:title?gh_jid=4702516006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4558146006,
+      "location": {
+        "name": "Remote - Singapore"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4702516006,
+      "updated_at": "2026-08-04T17:49:25-04:00",
+      "requisition_id": "5027",
+      "title": "Senior Deal Desk Analyst, APJ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T17:49:25-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4702524006/:title?gh_jid=4702524006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4558152006,
+      "location": {
+        "name": "Remote - United Kingdom"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4702524006,
+      "updated_at": "2026-08-04T17:54:55-04:00",
+      "requisition_id": "5028",
+      "title": "Senior Deal Desk Analyst, Central Europe",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T17:54:55-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4682244006/:title?gh_jid=4682244006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4548126006,
+      "location": {
+        "name": "New York City"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-14",
+          "value_type": "date"
+        }
+      ],
+      "id": 4682244006,
+      "updated_at": "2026-08-07T09:34:36-04:00",
+      "requisition_id": "4871",
+      "title": "Senior GTM Data Analyst",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-05-19T09:03:14-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4685637006/:title?gh_jid=4685637006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4549818006,
+      "location": {
+        "name": "Remote - India"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4685637006,
+      "updated_at": "2026-06-04T22:40:02-04:00",
+      "requisition_id": "4912",
+      "title": "Senior Partner Solutions Architect - GSI",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-04T08:27:23-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4561216006/:title?gh_jid=4561216006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4481790006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-25",
+          "value_type": "date"
+        }
+      ],
+      "id": 4561216006,
+      "updated_at": "2026-06-24T10:08:21-04:00",
+      "requisition_id": "3609",
+      "title": "Senior Product Marketing Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-04-18T16:54:56-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4671679006/:title?gh_jid=4671679006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4542828006,
+      "location": {
+        "name": "Chicago, Illinois; New York City; San Francisco Bay Area"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-16",
+          "value_type": "date"
+        }
+      ],
+      "id": 4671679006,
+      "updated_at": "2026-08-04T12:47:45-04:00",
+      "requisition_id": "4789",
+      "title": "Senior Revenue Accountant",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-10T08:47:41-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4692647006/:title?gh_jid=4692647006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4553283006,
+      "location": {
+        "name": "Remote - Brazil"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4692647006,
+      "updated_at": "2026-07-06T11:18:04-04:00",
+      "requisition_id": "4963",
+      "title": "Senior Solutions Engineer, Brazil ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-30T16:51:55-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4692645006/:title?gh_jid=4692645006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4553282006,
+      "location": {
+        "name": "Remote - Mexico"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4692645006,
+      "updated_at": "2026-07-06T11:17:00-04:00",
+      "requisition_id": "4962",
+      "title": "Senior Solutions Engineer, Mexico",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-29T12:50:29-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4686815006/:title?gh_jid=4686815006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4550442006,
+      "location": {
+        "name": "Washington, D.C."
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4686815006,
+      "updated_at": "2026-06-04T11:31:32-04:00",
+      "requisition_id": "4923",
+      "title": "Senior Solutions Engineer, Public Sector",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-04T11:31:32-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4701035006/:title?gh_jid=4701035006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557431006,
+      "location": {
+        "name": "Atlanta, Georgia"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-30",
+          "value_type": "date"
+        }
+      ],
+      "id": 4701035006,
+      "updated_at": "2026-08-04T17:36:51-04:00",
+      "requisition_id": "5011",
+      "title": "Senior Solutions Engineer, Public Sector",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T17:36:51-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4685659006/:title?gh_jid=4685659006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4549830006,
+      "location": {
+        "name": "Remote - United Kingdom"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4685659006,
+      "updated_at": "2026-07-08T08:54:22-04:00",
+      "requisition_id": "4913",
+      "title": "Senior Solutions Engineer, Strategic/Major -UK/I",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-10T08:35:53-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4683505006/:title?gh_jid=4683505006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4548731006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-28",
+          "value_type": "date"
+        }
+      ],
+      "id": 4683505006,
+      "updated_at": "2026-07-17T11:16:36-04:00",
+      "requisition_id": "4884",
+      "title": "Senior Solutions Support Engineer - US East",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-16T15:06:27-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4691000006/:title?gh_jid=4691000006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4552554006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-14",
+          "value_type": "date"
+        }
+      ],
+      "id": 4691000006,
+      "updated_at": "2026-08-05T15:33:35-04:00",
+      "requisition_id": "4951",
+      "title": "Senior Strategic Partner Manager - Emerging GSIs",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-25T17:05:06-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4685261006/:title?gh_jid=4685261006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4549633006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4685261006,
+      "updated_at": "2026-06-09T02:21:54-04:00",
+      "requisition_id": "4906",
+      "title": "Senior Strategic Partner Manager - Global SI, Japan",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-07T23:33:17-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665314006/:title?gh_jid=4665314006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4539771006,
+      "location": {
+        "name": "Remote - Singapore"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4665314006,
+      "updated_at": "2026-06-16T22:34:31-04:00",
+      "requisition_id": "4724",
+      "title": "Senior Strategic Partner Manager - GSI, SEAK",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-16T22:34:31-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665312006/:title?gh_jid=4665312006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4539770006,
+      "location": {
+        "name": "Remote - India"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4665312006,
+      "updated_at": "2026-05-14T14:09:41-04:00",
+      "requisition_id": "4723",
+      "title": "Senior Strategic Partner Manager - SI India",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-02T00:15:31-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665474006/:title?gh_jid=4665474006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4539845006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4665474006,
+      "updated_at": "2026-05-14T14:09:41-04:00",
+      "requisition_id": "4732",
+      "title": "Senior Technical Account Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-03-22T23:32:39-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4694452006/:title?gh_jid=4694452006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4554174006,
+      "location": {
+        "name": "Remote - South Korea"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4694452006,
+      "updated_at": "2026-07-09T01:19:48-04:00",
+      "requisition_id": "4972",
+      "title": "Senior Technical Account Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-09T01:19:48-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4439983006/:title?gh_jid=4439983006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4448054006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-25",
+          "value_type": "date"
+        }
+      ],
+      "id": 4439983006,
+      "updated_at": "2026-06-24T10:06:59-04:00",
+      "requisition_id": "3413",
+      "title": "Senior Technical Product Marketing Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-08-12T22:54:57-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665302006/:title?gh_jid=4665302006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4539765006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4665302006,
+      "updated_at": "2026-05-14T14:09:41-04:00",
+      "requisition_id": "4718",
+      "title": "Solutions Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-03-22T22:47:16-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4698335006/:title?gh_jid=4698335006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4556088006,
+      "location": {
+        "name": "Remote - Ireland"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4698335006,
+      "updated_at": "2026-08-05T02:57:16-04:00",
+      "requisition_id": "4995",
+      "title": "Solutions Support Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-05T02:56:21-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4698256006/:title?gh_jid=4698256006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4556058006,
+      "location": {
+        "name": "Remote - Ireland"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4698256006,
+      "updated_at": "2026-07-20T11:29:59-04:00",
+      "requisition_id": "4994",
+      "title": "Solutions Support Engineer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-20T11:29:09-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4665064006/:title?gh_jid=4665064006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4539653006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4665064006,
+      "updated_at": "2026-05-14T14:09:40-04:00",
+      "requisition_id": "4696",
+      "title": "Solutions Support Engineer, (Cloud Security & AI)",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-03-23T22:13:34-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4683509006/:title?gh_jid=4683509006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4548733006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-28",
+          "value_type": "date"
+        }
+      ],
+      "id": 4683509006,
+      "updated_at": "2026-08-03T11:46:08-04:00",
+      "requisition_id": "4885",
+      "title": "Solutions Support Engineer, Weekend 2nd shift, US",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-20T12:40:42-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4645539006/:title?gh_jid=4645539006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4529862006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4645539006,
+      "updated_at": "2026-05-21T23:26:21-04:00",
+      "requisition_id": "4545",
+      "title": "Sr. Advanced Delivery Architect – Advanced Services, Japan",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-05-13T22:45:00-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4676541006/:title?gh_jid=4676541006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4545280006,
+      "location": {
+        "name": "Remote - Italy"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4676541006,
+      "updated_at": "2026-05-14T14:09:47-04:00",
+      "requisition_id": "4845",
+      "title": "Sr. Solutions Engineer, Italy",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-05-01T09:08:06-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4690625006/:title?gh_jid=4690625006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4552347006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4690625006,
+      "updated_at": "2026-06-22T21:43:20-04:00",
+      "requisition_id": "4944",
+      "title": "Sr. Solutions Engineer, Japan",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-22T21:41:57-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4622103006/:title?gh_jid=4622103006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4522480006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4622103006,
+      "updated_at": "2026-05-14T14:09:34-04:00",
+      "requisition_id": "4381",
+      "title": "Talent Acquisition Partner ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-12-11T12:29:59-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4694458006/:title?gh_jid=4694458006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4554177006,
+      "location": {
+        "name": "Remote - Singapore"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4694458006,
+      "updated_at": "2026-07-09T01:21:47-04:00",
+      "requisition_id": "4976",
+      "title": "Technical Account Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-09T01:21:47-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4682671006/:title?gh_jid=4682671006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4548345006,
+      "location": {
+        "name": "Remote - Japan"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4682671006,
+      "updated_at": "2026-07-12T23:55:51-04:00",
+      "requisition_id": "4877",
+      "title": "Technical Account Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-12T23:55:51-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4648827006/:title?gh_jid=4648827006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4531491006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4648827006,
+      "updated_at": "2026-07-09T15:26:38-04:00",
+      "requisition_id": "4583",
+      "title": "Technical Account Manager (Central)",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-01-29T16:03:07-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4688850006/:title?gh_jid=4688850006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4551426006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4688850006,
+      "updated_at": "2026-08-03T11:30:19-04:00",
+      "requisition_id": "4938",
+      "title": "Technical Account Manager (Mid-Atlantic)",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-06-12T12:23:02-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4700894006/:title?gh_jid=4700894006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557363006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-30",
+          "value_type": "date"
+        }
+      ],
+      "id": 4700894006,
+      "updated_at": "2026-08-04T11:27:54-04:00",
+      "requisition_id": "5010",
+      "title": "Technical Account Manager (Northeast)",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T11:27:54-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4701332006/:title?gh_jid=4701332006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557579006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4701332006,
+      "updated_at": "2026-08-04T16:32:11-04:00",
+      "requisition_id": "5014",
+      "title": "Technical Account Manager, West",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-04T16:32:11-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4615170006/:title?gh_jid=4615170006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4519099006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4615170006,
+      "updated_at": "2026-08-04T07:21:12-04:00",
+      "requisition_id": "4336",
+      "title": "Technical Product Associate",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-11-04T07:17:13-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4650468006/:title?gh_jid=4650468006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4532310006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4650468006,
+      "updated_at": "2026-05-14T14:09:38-04:00",
+      "requisition_id": "4601",
+      "title": "Technical Project Manager",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-02-03T09:01:43-05:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4701311006/:title?gh_jid=4701311006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4557565006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4701311006,
+      "updated_at": "2026-08-02T06:26:08-04:00",
+      "requisition_id": "5013",
+      "title": "Technical Writer",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-08-02T06:26:08-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4566780006/:title?gh_jid=4566780006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4495113006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4566780006,
+      "updated_at": "2026-07-21T14:59:48-04:00",
+      "requisition_id": "3852",
+      "title": "Threat Detection Researcher (Cloud) ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2025-06-08T03:53:42-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4693950006/:title?gh_jid=4693950006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4553920006,
+      "location": {
+        "name": "New York City"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-08-31",
+          "value_type": "date"
+        }
+      ],
+      "id": 4693950006,
+      "updated_at": "2026-07-07T04:48:55-04:00",
+      "requisition_id": "4965",
+      "title": "Threat Detection Researcher (Windows/Linux/MacOS)",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-07-07T04:48:55-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4670481006/:title?gh_jid=4670481006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4542186006,
+      "location": {
+        "name": "Tel Aviv"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": null,
+          "value_type": "date"
+        }
+      ],
+      "id": 4670481006,
+      "updated_at": "2026-06-22T03:16:54-04:00",
+      "requisition_id": "4774",
+      "title": "Threat Detection Researcher (Windows/Linux/MacOS)   ",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-04-20T02:46:06-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://www.wiz.io/careers/job/4658917006/:title?gh_jid=4658917006",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4536503006,
+      "location": {
+        "name": "Remote - USA"
+      },
+      "metadata": [
+        {
+          "id": 16576471006,
+          "name": "Application Close Date",
+          "value": "2026-09-29",
+          "value_type": "date"
+        }
+      ],
+      "id": 4658917006,
+      "updated_at": "2026-08-04T11:15:46-04:00",
+      "requisition_id": "4663",
+      "title": "Threat Intelligence Researcher (Cloud)",
+      "company_name": "Wiz, Inc.",
+      "first_published": "2026-03-02T09:29:16-05:00",
+      "language": "en",
+      "application_deadline": null
+    }
+  ],
+  "meta": {
+    "total": 129
+  }
+}

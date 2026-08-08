@@ -1,0 +1,5 @@
+{
+  "mode": "scheduled",
+  "scans_per_day": 2,
+  "times_utc": ["06:00", "18:00"]
+}
