@@ -23,5 +23,20 @@
     "domain": "api.ashbyhq.com",
     "allowed": false,
     "checked_at": 1786216312.7955863
+  },
+  "boards-api.eu.greenhouse.io": {
+    "domain": "boards-api.eu.greenhouse.io",
+    "allowed": true,
+    "checked_at": 1786362245.1047242
+  },
+  "api.eu.lever.co": {
+    "domain": "api.eu.lever.co",
+    "allowed": true,
+    "checked_at": 1786362245.4921713
+  },
+  "job-boards.eu.greenhouse.io": {
+    "domain": "job-boards.eu.greenhouse.io",
+    "allowed": true,
+    "checked_at": 1786362265.6880713
   }
 }

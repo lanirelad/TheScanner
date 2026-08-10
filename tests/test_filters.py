@@ -52,6 +52,80 @@ def _job_by_title_and_location(jobs, title, location):
     raise AssertionError(f"no job titled {title!r} at {location!r} in fixture")
 
 
+# --- roles.json "enabled" flag (Session 11, ADR-0007) -----------------------
+# Synthetic configs, not the real fixtures — isolates the enabled-flag
+# mechanism itself from any particular category's real tags/matches.
+
+
+def _filter_with_roles(roles_config):
+    role_filter = _build_filter()
+    role_filter.roles_config = roles_config
+    return role_filter
+
+
+def test_disabled_category_tag_is_not_matched():
+    roles_config = {
+        "devops": {"enabled": False, "tags_en": ["devops"], "tags_he": []},
+    }
+    role_filter = _filter_with_roles(roles_config)
+
+    job = {"title": "DevOps Engineer", "department": None, "location": "Tel Aviv", "absolute_url": "x"}
+    result = role_filter.match(job)
+
+    assert result == {"matched": False, "role_category": None, "matched_tag": None}
+
+
+def test_enabled_category_tag_is_matched():
+    roles_config = {
+        "devops": {"enabled": True, "tags_en": ["devops"], "tags_he": []},
+    }
+    role_filter = _filter_with_roles(roles_config)
+
+    job = {"title": "DevOps Engineer", "department": None, "location": "Tel Aviv", "absolute_url": "x"}
+    result = role_filter.match(job)
+
+    assert result == {"matched": True, "role_category": "devops", "matched_tag": "devops"}
+
+
+def test_category_missing_enabled_key_entirely_defaults_to_disabled():
+    # Fail safe, not fail open (documented in core/filters.py): a category
+    # with no "enabled" key at all — shouldn't happen with the current
+    # roles.json, but a future hand-edit could omit it — must not silently
+    # start matching. A quietly-inactive category is a low-consequence
+    # miss; a quietly-reactivated one surfacing unwanted matches is worse,
+    # given Elad wants tight control over which categories are live.
+    roles_config = {
+        "devops": {"tags_en": ["devops"], "tags_he": []},  # no "enabled" key
+    }
+    role_filter = _filter_with_roles(roles_config)
+
+    job = {"title": "DevOps Engineer", "department": None, "location": "Tel Aviv", "absolute_url": "x"}
+    result = role_filter.match(job)
+
+    assert result == {"matched": False, "role_category": None, "matched_tag": None}
+
+
+def test_only_disabled_categories_present_matches_nothing_even_with_a_universally_loose_tag():
+    # A broader check than the single-category tests above: with every
+    # category disabled, a title that would hit two different categories'
+    # tags simultaneously still matches neither.
+    roles_config = {
+        "devops": {"enabled": False, "tags_en": ["devops"], "tags_he": []},
+        "technical_support": {"enabled": False, "tags_en": ["support engineer"], "tags_he": []},
+    }
+    role_filter = _filter_with_roles(roles_config)
+
+    job = {
+        "title": "DevOps Support Engineer",
+        "department": None,
+        "location": "Tel Aviv",
+        "absolute_url": "x",
+    }
+    result = role_filter.match(job)
+
+    assert result == {"matched": False, "role_category": None, "matched_tag": None}
+
+
 # --- Greenhouse (Wiz, Playtika) ---------------------------------------------
 
 
@@ -96,11 +170,14 @@ def test_wiz_israel_role_without_matching_tag_is_rejected():
     assert result == {"matched": False, "role_category": None, "matched_tag": None}
 
 
-def test_wiz_backend_engineer_now_matches_software_development():
-    # Locks in the current, correct behavior after roles.json's
-    # software_development category was added: this used to be a
-    # deliberate non-match example (see the test above) before that
-    # config change.
+def test_wiz_backend_engineer_is_rejected_while_software_development_disabled():
+    # Session 9 found this matches software_development's "backend
+    # engineer" tag. Session 11 added an "enabled" flag to roles.json and
+    # Elad chose devops/technical_support only for now — software_development
+    # is present in config but inactive, so this must be rejected under the
+    # real, current roles.json, not matched. See
+    # test_disabled_categories_still_match_correctly_when_enabled below for
+    # proof the underlying tag logic itself is unaffected.
     role_filter = _build_filter()
     jobs = _load_greenhouse_fixture_jobs("wiz")
 
@@ -108,11 +185,7 @@ def test_wiz_backend_engineer_now_matches_software_development():
     assert job["location"] == "Tel Aviv"
 
     result = role_filter.match(job)
-    assert result == {
-        "matched": True,
-        "role_category": "software_development",
-        "matched_tag": "backend engineer",
-    }
+    assert result == {"matched": False, "role_category": None, "matched_tag": None}
 
 
 def test_playtika_devsecops_is_not_a_devops_tag_match():
@@ -128,17 +201,17 @@ def test_playtika_devsecops_is_not_a_devops_tag_match():
     assert result == {"matched": False, "role_category": None, "matched_tag": None}
 
 
-def test_playtika_fixture_matches_after_roles_json_expansion():
-    # Was "no matches yet" through Session 8. roles.json's new
-    # project_manager category (added after Session 8, real config
-    # evolution per ADR-0007) now matches 2 of Playtika's real postings.
+def test_playtika_fixture_has_no_matches_with_default_enabled_categories():
+    # Session 9 found 2 matches here once roles.json grew a
+    # project_manager category. Session 11's "enabled" flag makes
+    # project_manager inactive by default (Elad's actual choice, only
+    # devops/technical_support are on for now), so the current, correct
+    # behavior is back to zero matches for this fixture.
     role_filter = _build_filter()
     jobs = _load_greenhouse_fixture_jobs("playtika")
 
-    matches = {job["title"]: role_filter.match(job) for job in jobs}
-    matched_titles = {title for title, result in matches.items() if result["matched"]}
-    assert matched_titles == {" HRIS Project Manager - Maternity leave replacement ", "Tech Program Manager"}
-    assert matches["Tech Program Manager"]["role_category"] == "project_manager"
+    matches = [role_filter.match(job) for job in jobs]
+    assert not any(result["matched"] for result in matches)
 
 
 # --- Lever (Palantir, Smarsh) ------------------------------------------------
@@ -155,16 +228,16 @@ def test_palantir_non_israel_location_is_rejected():
     assert result == {"matched": False, "role_category": None, "matched_tag": None}
 
 
-def test_palantir_israel_role_now_matches_software_development():
+def test_palantir_israel_role_is_rejected_while_software_development_disabled():
     # Real live data (Session 3): Palantir has exactly one Israel-located
     # posting. "Forward Deployed Software Engineer" is also posted under
     # many other cities, so this must be looked up by title+location
     # together, not title alone (a genuine difference from every
     # Greenhouse fixture in this repo, where title alone was unique).
-    # Through Session 8 this was a deliberate non-match example; roles.json
-    # grew a software_development category (tag "software engineer") since
-    # then, so it now correctly matches — real config evolution (ADR-0007),
-    # not a regression.
+    # Session 9 found this matches software_development's "software
+    # engineer" tag; Session 11's "enabled" flag makes that category
+    # inactive by default, so the current, correct behavior under the real
+    # roles.json is rejection.
     role_filter = _build_filter()
     jobs = _load_lever_fixture_jobs("palantir")
 
@@ -172,11 +245,7 @@ def test_palantir_israel_role_now_matches_software_development():
     assert job["department"] is None  # Palantir's categories have no "department" key at all
 
     result = role_filter.match(job)
-    assert result == {
-        "matched": True,
-        "role_category": "software_development",
-        "matched_tag": "software engineer",
-    }
+    assert result == {"matched": False, "role_category": None, "matched_tag": None}
 
 
 def test_smarsh_israel_roles_without_matching_tag_are_rejected():
@@ -192,15 +261,54 @@ def test_smarsh_israel_roles_without_matching_tag_are_rejected():
         assert result == {"matched": False, "role_category": None, "matched_tag": None}
 
 
-def test_lever_fixtures_have_exactly_one_match_after_roles_json_expansion():
-    # Was "no matches" through Session 8 (see
-    # test_palantir_israel_role_now_matches_software_development for why).
-    # Smarsh still has none.
+def test_lever_fixtures_have_no_matches_with_default_enabled_categories():
+    # Session 9 found 1 match here (Palantir's Forward Deployed Software
+    # Engineer, via software_development). Session 11's default
+    # (devops/technical_support only) makes that category inactive, so
+    # the current, correct behavior is back to zero.
     role_filter = _build_filter()
     jobs = _load_lever_fixture_jobs("palantir") + _load_lever_fixture_jobs("smarsh")
 
     matches = [role_filter.match(job) for job in jobs]
-    assert sum(1 for result in matches if result["matched"]) == 1
+    assert not any(result["matched"] for result in matches)
+
+
+def test_disabled_categories_still_match_correctly_when_enabled():
+    # Session 9's real-data discovery (software_development/project_manager
+    # tags correctly matching real fixture titles) shouldn't just vanish
+    # because Session 11 disabled those categories by default — otherwise
+    # the underlying tag-matching logic for every disabled category could
+    # silently rot, unexercised, until someone re-enables one in production
+    # and finds out then whether it still works. Force every category
+    # "enabled" in a loaded config (not the real roles.json file) to prove
+    # the tag logic itself is untouched by the enabled-flag feature —
+    # only which categories participate has changed.
+    role_filter = _build_filter()
+    for role in role_filter.roles_config.values():
+        role["enabled"] = True
+
+    wiz_backend = _job_by_title(_load_greenhouse_fixture_jobs("wiz"), "Backend Engineer")
+    assert role_filter.match(wiz_backend) == {
+        "matched": True,
+        "role_category": "software_development",
+        "matched_tag": "backend engineer",
+    }
+
+    palantir_fdse = _job_by_title_and_location(
+        _load_lever_fixture_jobs("palantir"), "Forward Deployed Software Engineer", "Tel Aviv, Israel"
+    )
+    assert role_filter.match(palantir_fdse) == {
+        "matched": True,
+        "role_category": "software_development",
+        "matched_tag": "software engineer",
+    }
+
+    playtika_pm = _job_by_title(_load_greenhouse_fixture_jobs("playtika"), "Tech Program Manager")
+    assert role_filter.match(playtika_pm) == {
+        "matched": True,
+        "role_category": "project_manager",
+        "matched_tag": "program manager",
+    }
 
 
 # --- Cross-adapter shape checks ----------------------------------------------

@@ -100,16 +100,39 @@ def test_enlight_israel_role_without_matching_tag_is_rejected():
     assert result == {"matched": False, "role_category": None, "matched_tag": None}
 
 
-def test_att_and_enlight_fixtures_have_five_matches_after_roles_json_expansion():
-    # Was "no matches" through Session 8. roles.json's project_manager and
-    # software_development categories (added after Session 8, real config
-    # evolution per ADR-0007) now match 3 AT&T postings and 2 Enlight
-    # postings — not a regression.
+def test_att_and_enlight_fixtures_have_no_matches_with_default_enabled_categories():
+    # Session 9 found 5 matches here (3 AT&T, 2 Enlight), all via
+    # project_manager/software_development. Session 11's "enabled" flag
+    # makes both of those inactive by default (Elad's actual choice, only
+    # devops/technical_support are on for now), so the current, correct
+    # behavior is back to zero matches for these fixtures. See
+    # test_project_manager_and_software_development_still_match_when_enabled
+    # for proof the underlying tag logic itself is unaffected.
     role_filter = _build_filter()
     jobs = _load_fixture_jobs("att") + _load_fixture_jobs("enlight")
 
     matches = [role_filter.match(job) for job in jobs]
-    assert sum(1 for result in matches if result["matched"]) == 5
+    assert not any(result["matched"] for result in matches)
+
+
+def test_project_manager_and_software_development_still_match_when_enabled():
+    role_filter = _build_filter()
+    for role in role_filter.roles_config.values():
+        role["enabled"] = True
+
+    att_pm = _job_by_title(_load_fixture_jobs("att"), "Program Manager Lead")
+    assert role_filter.match(att_pm) == {
+        "matched": True,
+        "role_category": "project_manager",
+        "matched_tag": "program manager",
+    }
+
+    enlight_pm = _job_by_title(_load_fixture_jobs("enlight"), "Project Manager - Construction - Enlight Local")
+    assert role_filter.match(enlight_pm) == {
+        "matched": True,
+        "role_category": "project_manager",
+        "matched_tag": "project manager",
+    }
 
 
 def test_comeet_stage1_output_discards_full_content_fields():

@@ -307,3 +307,52 @@
   and separately, GitHub Actions' own default step semantics would skip
   the commit/push step after a timed-out step regardless. A clean no-op,
   not data corruption — confirmed deliberately, not left as an accident.
+
+## 2026-08-09 — Session 11: roles.json "enabled" flag now functional
+- Flagged a discrepancy rather than silently working around it: the task
+  said roles.json already had an "enabled" field added externally — it
+  didn't (unchanged since Session 9's initial commit). Added the field
+  myself with exactly the values the task specified (true for devops/
+  technical_support, false for npi/software_development/project_manager),
+  since that value was unambiguous, not a new decision.
+- core/filters.py's role-matching loop now skips any category where
+  "enabled" is falsy. Missing the key entirely defaults to disabled (fail
+  safe, not fail open) - matches the project's existing conservative-
+  default pattern (robots.txt 401 -> disallow-all).
+- Fixed 5 Session 9 tests whose premise no longer held ("this now matches
+  under the full 5-category set") to assert the new correct default
+  instead, and added 2 consolidated all-enabled override tests preserving
+  the real-data discovery value without 5 near-duplicates, plus 4 new
+  synthetic unit tests isolating the enabled-flag mechanism itself.
+- Live smoke test: real matches dropped from 15 (Session 9's actual
+  figure) to 2, both still_open, every dropped match being project_manager/
+  software_development as expected.
+- 73/73 tests passing (was 67: 5 fixed, 6 new), 0 real network calls.
+- Nothing committed - per this session's explicit instructions.
+
+## 2026-08-09 — Session 13: EU-region domain support, Optimove + Mobileye
+- companies.json didn't actually have the Optimove/Mobileye entries the
+  task described (same discrepancy pattern as Sessions 9/11) - added them
+  with the exact slugs/domains specified, then did the real verification.
+- Real finding: Lever has a genuine separate EU API domain
+  (api.eu.lever.co, confirmed against Mobileye - 200 OK, identical shape
+  to the global API, 138 real postings). Greenhouse does not -
+  boards-api.eu.greenhouse.io fails DNS resolution entirely; Optimove's
+  EU-hosted board is served fine by the ordinary global
+  boards-api.greenhouse.io. EU residency there only affects the public
+  page domain, not the API.
+- GreenhouseAdapter/LeverAdapter both take an ats_region argument now,
+  resolved via a REGION_DOMAINS dict (empty for Greenhouse, {"eu":
+  "api.eu.lever.co"} for Lever) with a default-domain fallback - a future
+  confirmed region is a dict entry, not new code. Nothing speculative was
+  added to Greenhouse's mapping just for symmetry with Lever.
+- Live smoke test: 9/9 companies succeeded, 7 total matches (5 new from
+  Mobileye, 2 already-known still_open). Optimove: 0 matches - the task
+  expected a "Site Reliability Engineer" posting there; it doesn't exist
+  in the live data at verification time, flagged as listing drift, not a
+  bug.
+- 87/87 tests passing (was 73: 14 new), 0 real network calls. 6 total
+  live network calls this session, disclosed per ADR-0019 (1 DNS-failure
+  attempt that never reached a server, 1 HTML investigation fetch, 2
+  exploratory API probes, 2 final fixture-capture fetches).
+- ARCHITECTURE.md §1 gained the EU-region empirical finding.

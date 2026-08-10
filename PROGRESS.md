@@ -349,3 +349,78 @@ None — all decisions needed to start building are now in place.
   deliberate no-op on timeout, not an accident.
 - No test/code changes beyond the two files above — this was a
   deliberately small, single-purpose session.
+
+## Addendum — Session 11 executed: roles.json "enabled" flag now functional (2026-08-09)
+- Discrepancy flagged at session start: the task said roles.json already
+  had an `"enabled"` field added externally by planning-Claude — it
+  didn't (confirmed via `git log -- roles.json`, unchanged since the
+  Session 9 initial commit). Rather than blocking the whole session on a
+  documentation gap, added the field myself with exactly the values the
+  task specified (`true` for devops/technical_support, `false` for npi/
+  software_development/project_manager) — implementing an already-decided,
+  unambiguous value, not making a new product decision.
+- `core/filters.py`'s `_matching_role_tag` now skips any category where
+  `enabled` is falsy before checking its tags. Missing the `enabled` key
+  entirely defaults to **disabled** (fail safe, not fail open) — matches
+  this project's existing conservative-default pattern (robots.txt 401 ->
+  disallow-all). Documented inline and in ARCHITECTURE.md §1a.
+- Fixed 5 Session 9 tests whose entire premise was "this now matches
+  under the full 5-category set" — converted each to assert the new,
+  correct default (disabled -> rejected), and added 2 consolidated tests
+  (one in test_filters.py, one in test_comeet_adapter.py) that force every
+  category `enabled` in a loaded config to prove the underlying tag logic
+  for software_development/project_manager still works correctly when
+  active — preserving Session 9's real-data discovery value without 5
+  near-duplicate override tests. Also added 4 new synthetic unit tests
+  isolating the enabled-flag mechanism itself (disabled/enabled/missing-key/
+  multi-category), independent of any real fixture.
+- Live smoke test: real matches dropped from 15 (Session 9's actual
+  recorded figure — the task said 14, a minor inaccuracy, not chased
+  further) to 2, both correctly `still_open` (the same two devops matches
+  from Session 9, already known to storage). Every dropped match was
+  project_manager/software_development, exactly as expected.
+- Test suite: 73/73 passing (was 67: 5 fixed, 6 new), 0 real network calls.
+- Still nothing new committed — this session's changes remain local per
+  the task's explicit "do not commit or push."
+
+## Addendum — Session 13 executed: EU-region domains, Optimove/Mobileye (2026-08-09)
+- Two more discrepancies found and disclosed at session start, same
+  pattern as Sessions 9/11: companies.json didn't actually have the
+  Optimove/Mobileye entries the task described, and neither company was
+  previously live-verified. Added both myself with the exact slugs/domains
+  the task specified, then did the actual verification work rather than
+  trusting the task's premises.
+- Real finding: Greenhouse and Lever handle EU hosting differently at the
+  API layer. Lever genuinely has a separate api.eu.lever.co domain
+  (confirmed against Mobileye — 200 OK, identical shape to the global
+  API). Greenhouse does not — boards-api.eu.greenhouse.io doesn't resolve
+  at all; Optimove's EU-hosted board is served by the same global
+  boards-api.greenhouse.io with no regional variant. Both adapters now
+  take an `ats_region` argument and consult a `REGION_DOMAINS` dict
+  (empty for Greenhouse, `{"eu": "api.eu.lever.co"}` for Lever) with a
+  plain default-domain fallback — a future confirmed region is a dict
+  entry, not new code, and nothing speculative was added for Greenhouse
+  just to look symmetrical with Lever.
+- companies.json's note fields now describe what was actually verified,
+  replacing the "VERIFIED VIA WEB SEARCH ONLY" placeholder language.
+- Live smoke test: 9/9 companies succeeded, 7 total matches (5 new from
+  Mobileye — DevOps & Infrastructure Engineer, Senior SRE & Linux
+  Infrastructure Engineer, Data Platform Engineer (a genuine loose-match
+  via the "platform engineer" tag), and two Field Engineer/Relocation
+  postings — plus the 2 already-known still_open devops matches from
+  before). Optimove contributed 0 matches: the task expected a "Site
+  Reliability Engineer" title there, but no such posting exists in the
+  live data at verification time — normal listing drift, not a bug,
+  flagged directly in the test that covers it.
+- Test suite: 87/87 passing (was 73: 14 new EU-region tests — adapter
+  domain-resolution unit tests plus real Optimove/Mobileye fixture
+  checks), 0 real network calls.
+- Total live network calls this session: 6 (1 DNS-failure attempt against
+  a hypothesized boards-api.eu.greenhouse.io that never reached a real
+  server; 1 HTML page fetch investigating Optimove's EU page; 2
+  exploratory JSON API probes confirming api.eu.lever.co works and
+  boards-api.greenhouse.io serves Optimove fine; 2 final designated
+  fetches to capture the actual fixtures) — disclosed per ADR-0019.
+- Still uncommitted at this point in the session: Session 11's pending
+  changes plus this session's — see the handoff for the combined
+  commit/push outcome.

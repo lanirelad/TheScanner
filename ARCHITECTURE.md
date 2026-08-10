@@ -91,6 +91,23 @@ itself needs revisiting (its "verified independently" note apparently
 didn't check robots.txt) is a decision for Elad/planning-Claude, not
 something resolved here.
 
+**Empirical note (confirmed Session 13, live against Optimove/Mobileye —
+EU-region hosting):** Greenhouse and Lever handle EU data residency
+differently at the API layer, confirmed rather than assumed for both:
+Lever genuinely has a separate regional API domain
+(`api.eu.lever.co`, verified against Mobileye — 200 OK, byte-for-byte the
+same response shape as the global `api.lever.co`). Greenhouse does not:
+`boards-api.eu.greenhouse.io` doesn't resolve at all (DNS failure), and
+Optimove's EU-hosted board (`job-boards.eu.greenhouse.io/optimove`, the
+public page) is served via the ordinary global `boards-api.greenhouse.io`
+API with no regional variant — EU residency there only affects the public
+page domain, not the read-only JSON API. `GreenhouseAdapter`/`LeverAdapter`
+both take an `ats_region` constructor argument and consult a
+`REGION_DOMAINS` dict (empty for Greenhouse, `{"eu": "api.eu.lever.co"}`
+for Lever) with a plain default-domain fallback — adding a confirmed
+future region is a dict entry, no code change, but nothing is added
+speculatively for a region that hasn't actually been checked.
+
 ## 1a. Role configuration (roles.json)
 
 Roles are **not hardcoded**. `roles.json` defines every role category the
@@ -99,6 +116,7 @@ scanner should look for, so new roles can be added without touching code.
 ```json
 {
   "devops": {
+    "enabled": true,
     "label_en": "DevOps Engineer",
     "label_he": "מהנדס DevOps",
     "tags_en": ["devops", "sre", "site reliability", "platform engineer",
@@ -106,6 +124,7 @@ scanner should look for, so new roles can be added without touching code.
     "tags_he": ["דיבאופס", "מהנדס תשתיות", "אבטחת אתרים ותפעול"]
   },
   "technical_support": {
+    "enabled": true,
     "label_en": "Technical Support Engineer",
     "label_he": "מהנדס תמיכה טכנית",
     "tags_en": ["technical support", "support engineer", "customer support engineer",
@@ -125,6 +144,17 @@ scanner should look for, so new roles can be added without touching code.
   new block to `roles.json` — no code changes required.
 - `roles.json` is user-editable and lives in the repo, not hardcoded in
   `core/`.
+- **`enabled` (Session 11):** a category whose tags are never matched
+  against when `false`, even if a title would otherwise clearly hit one —
+  the config-level half of the "role selection" setting from the
+  PLAN.md settings-screen spec, built now because `roles.json` already has
+  5 categories (`npi`, `software_development`, and `project_manager` were
+  added after the initial devops/technical_support pair) but Elad only
+  wants devops/technical_support active for now. The other three stay in
+  the file, not deleted, ready for whenever they're actually turned on.
+  Missing the `enabled` key entirely is treated as **disabled** (fail
+  safe, not fail open) — see `core/filters.py`'s `_matching_role_tag` for
+  the reasoning.
 
 ## 1b. Location configuration (locations.json) — ADR-0016
 

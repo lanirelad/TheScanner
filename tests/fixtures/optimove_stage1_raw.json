@@ -1,0 +1,304 @@
+{
+  "jobs": [
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4938958101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4505116101,
+      "location": {
+        "name": "New York"
+      },
+      "metadata": [
+        {
+          "id": 5410305101,
+          "name": "Org",
+          "value": "Revenue",
+          "value_type": "single_select"
+        }
+      ],
+      "id": 4938958101,
+      "updated_at": "2026-08-06T14:35:56-04:00",
+      "requisition_id": "613",
+      "title": "Account Executive ",
+      "company_name": "Optimove",
+      "first_published": "2026-07-27T15:41:34-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4874465101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4475300101,
+      "location": {
+        "name": "London"
+      },
+      "metadata": [
+        {
+          "id": 5410305101,
+          "name": "Org",
+          "value": "G&A",
+          "value_type": "single_select"
+        }
+      ],
+      "id": 4874465101,
+      "updated_at": "2026-07-13T08:11:08-04:00",
+      "requisition_id": "597",
+      "title": "Billing & Collections Associate",
+      "company_name": "Optimove",
+      "first_published": "2026-05-28T09:35:46-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4940883101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4506862101,
+      "location": {
+        "name": "Dundee, Scotland"
+      },
+      "metadata": [
+        {
+          "id": 5410305101,
+          "name": "Org",
+          "value": "Customer",
+          "value_type": "single_select"
+        }
+      ],
+      "id": 4940883101,
+      "updated_at": "2026-08-05T06:32:56-04:00",
+      "requisition_id": "616",
+      "title": "CRM Associate",
+      "company_name": "Optimove",
+      "first_published": "2026-08-05T04:59:57-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4944816101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4507832101,
+      "location": {
+        "name": "Brazil"
+      },
+      "metadata": [
+        {
+          "id": 5410305101,
+          "name": "Org",
+          "value": "Customer",
+          "value_type": "single_select"
+        }
+      ],
+      "id": 4944816101,
+      "updated_at": "2026-08-05T09:13:29-04:00",
+      "requisition_id": "617",
+      "title": "CRM Associate",
+      "company_name": "Optimove",
+      "first_published": "2026-08-04T16:40:39-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4895507101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4486237101,
+      "location": {
+        "name": "London"
+      },
+      "metadata": [
+        {
+          "id": 5410305101,
+          "name": "Org",
+          "value": "Customer",
+          "value_type": "single_select"
+        }
+      ],
+      "id": 4895507101,
+      "updated_at": "2026-07-13T08:11:08-04:00",
+      "requisition_id": "599",
+      "title": "Enterprise Customer Success Manager",
+      "company_name": "Optimove",
+      "first_published": "2026-06-17T04:51:00-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4873339101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4474440101,
+      "location": {
+        "name": "Colombia"
+      },
+      "metadata": [
+        {
+          "id": 5410305101,
+          "name": "Org",
+          "value": "Customer",
+          "value_type": "single_select"
+        }
+      ],
+      "id": 4873339101,
+      "updated_at": "2026-07-13T08:11:08-04:00",
+      "requisition_id": "596",
+      "title": "Onboarding Project Manager - LATAM",
+      "company_name": "Optimove",
+      "first_published": "2026-06-02T10:02:24-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4872966101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4473001101,
+      "location": {
+        "name": "Brazil "
+      },
+      "metadata": [
+        {
+          "id": 5410305101,
+          "name": "Org",
+          "value": "Customer",
+          "value_type": "single_select"
+        }
+      ],
+      "id": 4872966101,
+      "updated_at": "2026-07-13T08:11:08-04:00",
+      "requisition_id": "594",
+      "title": "Onboarding Project Manager - LATAM",
+      "company_name": "Optimove",
+      "first_published": "2026-05-21T09:04:59-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4865066101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4468969101,
+      "location": {
+        "name": "Estonia"
+      },
+      "metadata": [
+        {
+          "id": 5410305101,
+          "name": "Org",
+          "value": "Tech",
+          "value_type": "single_select"
+        }
+      ],
+      "id": 4865066101,
+      "updated_at": "2026-07-15T04:47:43-04:00",
+      "requisition_id": "591",
+      "title": "ProdOps & Support Engineer",
+      "company_name": "Optimove",
+      "first_published": "2026-05-18T08:01:16-04:00",
+      "language": "en",
+      "application_deadline": null
+    },
+    {
+      "absolute_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4927299101",
+      "data_compliance": [
+        {
+          "type": "gdpr",
+          "requires_consent": false,
+          "requires_processing_consent": false,
+          "requires_retention_consent": false,
+          "retention_period": null,
+          "demographic_data_consent_applies": false
+        }
+      ],
+      "internal_job_id": 4500878101,
+      "location": {
+        "name": "Tel Aviv "
+      },
+      "metadata": [
+        {
+          "id": 5410305101,
+          "name": "Org",
+          "value": "Tech",
+          "value_type": "single_select"
+        }
+      ],
+      "id": 4927299101,
+      "updated_at": "2026-07-15T02:54:54-04:00",
+      "requisition_id": "608",
+      "title": "Senior Product Manager",
+      "company_name": "Optimove",
+      "first_published": "2026-07-14T14:19:25-04:00",
+      "language": "en",
+      "application_deadline": null
+    }
+  ],
+  "meta": {
+    "total": 9
+  }
+}

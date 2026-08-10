@@ -16,6 +16,14 @@ class RoleLocationFilter:
     just arguments passed through a call chain, so it belongs on an object
     rather than a bare function re-loading/re-threading two config dicts
     through every call (ADR-0018).
+
+    Each role category in roles.json carries an "enabled" flag (Session
+    11) — a disabled category's tags are never matched against, even if a
+    title would otherwise clearly hit one. This is the config-level half
+    of the "role selection" setting from the PLAN.md settings-screen spec,
+    built now because it's needed today (roles.json outgrew "just
+    devops/technical_support" — see ADR-0007), well before the PWA exists
+    to offer a real per-device UI for it.
     """
 
     def __init__(self, roles_path, locations_path):
@@ -64,6 +72,19 @@ class RoleLocationFilter:
             return None, None
         title_lower = title.lower()
         for role_category, role in self.roles_config.items():
+            # Fail safe, not fail open: a category with no "enabled" key at
+            # all (shouldn't happen with the current roles.json, but a
+            # future hand-edit could omit it) is treated as disabled, not
+            # enabled. Matches this project's existing conservative-default
+            # pattern (e.g. compliance/agent.py treats an unreadable
+            # robots.txt as disallow-all, not allow-all). A category that
+            # silently stays inactive is a quiet, low-consequence miss; a
+            # category that silently reactivates itself and starts
+            # surfacing unwanted matches is the worse failure mode, given
+            # Elad explicitly wants tight control over which categories are
+            # live (ADR-0007's role-selection setting).
+            if not role.get("enabled", False):
+                continue
             for tag in role.get("tags_en", []) + role.get("tags_he", []):
                 # Substring match is deliberately loose (e.g. catches
                 # "Platform Engineer II") — see ADR-0007 on why tags are

@@ -8,7 +8,20 @@ open.
 
 from adapters.base import Adapter
 
-JOBS_URL_TEMPLATE = "https://boards-api.greenhouse.io/v1/boards/{slug}/jobs"
+JOBS_URL_TEMPLATE = "https://{domain}/v1/boards/{slug}/jobs"
+DEFAULT_DOMAIN = "boards-api.greenhouse.io"
+
+# Region -> API domain (Session 13, ADR-0019 exploratory calls). Deliberately
+# empty today: Greenhouse's EU data-residency setting was verified live
+# (Optimove, an EU-hosted board) to affect only the public *page* domain
+# (job-boards.eu.greenhouse.io) — the read-only JSON API is served from the
+# same global boards-api.greenhouse.io domain regardless of region. A
+# boards-api.eu.greenhouse.io domain does not exist (confirmed: DNS doesn't
+# resolve it). Adding an "eu" entry pointing there would break every
+# EU-hosted company, not fix anything. A future region that genuinely does
+# get its own Greenhouse API domain just needs one line added here — no
+# code change — same mechanism Lever's REGION_DOMAINS below already uses.
+REGION_DOMAINS = {}
 
 
 class GreenhouseAdapter(Adapter):
@@ -17,6 +30,10 @@ class GreenhouseAdapter(Adapter):
     Implements the Adapter contract (adapters/base.py, ADR-0018) so Lever/
     Comeet adapters (later sessions) follow the same shape.
     """
+
+    def __init__(self, compliance_agent, ats_region=None):
+        super().__init__(compliance_agent)
+        self.ats_region = ats_region
 
     async def fetch_stage1_jobs(self, ats_slug):
         """Fetch and parse the Stage 1 job list for a Greenhouse board.
@@ -30,7 +47,8 @@ class GreenhouseAdapter(Adapter):
         synchronous function — there's no I/O in it, only async where
         network is actually involved.
         """
-        url = JOBS_URL_TEMPLATE.format(slug=ats_slug)
+        domain = REGION_DOMAINS.get(self.ats_region, DEFAULT_DOMAIN)
+        url = JOBS_URL_TEMPLATE.format(domain=domain, slug=ats_slug)
         response = await self.compliance_agent.fetch(url)
         return parse_stage1_jobs(response.json())
 

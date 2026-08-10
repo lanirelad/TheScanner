@@ -18,7 +18,18 @@ it leaves this module.
 
 from adapters.base import Adapter
 
-POSTINGS_URL_TEMPLATE = "https://api.lever.co/v0/postings/{slug}"
+POSTINGS_URL_TEMPLATE = "https://{domain}/v0/postings/{slug}"
+DEFAULT_DOMAIN = "api.lever.co"
+
+# Region -> API domain (Session 13, ADR-0019 exploratory calls). Confirmed
+# live against Mobileye (an EU-hosted Lever board): api.eu.lever.co exists,
+# responds 200, and returns byte-for-byte the same shape (categories, text,
+# hostedUrl, etc.) as the global api.lever.co domain — unlike Greenhouse,
+# Lever's EU region genuinely does get its own API domain. A future region
+# just needs one more entry here, no code change.
+REGION_DOMAINS = {
+    "eu": "api.eu.lever.co",
+}
 
 
 class LeverAdapter(Adapter):
@@ -30,13 +41,18 @@ class LeverAdapter(Adapter):
     same ComplianceAgent dependency injection, same output shape.
     """
 
+    def __init__(self, compliance_agent, ats_region=None):
+        super().__init__(compliance_agent)
+        self.ats_region = ats_region
+
     async def fetch_stage1_jobs(self, ats_slug):
         """Fetch and parse the Stage 1 job list for a Lever board.
 
         Async (ADR-0021), routed through self.compliance_agent — no direct
         HTTP client call here, per ARCHITECTURE.md section 6.
         """
-        url = POSTINGS_URL_TEMPLATE.format(slug=ats_slug)
+        domain = REGION_DOMAINS.get(self.ats_region, DEFAULT_DOMAIN)
+        url = POSTINGS_URL_TEMPLATE.format(domain=domain, slug=ats_slug)
         response = await self.compliance_agent.fetch(url)
         return parse_stage1_jobs(response.json())
 

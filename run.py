@@ -39,9 +39,9 @@ def _build_adapter(company, compliance_agent, custom_selectors):
     """
     ats = company["ats"]
     if ats == "greenhouse":
-        return GreenhouseAdapter(compliance_agent), company["ats_slug"]
+        return GreenhouseAdapter(compliance_agent, ats_region=company.get("ats_region")), company["ats_slug"]
     if ats == "lever":
-        return LeverAdapter(compliance_agent), company["ats_slug"]
+        return LeverAdapter(compliance_agent, ats_region=company.get("ats_region")), company["ats_slug"]
     if ats == "comeet":
         return ComeetAdapter(compliance_agent, ats_uid=company["ats_uid"]), company["ats_slug"]
     if ats == "custom":

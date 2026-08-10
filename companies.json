@@ -1,5 +1,5 @@
 {
-  "_note": "Starter/test set only — 7 companies across 3 ATS platforms plus 1 custom-domain company, each verified against the real live API/page this session (see MEMORY.md / CHANGELOG.md for verification notes). This is NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
+  "_note": "Starter/test set only — 9 companies across 3 ATS platforms plus 1 custom-domain company (2 of the 9, Optimove/Mobileye, are EU-region-hosted, live-verified in Session 13), each verified against the real live API/page (see MEMORY.md / CHANGELOG.md for verification notes). This is NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
   "companies": [
     {
       "name": "Wiz",
@@ -44,6 +44,22 @@
       "ats": "custom",
       "career_page": "https://monday.com/careers",
       "note": "No detectable ATS fingerprint (UUID-based job URLs, e.g. /careers/5dafa99a-...). Genuinely in-house career page, not a white-labeled ATS. Confirmed one live DevOps-titled role (Tel Aviv) at time of verification — a real candidate positive match for testing, not just a zero-result company."
+    },
+    {
+      "name": "Optimove",
+      "ats": "greenhouse",
+      "ats_slug": "optimove",
+      "ats_region": "eu",
+      "career_page": "https://job-boards.eu.greenhouse.io/optimove",
+      "note": "EU-hosted Greenhouse board (job-boards.eu.greenhouse.io page domain). Live-verified: the standard global boards-api.greenhouse.io/v1/boards/optimove/jobs endpoint works fine and returns the real 9-job list — Greenhouse's EU data residency only affects the public page domain, not the read-only JSON API, which has no separate EU domain (boards-api.eu.greenhouse.io does not resolve). ats_region is recorded for documentation/future-proofing; it currently has no effect on which domain GreenhouseAdapter actually calls."
+    },
+    {
+      "name": "Mobileye",
+      "ats": "lever",
+      "ats_slug": "mobileye",
+      "ats_region": "eu",
+      "career_page": "https://jobs.eu.lever.co/mobileye",
+      "note": "EU-hosted Lever board. Live-verified: api.eu.lever.co/v0/postings/mobileye works and returns the same shape as the global api.lever.co API (categories, text, hostedUrl, etc.) — 138 real postings. Unlike Greenhouse, Lever's EU region does get its own real API domain."
     }
   ]
 }

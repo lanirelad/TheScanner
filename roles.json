@@ -1,5 +1,6 @@
 {
   "devops": {
+    "enabled": true,
     "label_en": "DevOps Engineer",
     "label_he": "מהנדס DevOps",
     "tags_en": [
@@ -13,6 +14,7 @@
     ]
   },
   "technical_support": {
+    "enabled": true,
     "label_en": "Technical Support Engineer",
     "label_he": "מהנדס תמיכה טכנית",
     "tags_en": [
@@ -26,6 +28,7 @@
     ]
   },
   "npi": {
+    "enabled": false,
     "label_en": "NPI Engineer",
     "label_he": "מהנדס NPI",
     "tags_en": [
@@ -38,6 +41,7 @@
     ]
   },
   "software_development": {
+    "enabled": false,
     "label_en": "Software Developer",
     "label_he": "מפתח תוכנה",
     "tags_en": [
@@ -51,6 +55,7 @@
     ]
   },
   "project_manager": {
+    "enabled": false,
     "label_en": "Project Manager",
     "label_he": "מנהל פרויקטים",
     "tags_en": [
