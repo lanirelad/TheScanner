@@ -16,6 +16,12 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
+    # GITHUB_TOKEN defaults to read-only unless a workflow explicitly asks
+    # for more. contents: write is exactly what the commit-back step below
+    # needs (git push) and nothing more — scoped to this one job, not the
+    # whole workflow, since there's currently only one job that needs it.
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
