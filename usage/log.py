@@ -23,6 +23,23 @@ from pathlib import Path
 DEFAULT_USAGE_LOG_PATH = Path(__file__).resolve().parent.parent / "usage_log.json"
 
 
+def load_usage_log(path=DEFAULT_USAGE_LOG_PATH):
+    """Read every entry currently in the usage log.
+
+    Returns an empty list if the file doesn't exist yet or is unreadable
+    — same fallback `record_scan_run` already relied on internally, now
+    shared so `usage/budget.py`'s summarizer doesn't have to duplicate it.
+    """
+    path = Path(path)
+    if not path.exists():
+        return []
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+
+
 def record_scan_run(duration_minutes, company_count, track="stable", path=DEFAULT_USAGE_LOG_PATH, date=None):
     """Append one entry for a completed scan run.
 
@@ -37,13 +54,7 @@ def record_scan_run(duration_minutes, company_count, track="stable", path=DEFAUL
     Returns the entry that was written.
     """
     path = Path(path)
-    entries = []
-    if path.exists():
-        try:
-            with open(path, encoding="utf-8") as f:
-                entries = json.load(f)
-        except (OSError, json.JSONDecodeError):
-            entries = []
+    entries = load_usage_log(path)
 
     entry = {
         "date": date or time.strftime("%Y-%m-%d", time.gmtime()),

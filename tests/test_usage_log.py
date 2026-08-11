@@ -2,7 +2,7 @@
 
 import json
 
-from usage.log import record_scan_run
+from usage.log import load_usage_log, record_scan_run
 
 
 def test_record_scan_run_appends_without_overwriting(tmp_path):
@@ -37,3 +37,18 @@ def test_record_scan_run_supports_full_sweep_track_for_future_use(tmp_path):
     entry = record_scan_run(duration_minutes=90.0, company_count=8500, track="full-sweep", path=path, date="2026-08-08")
 
     assert entry["track"] == "full-sweep"
+
+
+def test_load_usage_log_returns_empty_list_when_file_does_not_exist(tmp_path):
+    assert load_usage_log(tmp_path / "does_not_exist.json") == []
+
+
+def test_load_usage_log_reads_back_what_record_scan_run_wrote(tmp_path):
+    path = tmp_path / "usage_log.json"
+    record_scan_run(duration_minutes=1.0, company_count=4, path=path, date="2026-08-08")
+    record_scan_run(duration_minutes=2.0, company_count=4, path=path, date="2026-08-09")
+
+    entries = load_usage_log(path)
+
+    assert len(entries) == 2
+    assert [e["duration_minutes"] for e in entries] == [1.0, 2.0]

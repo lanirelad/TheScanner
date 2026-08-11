@@ -21,9 +21,23 @@ from core.dedup import compute_scan_status
 from core.filters import RoleLocationFilter
 from core.schema import compute_job_id
 from storage.db import DEFAULT_DB_PATH, connect, get_known_job_ids, upsert_jobs
-from usage.log import DEFAULT_USAGE_LOG_PATH, record_scan_run
+from usage.budget import FREE_TIER_MONTHLY_MINUTES, compute_usage_summary
+from usage.log import DEFAULT_USAGE_LOG_PATH, load_usage_log, record_scan_run
 
 REPO_ROOT = Path(__file__).resolve().parent
+
+# Session 15: these two now live inside pwa/ (wrangler.jsonc's
+# assets.directory), not the repo root Session 14 originally used. Cloudflare
+# Workers-with-static-assets snapshots assets.directory at deploy time, and
+# the Git-integration flow redeploys on every push to the watched branch —
+# since .github/workflows/scan.yml pushes its own commit after every real
+# scan, putting these two files inside pwa/ is what makes that push also
+# refresh the *deployed* data, not just the repo's data. Outside pwa/, the
+# PWA could never fetch() them at all once deployed (a static-assets
+# deployment only serves what's inside assets.directory — nothing else in
+# the repo is reachable over HTTP).
+DEFAULT_LATEST_SCAN_PATH = REPO_ROOT / "pwa" / "latest_scan.json"
+DEFAULT_USAGE_SUMMARY_PATH = REPO_ROOT / "pwa" / "usage_summary.json"
 
 
 def load_companies(path):
@@ -125,6 +139,48 @@ def build_summary(fetch_results, role_filter, known_job_ids, run_timestamp):
     }
 
 
+def build_latest_scan_export(summary, generated_at):
+    """Shape this run's summary into the flat JSON a future PWA will
+    `fetch()` directly — no database driver needed client-side.
+
+    Pure function, no I/O — deliberately excludes `application_status`
+    (ADR-0011/ADR-0014: device-local only, never written by the backend)
+    and every internal bookkeeping field a client doesn't need to render
+    a job list (`job_id`, `matched_tag`, `first_seen_at`/`last_seen_at` —
+    `scan_status` already captures what those two mean for display).
+    `companies_failed` is flattened to a count here, not the per-company
+    error list `build_summary` keeps internally — a client rendering a
+    job list has no use for adapter exception text.
+    """
+    return {
+        "generated_at": generated_at,
+        "companies_attempted": summary["companies_attempted"],
+        "companies_succeeded": summary["companies_succeeded"],
+        "companies_failed": len(summary["companies_failed"]),
+        "matches": [
+            {
+                "company": m["company"],
+                "title": m["title"],
+                "location": m["location"],
+                "role_category": m["role_category"],
+                "source_url": m["source_url"],
+                "scan_status": m["scan_status"],
+            }
+            for m in summary["matches"]
+        ],
+    }
+
+
+def write_json_file(data, path):
+    """Shared plain-JSON writer for latest_scan.json/usage_summary.json —
+    both are meant to be read directly by a future browser client, so
+    kept as plain, flat, human-readable JSON rather than anything
+    Python-specific.
+    """
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
 def print_summary(summary):
     """Human-readable console report."""
     print(f"Companies attempted: {summary['companies_attempted']}")
@@ -155,6 +211,8 @@ async def run(
     custom_selectors_path=REPO_ROOT / "custom_selectors.json",
     db_path=DEFAULT_DB_PATH,
     usage_log_path=DEFAULT_USAGE_LOG_PATH,
+    latest_scan_path=DEFAULT_LATEST_SCAN_PATH,
+    usage_summary_path=DEFAULT_USAGE_SUMMARY_PATH,
     run_timestamp=None,
 ):
     run_timestamp = run_timestamp or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
@@ -181,6 +239,17 @@ async def run(
         track="stable",
         path=usage_log_path,
     )
+
+    write_json_file(build_latest_scan_export(summary, run_timestamp), latest_scan_path)
+
+    # Recomputed and rewritten on every real run of this function, not
+    # cached or computed once — a gate-check-only skip (the workflow's
+    # hourly cheap check-in) never reaches this line at all, so
+    # usage_summary.json simply doesn't change during a stretch of those;
+    # the next real run recomputes it fresh from the complete, current
+    # usage_log.json, which is what keeps it accurate rather than stale.
+    usage_summary = compute_usage_summary(load_usage_log(usage_log_path), FREE_TIER_MONTHLY_MINUTES)
+    write_json_file(usage_summary, usage_summary_path)
 
     print_summary(summary)
     return summary

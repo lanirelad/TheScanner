@@ -1,0 +1,357 @@
+/* TheScanner PWA — dark radar theme (Session 15).
+
+No demo.html was found in the repo to match pixel-for-pixel (flagged in
+the handoff) — this is built from the task's own description (dark radar
+theme, sonar-corner mascot widget, job cards with new/still_open badges)
+plus the real mascot art already in the repo. Light theme is a straight
+variable-swap via [data-theme="light"], since the toggle itself is
+cosmetic-only this session (no persistence yet — deferred per scope).
+*/
+
+:root {
+  --bg: #0b1015;
+  --bg-elevated: #121a22;
+  --border: #22303c;
+  --text: #e6f1f5;
+  --text-dim: #8fa3ad;
+  --radar-green: #34e2a8;
+  --radar-green-dim: #1c6b52;
+  --accent-amber: #e8a94b; /* echoes the mascot's fur collar */
+  --new-badge: #34e2a8;
+  --still-open-badge: #4b8fe8;
+  --error-red: #e86b6b;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] {
+  --bg: #f4f7f8;
+  --bg-elevated: #ffffff;
+  --border: #d7e0e3;
+  --text: #12181c;
+  --text-dim: #5b6b72;
+  --radar-green: #0f9d6f;
+  --radar-green-dim: #bfe9d9;
+  --accent-amber: #c07a1e;
+  --new-badge: #0f9d6f;
+  --still-open-badge: #2a6fc7;
+  --error-red: #c0392b;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* --- Radar sweep backdrop: a slowly-rotating conic gradient behind the
+   header, evoking a sonar/radar scope. Purely decorative, GPU-cheap
+   (one rotating gradient, no per-frame JS). --- */
+.radar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.radar-backdrop::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--radar-green-dim) 8deg,
+    transparent 40deg
+  );
+  animation: radar-sweep 6s linear infinite;
+  opacity: 0.35;
+}
+
+@keyframes radar-sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  font-size: 1.25rem;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+header h1 .radar-dot {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--radar-green);
+  margin-right: 0.4em;
+  box-shadow: 0 0 8px var(--radar-green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+#theme-toggle {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 4rem;
+}
+
+/* --- Summary strip: companies attempted/succeeded/failed, generated_at --- */
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.summary-tile {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.summary-tile .value {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.summary-tile .label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.summary-tile.failed .value {
+  color: var(--error-red);
+}
+
+.generated-at {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  margin: 0 0 1rem;
+}
+
+/* --- Scan budget widget --- */
+.budget-widget {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.budget-widget h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.budget-bar-track {
+  background: var(--border);
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.budget-bar-fill {
+  height: 100%;
+  background: var(--radar-green);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.budget-bar-fill.over-cap {
+  background: var(--error-red);
+}
+
+.budget-numbers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 0.4rem;
+}
+
+.budget-note {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin: 0.5rem 0 0;
+  font-style: italic;
+}
+
+/* --- Job groups + cards --- */
+.job-group h2 {
+  font-size: 1rem;
+  margin: 1.5rem 0 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.job-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.job-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.job-title {
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+}
+
+.job-meta {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.badge.new {
+  background: color-mix(in srgb, var(--new-badge) 22%, transparent);
+  color: var(--new-badge);
+}
+
+.badge.still_open {
+  background: color-mix(in srgb, var(--still-open-badge) 22%, transparent);
+  color: var(--still-open-badge);
+}
+
+.role-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--accent-amber);
+  border: 1px solid var(--accent-amber);
+  border-radius: 6px;
+  padding: 0.05rem 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.apply-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  color: var(--radar-green);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.apply-link:hover {
+  text-decoration: underline;
+}
+
+.empty-state, .error-state {
+  color: var(--text-dim);
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.error-state {
+  color: var(--error-red);
+}
+
+/* --- Sonar-corner mascot widget: fixed to a screen corner, a small
+   radar "ping" ring animates outward from behind the bat on a loop,
+   and the bat's own pose cycles through the 4 captured frames to read
+   as a gentle wing-flap rather than a static sticker. --- */
+.mascot-widget {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: 84px;
+  height: 84px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.mascot-widget .ping-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--radar-green);
+  border-radius: 50%;
+  animation: ping 2.4s ease-out infinite;
+}
+
+@keyframes ping {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.mascot-widget img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px var(--shadow));
+}
+
+/* The 4 pose frames cycle via a JS-driven <img src> swap (app.js), not a
+   CSS sprite/steps() animation — simpler than fighting 4 frames that
+   aren't a uniform sprite grid position within one element's background. */
+
+@media (max-width: 480px) {
+  .summary-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mascot-widget {
+    width: 64px;
+    height: 64px;
+  }
+}

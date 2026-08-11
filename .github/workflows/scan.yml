@@ -55,17 +55,25 @@ jobs:
         run: python run.py
 
       # This is the automated job committing its own generated scan
-      # output (scan_results.db, usage_log.json, robots_cache.json) —
-      # not a new manual-approval-requiring action per ADR-0004, which
-      # governs commits/pushes Claude Code makes on Elad's behalf during a
-      # session. A scheduled workflow committing its own run's data back
-      # to the repo is the deployment architecture ADR-0009 already
-      # describes and Elad already approved by merging this workflow file.
+      # output (scan_results.db, usage_log.json, robots_cache.json, plus
+      # the PWA-facing pwa/latest_scan.json + pwa/usage_summary.json,
+      # Session 15) — not a new manual-approval-requiring action per
+      # ADR-0004, which governs commits/pushes Claude Code makes on
+      # Elad's behalf during a session. A scheduled workflow committing
+      # its own run's data back to the repo is the deployment
+      # architecture ADR-0009 already describes and Elad already
+      # approved by merging this workflow file.
+      #
+      # This push doubles as the PWA's data-refresh mechanism (ADR-0029):
+      # Cloudflare's Git-integration deploy re-snapshots wrangler.jsonc's
+      # assets.directory (pwa/) on every push to the watched branch, so
+      # this same commit is what makes the *deployed* site show fresh
+      # data too, not just the repo.
       - name: Commit and push updated scan data
         if: steps.gate.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add scan_results.db usage_log.json robots_cache.json
+          git add scan_results.db usage_log.json robots_cache.json pwa/latest_scan.json pwa/usage_summary.json
           git diff --cached --quiet || git commit -m "Automated scan run: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           git push

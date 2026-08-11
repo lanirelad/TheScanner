@@ -1,0 +1,19 @@
+// TheScanner deployment config — Cloudflare Workers with Static Assets
+// (ADR-0029, corrected framing per Session 15's task prompt: Cloudflare
+// unified "Pages" into this path — there is no separate web-UI "build
+// output directory" setting anymore, this file is what tells Cloudflare
+// what to serve).
+//
+// assets.directory points at pwa/, not the repo root — see run.py and
+// ARCHITECTURE.md §9a for why latest_scan.json/usage_summary.json were
+// moved to live inside pwa/ this session: only files inside this
+// directory are ever reachable on the deployed site, and Cloudflare's
+// Git-integration flow redeploys (re-snapshotting this directory) on
+// every push, including the scan workflow's own commit-back push.
+{
+  "name": "thescanner",
+  "compatibility_date": "2026-08-11",
+  "assets": {
+    "directory": "./pwa"
+  }
+}

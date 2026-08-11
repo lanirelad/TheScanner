@@ -356,3 +356,56 @@
   attempt that never reached a server, 1 HTML investigation fetch, 2
   exploratory API probes, 2 final fixture-capture fetches).
 - ARCHITECTURE.md §1 gained the EU-region empirical finding.
+
+## 2026-08-11 — Session 14: latest_scan.json export + real budget calculator
+- Built usage/budget.py's compute_usage_summary(entries, cap, now=None) -
+  sums duration_minutes for current-calendar-month entries only,
+  percent_used deliberately not clamped at 100.
+- Checked before designing it, not assumed: usage_log.json only ever gets
+  entries from real run.py executions - the workflow's hourly cheap
+  check-in cost (ADR-0028's own disclosed line item) is never logged
+  anywhere. The calculator sums exactly what's real and surfaces that gap
+  via includes_checkin_overhead: false in the output itself, not a
+  fabricated estimate or a buried code comment.
+- Refactored usage/log.py to extract load_usage_log(), shared between
+  record_scan_run and the new calculator.
+- Added run.py's build_latest_scan_export() (pure, flat PWA-facing shape,
+  no internal bookkeeping fields, never application_status) and a shared
+  write_json_file() helper. Both latest_scan.json and usage_summary.json
+  now get written on every real run.py execution.
+- Live smoke test: both files written with real current data - see the
+  handoff for full contents.
+- 98/98 tests passing (was 87: 11 new), 0 real network calls.
+- ARCHITECTURE.md §9a gained two new notes documenting both files' real
+  shape and the check-in-overhead gap.
+
+## 2026-08-11 — Session 15: the first real PWA
+- Two more discrepancies flagged, not silently resolved: ADR-0029 doesn't
+  exist in DECISIONS.md (still ends at ADR-0028), and demo.html (the
+  visual reference the task asked to match) doesn't exist anywhere in
+  the repo. Built from each one's textual description instead of
+  blocking - same pattern as Sessions 9/11/13's discrepancies.
+- Moved latest_scan.json/usage_summary.json's default location from the
+  repo root into pwa/ (amending Session 14's still-uncommitted work, not
+  shipped behavior) - only files inside wrangler.jsonc's assets.directory
+  are ever reachable on the deployed Cloudflare site.
+- Built the full read-only PWA shell in pwa/: index.html, styles.css
+  (dark radar theme), app.js (fetches and renders both JSON files, no
+  interactivity yet per explicit scope), service-worker.js
+  (network-first for data files, cache-first for the shell - two
+  different strategies on purpose), manifest.json, and Pillow-generated
+  properly-sized icons/animation frames (cut ~4.9 MB of source mascot art
+  down to ~88 KB actually shipped).
+- Wrote wrangler.jsonc (assets.directory: "./pwa") and updated
+  .github/workflows/scan.yml's commit step to also push
+  pwa/latest_scan.json/pwa/usage_summary.json - that push is what
+  triggers Cloudflare's redeploy and keeps the live site's data current.
+- Live-verified in a real browser, not just by inspection: ran run.py for
+  real (9 attempted, 8 succeeded, 1 genuine ReadTimeout on Palantir),
+  served pwa/ locally, confirmed both JSON files fetched successfully,
+  all UI sections rendered with real values, zero console errors, and
+  the service worker registered and active.
+- 98/98 tests passing, unchanged - this session touched frontend/config
+  only, plus two path constants in run.py.
+- ARCHITECTURE.md §9a rewritten for the real Cloudflare deployment
+  mechanics; §3 gained a pwa/ entry.

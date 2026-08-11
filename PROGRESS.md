@@ -424,3 +424,88 @@ None — all decisions needed to start building are now in place.
 - Still uncommitted at this point in the session: Session 11's pending
   changes plus this session's — see the handoff for the combined
   commit/push outcome.
+
+## Addendum — Session 14 executed: latest_scan.json + real budget calculator (2026-08-11)
+- Built `usage/budget.py`'s `compute_usage_summary(entries, cap, now=None)`
+  — sums `duration_minutes` for current-calendar-month entries, returns
+  `minutes_used_this_month`/`minutes_cap`/`percent_used` (not clamped at
+  100 — over-budget is the useful signal) plus
+  `includes_checkin_overhead: false`.
+- Checked empirically, not assumed, before designing the calculator:
+  `usage_log.json` only ever gets entries from `record_scan_run()`, which
+  only runs when `run.py` runs, which only happens when the workflow's
+  gate-check says yes. The hourly cheap check-in's own real cost
+  (ADR-0028's disclosed line item) is never logged anywhere in this
+  codebase today. Rather than estimate/fabricate a number for it, the
+  calculator sums exactly what's real and surfaces the gap via
+  `includes_checkin_overhead: false` in the output itself, not just a
+  code comment.
+- Refactored `usage/log.py`: extracted `load_usage_log()` from inside
+  `record_scan_run()` so the budget calculator (and anything else) can
+  read the log without duplicating that logic.
+- Added `run.py`'s `build_latest_scan_export()` (pure function, shapes a
+  run's summary into the flat JSON a future PWA will `fetch()` directly —
+  no `job_id`/`matched_tag`/internal timestamps, `companies_failed`
+  flattened to a count, never `application_status`) and a shared
+  `write_json_file()` helper. Both `latest_scan.json` and
+  `usage_summary.json` are now written on every real `run.py` execution.
+- Live smoke test: real run produced accurate current data in both files
+  — see the handoff for full contents. `usage_summary.json` showed
+  ~0.04% of the monthly cap used, matching the real, tiny logged run
+  durations so far.
+- Test suite: 98/98 passing (was 87: 11 new — 5 for the budget
+  calculator, 4 for the latest_scan export/write helper, 2 for the new
+  `load_usage_log` helper), 0 real network calls.
+- ARCHITECTURE.md §9a gained two new notes: what the two new files
+  actually contain, and the check-in-overhead gap explained above.
+
+## Addendum — Session 15 executed: the first real PWA (2026-08-11)
+- Two more discrepancies found and disclosed at session start, same
+  pattern as Sessions 9/11/13: ADR-0029 (referenced as already recorded)
+  doesn't exist in DECISIONS.md, still ends at ADR-0028; and `demo.html`
+  (referenced as the visual design to match) doesn't exist anywhere in
+  the repo. Proceeded from the task's own textual description of both
+  rather than blocking — built the dark-radar/mascot/badge design from
+  the description plus the real mascot art, and built the Cloudflare
+  deployment from the task's own explanation of what ADR-0029 supposedly
+  decided.
+- Amended Session 14's still-uncommitted work before it ever shipped:
+  moved `latest_scan.json`/`usage_summary.json`'s default write location
+  from the repo root into `pwa/`. Real reason, not tidiness: Cloudflare
+  Workers-with-static-assets only ever serves files inside
+  `wrangler.jsonc`'s `assets.directory` — outside it, the deployed PWA
+  could never `fetch()` them at all. Since Session 14 was never committed,
+  this was refining in-flight work, not changing shipped behavior.
+- Built the full read-only PWA shell in `pwa/`: `index.html`, `styles.css`
+  (dark radar theme, `[data-theme="light"]` swap), `app.js` (fetches both
+  JSON files, renders summary tiles/budget bar/job cards, no
+  interactivity yet per explicit scope), `service-worker.js`
+  (network-first for the two data files, cache-first for the shell —
+  two different strategies, not one applied everywhere), `manifest.json`,
+  and properly-sized icons/animation frames generated from
+  `mascot.png`/`batPoses.png` via Pillow (cut total image weight from
+  ~4.9 MB to ~88 KB — the originals are full-resolution 1536x1024 PNGs,
+  too heavy to ship as-is for a PWA).
+- Wrote `wrangler.jsonc` at the repo root: `assets.directory: "./pwa"`,
+  `compatibility_date: "2026-08-11"`. Updated `.github/workflows/scan.yml`
+  to also commit `pwa/latest_scan.json`/`pwa/usage_summary.json` — this
+  same push is what triggers Cloudflare's redeploy (Git integration),
+  which is what actually refreshes the *deployed* site's data.
+- Verified for real, not just by inspection: ran `run.py` live (9
+  companies attempted, 8 succeeded, 1 real transient failure — Palantir
+  timed out, a genuine `ReadTimeout`, not a bug), generating real data in
+  `pwa/`. Served `pwa/` locally and loaded it in the browser: both JSON
+  files fetched successfully, summary tiles/budget bar/all 7 job cards
+  rendered correctly with real values, zero console errors, service
+  worker registered and active. Confirmed via `read_network_requests`
+  and a direct `serviceWorker.getRegistrations()` check rather than
+  trusting a visual glance alone (the browser pane's screenshot tool
+  wasn't available in this environment, so text/network/JS-level
+  verification stood in for it).
+- Test suite: 98/98 passing, unchanged — this session's new work is all
+  frontend/config, no Python logic changed beyond the two path constants.
+- ARCHITECTURE.md §9a rewritten to describe the real Cloudflare
+  deployment mechanics (replacing the stale "GitHub Pages-hosted JSON"
+  reference) and document `pwa/`'s role; §3 gained a `pwa/` module entry.
+- Still uncommitted at this point: Session 14's amended work plus all of
+  this session's — see the handoff for the combined commit/push outcome.

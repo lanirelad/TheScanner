@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TheScanner</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <meta name="theme-color" content="#0b1015" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="radar-backdrop" aria-hidden="true"></div>
+
+  <header>
+    <h1><span class="radar-dot" aria-hidden="true"></span>TheScanner</h1>
+    <button id="theme-toggle" type="button" aria-label="Toggle dark/light theme">🌙 Dark</button>
+  </header>
+
+  <main>
+    <p class="generated-at" id="generated-at"></p>
+
+    <section class="summary-strip" id="summary-strip" aria-label="Scan summary">
+      <!-- Filled by app.js from latest_scan.json -->
+    </section>
+
+    <section class="budget-widget" aria-label="Scan budget">
+      <h2>GitHub Actions budget this month</h2>
+      <div class="budget-bar-track">
+        <div class="budget-bar-fill" id="budget-bar-fill"></div>
+      </div>
+      <div class="budget-numbers" id="budget-numbers"></div>
+      <p class="budget-note" id="budget-note"></p>
+    </section>
+
+    <div id="job-groups">
+      <!-- Filled by app.js: one .job-group per scan_status, from latest_scan.json -->
+    </div>
+  </main>
+
+  <div class="mascot-widget" aria-hidden="true">
+    <div class="ping-ring"></div>
+    <img id="mascot-frame" src="bat-frame-1.png" alt="" />
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

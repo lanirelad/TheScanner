@@ -243,6 +243,11 @@ schema directly, not just that no code path writes it.
   like `usage_log.json`/`robots_cache.json`'s data files, not inside any
   of the packages above, since it's the orchestration layer that ties all
   of them together rather than belonging to one.
+- `pwa/` (Session 15) — the entire deployed PWA (HTML/CSS/JS, service
+  worker, manifest, icons) plus `latest_scan.json`/`usage_summary.json`
+  themselves. This is a hard boundary, not a style choice: `wrangler.jsonc`
+  makes this directory the deployed site's whole file tree, so anything
+  the PWA needs to fetch has to live inside it. See §9a.
 
 ## 4. Three-layer QA framework
 
@@ -346,24 +351,30 @@ proposed (e.g. an LLM-based role classifier instead of keyword matching), it is
 a separate, explicitly approved exception — logged as its own ADR — not a
 default.
 
-## 9a. Deployment architecture (ADR-0009, ADR-0010, ADR-0012, ADR-0013, ADR-0028)
+## 9a. Deployment architecture (ADR-0009, ADR-0010, ADR-0012, ADR-0013, ADR-0028, ADR-0029)
 
 ```
 GitHub Actions (frequent cheap check-in + manual "Run now" button)
    -> gate-check (schedule/gate.py, ADR-0028) decides: run a full scan, or
         exit near-instantly?
    -> if yes: runs the full pipeline (§1-4, Session 8's run.py)
-   -> commits shared scan results (JSON/SQLite) back to the repo
+   -> commits shared scan results (JSON/SQLite, plus pwa/latest_scan.json +
+        pwa/usage_summary.json — Session 15/14) back to the repo
+   -> that push also triggers a Cloudflare redeploy (Git-integration,
+        ADR-0029), re-snapshotting pwa/ — this is what refreshes the
+        *deployed* PWA's data, not a separate mechanism
    -> triggers Cloudflare Worker: "new matches found" -> Worker sends
         Web Push to every subscribed device (ADR-0012)
 
-PWA (installed on laptop and/or Android phone, ADR-0013)
-   -> fetches shared scan results (via GitHub Pages-hosted JSON)
+PWA (installed on laptop and/or Android phone, ADR-0013; served by
+Cloudflare Workers with Static Assets, ADR-0029 — see below)
+   -> fetches latest_scan.json + usage_summary.json (same origin, both
+        inside pwa/, Session 15)
    -> applies THIS DEVICE's local role/tag filters (stored locally, never
-        synced — ADR-0014)
+        synced — ADR-0014) [not built yet — deferred to a later session]
    -> renders new vs still_open, dark/light theme
    -> registers for Web Push once; subscription sent to the Cloudflare
-        Worker so this device receives alerts
+        Worker so this device receives alerts [not built yet]
 ```
 
 Nothing here needs the laptop or phone to be on for the *scan* to run —
@@ -415,6 +426,74 @@ would need `run.py` to persist incrementally (e.g. per-company, as each
 `fetch_company()` call resolves, rather than once at the end) — a real
 change to `run.py`'s structure, flagged here as a possible future session,
 not built now.
+
+**`latest_scan.json` and `usage_summary.json` (Session 14):** the two
+concrete, plain-JSON files this section's PWA diagram describes fetching —
+built now, before the PWA itself, since both are pure "compute a summary
+from data that already exists" work with no GUI dependency.
+`latest_scan.json` is `run.py`'s existing match data reshaped flat
+(`generated_at`, `companies_attempted/succeeded/failed`, `matches` —
+each with company/title/location/role_category/source_url/scan_status,
+no `job_id`/`matched_tag`/internal timestamps, and never
+`application_status`, per ADR-0011/ADR-0014). `usage_summary.json` is
+`usage/budget.py`'s `compute_usage_summary()` output
+(`minutes_used_this_month`, `minutes_cap`, `percent_used` — deliberately
+not clamped at 100, since going over the cap is the useful signal, not an
+error to hide). Both are rewritten on every real `run.py` execution, not
+cached — during a stretch of the workflow's gate-check-only skips
+(ADR-0028), neither file changes at all, since `run.py` never runs; the
+next real run recomputes both fresh.
+
+**Real gap in the budget calculator, checked not assumed (Session 14):**
+`usage_log.json` today only ever gets an entry from `record_scan_run()`,
+which only runs when `run.py` runs, which only happens when the workflow's
+gate-check says yes. The hourly cheap check-in's own cost (ADR-0028's own
+disclosed line item — real Actions minutes, just not logged anywhere) is
+NOT included in `minutes_used_this_month` — not because it's filtered out,
+but because nothing in this codebase writes it. `usage_summary.json`
+surfaces this honestly via `"includes_checkin_overhead": false` rather
+than folding in an estimated number. If a future session makes the
+gate-check log a small entry on every skip too, `compute_usage_summary()`
+needs no code change at all — it would just start summing genuinely
+complete data.
+
+**The first real PWA (Session 15) — read-only, `pwa/` as the deployment
+root:** `pwa/` holds the entire deployed site (`index.html`, `styles.css`,
+`app.js`, `service-worker.js`, `manifest.json`, icons/mascot art) —
+`wrangler.jsonc`'s `assets.directory` points at it. `latest_scan.json` and
+`usage_summary.json` were moved here from the repo root (where Session 14
+originally put them, still uncommitted at the time) specifically because
+only files inside `assets.directory` are ever reachable on the deployed
+site — nothing else in the repo is servable over HTTP once deployed. This
+session is deliberately read-only: real data rendered correctly (company
+counts, matches grouped new/still_open with working Apply links, the real
+`percent_used` budget bar), no interactivity yet — role selection, "mark
+as applied," theme persistence, Web Push registration, and the manual-
+trigger button are all explicitly deferred to a later session, so this one
+only had to get "fetch real JSON, render it correctly" right.
+
+**Doc/reality gap, flagged not silently resolved (Session 15):** the task
+for this session referenced ADR-0029 ("Cloudflare Pages + Access, not
+GitHub Pages") — it does not exist in `DECISIONS.md`, which still ends at
+ADR-0028. Same recurring pattern already flagged in Sessions 9, 11, and
+13's handoffs (a planning-side decision described in a task prompt that
+never actually landed in the repo before the task referencing it was
+sent). Proceeded using the task's own description of what ADR-0029
+supposedly decided (Cloudflare Workers with Static Assets via Git
+integration, Cloudflare Access restricting the live site to Elad's email)
+since that was unambiguous enough to build against — but the ADR itself
+should get written for real, not just referenced.
+
+**No `demo.html` found to match (Session 15):** the task asked this
+session's visual design to match `demo.html`'s "dark radar theme,
+sonar-corner mascot widget, job cards with new/still_open badges" — no
+such file exists anywhere in this repo (checked directly, not assumed).
+Built from that same text description plus the real `mascot.png`/
+`batPoses.png` art already in the repo instead of blocking on a missing
+reference. If `demo.html` exists somewhere outside this repo (e.g. a
+chat-session artifact never committed), it's worth committing it here so
+future sessions have the actual reference rather than a secondhand
+description of one.
 
 ## 10. Local-only preferences and application status (ADR-0011, ADR-0014)
 
