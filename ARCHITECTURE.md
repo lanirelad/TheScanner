@@ -305,6 +305,37 @@ Sourcing strategy, largest-yield first:
 The Compliance Agent (§6) still gates every fetch regardless of list size —
 scale changes the size of `companies.json`, not the safety rules.
 
+**Session 18 — harvesting toward a real ~5-minute scan, real result short
+of the target:** Elad wanted a genuine test of ADR-0021's concurrency
+payoff: since every Greenhouse company shares one domain
+(`boards-api.greenhouse.io`), and ADR-0002's 1.5s per-domain rate limit
+applies per-domain not per-company, a Greenhouse-heavy company list's
+*count* is the actual pacing floor — roughly 200 Greenhouse companies
+would cost ~5 minutes purely from that spacing, while Lever/Comeet/
+custom-domain companies added on top cost almost nothing extra (different
+domains run concurrently, not stacked after). Sourced ~330 candidate
+Israeli-relevant company names (source #2 in this section's own list:
+Wikipedia's companies-of-Israel/cybersecurity-industry pages,
+failory.com's Israel startup list, general knowledge of the ecosystem),
+then live-verified each candidate's *guessed* slug — not a slug taken
+from a directory — against the real `boards-api.greenhouse.io`/
+`api.lever.co` APIs through the real `ComplianceAgent`, honoring
+robots.txt and the rate limit throughout (421 Greenhouse + 428 Lever
+calls total, disclosed per ADR-0019). Real yield: 34 new Greenhouse + 4
+new Lever companies (many well-known real Israeli tech companies
+genuinely aren't on Greenhouse/Lever at all — Workday, Ashby, SmartRecruiters,
+or fully custom career pages instead — confirmed empirically per company,
+not assumed). `companies.json` grew from 9 to 47, well short of the ~200
+Greenhouse target — reported honestly rather than rounded up, per this
+session's own task brief. Three technically-successful slug guesses
+(`shield`, `bold`, `vim`) were manually reviewed and rejected: each
+returned a real 200 OK with exactly one posting and zero Israel signal
+(e.g. "Copy of Avenger" in Beijing for `shield`) — a resolving slug isn't
+proof it resolved to the *intended* company, and a generic one-word slug
+is exactly where that risk concentrates. The real live-run timing (§9a)
+confirms rather than disproves the underlying reasoning — it just shows
+the pacing floor at 36 real Greenhouse companies instead of 200.
+
 ## 5. Sandbox (domain-specific hook #1)
 
 A fixed set of 3–5 test companies with cached fixture responses (saved JSON/HTML
@@ -444,6 +475,17 @@ cached — during a stretch of the workflow's gate-check-only skips
 (ADR-0028), neither file changes at all, since `run.py` never runs; the
 next real run recomputes both fresh.
 
+**`failures` list alongside `companies_failed` (Session 18):** the console
+summary and `latest_scan.json` both used to reduce every failure down to a
+bare count — real, but with no visibility into *why* a company failed
+short of digging through the GitHub Actions log, which Elad flagged as a
+genuine gap. `print_summary()` now prints `[Company] FAILED — <real
+error>` per failure, and `build_latest_scan_export()` carries a
+`failures: [{company, error}]` list in `latest_scan.json` alongside the
+existing `companies_failed` count (kept as a stable summary number for
+existing UI, not removed) — a future PWA view can show the real
+diagnostic text without needing the count to also become a list.
+
 **Real gap in the budget calculator, checked not assumed (Session 14):**
 `usage_log.json` today only ever gets an entry from `record_scan_run()`,
 which only runs when `run.py` runs, which only happens when the workflow's
@@ -513,6 +555,23 @@ through to `latest_scan.json` as a `label_en` field alongside
 `role_category`, rather than having `app.js` fetch `roles.json` itself —
 that would have meant duplicating `roles.json` into `pwa/` the same way
 Session 15 deliberately avoided duplicating the scan/usage exports.
+
+**Real live-run timing at 47 companies (Session 18):** ~80 seconds real
+elapsed, not the ~5-minute target — see §4a for the honest shortfall in
+how many companies actually got harvested/verified this session (36 real
+Greenhouse companies, not ~200). The timing itself is exactly consistent
+with ADR-0021's own reasoning, not a surprise: with the per-domain 1.5s
+rate limit (ADR-0002) serializing every Greenhouse-domain call, ~36
+Greenhouse companies costs ~54s of pure pacing, and the observed ~80s
+includes real per-request response time on top of that (e.g. `NICE`
+alone returned 293 open postings in one response). Lever's handful of
+companies and Comeet's 2 ran concurrently on their own domain lanes and
+added ~nothing to the critical path — the same cross-domain
+non-blocking behavior Session 4's 4-company test first confirmed, now
+visible at a slightly larger scale. Reaching the actual ~5-minute target
+is a company-count problem (getting to ~200 real, verified Greenhouse
+companies), not an architecture problem — the concurrency model already
+does what it's supposed to.
 
 ## 10. Local-only preferences and application status (ADR-0011, ADR-0014)
 

@@ -552,3 +552,39 @@ None — all decisions needed to start building are now in place.
 - ARCHITECTURE.md gained a Session 17 note alongside the existing
   Session 15 "no demo.html" note, documenting both fixes and the
   `--teal` judgment call.
+
+## Addendum — Session 18 executed: harvest toward a real ~5-minute scan (2026-08-12)
+- Sourced ~330 candidate Israeli-relevant company names across two
+  rounds (Wikipedia's companies-of-Israel/cybersecurity-industry pages,
+  failory.com's Israel startup list, general knowledge of the
+  ecosystem), then live-verified each candidate's guessed Greenhouse/
+  Lever slug through the real `ComplianceAgent` — 421 Greenhouse calls +
+  428 Lever calls total across both rounds, robots.txt/rate-limit
+  honored throughout, disclosed per ADR-0019.
+- Real, honest result: 34 new Greenhouse + 4 new Lever companies
+  verified and added (`companies.json`: 9 -> 47). Short of the ~200
+  Greenhouse target — reported as such, not rounded up. Comeet wasn't
+  expanded: its URLs need a slug *and* a separate numeric uid that can't
+  be guessed blindly, only discovered from a company's real career page.
+- 3 technical "HITs" (real 200 OK + real job data) were manually
+  reviewed and rejected as generic-word slug collisions with an
+  unrelated company, not the intended Israeli one: `shield`, `bold`,
+  `vim` — each a single posting with zero Israel signal (e.g. "Copy of
+  Avenger" in Beijing). A resolving slug isn't the same as resolving to
+  the *intended* company; both were checked.
+- Fixed the real gap Elad flagged: `run.py`'s console summary now prints
+  `[Company] FAILED — <real error>` per failure (was a bare count), and
+  `build_latest_scan_export()` now carries a `failures:
+  [{company, error}]` list in `latest_scan.json` alongside the existing
+  `companies_failed` count.
+- Live smoke test against the real 47-company list: 46/46 succeeded
+  except one genuine transient `ReadTimeout` (Imubit), 20 matches (13
+  new, 7 still_open). Real elapsed time ≈ 80 seconds — confirms rather
+  than disproves the architecture's own reasoning: Greenhouse-domain
+  company count is the real pacing floor (~36 real Greenhouse companies
+  × 1.5s ≈ 54s, plus real response overhead ≈ the observed ~80s).
+  Reaching the actual ~5-minute target needs roughly ~200 real
+  Greenhouse companies — this session's harvesting fell well short of
+  that, reported honestly.
+- Test suite: 103/103 passing (was 100: 3 new for the failures-list
+  fix), 0 real network calls in automated tests.

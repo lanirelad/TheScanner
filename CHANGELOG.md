@@ -443,3 +443,54 @@
   calls.
 - ARCHITECTURE.md gained a Session 17 note alongside Session 15's
   existing "no demo.html" note.
+
+## 2026-08-11/12 — Session 18: harvest toward a real ~5-minute scan
+- Goal: grow companies.json toward ~200 Israeli-relevant Greenhouse
+  companies (the real pacing floor under ADR-0002's 1.5s per-domain rate
+  limit, since every Greenhouse company shares one domain) plus
+  opportunistic Lever/Comeet additions, as a genuine test of ADR-0021's
+  concurrency payoff, not an arbitrary stress test.
+- Sourcing: compiled ~330 candidate Israeli-relevant company names across
+  two rounds (Wikipedia's "List of companies of Israel"/"Israeli
+  cybersecurity industry", failory.com's Israel startup list, general
+  knowledge of the Israeli tech/cyber/AI ecosystem), then live-verified
+  each one's guessed Greenhouse/Lever slug through the real Compliance
+  Agent (robots.txt + 1.5s rate limit honored throughout, per ADR-0002 -
+  no test-only bypass). 283+138=421 Greenhouse calls and 289+139=428
+  Lever calls made across both rounds (disclosed per ADR-0019's
+  exploratory-call policy), running concurrently on their own domain
+  lanes so the two ATS lookups didn't add to each other's wall time.
+- Real achieved count, honestly short of the ~200 target: 34 new
+  Greenhouse companies + 4 new Lever companies verified and added (36
+  Greenhouse total now, up from 2). Comeet wasn't expanded this session -
+  unlike Greenhouse/Lever slugs, a Comeet URL needs both a slug and a
+  separate numeric-looking uid that can't be guessed blindly, only
+  discovered from a company's real career page, which is a slower,
+  different sourcing process than this session's approach.
+- Real false-positive catch, not silently trusted: 3 technical "HITs"
+  (real 200 OK responses with real job data) were manually reviewed and
+  excluded rather than added - "shield", "bold", and "vim" each returned
+  exactly one posting with zero Israel signal in it (e.g. "Copy of
+  Avenger" in Beijing for "shield") - generic-word slug collisions with
+  an unrelated company on the same platform, not the intended Israeli
+  company. A slug resolving to *a* real company isn't the same as
+  resolving to *the intended* one; both were checked before adding
+  anything.
+- Fixed the real visibility gap Elad ran into: run.py's console summary
+  now prints `[Company] FAILED — <real error>` per failure instead of
+  just a bare count, and build_latest_scan_export() now carries a
+  `failures: [{company, error}]` list in latest_scan.json alongside the
+  existing companies_failed count - visible from a future PWA view, not
+  just the GitHub Actions log.
+- Live smoke test against the real expanded list (47 companies): 46/46
+  succeeded except one genuine transient ReadTimeout (Imubit - same
+  real-failure category as Session 15's Palantir timeout, not a bug),
+  20 matches (13 new, 7 still_open). Real elapsed time: ~80 seconds -
+  confirms the architecture's own reasoning (Greenhouse-domain company
+  count is the pacing floor: ~36 real Greenhouse companies x 1.5s ≈ 54s,
+  plus real response overhead ≈ the observed ~80s) rather than
+  disproving it; reaching the actual ~5-minute target needs roughly
+  ~200 real Greenhouse companies, which this session's harvesting fell
+  well short of - reported honestly rather than rounded up.
+- Test suite: 103/103 passing (was 100: 3 new for the failures-list
+  fix), 0 real network calls in automated tests.

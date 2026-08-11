@@ -10,7 +10,7 @@ from pathlib import Path
 
 from core.filters import RoleLocationFilter
 from core.schema import compute_job_id
-from run import _role_label, build_latest_scan_export, build_summary, write_json_file
+from run import _role_label, build_latest_scan_export, build_summary, print_summary, write_json_file
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -168,6 +168,58 @@ def test_latest_scan_export_companies_failed_is_a_count_not_the_error_list():
 
     assert export["companies_failed"] == 1
     assert isinstance(export["companies_failed"], int)
+
+
+# --- Failure visibility (Session 18) -----------------------------------
+
+
+def test_latest_scan_export_carries_a_failures_list_with_real_error_text():
+    # Elad's real complaint: a bare "failed" count in the console/export
+    # gave no way to see *why* a company failed short of the Actions log.
+    # A synthetic ReadTimeout-shaped message must survive intact into the
+    # export, not get flattened away like companies_failed already is.
+    fetch_results = [
+        {"company": "Wiz", "status": "ok", "jobs": [], "error": None},
+        {
+            "company": "Palantir Technologies",
+            "status": "error",
+            "jobs": [],
+            "error": "ReadTimeout: The read operation timed out",
+        },
+    ]
+    summary = build_summary(fetch_results, _role_filter(), known_job_ids=set(), run_timestamp="2026-08-09T00:00:00Z")
+
+    export = build_latest_scan_export(summary, generated_at="2026-08-09T00:00:00Z")
+
+    assert export["failures"] == [
+        {"company": "Palantir Technologies", "error": "ReadTimeout: The read operation timed out"}
+    ]
+
+
+def test_latest_scan_export_failures_list_is_empty_when_nothing_failed():
+    fetch_results = [{"company": "Wiz", "status": "ok", "jobs": [], "error": None}]
+    summary = build_summary(fetch_results, _role_filter(), known_job_ids=set(), run_timestamp="2026-08-09T00:00:00Z")
+
+    export = build_latest_scan_export(summary, generated_at="2026-08-09T00:00:00Z")
+
+    assert export["failures"] == []
+
+
+def test_print_summary_prints_the_real_error_message_per_failure(capsys):
+    fetch_results = [
+        {
+            "company": "Palantir Technologies",
+            "status": "error",
+            "jobs": [],
+            "error": "ReadTimeout: The read operation timed out",
+        }
+    ]
+    summary = build_summary(fetch_results, _role_filter(), known_job_ids=set(), run_timestamp="2026-08-09T00:00:00Z")
+
+    print_summary(summary)
+
+    captured = capsys.readouterr()
+    assert "[Palantir Technologies] FAILED — ReadTimeout: The read operation timed out" in captured.out
 
 
 def test_latest_scan_export_is_json_serializable():

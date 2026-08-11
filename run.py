@@ -167,9 +167,13 @@ def build_latest_scan_export(summary, generated_at):
     and every internal bookkeeping field a client doesn't need to render
     a job list (`job_id`, `matched_tag`, `first_seen_at`/`last_seen_at` —
     `scan_status` already captures what those two mean for display).
-    `companies_failed` is flattened to a count here, not the per-company
-    error list `build_summary` keeps internally — a client rendering a
-    job list has no use for adapter exception text.
+    `companies_failed` stays a count here, not the per-company error list —
+    that's what `failures` (Session 18) is for. Splitting them keeps
+    `companies_failed` a stable summary number for existing UI (summary
+    tiles) while `failures` carries the actual diagnostic text for a
+    future "why did this fail" view — Elad found the prior console-only
+    version left him with no visibility into *why* a company failed
+    outside the GitHub Actions log, which isn't reachable from the PWA.
 
     `label_en` (Session 17) rides alongside `role_category` rather than
     replacing it: `role_category` is still the stable key (useful for
@@ -181,6 +185,7 @@ def build_latest_scan_export(summary, generated_at):
         "companies_attempted": summary["companies_attempted"],
         "companies_succeeded": summary["companies_succeeded"],
         "companies_failed": len(summary["companies_failed"]),
+        "failures": summary["companies_failed"],
         "matches": [
             {
                 "company": m["company"],
@@ -207,12 +212,19 @@ def write_json_file(data, path):
 
 
 def print_summary(summary):
-    """Human-readable console report."""
+    """Human-readable console report.
+
+    Session 18: each failure's real captured error string is printed
+    directly, not just rolled into a bare count — Elad had no way to see
+    *why* a company failed short of digging through the GitHub Actions
+    log. `[Company] FAILED — <error>` makes the actual exception visible
+    right where the rest of the run's summary already is.
+    """
     print(f"Companies attempted: {summary['companies_attempted']}")
     print(f"Companies succeeded: {summary['companies_succeeded']}")
     print(f"Companies failed: {len(summary['companies_failed'])}")
     for failure in summary["companies_failed"]:
-        print(f"  - {failure['company']}: {failure['error']}")
+        print(f"  [{failure['company']}] FAILED — {failure['error']}")
 
     print()
     print(

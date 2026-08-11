@@ -1,8 +1,14 @@
 {
-  "generated_at": "2026-08-11T20:45:04Z",
-  "companies_attempted": 9,
-  "companies_succeeded": 9,
-  "companies_failed": 0,
+  "generated_at": "2026-08-11T21:21:11Z",
+  "companies_attempted": 47,
+  "companies_succeeded": 46,
+  "companies_failed": 1,
+  "failures": [
+    {
+      "company": "Imubit",
+      "error": "ReadTimeout: "
+    }
+  ],
   "matches": [
     {
       "company": "Wiz",
@@ -66,6 +72,123 @@
       "label_en": "DevOps Engineer",
       "source_url": "https://jobs.eu.lever.co/mobileye/2cd38b8c-4d52-4d86-ae5a-6344b7ca24d9",
       "scan_status": "still_open"
+    },
+    {
+      "company": "AppsFlyer",
+      "title": "DevOps Platform Engineer",
+      "location": "Herzliya",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://careers.appsflyer.com/jobs/position/8695882002?gh_jid=8695882002",
+      "scan_status": "new"
+    },
+    {
+      "company": "AppsFlyer",
+      "title": "Senior Support Engineer",
+      "location": "Herzliya",
+      "role_category": "technical_support",
+      "label_en": "Technical Support Engineer",
+      "source_url": "https://careers.appsflyer.com/jobs/position/8535473002?gh_jid=8535473002",
+      "scan_status": "new"
+    },
+    {
+      "company": "Axonius",
+      "title": "Senior DevEx/DevOps Engineer",
+      "location": "Tel Aviv, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.axonius.com/company/careers/open-jobs?gh_jid=7824320003",
+      "scan_status": "new"
+    },
+    {
+      "company": "Descope",
+      "title": "Staff DevOps Engineer",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://job-boards.greenhouse.io/descope/jobs/4238538009",
+      "scan_status": "new"
+    },
+    {
+      "company": "NICE",
+      "title": "Devops Student",
+      "location": "Israel - Raanana",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://boards.eu.greenhouse.io/nice/jobs/4850412101?gh_jid=4850412101",
+      "scan_status": "new"
+    },
+    {
+      "company": "Similarweb",
+      "title": "Senior DevOps Engineer",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://job-boards.greenhouse.io/similarweb/jobs/7938197",
+      "scan_status": "new"
+    },
+    {
+      "company": "Taboola",
+      "title": "Data Platform Engineering Team Leader",
+      "location": "Tel Aviv, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.taboola.com/careers/job/7903597?gh_jid=7903597",
+      "scan_status": "new"
+    },
+    {
+      "company": "Taboola",
+      "title": "Release Engineering Intern (Part-Time, 80%, One-year temporary position)",
+      "location": "Tel Aviv, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.taboola.com/careers/job/8069193?gh_jid=8069193",
+      "scan_status": "new"
+    },
+    {
+      "company": "Taboola",
+      "title": "Senior Site Reliability Engineer (SRE)",
+      "location": "Tel Aviv, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.taboola.com/careers/job/8070135?gh_jid=8070135",
+      "scan_status": "new"
+    },
+    {
+      "company": "Torq",
+      "title": "DevOps Engineer",
+      "location": "Tel Aviv ",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://job-boards.greenhouse.io/torq/jobs/5810373004",
+      "scan_status": "new"
+    },
+    {
+      "company": "BioCatch",
+      "title": "Senior DevOps Infra Engineer",
+      "location": "Tel-Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://jobs.lever.co/biocatch/e7f8e860-c0ae-4ea4-ae98-5763fe9deb28",
+      "scan_status": "new"
+    },
+    {
+      "company": "WalkMe",
+      "title": "DevOps Engineer Cloud Engineering Team",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://jobs.lever.co/walkme/cae6cb8b-2701-4aff-befb-a259c3eb3324",
+      "scan_status": "new"
+    },
+    {
+      "company": "WalkMe",
+      "title": "Technical Support Engineer",
+      "location": "Tel Aviv",
+      "role_category": "technical_support",
+      "label_en": "Technical Support Engineer",
+      "source_url": "https://jobs.lever.co/walkme/9923a954-7584-4b5d-947b-f175d6b06940",
+      "scan_status": "new"
     }
   ]
 }

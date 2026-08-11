@@ -1,5 +1,5 @@
 {
-  "_note": "Starter/test set only — 9 companies across 3 ATS platforms plus 1 custom-domain company (2 of the 9, Optimove/Mobileye, are EU-region-hosted, live-verified in Session 13), each verified against the real live API/page (see MEMORY.md / CHANGELOG.md for verification notes). This is NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
+  "_note": "47 companies across 3 ATS platforms plus 1 custom-domain company (Session 18 grew this from 9 to 47: 34 new Greenhouse + 4 new Lever entries, live-verified against the real API through the Compliance Agent, not assumed from a directory listing — see ARCHITECTURE.md/PROGRESS.md Session 18 notes for the sourcing method and the honest shortfall against the ~200 Greenhouse target). 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
   "companies": [
     {
       "name": "Wiz",
@@ -60,6 +60,272 @@
       "ats_region": "eu",
       "career_page": "https://jobs.eu.lever.co/mobileye",
       "note": "EU-hosted Lever board. Live-verified: api.eu.lever.co/v0/postings/mobileye works and returns the same shape as the global api.lever.co API (categories, text, hostedUrl, etc.) — 138 real postings. Unlike Greenhouse, Lever's EU region does get its own real API domain."
+    },
+    {
+      "name": "AppsFlyer",
+      "ats": "greenhouse",
+      "ats_slug": "appsflyer",
+      "career_page": "https://job-boards.greenhouse.io/appsflyer",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 55 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Axonius",
+      "ats": "greenhouse",
+      "ats_slug": "axonius",
+      "career_page": "https://job-boards.greenhouse.io/axonius",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 35 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Bringg",
+      "ats": "greenhouse",
+      "ats_slug": "bringg",
+      "career_page": "https://job-boards.greenhouse.io/bringg",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 3 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Cato Networks",
+      "ats": "greenhouse",
+      "ats_slug": "catonetworks",
+      "career_page": "https://job-boards.greenhouse.io/catonetworks",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 123 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Cybereason",
+      "ats": "greenhouse",
+      "ats_slug": "cybereason",
+      "career_page": "https://job-boards.greenhouse.io/cybereason",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 8 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Descope",
+      "ats": "greenhouse",
+      "ats_slug": "descope",
+      "career_page": "https://job-boards.greenhouse.io/descope",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 6 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Fireblocks",
+      "ats": "greenhouse",
+      "ats_slug": "fireblocks",
+      "career_page": "https://job-boards.greenhouse.io/fireblocks",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 71 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Forter",
+      "ats": "greenhouse",
+      "ats_slug": "forter",
+      "career_page": "https://job-boards.greenhouse.io/forter",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 40 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Imubit",
+      "ats": "greenhouse",
+      "ats_slug": "imubit",
+      "career_page": "https://job-boards.greenhouse.io/imubit",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 4 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Innovid",
+      "ats": "greenhouse",
+      "ats_slug": "innovid",
+      "career_page": "https://job-boards.greenhouse.io/innovid",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 18 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "JFrog",
+      "ats": "greenhouse",
+      "ats_slug": "jfrog",
+      "career_page": "https://job-boards.greenhouse.io/jfrog",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 32 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Lightricks",
+      "ats": "greenhouse",
+      "ats_slug": "lightricks",
+      "career_page": "https://job-boards.greenhouse.io/lightricks",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 6 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Lightrun",
+      "ats": "greenhouse",
+      "ats_slug": "lightrun",
+      "career_page": "https://job-boards.greenhouse.io/lightrun",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 1 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Melio",
+      "ats": "greenhouse",
+      "ats_slug": "melio",
+      "career_page": "https://job-boards.greenhouse.io/melio",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 22 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "MyHeritage",
+      "ats": "greenhouse",
+      "ats_slug": "myheritage",
+      "career_page": "https://job-boards.greenhouse.io/myheritage",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 6 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "NICE",
+      "ats": "greenhouse",
+      "ats_slug": "nice",
+      "career_page": "https://job-boards.greenhouse.io/nice",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 293 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Oasis Security",
+      "ats": "greenhouse",
+      "ats_slug": "oasissecurity",
+      "career_page": "https://job-boards.greenhouse.io/oasissecurity",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 63 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Orca Security",
+      "ats": "greenhouse",
+      "ats_slug": "orcasecurity",
+      "career_page": "https://job-boards.greenhouse.io/orcasecurity",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 12 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Payoneer",
+      "ats": "greenhouse",
+      "ats_slug": "payoneer",
+      "career_page": "https://job-boards.greenhouse.io/payoneer",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 125 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "QuantHealth",
+      "ats": "greenhouse",
+      "ats_slug": "quanthealth",
+      "career_page": "https://job-boards.greenhouse.io/quanthealth",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 7 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Riskified",
+      "ats": "greenhouse",
+      "ats_slug": "riskified",
+      "career_page": "https://job-boards.greenhouse.io/riskified",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 22 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "SafeBreach",
+      "ats": "greenhouse",
+      "ats_slug": "safebreach",
+      "career_page": "https://job-boards.greenhouse.io/safebreach",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 4 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Salt Security",
+      "ats": "greenhouse",
+      "ats_slug": "saltsecurity",
+      "career_page": "https://job-boards.greenhouse.io/saltsecurity",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 9 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Similarweb",
+      "ats": "greenhouse",
+      "ats_slug": "similarweb",
+      "career_page": "https://job-boards.greenhouse.io/similarweb",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 65 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Sisense",
+      "ats": "greenhouse",
+      "ats_slug": "sisense",
+      "career_page": "https://job-boards.greenhouse.io/sisense",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 5 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Taboola",
+      "ats": "greenhouse",
+      "ats_slug": "taboola",
+      "career_page": "https://job-boards.greenhouse.io/taboola",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 95 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Token Security",
+      "ats": "greenhouse",
+      "ats_slug": "tokensecurity",
+      "career_page": "https://job-boards.greenhouse.io/tokensecurity",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 8 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Tomorrow.io",
+      "ats": "greenhouse",
+      "ats_slug": "tomorrow",
+      "career_page": "https://job-boards.greenhouse.io/tomorrow",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 18 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Torq",
+      "ats": "greenhouse",
+      "ats_slug": "torq",
+      "career_page": "https://job-boards.greenhouse.io/torq",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 25 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Triple Whale",
+      "ats": "greenhouse",
+      "ats_slug": "triplewhale",
+      "career_page": "https://job-boards.greenhouse.io/triplewhale",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 13 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Yotpo",
+      "ats": "greenhouse",
+      "ats_slug": "yotpo",
+      "career_page": "https://job-boards.greenhouse.io/yotpo",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 14 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "BioCatch",
+      "ats": "lever",
+      "ats_slug": "biocatch",
+      "career_page": "https://jobs.lever.co/biocatch",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 13 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Cloudinary",
+      "ats": "lever",
+      "ats_slug": "cloudinary",
+      "career_page": "https://jobs.lever.co/cloudinary",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 29 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Oktopost",
+      "ats": "lever",
+      "ats_slug": "oktopost",
+      "career_page": "https://jobs.lever.co/oktopost",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 8 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "WalkMe",
+      "ats": "lever",
+      "ats_slug": "walkme",
+      "career_page": "https://jobs.lever.co/walkme",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 49 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Nanit",
+      "ats": "greenhouse",
+      "ats_slug": "nanit",
+      "career_page": "https://job-boards.greenhouse.io/nanit",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 14 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Pagaya",
+      "ats": "greenhouse",
+      "ats_slug": "pagaya",
+      "career_page": "https://job-boards.greenhouse.io/pagaya",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 11 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Sweet Security",
+      "ats": "greenhouse",
+      "ats_slug": "sweetsecurity",
+      "career_page": "https://job-boards.greenhouse.io/sweetsecurity",
+      "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 5 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
     }
   ]
 }
