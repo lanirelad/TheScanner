@@ -482,3 +482,68 @@ not hidden inside "scan minutes."
 the current single-owner reality — without requiring git commits for
 every frequency change, and without exposing write credentials
 client-side.
+
+### ADR-0029 — Hosting: Cloudflare Pages + Access, not GitHub Pages
+**Status:** Accepted (corrects the hosting mechanism in ADR-0009)
+**Context:** ADR-0009 specified GitHub Pages for the dashboard, assuming
+it could serve a static site from the private repo while keeping results
+hidden. Verified this is not actually possible: GitHub Pages requires a
+public source repository on the free plan (Pro/Team/Enterprise only allow
+a private source), and even then the published site itself has no free
+access-control option — it's publicly reachable by anyone with the URL
+regardless of plan, short of GitHub Enterprise Cloud.
+**Decision:** Host the PWA on Cloudflare Pages instead — free, deploys
+automatically from the private GitHub repo (Cloudflare's GitHub
+integration supports private repos natively), gated by Cloudflare Access
+(free tier, up to 50 users) for real authentication rather than an
+unlisted-but-public URL. Consolidates with the Cloudflare Worker already
+planned for push notifications — one provider, not two.
+**Why:** This is the only free path that actually delivers "private repo,
+private results" — GitHub Pages structurally cannot, regardless of
+configuration.
+
+### ADR-0029a — Correction: Cloudflare deploys via wrangler.jsonc, not a dashboard build-output setting
+**Status:** Accepted (corrects the deployment mechanics described in
+ADR-0029, not the underlying decision to use Cloudflare)
+**Context:** ADR-0029's original description assumed a classic Cloudflare
+Pages web-UI flow (configure a "build output directory" by clicking
+around the dashboard). Cloudflare has since unified Pages into "Workers
+with Static Assets" — there's no such dashboard setting for this path
+anymore. Confirmed live: connecting the repo now funnels into a Workers
+setup expecting a `wrangler.jsonc`/`wrangler.toml` config file committed
+in the repo itself, with an `assets.directory` field, deployed via
+`wrangler deploy`.
+**Decision:** `wrangler.jsonc` lives in the repo (built in Session 15, see
+`ARCHITECTURE.md` for the exact `assets.directory` value), not configured
+through the Cloudflare dashboard. The dashboard's role becomes connecting
+the repo and triggering deploys, not defining build output.
+**Why:** Keeps deployment config in version control alongside everything
+else in this project, rather than a setting that only exists in a
+third-party dashboard.
+
+### ADR-0030 — Planning-Claude has no live repo access; unsynced references are expected, not exceptional
+**Status:** Accepted
+**Context:** Four sessions in a row (9, 11, 13, 15) hit the same pattern:
+a task prompt referenced a decision or config value as "already added
+externally," and it wasn't actually present in the real repo yet. Root
+cause: planning-Claude (this chat) has no live read access to the actual
+GitHub repository — every claim about what's "already synced" is an
+assumption based on chat history, not a verified fact. This will keep
+happening as long as syncing depends on a human manually copying files
+between two places.
+**Decision:** Stop treating this as a session-blocking discrepancy to
+resolve or escalate. When a task prompt references a decision, ADR, or
+config value that turns out to be missing from the actual repo, and the
+task text specifies its exact intended content unambiguously, Claude Code
+adds it verbatim as part of the session and proceeds — flagging it
+briefly in the handoff for the record, but not pausing to ask, and not
+treating it as a new product decision requiring separate approval (the
+approval already happened when the value was specified in the task). This
+is exactly the pattern already used successfully for ADR-0023 (Session
+9), roles.json's `enabled` field (Session 11), and companies.json's new
+entries (Session 13) — this ADR just makes it the named, expected
+protocol instead of an ad-hoc recovery each time.
+**Why:** The alternative — planning-Claude trying harder to "remember" to
+sync, or Claude Code halting sessions to double-check — doesn't fix the
+actual root cause (no live repo access) and just adds friction to
+something that's been working correctly every time it's actually happened.
