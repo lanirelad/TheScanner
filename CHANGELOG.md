@@ -409,3 +409,37 @@
   only, plus two path constants in run.py.
 - ARCHITECTURE.md §9a rewritten for the real Cloudflare deployment
   mechanics; §3 gained a pwa/ entry.
+
+## 2026-08-11 — Session 16: sync DECISIONS.md through ADR-0030 (backfilled)
+- This entry was missed at the time (Session 16 only committed
+  DECISIONS.md, skipping the standing PROGRESS.md/CHANGELOG.md update
+  requirement) - backfilled now during Session 17 rather than left gone.
+- DECISIONS.md was still at ADR-0028. Appended ADR-0029, ADR-0029a, and
+  ADR-0030 verbatim, per ADR-0030's own new protocol (no pause to ask,
+  flag in the handoff instead) - the exact situation ADR-0030 itself
+  describes. Pushed as 3faddaa specifically to trigger Cloudflare's
+  first real Git-integration build (dashboard had shown "No builds exist
+  yet" despite two manual deploys).
+
+## 2026-08-11 — Session 17: PWA visual fixes
+- Wordmark now matches the exact spec Elad's task gave (JetBrains Mono
+  700 20px, -0.5px letter-spacing, "Scanner" colored via --teal, aliased
+  to the existing --radar-green accent since demo.html's exact hex isn't
+  available - flagged as a judgment call). Added the Google Fonts link
+  for JetBrains Mono + IBM Plex Sans.
+- Role tags now show roles.json's label_en ("DevOps Engineer") instead of
+  the raw role_category key ("devops"). Resolved server-side in run.py
+  (new _role_label() helper, fail-safe to the raw key) rather than having
+  app.js fetch roles.json itself - that would have meant duplicating
+  roles.json into pwa/, the same file-locality problem Session 15 solved
+  for the other two JSON exports. label_en now rides alongside
+  role_category in both build_summary() and build_latest_scan_export().
+- Verified live: ran run.py for real (9/9 succeeded, 7 matches), confirmed
+  correct label_en values in pwa/latest_scan.json, served pwa/ locally
+  and confirmed via getComputedStyle that the wordmark CSS matches the
+  spec exactly and via get_page_text that job cards show the human-
+  readable labels. Service worker still active.
+- 100/100 tests passing (was 98: 2 new for _role_label()), 0 real network
+  calls.
+- ARCHITECTURE.md gained a Session 17 note alongside Session 15's
+  existing "no demo.html" note.

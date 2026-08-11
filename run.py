@@ -86,6 +86,24 @@ async def fetch_company(company, compliance_agent, custom_selectors):
         return {"company": name, "status": "error", "jobs": [], "error": f"{type(exc).__name__}: {exc}"}
 
 
+def _role_label(role_filter, role_category):
+    """Display label for a matched role category (Session 17).
+
+    `roles.json`'s `label_en` field exists specifically for this — proper
+    capitalization/spacing ("Technical Support Engineer"), not a generic
+    underscore-to-space transform on the raw key ("technical_support").
+    Reads `role_filter.roles_config` directly rather than changing
+    `RoleLocationFilter.match()`'s return shape: `match()` already has
+    broad test coverage asserting its exact `{matched, role_category,
+    matched_tag}` shape across every adapter's test file, and this label
+    is a display concern for the summary/export layer, not the matching
+    logic itself. Falls back to the raw key if `label_en` is ever missing
+    — same fail-safe spirit as the rest of this project, not a reason to
+    crash a scan run over a config oversight.
+    """
+    return role_filter.roles_config.get(role_category, {}).get("label_en", role_category)
+
+
 def build_summary(fetch_results, role_filter, known_job_ids, run_timestamp):
     """Pure function: given per-company fetch results and prior storage
     state, compute matches (with dedup status) and per-company counts.
@@ -118,6 +136,7 @@ def build_summary(fetch_results, role_filter, known_job_ids, run_timestamp):
                     "title": job["title"],
                     "location": job["location"],
                     "role_category": match["role_category"],
+                    "label_en": _role_label(role_filter, match["role_category"]),
                     "matched_tag": match["matched_tag"],
                     "source_url": job["absolute_url"],
                     "scan_status": scan_status,
@@ -151,6 +170,11 @@ def build_latest_scan_export(summary, generated_at):
     `companies_failed` is flattened to a count here, not the per-company
     error list `build_summary` keeps internally — a client rendering a
     job list has no use for adapter exception text.
+
+    `label_en` (Session 17) rides alongside `role_category` rather than
+    replacing it: `role_category` is still the stable key (useful for
+    future client-side filtering by category), `label_en` is purely the
+    human-readable string the UI should actually display.
     """
     return {
         "generated_at": generated_at,
@@ -163,6 +187,7 @@ def build_latest_scan_export(summary, generated_at):
                 "title": m["title"],
                 "location": m["location"],
                 "role_category": m["role_category"],
+                "label_en": m["label_en"],
                 "source_url": m["source_url"],
                 "scan_status": m["scan_status"],
             }

@@ -509,3 +509,46 @@ None — all decisions needed to start building are now in place.
   reference) and document `pwa/`'s role; §3 gained a `pwa/` module entry.
 - Still uncommitted at this point: Session 14's amended work plus all of
   this session's — see the handoff for the combined commit/push outcome.
+
+## Addendum — Session 16 executed: DECISIONS.md synced through ADR-0030 (2026-08-11)
+- Confirmed DECISIONS.md was still at ADR-0028, exactly the gap ADR-0030
+  itself describes. Appended ADR-0029, ADR-0029a, and ADR-0030 verbatim
+  per ADR-0030's own new protocol - no pause to ask, flagged in the
+  handoff instead.
+- Real side effect this session existed for: a genuine new commit to
+  trigger Cloudflare's Git integration, which had never actually built
+  from this repo. Pushed as 3faddaa - outcome (whether a real build
+  appeared on the dashboard) is Elad's to check and report back.
+
+## Addendum — Session 17 executed: PWA visual fixes (2026-08-11)
+- Wordmark: `.wordmark`/`.wordmark span` now match the exact CSS/HTML
+  Elad's task gave (JetBrains Mono 700 20px, -0.5px letter-spacing, the
+  "Scanner" half colored via `--teal`). Added the Google Fonts `<link>`
+  for JetBrains Mono + IBM Plex Sans. `--teal` aliased to the existing
+  `--radar-green` accent since the real `demo.html` (still never
+  committed to this repo) isn't available to pull an exact hex from -
+  flagged as a judgment call in both the CSS comment and the handoff.
+- Role tags: job cards now show `roles.json`'s `label_en` ("DevOps
+  Engineer") instead of the raw `role_category` key ("devops"). Chose
+  server-side resolution (`run.py`'s new `_role_label()` helper, fail-safe
+  to the raw key) over having `app.js` fetch `roles.json` itself, since
+  the latter would mean duplicating `roles.json` into `pwa/` - the same
+  file-locality problem Session 15 solved for the other two JSON exports.
+  `label_en` now rides alongside `role_category` in both `build_summary()`
+  and `build_latest_scan_export()` (role_category stays as the stable
+  key for future filtering; label_en is purely the display string).
+- Verified for real: ran `run.py` live (9/9 succeeded this time, 7 real
+  matches), confirmed `pwa/latest_scan.json` has correct `label_en` values
+  for every match ("devops" -> "DevOps Engineer", "technical_support" ->
+  "Technical Support Engineer"). Served `pwa/` locally, loaded it in the
+  browser, confirmed via `getComputedStyle` that the wordmark's
+  font-family/weight/size/letter-spacing/color match the spec exactly,
+  and via `get_page_text` that every job card now shows the human-readable
+  label. Service worker still registers and goes active correctly.
+- Added 2 new tests for `_role_label()` (known category, fallback for an
+  unknown one) and updated the one existing exact-shape assertion that
+  needed the new field added.
+- Test suite: 100/100 passing (was 98: 2 new), 0 real network calls.
+- ARCHITECTURE.md gained a Session 17 note alongside the existing
+  Session 15 "no demo.html" note, documenting both fixes and the
+  `--teal` judgment call.

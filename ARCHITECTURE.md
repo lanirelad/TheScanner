@@ -495,6 +495,25 @@ chat-session artifact never committed), it's worth committing it here so
 future sessions have the actual reference rather than a secondhand
 description of one.
 
+**Visual fixes against the real `demo.html` spec (Session 17):** Elad saw
+the deployed PWA and flagged two mismatches against the actual original
+design (which still never made it into this repo — this session worked
+from exact CSS/HTML given directly in the task, not the file itself).
+Wordmark: `.wordmark`/`.wordmark span` now match the given spec exactly
+(JetBrains Mono 700 20px, -0.5px letter-spacing, the "Scanner" half
+colored via a `--teal` variable) — `--teal` itself is aliased to the
+existing `--radar-green` accent already used everywhere else in the UI,
+since the original's exact hex isn't available without `demo.html`
+itself; flagged as a judgment call, not a confirmed match. Role tags: job
+cards now show `roles.json`'s `label_en` ("DevOps Engineer") instead of
+the raw `role_category` key ("devops") — `run.py`'s `build_summary()`
+resolves this server-side (a new `_role_label()` helper, fail-safe to the
+raw key if a category's `label_en` is ever missing) and carries it
+through to `latest_scan.json` as a `label_en` field alongside
+`role_category`, rather than having `app.js` fetch `roles.json` itself —
+that would have meant duplicating `roles.json` into `pwa/` the same way
+Session 15 deliberately avoided duplicating the scan/usage exports.
+
 ## 10. Local-only preferences and application status (ADR-0011, ADR-0014)
 
 Two things are **never** written back to the shared repo or any backend —

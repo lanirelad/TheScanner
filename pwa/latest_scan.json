@@ -1,14 +1,15 @@
 {
-  "generated_at": "2026-08-11T19:41:21Z",
+  "generated_at": "2026-08-11T20:45:04Z",
   "companies_attempted": 9,
-  "companies_succeeded": 8,
-  "companies_failed": 1,
+  "companies_succeeded": 9,
+  "companies_failed": 0,
   "matches": [
     {
       "company": "Wiz",
       "title": "DevOps Engineer",
       "location": "Tel Aviv",
       "role_category": "devops",
+      "label_en": "DevOps Engineer",
       "source_url": "https://www.wiz.io/careers/job/4615172006/:title?gh_jid=4615172006",
       "scan_status": "still_open"
     },
@@ -17,6 +18,7 @@
       "title": "DevOps Tech Lead (BigBrain)",
       "location": "Tel Aviv",
       "role_category": "devops",
+      "label_en": "DevOps Engineer",
       "source_url": "https://monday.com/careers/6b945ea6-f095-42b4-a83d-b9b5f407feae",
       "scan_status": "still_open"
     },
@@ -25,6 +27,7 @@
       "title": "Data Platform Engineer",
       "location": "Petah Tikva, Israel",
       "role_category": "devops",
+      "label_en": "DevOps Engineer",
       "source_url": "https://jobs.eu.lever.co/mobileye/56a4af6f-946b-4786-89b1-92110e53f6be",
       "scan_status": "still_open"
     },
@@ -33,6 +36,7 @@
       "title": "DevOps & Infrastructure Engineer",
       "location": "Ramat Gan, Israel",
       "role_category": "devops",
+      "label_en": "DevOps Engineer",
       "source_url": "https://jobs.eu.lever.co/mobileye/ded3b18f-e023-491a-b1d2-b029961ea7eb",
       "scan_status": "still_open"
     },
@@ -41,6 +45,7 @@
       "title": "Field Engineer in Braunschweig (Germany) - Relocation",
       "location": "Jerusalem, Israel",
       "role_category": "technical_support",
+      "label_en": "Technical Support Engineer",
       "source_url": "https://jobs.eu.lever.co/mobileye/5b14b84b-0fe5-4628-a107-7c77a82d5c4f",
       "scan_status": "still_open"
     },
@@ -49,6 +54,7 @@
       "title": "Field Engineer in India (Chennai) - Relocation",
       "location": "Jerusalem, Israel",
       "role_category": "technical_support",
+      "label_en": "Technical Support Engineer",
       "source_url": "https://jobs.eu.lever.co/mobileye/113794c0-7400-406a-9675-ec7f2f8c3881",
       "scan_status": "still_open"
     },
@@ -57,6 +63,7 @@
       "title": "Senior SRE & Linux Infrastructure Engineer",
       "location": "Jerusalem, Israel",
       "role_category": "devops",
+      "label_en": "DevOps Engineer",
       "source_url": "https://jobs.eu.lever.co/mobileye/2cd38b8c-4d52-4d86-ae5a-6344b7ca24d9",
       "scan_status": "still_open"
     }

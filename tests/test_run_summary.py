@@ -10,7 +10,7 @@ from pathlib import Path
 
 from core.filters import RoleLocationFilter
 from core.schema import compute_job_id
-from run import build_latest_scan_export, build_summary, write_json_file
+from run import _role_label, build_latest_scan_export, build_summary, write_json_file
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -138,16 +138,20 @@ def test_latest_scan_export_shape_excludes_internal_and_device_local_fields():
     assert export["companies_failed"] == 0
     assert len(export["matches"]) == 1
     match = export["matches"][0]
-    # Exactly these six fields — no job_id, matched_tag, first_seen_at/
+    # Exactly these seven fields — no job_id, matched_tag, first_seen_at/
     # last_seen_at (internal bookkeeping), and definitely no
     # application_status (ADR-0011/ADR-0014, device-local only, never
-    # written by the backend).
-    assert set(match.keys()) == {"company", "title", "location", "role_category", "source_url", "scan_status"}
+    # written by the backend). label_en (Session 17) rides alongside
+    # role_category as the display string the UI should actually show.
+    assert set(match.keys()) == {
+        "company", "title", "location", "role_category", "label_en", "source_url", "scan_status"
+    }
     assert match == {
         "company": "Wiz",
         "title": "DevOps Engineer",
         "location": "Tel Aviv",
         "role_category": "devops",
+        "label_en": "DevOps Engineer",
         "source_url": "https://example.com/1",
         "scan_status": "new",
     }
@@ -185,3 +189,16 @@ def test_write_json_file_round_trips(tmp_path):
     write_json_file(data, path)
 
     assert json.loads(path.read_text(encoding="utf-8")) == data
+
+
+# --- _role_label (Session 17) -----------------------------------------------
+
+
+def test_role_label_returns_label_en_for_a_known_category():
+    assert _role_label(_role_filter(), "technical_support") == "Technical Support Engineer"
+
+
+def test_role_label_falls_back_to_raw_key_for_an_unknown_category():
+    # Fail-safe, not a crash: a scan run shouldn't blow up over a
+    # roles.json edit that removes a category label_en was expecting.
+    assert _role_label(_role_filter(), "made_up_category") == "made_up_category"

@@ -88,7 +88,7 @@ function jobCardHTML(job) {
         </div>
         <span class="badge ${job.scan_status}">${badgeLabel}</span>
       </div>
-      <span class="role-tag">${escapeHTML(job.role_category)}</span>
+      <span class="role-tag">${escapeHTML(job.label_en || job.role_category)}</span>
       <div>
         <a class="apply-link" href="${escapeAttribute(job.source_url)}" target="_blank" rel="noopener noreferrer">Apply →</a>
       </div>
