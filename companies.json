@@ -1,5 +1,5 @@
 {
-  "_note": "47 companies across 3 ATS platforms plus 1 custom-domain company (Session 18 grew this from 9 to 47: 34 new Greenhouse + 4 new Lever entries, live-verified against the real API through the Compliance Agent, not assumed from a directory listing — see ARCHITECTURE.md/PROGRESS.md Session 18 notes for the sourcing method and the honest shortfall against the ~200 Greenhouse target). 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
+  "_note": "58 companies across 3 ATS platforms plus 1 custom-domain company (Session 18 grew this from 9 to 47 by guessing ATS slugs from company names and validating against the live API — 34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected. Session 19 grew it further to 58 by inverting the method: fetching each candidate's own real career page and reading its actual ATS directly off of it — 1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk and the first real Comeet discoveries since Sessions 1-13's seed set. See ARCHITECTURE.md/PROGRESS.md Session 18/19 notes for the honest shortfall against the ~200 Greenhouse target and the sourcing methods). 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
   "companies": [
     {
       "name": "Wiz",
@@ -326,6 +326,93 @@
       "ats_slug": "sweetsecurity",
       "career_page": "https://job-boards.greenhouse.io/sweetsecurity",
       "note": "Session 18: live-verified via boards-api.greenhouse.io/lever API through the Compliance Agent — 5 real open postings at verification time. Sourced from public Israeli tech company lists (Wikipedia, failory.com, general knowledge of the Israeli startup ecosystem), slug discovered by trying the company's own name in lowercase/hyphenated form against the real API, not assumed from a directory listing."
+    },
+    {
+      "name": "Cognyte",
+      "ats": "comeet",
+      "ats_slug": "cognyte",
+      "career_page": "https://www.comeet.com/jobs/cognyte/F2.009",
+      "ats_uid": "F2.009",
+      "note": "Session 19: domain-first discovery — fetched https://www.cognyte.com/careers/ (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 49 real open postings at verification time."
+    },
+    {
+      "name": "Cyera",
+      "ats": "comeet",
+      "ats_slug": "cyera",
+      "career_page": "https://www.comeet.com/jobs/cyera/17.008",
+      "ats_uid": "17.008",
+      "note": "Session 19: domain-first discovery — fetched https://www.cyera.com/careers (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 153 real open postings at verification time."
+    },
+    {
+      "name": "Feedvisor",
+      "ats": "comeet",
+      "ats_slug": "feedvisor",
+      "career_page": "https://www.comeet.com/jobs/feedvisor/11.00A",
+      "ats_uid": "11.00A",
+      "note": "Session 19: domain-first discovery — fetched https://feedvisor.com/careers (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 2 real open postings at verification time."
+    },
+    {
+      "name": "Immunai",
+      "ats": "comeet",
+      "ats_slug": "immunai",
+      "career_page": "https://www.comeet.com/jobs/immunai/37.009",
+      "ats_uid": "37.009",
+      "note": "Session 19: domain-first discovery — fetched https://www.immunai.com/careers/ (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 12 real open postings at verification time."
+    },
+    {
+      "name": "Infinidat",
+      "ats": "comeet",
+      "ats_slug": "infinidat",
+      "career_page": "https://www.comeet.com/jobs/infinidat/D6.003",
+      "ats_uid": "D6.003",
+      "note": "Session 19: domain-first discovery — fetched https://www.infinidat.com/en/careers (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 47 real open postings at verification time."
+    },
+    {
+      "name": "K Health",
+      "ats": "greenhouse",
+      "ats_slug": "khealthcareers",
+      "career_page": "https://job-boards.greenhouse.io/khealthcareers",
+      "note": "Session 19: domain-first discovery — fetched https://khealth.com/careers (the company's own real career page) through the Compliance Agent and read the actual greenhouse link directly off of it (not a guessed slug), then confirmed against the real API — 25 real open postings at verification time."
+    },
+    {
+      "name": "MetalBear",
+      "ats": "comeet",
+      "ats_slug": "metalbear-co",
+      "career_page": "https://www.comeet.com/jobs/metalbear-co/8A.002",
+      "ats_uid": "8A.002",
+      "note": "Session 19: domain-first discovery — fetched https://metalbear.com/careers/ (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 1 real open postings at verification time."
+    },
+    {
+      "name": "Netafim",
+      "ats": "comeet",
+      "ats_slug": "netafim",
+      "career_page": "https://www.comeet.com/jobs/netafim/B7.002",
+      "ats_uid": "B7.002",
+      "note": "Session 19: domain-first discovery — fetched https://www.netafim.com:443/en/career/ (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 48 real open postings at verification time."
+    },
+    {
+      "name": "Pipl",
+      "ats": "comeet",
+      "ats_slug": "pipl",
+      "career_page": "https://www.comeet.com/jobs/pipl/22.008",
+      "ats_uid": "22.008",
+      "note": "Session 19: domain-first discovery — fetched https://pipl.com/careers (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 7 real open postings at verification time."
+    },
+    {
+      "name": "Riverside",
+      "ats": "comeet",
+      "ats_slug": "riverside-fm",
+      "career_page": "https://www.comeet.com/jobs/riverside-fm/66.009",
+      "ats_uid": "66.009",
+      "note": "Session 19: domain-first discovery — fetched https://careers.riverside.com (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 20 real open postings at verification time."
+    },
+    {
+      "name": "SysAid",
+      "ats": "comeet",
+      "ats_slug": "sysaid",
+      "career_page": "https://www.comeet.com/jobs/sysaid/43.00A",
+      "ats_uid": "43.00A",
+      "note": "Session 19: domain-first discovery — fetched https://careers.sysaid.com (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 15 real open postings at verification time."
     }
   ]
 }

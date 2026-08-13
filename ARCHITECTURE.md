@@ -336,6 +336,50 @@ is exactly where that risk concentrates. The real live-run timing (§9a)
 confirms rather than disproves the underlying reasoning — it just shows
 the pacing floor at 36 real Greenhouse companies instead of 200.
 
+**Session 19 — inverting the method: domain-first discovery instead of
+slug-guessing.** Session 18's slug-guessing approach worked but carried
+a real identity risk (3 collisions caught only by manual review) and a
+hard ceiling (a company simply isn't found if its real slug doesn't
+match any guessed variant). This session instead fetched each
+candidate's own real career page — through the Compliance Agent, same
+as every fetch in this project — and read the actual ATS straight off of
+it: a redirect `Location` header, or an embedded `job-boards.greenhouse.io`/
+`jobs.lever.co`/`comeet.com` link in the page's own HTML. Only once a
+slug (and, for Comeet, its numeric `uid`) was observed this way did a
+second confirmation fetch validate it against the real ATS API — the
+same final check Session 18 used, but now applied to an observed slug,
+not a guessed one, which is what makes the collision risk structurally
+harder to hit (the slug came from the company's own real link, not from
+a name transformation that happens to also match someone else's board).
+**Real bug, caught mid-session:** the first pass returned only 4 hits
+from 505 candidates, which turned out to be a bug, not a true result —
+`ComplianceAgent.fetch()`'s `response.raise_for_status()` call raises
+`HTTPStatusError` for *any* unfollowed 3xx (httpx.AsyncClient defaults to
+`follow_redirects=False`, and httpx treats an unresolved redirect as an
+error condition, not just 4xx/5xx), and the discovery script's exception
+handling was silently discarding that — including the exact "`/careers`
+redirects straight to the real board" signal this method exists to read.
+Fixed by catching `HTTPStatusError` specifically and reading `Location`
+off the exception's own `.response`, plus chasing one non-ATS redirect
+hop (e.g. a bare domain bouncing to its `www.` form) before giving up;
+re-running raised real hits from 4 to 13. **Real yield, honestly not
+higher on Greenhouse specifically:** 1 new Greenhouse (`K Health`, whose
+slug `khealthcareers` is exactly the kind of non-obvious form Session
+18's guessing would have missed) + 10 new Comeet companies, each with an
+exact slug+`uid` pair read directly off its own page — fully resolving
+Session 18's stated Comeet blocker (a `uid` genuinely can't be guessed,
+but it's sitting right there in the company's own real career-page URL).
+companies.json: 47 -> 58 (Greenhouse: 37 -> 38). Diagnosed, not just
+reported: most candidates' real `/careers` pages are client-rendered
+SPAs whose ATS integration happens via a post-load JS `fetch()` call,
+which never appears in a plain HTTP GET's HTML — the exact limitation
+already flagged as a caveat in Session 6 ("a page that truly builds its
+job list client-side after load would fail this same check"), now
+observed at real scale (505 candidates) rather than as a single
+hypothetical company. This method's actual payoff wasn't a higher
+Greenhouse hit rate — it was zero identity collisions (vs. Session 18's
+3) and unlocking Comeet entirely.
+
 ## 5. Sandbox (domain-specific hook #1)
 
 A fixed set of 3–5 test companies with cached fixture responses (saved JSON/HTML
@@ -572,6 +616,16 @@ visible at a slightly larger scale. Reaching the actual ~5-minute target
 is a company-count problem (getting to ~200 real, verified Greenhouse
 companies), not an architecture problem — the concurrency model already
 does what it's supposed to.
+
+**Real live-run timing at 58 companies (Session 19):** ~66 seconds real
+elapsed, 0 failures. Slightly faster in wall-clock terms than Session
+18's 47-company/~80s run despite having 11 more companies, because the
+11 new companies are mostly Comeet (its own separate rate-limit lane,
+running concurrently with Greenhouse's) rather than more Greenhouse —
+direct empirical confirmation that it's Greenhouse-domain company count
+specifically driving the pacing floor, not total company count. Still
+well short of ~5 minutes, consistent with 38 real Greenhouse companies
+today (target: ~200).
 
 ## 10. Local-only preferences and application status (ADR-0011, ADR-0014)
 

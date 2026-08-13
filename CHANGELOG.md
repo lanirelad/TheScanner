@@ -494,3 +494,68 @@
   well short of - reported honestly rather than rounded up.
 - Test suite: 103/103 passing (was 100: 3 new for the failures-list
   fix), 0 real network calls in automated tests.
+
+## 2026-08-12 — Session 19: domain-first harvesting round 2 + --teal fix
+- Inverted Session 18's method to raise identity confidence: instead of
+  guessing an ATS slug directly against boards-api.greenhouse.io/
+  api.lever.co, this session fetched each candidate's own real domain/
+  career page through the Compliance Agent and read the actual ATS
+  (Greenhouse/Lever/Comeet) straight off of that real page — a redirect
+  Location header or an embedded link, never a guessed slug.
+- Sourced 505 fresh candidate names (mappedinisrael.com's real Israeli
+  startup directory, flagged honestly as a dated snapshot, plus Session
+  18's two guess-lists), deduplicated against the 47 already-verified
+  companies.
+- Real bug caught and fixed mid-session: ComplianceAgent.fetch()'s
+  raise_for_status() call raises HTTPStatusError for any unfollowed 3xx
+  (httpx.AsyncClient defaults to follow_redirects=False), not just
+  4xx/5xx — the first discovery pass silently discarded every redirect,
+  including the exact "/careers redirects straight to the real ATS"
+  case this method depends on, and returned only 4 hits from 505
+  candidates. Fixed by catching HTTPStatusError specifically and reading
+  Location off exc.response, with one redirect-chase hop for
+  non-ATS bounces (e.g. bare domain -> www) — re-run raised this to 13
+  raw hits.
+- 2 of those 13 were manually reviewed and rejected before adding
+  anything: "BillGuard" resolved (via its own guessed domain's redirect)
+  to Prosper, the US company that acquired it in 2015 — zero Israel
+  signal, caught by the script's own name-token-seen=False flag, not
+  the intended company; "Palantir" (from the directory) duplicated the
+  existing "Palantir Technologies" Lever entry from Session 3 under a
+  different display name.
+- Real result: 1 new Greenhouse (K Health) + 10 new Comeet companies
+  (Cognyte, Cyera, Feedvisor, Immunai, Infinidat, MetalBear, Netafim,
+  Pipl, Riverside, SysAid) — companies.json: 47 -> 58 (Greenhouse: 37 ->
+  38). Comeet expansion was explicitly out of scope in Session 18 since
+  a slug+uid pair can't be guessed; reading it directly off each
+  company's own real page resolved that blocker completely — every new
+  Comeet company came with its exact slug+uid pair, no guessing
+  involved.
+- Honest finding on why the Greenhouse hit rate didn't rise the way the
+  task hoped (2.2% raw hits / 505, ~0.2% net Greenhouse-only): most
+  candidates' real /careers pages are client-side-rendered SPAs whose
+  ATS integration happens via a JS fetch() call after page load, which
+  never appears in the raw HTML a plain GET returns — the same
+  limitation ARCHITECTURE.md already flagged in Session 6 ("a page that
+  truly builds its job list client-side after load... would require an
+  explicit Playwright/headless-browser decision"), now observed at
+  real scale rather than as a one-company caveat. This method's actual
+  win wasn't hit-rate — it was precision (0 collisions, vs. Session 18's
+  3) and unlocking Comeet entirely.
+- Fixed `--teal` in pwa/styles.css using the two real hex values Elad
+  gave directly in this session's task (#4FD1C5 dark / #2A9D8F light),
+  replacing the --radar-green alias Session 17 used as a placeholder.
+  demo.html itself (which had been sitting untracked in the working
+  directory as of Session 18) is deliberately not part of this repo —
+  Elad's call, not referenced as a source. Verified via
+  getComputedStyle in both themes: rgb(79, 209, 197) and rgb(42, 157,
+  143) respectively — exact match.
+- Live smoke test against the real 58-company list: 58/58 succeeded (0
+  failures — the Session 18 failure-visibility fix had nothing to show
+  this run, confirmed via a clean `failures: []` in latest_scan.json
+  rather than assumed), 31 matches (11 new, 20 still_open). Real
+  elapsed time: ~66 seconds — still well short of the ~5-minute target,
+  consistent with Greenhouse count being the real pacing floor (38 real
+  Greenhouse companies now, not ~200).
+- Test suite: 103/103 passing, unchanged (no Python logic changed this
+  session — companies.json and pwa/styles.css are data/config only).

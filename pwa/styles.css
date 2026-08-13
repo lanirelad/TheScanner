@@ -16,13 +16,11 @@ cosmetic-only this session (no persistence yet — deferred per scope).
   --text-dim: #8fa3ad;
   --radar-green: #34e2a8;
   --radar-green-dim: #1c6b52;
-  /* --teal: the wordmark spec (Session 17) references var(--teal)
-     directly, but the original demo.html — which never made it into this
-     repo — isn't available to pull its exact hex from. Aliased to the
-     same accent already used everywhere else in this UI (radar dot,
-     budget bar, apply links) rather than guessing a new, unrelated color;
-     flagged in the handoff as a judgment call, not a confirmed match. */
-  --teal: var(--radar-green);
+  /* --teal: the real dark-theme value, given directly by Elad (Session
+     19) — replaces the --radar-green alias Session 17 used as a
+     placeholder judgment call while this value wasn't available.
+     demo.html itself is deliberately not part of this repo. */
+  --teal: #4FD1C5;
   --accent-amber: #e8a94b; /* echoes the mascot's fur collar */
   --new-badge: #34e2a8;
   --still-open-badge: #4b8fe8;
@@ -38,7 +36,9 @@ cosmetic-only this session (no persistence yet — deferred per scope).
   --text-dim: #5b6b72;
   --radar-green: #0f9d6f;
   --radar-green-dim: #bfe9d9;
-  --teal: var(--radar-green);
+  /* Real light-theme value, given directly by Elad (Session 19), same
+     reasoning as the dark-theme --teal above. */
+  --teal: #2A9D8F;
   --accent-amber: #c07a1e;
   --new-badge: #0f9d6f;
   --still-open-badge: #2a6fc7;

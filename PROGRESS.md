@@ -588,3 +588,48 @@ None — all decisions needed to start building are now in place.
   that, reported honestly.
 - Test suite: 103/103 passing (was 100: 3 new for the failures-list
   fix), 0 real network calls in automated tests.
+
+## Addendum — Session 19 executed: domain-first harvesting round 2 + --teal fix (2026-08-12)
+- Method inverted from Session 18: fetched each candidate's own real
+  career page through the Compliance Agent and read the actual ATS
+  directly off of it (redirect Location header or embedded link),
+  instead of guessing a slug against the ATS API directly. This
+  eliminates the "resolved to the wrong company" risk Session 18 hit
+  three times, at the cost of a lower raw hit rate against Greenhouse
+  specifically.
+- Real bug found and fixed mid-session: the first discovery pass
+  silently discarded every HTTP redirect (ComplianceAgent.fetch()'s
+  raise_for_status() raises on unfollowed 3xx too, not just 4xx/5xx),
+  which killed the exact signal this method relies on. Fixed by reading
+  the Location header off the raised exception's response and chasing
+  one non-ATS redirect hop; hits went from 4 to 13 after the fix.
+- 505 fresh candidates sourced (mappedinisrael.com's real, if dated,
+  Israeli startup directory + Session 18's two guess-lists),
+  deduplicated against the 47 already-verified companies.
+- 2 of 13 raw hits rejected on manual review: BillGuard's guessed
+  domain now redirects to Prosper (the US company that acquired it in
+  2015, zero Israel signal); "Palantir" duplicated the existing
+  "Palantir Technologies" entry under a different name.
+- Real result: 1 new Greenhouse (K Health) + 10 new Comeet (Cognyte,
+  Cyera, Feedvisor, Immunai, Infinidat, MetalBear, Netafim, Pipl,
+  Riverside, SysAid). companies.json: 47 -> 58 (Greenhouse: 37 -> 38).
+  Comeet's slug+uid blocker from Session 18 is fully resolved — every
+  new Comeet company came with its exact pair read directly off its
+  own page, no guessing.
+- Honest diagnosis of the still-low Greenhouse yield: most companies'
+  real /careers pages are client-rendered SPAs whose ATS link only
+  ever appears via a post-load JS fetch(), invisible to a plain HTTP
+  GET — the same limitation ARCHITECTURE.md flagged in Session 6, now
+  seen at real scale. This method's real win was precision (0
+  collisions vs. Session 18's 3) and unlocking Comeet, not raw count.
+- `--teal` fixed in pwa/styles.css using the two real hex values given
+  directly in this session's task (#4FD1C5 dark / #2A9D8F light) -
+  demo.html itself stays deliberately out of the repo (Elad's call),
+  not referenced as a source. Replaces Session 17's --radar-green
+  placeholder. Verified via getComputedStyle in both themes - exact
+  match.
+- Live smoke test against the real 58-company list: 58/58 succeeded, 0
+  failures, 31 matches (11 new, 20 still_open). Real elapsed time ~66
+  seconds — still well short of ~5 minutes, consistent with 38 real
+  Greenhouse companies being the actual pacing floor today.
+- Test suite: 103/103 passing, unchanged.
