@@ -633,3 +633,84 @@ None — all decisions needed to start building are now in place.
   seconds — still well short of ~5 minutes, consistent with 38 real
   Greenhouse companies being the actual pacing floor today.
 - Test suite: 103/103 passing, unchanged.
+
+## Addendum — Session 20 executed: research-sourced candidates (2026-08-12)
+- First session where the candidate list came pre-sourced from real
+  research (Calcalist/CTech's 2026 funding-rounds coverage +
+  StartupBlink's Israel ranking) rather than being compiled this
+  session — ~182 fresh names after deduping against the 58 companies
+  already verified (8 supplied names were already present and
+  correctly skipped without a live fetch).
+- Reused Session 19's domain-first discovery method unchanged — no new
+  bugs, the redirect-chase fix held up against a different candidate
+  list. 8 raw hits, 7 confirmed (1, "Slice", resolved to a generic
+  Greenhouse embed-script path rather than a real company slug and was
+  correctly dropped at confirmation).
+- 2 of 7 confirmed hits rejected on manual review: "Enigma" resolved to
+  a NYC data company with zero Israel signal across 9 postings — almost
+  certainly the exact generic-word collision the sourcing session
+  itself warned about; "CopilotKit" resolved to a real Lever board but
+  its single open role (Seattle) also carried zero Israel signal, not
+  confirmed enough to include.
+- Net result: 5 new companies (Guardio, Guidde, ScaleOps, Zeroport,
+  ZyG) — 2 Greenhouse + 3 Comeet, each with a direct Israel-located
+  posting confirming genuine R&D presence, not just a resolving slug.
+  companies.json: 58 -> 63 (Greenhouse: 38 -> 40).
+- Live smoke test: 61/63 succeeded, 2 genuine transient ReadTimeouts
+  (Cato Networks, Payoneer, both visible with real error text in
+  latest_scan.json's failures list). 36 matches (5 new, 31 still_open).
+  Real elapsed time ~97 seconds — still short of ~5 minutes.
+- Test suite: 103/103 passing, unchanged.
+- Note as of this session's end: companies.json's 5 new entries
+  (Guardio, Guidde, ScaleOps, Zeroport, ZyG) are staged locally but
+  Elad chose not to commit yet ("handoff" instead of a commit
+  confirmation) — still pending as Session 21 begins.
+
+## Addendum — Session 21 executed: Playwright-based discovery (2026-08-14)
+- Added ADR-0031 (DECISIONS.md was still at ADR-0030 — same recurring
+  gap, resolved per ADR-0030's own protocol): Playwright approved for
+  discovery/onboarding sessions only, never the production scan
+  pipeline (stays on plain httpx, ADR-0001/ADR-0021).
+- Installed playwright + its Chromium binary (~115MB, confirmed with
+  Elad before downloading) as a discovery-only dependency
+  (requirements-discovery.txt, separate from requirements.txt — the
+  GitHub Actions workflow never installs it).
+- Refactored ComplianceAgent: extracted `gate(url)` — the robots.txt
+  check + rate-limit wait + timestamp recording, as an async context
+  manager — with `fetch()` now just that gate wrapped around one httpx
+  call. Verified the refactor preserves fetch()'s exact behavior
+  (existing compliance tests unchanged and passing) before adding 4 new
+  tests for gate() itself. This is what lets a Playwright page load get
+  identical compliance discipline without duplicating any logic.
+- Built `discovery/playwright_probe.py` (`PlaywrightProbe`): headless
+  Chromium, real network-idle wait (not a fixed sleep), inspects the
+  final URL/rendered DOM/every observed network request for ATS
+  signals — the same targets as the static method, plus a signal static
+  fetch structurally can't see (a post-load JS `fetch()` call to the
+  ATS API). 13 tests using a fake browser/page (no real Chromium needed
+  in the automated suite), including a regression test for a real bug
+  hit live this session (`page.content()` can raise its own error right
+  after a `goto()` timeout, not just `goto()` itself — both now handled).
+- Real test batch: 20 specific companies pulled directly from Sessions
+  19/20's own "no ATS link found" logs, extended from an initial 12
+  after that came back with zero hits, to rule out an unlucky selection
+  before concluding anything.
+- Real, honest result: 0 new ATS signals found across all 20. 3
+  (BlazeMeter, Aidoc, Centrical) are genuinely, currently blocked by
+  their own real robots.txt (confirmed via a fresh check) — proving the
+  compliance-reuse goal, but meaning they were never actually browser-
+  inspected. 1 (MorphiSec) surfaced a separate finding: a stale
+  robots_cache.json entry said "disallowed" when the live robots.txt
+  says otherwise (likely a transient bot-protection response earlier) —
+  corrected in the cache; still zero signal once genuinely inspected.
+  The remaining 16 were fully inspected and came back empty every time.
+- Honest conclusion: for this batch, JS-rendering wasn't the actual
+  blocker — these companies most likely use an ATS outside this
+  project's four supported platforms. Scaling Playwright discovery up
+  to the full candidate pool is not recommended without first finding
+  a genuine positive-control case.
+- 0 new companies added — a real, disclosed negative result.
+- Test suite: 121/121 passing (was 103: 4 + 13 + 1 new), 0 real network
+  calls in the automated suite.
+- Session 20's 5 companies remain uncommitted exactly as Elad left them
+  — not touched, not re-verified this session.

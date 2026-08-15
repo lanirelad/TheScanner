@@ -1,5 +1,5 @@
 {
-  "_note": "58 companies across 3 ATS platforms plus 1 custom-domain company (Session 18 grew this from 9 to 47 by guessing ATS slugs from company names and validating against the live API — 34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected. Session 19 grew it further to 58 by inverting the method: fetching each candidate's own real career page and reading its actual ATS directly off of it — 1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk and the first real Comeet discoveries since Sessions 1-13's seed set. See ARCHITECTURE.md/PROGRESS.md Session 18/19 notes for the honest shortfall against the ~200 Greenhouse target and the sourcing methods). 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
+  "_note": "63 companies across 3 ATS platforms plus 1 custom-domain company. Session 18: 9->47 by guessing ATS slugs from company names and validating against the live API (34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected). Session 19: 47->58 by inverting the method — fetching each candidate's own real career page and reading its actual ATS directly off of it (1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk). Session 20: 58->63 using the same domain-first method against a real, research-sourced candidate list (Calcalist/CTech 2026 funding-rounds coverage + StartupBlink's Israel ranking) rather than a hand-compiled name list — 3 new Greenhouse + 2 new Comeet; 2 raw hits (Enigma, CopilotKit) rejected on review for zero Israel signal, the exact generic-word-collision risk flagged going into that session. See ARCHITECTURE.md/PROGRESS.md Session 18-20 notes for the honest shortfall against the ~200 Greenhouse target and each session's sourcing method. 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
   "companies": [
     {
       "name": "Wiz",
@@ -413,6 +413,46 @@
       "career_page": "https://www.comeet.com/jobs/sysaid/43.00A",
       "ats_uid": "43.00A",
       "note": "Session 19: domain-first discovery — fetched https://careers.sysaid.com (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it (not a guessed slug), then confirmed against the real API — 15 real open postings at verification time."
+    },
+    {
+      "name": "Guardio",
+      "ats": "comeet",
+      "ats_slug": "guardio",
+      "career_page": "https://www.comeet.com/jobs/guardio/57.000",
+      "ats_uid": "57.000",
+      "note": "Session 20: domain-first discovery — fetched https://guard.io/careers?ref=grdcom (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it, then confirmed against the real API — 26 real open postings at verification time, including at least one Israel-located posting confirming genuine R&D presence."
+    },
+    {
+      "name": "Guidde",
+      "ats": "greenhouse",
+      "ats_slug": "guidde",
+      "career_page": "https://job-boards.greenhouse.io/guidde",
+      "ats_region": "eu",
+      "note": "Session 20: domain-first discovery — fetched https://www.guidde.com/careers (the company's own real career page) through the Compliance Agent and read the actual greenhouse link directly off of it, then confirmed against the real API — 10 real open postings at verification time, including at least one Israel-located posting confirming genuine R&D presence."
+    },
+    {
+      "name": "ScaleOps",
+      "ats": "greenhouse",
+      "ats_slug": "scaleops",
+      "career_page": "https://job-boards.greenhouse.io/scaleops",
+      "ats_region": "eu",
+      "note": "Session 20: domain-first discovery — fetched https://scaleops.com/careers/ (the company's own real career page) through the Compliance Agent and read the actual greenhouse link directly off of it, then confirmed against the real API — 55 real open postings at verification time, including at least one Israel-located posting confirming genuine R&D presence."
+    },
+    {
+      "name": "Zeroport",
+      "ats": "comeet",
+      "ats_slug": "zeroport",
+      "career_page": "https://www.comeet.com/jobs/zeroport/7A.00E",
+      "ats_uid": "7A.00E",
+      "note": "Session 20: domain-first discovery — fetched https://zeroport.com/ (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it, then confirmed against the real API — 4 real open postings at verification time, including at least one Israel-located posting confirming genuine R&D presence."
+    },
+    {
+      "name": "ZyG",
+      "ats": "comeet",
+      "ats_slug": "zyg",
+      "career_page": "https://www.comeet.com/jobs/zyg/DA.006",
+      "ats_uid": "DA.006",
+      "note": "Session 20: domain-first discovery — fetched https://www.zyg.com/careers (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it, then confirmed against the real API — 11 real open postings at verification time, including at least one Israel-located posting confirming genuine R&D presence."
     }
   ]
 }

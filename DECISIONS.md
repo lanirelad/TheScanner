@@ -547,3 +547,34 @@ protocol instead of an ad-hoc recovery each time.
 sync, or Claude Code halting sessions to double-check — doesn't fix the
 actual root cause (no live repo access) and just adds friction to
 something that's been working correctly every time it's actually happened.
+
+### ADR-0031 — Playwright approved for discovery sessions only, not the production scan pipeline
+**Status:** Accepted
+**Context:** Three independent harvesting sessions (18, 19, 20) all
+landed in the same low single-digit-percent hit rate when discovering
+new companies' ATS via plain `httpx` GETs — confirmed structural across
+three different candidate-sourcing methods (guessed names, a real
+directory, real funding-round research), not a candidate-list-quality
+problem. Most real company career pages are client-rendered SPAs whose
+ATS integration (a redirect, an embedded link, an API call) only
+appears after JavaScript actually executes, which a static HTTP GET
+never sees — the same limitation flagged as a caveat back in Session 6,
+now confirmed at real scale rather than as one hypothetical company.
+**Decision:** Playwright (headless browser automation) is approved
+specifically for onboarding/discovery sessions (ADR-0023: harvesting
+runs as Claude Code sessions, not GitHub Actions) that need to inspect
+a company's real, JS-rendered career page for ATS signals. It is **not**
+approved for the production scan pipeline (`run.py`, the adapters, the
+GitHub Actions workflow) — that stays exactly as simple as ADR-0001
+specified: plain `httpx`-based adapters hitting known, already-verified
+ATS APIs directly. Every Playwright-driven page load still goes through
+`ComplianceAgent`'s existing robots.txt/rate-limit logic (ADR-0002) —
+the fetch mechanism changes for discovery, the compliance discipline
+does not.
+**Why:** The scan pipeline's simplicity (ADR-0001) and async/httpx
+foundation (ADR-0021) are deliberate, load-bearing assets — fast,
+cheap, and friendly to GitHub Actions' free-tier minutes. Discovery is
+already a separate, differently-billed concern (ADR-0023: it draws on
+Elad's own Claude plan, never GitHub Actions minutes), where a heavier,
+slower tool is an acceptable, bounded cost for solving a real, confirmed
+problem — not a general-purpose upgrade to the whole system.

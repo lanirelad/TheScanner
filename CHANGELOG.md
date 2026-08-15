@@ -559,3 +559,114 @@
   Greenhouse companies now, not ~200).
 - Test suite: 103/103 passing, unchanged (no Python logic changed this
   session — companies.json and pwa/styles.css are data/config only).
+
+## 2026-08-12 — Session 20: research-sourced candidates, no guessed names
+- First harvesting session where the candidate list wasn't sourced by
+  this session's own research pass — Elad/planning-Claude supplied ~182
+  fresh, real, currently-active Israeli company names directly (deduped
+  against the 58 companies already verified going in, 8 already present
+  and correctly skipped), citing real sources (Calcalist/CTech's 2026
+  funding-rounds coverage, StartupBlink's Israel ranking), with the
+  sourcing session's own explicit warning built in: several
+  generic-English-word names (Above, Bold, Neo, Frame, Willow, Swan,
+  Onyx, ...) carry the exact same collision risk Session 18 hit with
+  shield/bold/vim.
+- Reused Session 19's fixed domain-first discovery method unchanged
+  (fetch each candidate's own real career page through the Compliance
+  Agent, read the actual ATS off a redirect or embedded link, confirm
+  against the real API) — no new bugs this time, the redirect-chase fix
+  held up against a completely different candidate list.
+- Real result: 8 raw Stage A hits, 7 confirmed at Stage B (1 - "Slice" -
+  resolved to a generic Greenhouse embed-script path, "embed", not a
+  real company slug; correctly dropped when boards-api.greenhouse.io/v1/boards/embed/jobs
+  returned nothing real). Of the 7 confirmed, 2 were rejected on manual
+  review before touching companies.json: "Enigma" resolved to
+  enigma.com, a NYC data company with zero Israel signal across 9
+  postings — almost certainly the generic-word collision the sourcing
+  session warned about, not the Israeli company Calcalist's coverage
+  actually meant; "CopilotKit" resolved to a real Lever board but its
+  one open role (Seattle) also carried zero Israel signal and identity
+  wasn't confirmed strongly enough to include on a resolving-slug-plus-
+  guess alone.
+- Net addition: 5 companies (Guardio, Guidde, ScaleOps, Zeroport, ZyG) -
+  2 new Greenhouse (Guidde, ScaleOps) + 3 new Comeet (Guardio, Zeroport,
+  ZyG), each confirmed with a direct Israel-located posting, not just a
+  resolving slug. companies.json: 58 -> 63 (Greenhouse: 38 -> 40,
+  Comeet: 12 -> 15).
+- 8 of the supplied candidates were already in companies.json going in
+  (AppsFlyer, Cato Networks, Cyera, Oasis Security, QuantHealth,
+  Tomorrow.io, Torq, Triple Whale) - correctly deduplicated before any
+  live fetch was made against them.
+- Live smoke test against the real 63-company list: 61/63 succeeded, 2
+  genuine transient ReadTimeouts (Cato Networks, Payoneer - same
+  real-failure category as every prior transient timeout this project
+  has seen, both visible with their real error text in latest_scan.json's
+  failures list, not just a bare count). 36 matches (5 new, 31
+  still_open). Real elapsed time: ~97 seconds - still well short of
+  the ~5-minute target (40 real Greenhouse companies now, not ~200).
+- Test suite: 103/103 passing, unchanged (no Python logic changed).
+
+## 2026-08-14 — Session 21: Playwright-based discovery (real negative result)
+- Added ADR-0031 (DECISIONS.md was still at ADR-0030, same recurring
+  doc/reality gap - added per ADR-0030's own protocol from the task's
+  unambiguous framing): Playwright approved for discovery/onboarding
+  sessions only, never the production scan pipeline, which stays on
+  plain httpx per ADR-0001/ADR-0021.
+- Installed playwright + downloaded its Chromium binary after explicit
+  confirmation (a real ~115MB binary download, not just a pip package).
+  Isolated as requirements-discovery.txt, separate from requirements.txt
+  - the GitHub Actions workflow never installs it.
+- Refactored ComplianceAgent: extracted `gate(url)`, an async context
+  manager holding the robots.txt check + rate-limit wait + timestamp
+  recording, with fetch() now just that gate wrapped around one httpx
+  call. Lets a Playwright page load get identical compliance discipline
+  without duplicating any of ComplianceAgent's own logic. Verified the
+  refactor preserves fetch()'s exact original behavior (existing
+  compliance test suite unchanged, still passing) before adding 4 new
+  tests for gate() itself.
+- Built discovery/playwright_probe.py (PlaywrightProbe): loads a real
+  career page with headless Chromium, waits for real network-idle (not
+  a fixed sleep), inspects the final URL/rendered DOM/every observed
+  network request for Greenhouse/Lever/Comeet signals - the same
+  detection targets as the static method, plus one static fetch
+  structurally can't see at all (a post-load JS fetch() call to the ATS
+  API). 13 tests using a hand-rolled fake browser/page (no real
+  Chromium needed in the automated suite) - including one written after
+  a real bug surfaced live: page.content() can raise its own "page is
+  navigating" error right after a goto() timeout, not just goto()
+  itself; both are now handled, and a regression test locks the fix in.
+- Real test batch: 20 specific companies pulled directly from Sessions
+  19/20's own "no ATS link found" logs (Coralogix, Guesty, Totango,
+  MorphiSec, BlazeMeter, Overwolf, Namogoo, HiBob, Aidoc, Centrical,
+  Artlist, Attenti, Claroty, Datarails, DriveNets, Definity, Quantum
+  Art, Reco, Zenity, Upwind) - extended from an initial 12 to 20 after
+  the first batch came back with zero hits, to rule out an unlucky
+  selection before concluding anything.
+- Real result: 0 new ATS signals found across all 20. 3 (BlazeMeter,
+  Aidoc, Centrical) are genuinely, currently blocked by their own real
+  robots.txt (confirmed via a fresh, uncached check) - Playwright
+  correctly respected that, proving the compliance-reuse goal, but
+  meaning those 3 were never actually browser-inspected. 1 (MorphiSec)
+  surfaced a separate real finding: a persisted robots_cache.json entry
+  said "disallowed" when the live robots.txt (re-checked directly - no
+  Disallow rules for User-agent: * at all) says otherwise, most likely
+  a transient bot-protection response at the original check time -
+  corrected in the cache; Playwright still found nothing there either
+  once genuinely inspected. The remaining 16 were fully, cleanly
+  inspected and came back with zero signal every time.
+- Honest conclusion, not spun positive: for this batch, JS-rendering
+  was not the actual blocker - these companies most likely use an ATS
+  outside this project's four supported platforms entirely. Scaling
+  Playwright discovery up to the full ~500+ candidate pool is not
+  recommended without first finding at least one genuine positive-
+  control case to confirm the mechanism pays off somewhere real.
+- 0 new companies added to companies.json this session (nothing to
+  confirm - a real, disclosed negative result, not a gap in the work).
+- Test suite: 121/121 passing (was 103: 4 new for ComplianceAgent.gate(),
+  13 new for the Playwright probe, 1 new regression test for the
+  content()-after-timeout bug), 0 real network calls in the automated
+  suite (the Playwright browser was only ever driven manually against
+  real companies for this session's proof batch, never inside pytest).
+- Session 20's 5 companies (Guardio, Guidde, ScaleOps, Zeroport, ZyG)
+  remain uncommitted, exactly as Elad left them - not touched, not
+  re-verified, not assumed committed.

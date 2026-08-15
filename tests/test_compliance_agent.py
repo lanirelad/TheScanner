@@ -166,3 +166,67 @@ async def test_fetch_raises_compliance_error_when_robots_txt_disallows(tmp_path)
 
     with pytest.raises(ComplianceError):
         await agent.fetch("https://blocked.example/jobs")
+
+
+# --- gate() (Session 21) -----------------------------------------------
+#
+# fetch() is now just gate() wrapped around one httpx call — the tests
+# above already prove fetch()'s end-to-end behavior is unchanged by that
+# refactor. These tests exercise gate() directly, since ADR-0031's actual
+# point is that a *different* fetch mechanism (Playwright, for discovery)
+# can sit inside this same context manager and get identical compliance
+# discipline without ever touching ComplianceAgent's internals itself.
+
+
+async def test_gate_raises_compliance_error_before_the_caller_ever_runs(tmp_path):
+    agent = _agent_with_fake_client(tmp_path)
+    agent._client = _FakeHTTPClient(robots_txt_status=200, robots_txt_text="User-agent: *\nDisallow: /\n")
+
+    entered = False
+    with pytest.raises(ComplianceError):
+        async with agent.gate("https://blocked.example/jobs"):
+            entered = True
+
+    assert entered is False
+
+
+async def test_gate_records_timestamp_only_after_the_caller_finishes(tmp_path):
+    agent = _agent_with_fake_client(tmp_path)
+
+    assert "gated.example" not in agent._last_request_at
+    async with agent.gate("https://gated.example/jobs"):
+        # Not recorded yet — the point of recording after, not before, is
+        # that spacing is measured between real completed work, matching
+        # fetch()'s original ordering.
+        assert "gated.example" not in agent._last_request_at
+
+    assert "gated.example" in agent._last_request_at
+
+
+async def test_gate_does_not_record_timestamp_if_the_caller_raises(tmp_path):
+    agent = _agent_with_fake_client(tmp_path)
+
+    with pytest.raises(RuntimeError):
+        async with agent.gate("https://failing.example/jobs"):
+            raise RuntimeError("caller's own fetch mechanism failed")
+
+    assert "failing.example" not in agent._last_request_at
+
+
+async def test_gate_enforces_the_same_per_domain_spacing_as_fetch(tmp_path):
+    # Proves gate() alone (no httpx call inside it at all) reuses the
+    # exact same rate-limit mechanics fetch() does — this is the whole
+    # point of extracting it: a Playwright page load standing in for the
+    # "do the real work" step below still gets real per-domain spacing.
+    min_delay = 0.3
+    agent = _agent_with_fake_client(tmp_path, min_delay_seconds=min_delay)
+
+    async def probe(n):
+        async with agent.gate(f"https://same-gated.example/{n}"):
+            pass
+
+    start = time.monotonic()
+    await asyncio.gather(probe(1), probe(2))
+    elapsed = time.monotonic() - start
+
+    assert elapsed >= min_delay - 0.05, f"expected >= ~{min_delay}s spacing, got {elapsed}s"

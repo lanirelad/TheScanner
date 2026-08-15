@@ -1,0 +1,16 @@
+# Discovery-only dependencies (ADR-0031) — NOT used by the production
+# scan pipeline (run.py, adapters/, the GitHub Actions workflow). Those
+# stay on plain httpx (requirements.txt) per ADR-0001/ADR-0021.
+#
+# Playwright is for onboarding/harvesting Claude Code sessions (ADR-0023)
+# that need to inspect a real, JS-rendered career page for ATS signals —
+# something a static httpx GET structurally can't see. Install with:
+#
+#   pip install -r requirements-discovery.txt
+#   python -m playwright install chromium
+#
+# The second step downloads a real Chromium binary (~100-300MB) — not
+# just a pip package — so it's a deliberate one-time setup step, not
+# part of the normal scan pipeline's dependency footprint at all.
+
+playwright

@@ -1,9 +1,18 @@
 {
-  "generated_at": "2026-08-13T11:13:07Z",
-  "companies_attempted": 58,
-  "companies_succeeded": 58,
-  "companies_failed": 0,
-  "failures": [],
+  "generated_at": "2026-08-13T20:47:48Z",
+  "companies_attempted": 63,
+  "companies_succeeded": 61,
+  "companies_failed": 2,
+  "failures": [
+    {
+      "company": "Cato Networks",
+      "error": "ReadTimeout: "
+    },
+    {
+      "company": "Payoneer",
+      "error": "ReadTimeout: "
+    }
+  ],
   "matches": [
     {
       "company": "Wiz",
@@ -85,6 +94,15 @@
       "label_en": "Technical Support Engineer",
       "source_url": "https://careers.appsflyer.com/jobs/position/8535473002?gh_jid=8535473002",
       "scan_status": "still_open"
+    },
+    {
+      "company": "Axonius",
+      "title": "DevOps Operations Engineer",
+      "location": "Tel Aviv, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.axonius.com/company/careers/open-jobs?gh_jid=7818899003",
+      "scan_status": "new"
     },
     {
       "company": "Axonius",
@@ -192,7 +210,7 @@
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
       "source_url": "https://www.cognyte.com/careers/89.E6F/field-support-engineer-and-asset-manager/",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Cyera",
@@ -201,7 +219,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.comeet.com/jobs/cyera/17.008/automation-infrastructure-engineer/AF.66B",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Cyera",
@@ -210,7 +228,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.comeet.com/jobs/cyera/17.008/frontend-infrastructure-engineer/3F.75A",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Cyera",
@@ -219,7 +237,7 @@
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
       "source_url": "https://www.comeet.com/jobs/cyera/17.008/learning-and-development-manager-technical-support/B2.E6E",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Cyera",
@@ -228,7 +246,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.comeet.com/jobs/cyera/17.008/senior-devops-engineer/E2.565",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Cyera",
@@ -237,7 +255,7 @@
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
       "source_url": "https://www.comeet.com/jobs/cyera/17.008/senior-technical-support-engineer/94.F68",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Infinidat",
@@ -246,7 +264,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.comeet.com/jobs/infinidat/D6.003/platform-engineering-team-lead/2D.A5D",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Infinidat",
@@ -255,7 +273,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.comeet.com/jobs/infinidat/D6.003/python-infrastructure-engineer/17.D69",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Infinidat",
@@ -264,7 +282,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.comeet.com/jobs/infinidat/D6.003/senior-devops-engineer/5F.C60",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Pipl",
@@ -273,7 +291,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.comeet.com/jobs/pipl/22.008/devops-engineer/6A.D64",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "company": "Riverside",
@@ -282,6 +300,42 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://careers.riverside.com/careers/devops-engineer",
+      "scan_status": "still_open"
+    },
+    {
+      "company": "Guardio",
+      "title": "Senior DevOps Engineer",
+      "location": "Tel-Aviv, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://guard.io/careers",
+      "scan_status": "new"
+    },
+    {
+      "company": "ScaleOps",
+      "title": "DevOps Engineer",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://job-boards.eu.greenhouse.io/scaleops/jobs/4913587101",
+      "scan_status": "new"
+    },
+    {
+      "company": "ScaleOps",
+      "title": "Devops Team Lead",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://job-boards.eu.greenhouse.io/scaleops/jobs/4913604101",
+      "scan_status": "new"
+    },
+    {
+      "company": "Zeroport",
+      "title": "Devops Engineer",
+      "location": "Herzliya",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.zeroport.com/the-company/career-2",
       "scan_status": "new"
     }
   ]

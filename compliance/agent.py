@@ -20,6 +20,7 @@ import asyncio
 import json
 import logging
 import time
+from contextlib import asynccontextmanager
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.robotparser import RobotFileParser
@@ -195,25 +196,30 @@ class ComplianceAgent:
             if remaining > 0:
                 await asyncio.sleep(remaining)
 
-    async def fetch(self, url, params=None):
-        """Fetch `url` after checking robots.txt and enforcing rate limits.
+    @asynccontextmanager
+    async def gate(self, url):
+        """Check robots.txt and enforce the per-domain rate limit for
+        `url`, without performing any fetch itself.
 
-        Returns the httpx.Response. Raises ComplianceError if robots.txt
-        disallows the URL for our user agent.
+        Session 21: extracted out of fetch() (which is now just this
+        gate wrapped around one httpx call) so a different fetch
+        mechanism — a Playwright-driven page load, for discovery
+        sessions per ADR-0031 — can get the exact same compliance
+        discipline (robots.txt honored, same per-domain rate limit, same
+        atomic check-wait-fetch-record sequence under one lock) without
+        duplicating any of this logic. The fetch mechanism is the only
+        thing that should ever change between production scanning and
+        discovery; the compliance gate must not.
 
-        The rate-limit check-wait-record sequence, and the actual request,
-        all happen while holding this domain's lock (`async with lock:`
-        spans all of it, including the `await asyncio.sleep(...)` inside
-        _wait_for_rate_limit). This is the fix for the exact race Elad
-        raised: without the lock spanning the sleep, two concurrent
-        same-domain tasks could both read "elapsed >= min_delay" as true
-        before either has recorded a new timestamp, and both proceed
-        immediately instead of one waiting for the other. Holding the lock
-        across the whole critical section makes "check, wait if needed,
-        fetch, record" one atomic unit per domain — a second task for the
-        same domain simply can't enter until the first has fully finished
-        and released the lock. Different domains have different locks, so
-        they never block each other.
+        Raises ComplianceError if robots.txt disallows `url` — before
+        the rate-limit wait, so a blocked fetch never consumes a
+        rate-limit slot. On successful entry, the caller performs its
+        own fetch inside the `async with` block; the domain's completion
+        timestamp is recorded only after that block returns normally —
+        matching fetch()'s original ordering exactly (spacing is
+        measured between actual completed fetches, not from when a
+        fetch was merely allowed to start; a failed fetch inside the
+        block, same as before this refactor, does not get recorded).
         """
         parsed = urlparse(url)
         domain = parsed.netloc
@@ -227,13 +233,26 @@ class ComplianceAgent:
 
             await self._wait_for_rate_limit(domain)
 
+            yield
+
+            self._last_request_at[domain] = time.monotonic()
+
+    async def fetch(self, url, params=None):
+        """Fetch `url` after checking robots.txt and enforcing rate limits.
+
+        Returns the httpx.Response. Raises ComplianceError if robots.txt
+        disallows the URL for our user agent. See gate() for the actual
+        robots.txt/rate-limit mechanics — this is now just that gate
+        wrapped around a single httpx call, with the response's own
+        status logged and raised on afterward.
+        """
+        async with self.gate(url):
             response = await self._client.get(
                 url,
                 params=params,
                 headers={"User-Agent": self.user_agent},
                 timeout=self.timeout_seconds,
             )
-            self._last_request_at[domain] = time.monotonic()
 
         logger.info(
             "ALLOWED fetch: %s -> status %s",

@@ -248,6 +248,19 @@ schema directly, not just that no code path writes it.
   themselves. This is a hard boundary, not a style choice: `wrangler.jsonc`
   makes this directory the deployed site's whole file tree, so anything
   the PWA needs to fetch has to live inside it. See §9a.
+- `discovery/` (Session 21, ADR-0031) — Playwright-based ATS discovery
+  for onboarding/harvesting sessions only. Never imported by `run.py`,
+  `adapters/`, or the GitHub Actions workflow — the production scan
+  pipeline stays on plain `httpx` (ADR-0001/ADR-0021). Depends on
+  `compliance/` (reuses `ComplianceAgent.gate()`, never duplicates its
+  robots.txt/rate-limit logic) but nothing in `compliance/`, `adapters/`,
+  or `run.py` depends on `discovery/` — the dependency direction only
+  ever points one way, same rule as `core/` never importing `adapters/`.
+  Its one real dependency, Playwright, lives in `requirements-discovery.txt`
+  (a separate file, not `requirements.txt`), on purpose: `requirements.txt`
+  is what the GitHub Actions workflow installs for the production scan
+  every run, and Playwright drags in a real Chromium binary (~100-300MB)
+  that pipeline has no reason to ever download.
 
 ## 4. Three-layer QA framework
 
@@ -380,6 +393,70 @@ hypothetical company. This method's actual payoff wasn't a higher
 Greenhouse hit rate — it was zero identity collisions (vs. Session 18's
 3) and unlocking Comeet entirely.
 
+**Session 20 — same method, a research-sourced candidate list instead
+of a self-compiled one.** Elad/planning-Claude supplied ~182 real,
+currently-active Israeli company names directly (Calcalist/CTech's 2026
+funding-rounds coverage + StartupBlink's Israel ranking), explicitly
+flagging the same collision risk Session 18 hit (several
+generic-English-word names — `Above`, `Bold`, `Neo`, `Frame`, `Willow`,
+`Swan`, `Onyx`...). Ran unchanged through Session 19's domain-first
+discovery script against this different list: no new bugs, confirming
+the redirect-chase fix generalizes rather than being a one-list fluke.
+8 raw hits, 7 confirmed (`Slice` resolved to a Greenhouse *embed-script*
+path, not a real company slug — correctly dropped when the confirmation
+fetch found no real jobs behind it, a clean example of Stage B doing
+its job). Of the 7 confirmed, 2 were rejected on manual review before
+touching `companies.json`: `Enigma` resolved to a real, unrelated NYC
+data company (zero Israel signal across 9 postings) — almost certainly
+the exact generic-word collision this session was warned about, not the
+Israeli company the funding-rounds coverage actually meant; `CopilotKit`
+resolved to a real Lever board but its one open role also carried zero
+Israel signal, and identity wasn't confirmed strongly enough to include
+on a resolving-slug-plus-guess alone. Net: 5 new companies (Guardio,
+Guidde, ScaleOps, Zeroport, ZyG), each confirmed via a real,
+Israel-located posting, not just a resolving slug. `companies.json`:
+58 -> 63 (Greenhouse: 38 -> 40). Real, repeatable lesson across three
+sessions now: the bottleneck isn't the candidate list's quality
+(guessed names, a dated directory, and real funding-round coverage all
+landed in a similar single-digit-percent range) — it's that most real
+companies' career pages are client-rendered and don't expose their ATS
+to a plain HTTP GET at all, the limitation flagged since Session 6.
+
+**Session 21 — testing whether a real browser actually fixes it (ADR-0031):**
+Built `discovery/playwright_probe.py` (`PlaywrightProbe`, a headless
+Chromium wrapper) to test the Sessions 18-20 hypothesis directly rather
+than assume it and scale up blind. Every page load routes through
+`ComplianceAgent.gate()` — a new context manager extracted from
+`fetch()` (see §6) so Playwright gets the exact same robots.txt/rate-
+limit discipline as every `httpx` call in this project, without
+duplicating any of that logic. Re-tested 20 specific companies pulled
+directly from Sessions 19/20's own "no ATS link found" logs (not a
+fresh guess) — real result: **0 new ATS signals found.** 3 of the 20
+(BlazeMeter, Aidoc, Centrical) are genuinely, currently blocked by
+their own real robots.txt (confirmed via a fresh, uncached compliance
+check) — Playwright correctly respected that, proving the compliance-
+reuse goal worked, but meaning those 3 were never actually inspected by
+a browser at all. One (MorphiSec) surfaced a real, separate finding: a
+persisted `robots_cache.json` entry said "disallowed" when the live
+robots.txt (re-checked directly, no Disallow rules for `User-agent: *`)
+says otherwise — most likely a transient bot-protection response at
+the original check time, now resolved; corrected in the cache, and
+Playwright still found nothing there either once genuinely inspected.
+The remaining 16 were cleanly, fully inspected (network-idle wait, full
+rendered DOM, every observed network request) and came back with zero
+ATS signal every time. Honest conclusion: for *this* specific batch,
+JS-rendering was not the actual blocker — these companies most likely
+use an ATS outside this project's four supported platforms entirely
+(Workday, SmartRecruiters, iCIMS, a blocked Ashby, or a fully bespoke
+backend), a different, non-Playwright-solvable problem. This is a real
+negative result, not a failed session: it means scaling Playwright
+discovery up to the full ~500+ candidate pool is **not** recommended
+without first finding at least one genuine positive-control case (a
+company independently known to expose an ATS only after JS execution)
+to confirm the mechanism actually pays off somewhere real, rather than
+spending a large batch of exploratory calls chasing the same negative
+result at scale.
+
 ## 5. Sandbox (domain-specific hook #1)
 
 A fixed set of 3–5 test companies with cached fixture responses (saved JSON/HTML
@@ -397,6 +474,20 @@ fixtures only. Live-site testing is manual, rate-limited, and opt-in per run.
 
 This gate cannot be disabled by a task prompt, a "just for testing" request, or
 an emotional/urgency framing. Any change to it requires its own ADR.
+
+**`ComplianceAgent.gate(url)` (Session 21, ADR-0031):** an async context
+manager extracted out of `fetch()` — robots.txt check, rate-limit wait,
+and the domain-lock/timestamp-recording sequence, with no httpx call
+baked in. `fetch()` itself is now just this gate wrapped around one
+httpx `GET`. Exists so a *different* fetch mechanism (a Playwright page
+load, for discovery sessions — see `discovery/playwright_probe.py`)
+gets identical compliance discipline without reimplementing any of it.
+The gate raises `ComplianceError` before the caller's block ever runs
+if robots.txt disallows the URL, and only records the domain's
+completion timestamp after the caller's block returns normally —
+preserving `fetch()`'s original ordering exactly (a failed fetch inside
+the block still doesn't count toward the next rate-limit check, same
+as before this refactor).
 
 ## 7. Regression gate (checklist, expand as needed)
 
@@ -626,6 +717,13 @@ direct empirical confirmation that it's Greenhouse-domain company count
 specifically driving the pacing floor, not total company count. Still
 well short of ~5 minutes, consistent with 38 real Greenhouse companies
 today (target: ~200).
+
+**Real live-run timing at 63 companies (Session 20):** ~97 seconds real
+elapsed, 2 genuine transient `ReadTimeout`s (Cato Networks, Payoneer —
+both real network hiccups, both visible with their actual error text in
+`latest_scan.json`'s `failures` list, not just a bare count). Still
+consistent with Greenhouse-domain company count being the real pacing
+floor: 40 real Greenhouse companies now, still well short of ~200.
 
 ## 10. Local-only preferences and application status (ADR-0011, ADR-0014)
 

@@ -1,0 +1,173 @@
+"""Playwright-based ATS discovery (ADR-0031) — discovery/onboarding
+sessions only, never the production scan pipeline (ADR-0001 keeps that
+on plain httpx).
+
+Why this exists, confirmed not assumed: Sessions 18-20 each independently
+landed in a low single-digit-percent hit rate discovering new companies'
+ATS via a plain HTTP GET (see ARCHITECTURE.md §4a). The common cause,
+diagnosed across all three: most real career pages are client-rendered
+SPAs whose ATS integration (a redirect, an embedded link, an XHR/fetch
+call to a known ATS API) only exists after JavaScript actually executes
+— invisible to `httpx`, visible to an actual browser. This module is the
+same detection target as `discover_round3.py`'s static method (URL
+patterns, embedded links, redirect targets) applied to a page a headless
+browser has actually rendered, plus one signal a static fetch can never
+see at all: every network request the page itself made while loading.
+
+Every page load here still goes through `ComplianceAgent.gate()` — the
+same robots.txt check and per-domain rate limit as every other fetch in
+this project (ADR-0002). The fetch *mechanism* changes for discovery;
+the compliance *discipline* does not, and this module never duplicates
+any of ComplianceAgent's own robots.txt/rate-limit logic to get that.
+"""
+
+import re
+
+from playwright.async_api import async_playwright
+
+# Broader than discover_round3.py's static-method regex on purpose:
+# Playwright adds a signal that method never had access to at all — the
+# page's own observed network requests — and a JS bundle realistically
+# calls the JSON API domain directly (boards-api.greenhouse.io/v1/boards/
+# {slug}/jobs), not the human-facing public page (job-boards.greenhouse.io/
+# {slug}) a redirect or an embedded link would show. Matching both here
+# means a network-request hit still resolves the right slug regardless of
+# which of the two domains the observed request actually used.
+GH_RE = re.compile(r"(?:job-boards|boards-api|boards)\.greenhouse\.io/(?:v1/boards/)?([a-zA-Z0-9_-]+)")
+GH_EU_RE = re.compile(r"job-boards\.eu\.greenhouse\.io/([a-zA-Z0-9_-]+)")
+LV_RE = re.compile(r"(?:jobs|api)\.lever\.co/(?:v0/postings/)?([a-zA-Z0-9_-]+)")
+LV_EU_RE = re.compile(r"jobs\.eu\.lever\.co/([a-zA-Z0-9_-]+)")
+CM_RE = re.compile(r"comeet\.com/jobs/([a-zA-Z0-9_-]+)/([a-zA-Z0-9.]+)")
+
+DEFAULT_WAIT_TIMEOUT_MS = 8000
+
+
+def _detect_ats(haystack):
+    """Same detection targets as discover_round3.py's static method —
+    only the input (a real, rendered page's data) differs. Comeet is
+    checked first since its URL shape is the most specific (both a slug
+    and a uid), same ordering reasoning as the static version.
+    """
+    m = CM_RE.search(haystack)
+    if m:
+        return {"ats": "comeet", "slug": m.group(1), "uid": m.group(2)}
+    m = GH_EU_RE.search(haystack)
+    if m:
+        return {"ats": "greenhouse", "slug": m.group(1), "region": "eu"}
+    m = GH_RE.search(haystack)
+    if m:
+        return {"ats": "greenhouse", "slug": m.group(1)}
+    m = LV_EU_RE.search(haystack)
+    if m:
+        return {"ats": "lever", "slug": m.group(1), "region": "eu"}
+    m = LV_RE.search(haystack)
+    if m:
+        return {"ats": "lever", "slug": m.group(1)}
+    return None
+
+
+class PlaywrightProbe:
+    """Headless-browser probe for a batch of company career pages.
+
+    One instance's browser is meant to be reused across many probe()
+    calls in a discovery batch — the same "one instance shared across a
+    run" pattern ComplianceAgent itself already uses. Launching a fresh
+    Chromium process per company would be pure overhead; each probe()
+    call opens its own page/tab against the shared browser instead.
+
+    `async with PlaywrightProbe(compliance_agent) as probe:` mirrors
+    `async with ComplianceAgent() as agent:` deliberately, so both
+    lifecycles read the same way at a call site that needs both.
+    """
+
+    def __init__(self, compliance_agent, wait_timeout_ms=DEFAULT_WAIT_TIMEOUT_MS):
+        self.compliance_agent = compliance_agent
+        self.wait_timeout_ms = wait_timeout_ms
+        self._playwright = None
+        self._browser = None
+
+    async def __aenter__(self):
+        self._playwright = await async_playwright().start()
+        self._browser = await self._playwright.chromium.launch()
+        return self
+
+    async def __aexit__(self, *exc_info):
+        await self._browser.close()
+        await self._playwright.stop()
+
+    async def probe(self, url):
+        """Load `url` with the shared headless browser, wait for it to
+        actually settle, and look for a real ATS signal.
+
+        "Settle" is `wait_until="networkidle"` (no network connections
+        for 500ms) — a real signal Playwright observes, not a fixed
+        `asyncio.sleep()` guess at how long a page takes to render.
+        `page.goto()`'s own timeout is caught, not propagated: a slow or
+        never-fully-idle page (some SPAs poll continuously) still leaves
+        a real rendered DOM and a real list of network requests worth
+        inspecting, so a timeout here means "inspect what actually
+        loaded," not "this candidate failed."
+
+        The whole page load happens inside `self.compliance_agent.gate(url)`
+        — robots.txt and the per-domain rate limit apply to this exactly
+        as they would to an httpx GET of the same URL; ComplianceError
+        propagates out of this method unchanged if the domain is
+        disallowed, before the browser ever navigates anywhere.
+
+        Returns a dict describing what was found (ats/slug/uid/region,
+        plus which evidence source matched — the final URL after any
+        client-side redirect, the rendered HTML, or an observed network
+        request) or None if nothing matched. This only ever *observes*
+        network requests the page made to other domains — it never
+        fetches them directly; confirming a discovered slug against the
+        real ATS API is a separate, ordinary ComplianceAgent.fetch()
+        call, so every real request this project makes — Playwright's
+        page loads included — still goes through the same gate.
+        """
+        requests_seen = []
+
+        async with self.compliance_agent.gate(url):
+            page = await self._browser.new_page()
+            try:
+                page.on("request", lambda request: requests_seen.append(request.url))
+                try:
+                    await page.goto(url, wait_until="networkidle", timeout=self.wait_timeout_ms)
+                except Exception:
+                    pass
+
+                final_url = page.url
+
+                # A goto() that timed out can leave the page still mid-
+                # navigation for a moment — content() (and even .url, in
+                # principle) can raise its own separate "page is
+                # navigating" error right after, not just goto() itself.
+                # Every network request was already captured via the
+                # listener above regardless, so an unreadable DOM here
+                # still leaves two of the three evidence sources intact.
+                try:
+                    html = await page.content()
+                except Exception:
+                    html = ""
+            finally:
+                await page.close()
+
+        hit = _detect_ats(final_url)
+        evidence = "redirect_target"
+        if hit is None:
+            hit = _detect_ats(html)
+            evidence = "rendered_dom"
+        if hit is None:
+            for request_url in requests_seen:
+                hit = _detect_ats(request_url)
+                if hit is not None:
+                    evidence = "network_request"
+                    break
+
+        if hit is None:
+            return None
+
+        hit["source_url"] = url
+        hit["final_url"] = final_url
+        hit["evidence"] = evidence
+        hit["network_requests_observed"] = len(requests_seen)
+        return hit
