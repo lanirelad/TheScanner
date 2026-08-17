@@ -489,6 +489,39 @@ preserving `fetch()`'s original ordering exactly (a failed fetch inside
 the block still doesn't count toward the next rate-limit check, same
 as before this refactor).
 
+**Robots-cache staleness, fixed after a real incident (Session 22):**
+Session 21's MorphiSec re-check found a real, live bug: a persisted
+`robots_cache.json` entry said `allowed: false` when a fresh live check
+of morphisec.com's actual `robots.txt` (no `Disallow` rules for
+`User-agent: *` at all) said otherwise — most likely a transient
+bot-protection response at whatever moment that entry got cached. Under
+the original 7-day TTL, a single bad moment could silently skip a real
+company's entire scan for a full week with zero visible symptom. Fixed
+two ways, both landing on the same asymmetry — a wrong `allowed: true`
+costs nothing (we just fetch, which is always safe) but a wrong
+`allowed: false` silently costs real coverage:
+1. **Asymmetric TTL.** `allowed: true` keeps the original 7-day trust
+   window (`ROBOTS_CACHE_TTL_SECONDS`). `allowed: false` now gets a
+   1-hour window instead (`ROBOTS_CACHE_BLOCKED_TTL_SECONDS`) — a bad
+   "blocked" call self-heals within the hour instead of the week,
+   while a domain that's genuinely, persistently blocked still doesn't
+   get re-checked on every single fetch.
+2. **Double-check before trusting a fresh "blocked" result.**
+   `_is_allowed()` no longer caches a disallowed result off a single
+   live check — it waits `blocked_recheck_delay_seconds` (5s by
+   default) and checks once more; only two agreeing "disallowed"
+   results get persisted as `false`. A one-time glitch essentially
+   never repeats a few seconds later; a genuine `Disallow` rule always
+   does, since real robots.txt content doesn't change on that
+   timescale.
+
+Live re-verification, not just unit tests: re-checked morphisec.com
+from a completely fresh cache under the new logic — resolved to
+`allowed: true` on the very first live check (the double-check path
+never even had to trigger, since this check wasn't blocked to begin
+with), consistent with the original block having been a one-off
+glitch rather than a persistent, reproducible block.
+
 ## 7. Regression gate (checklist, expand as needed)
 
 1. Compliance Agent runs before every live crawl. No exceptions.

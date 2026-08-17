@@ -670,3 +670,39 @@
 - Session 20's 5 companies (Guardio, Guidde, ScaleOps, Zeroport, ZyG)
   remain uncommitted, exactly as Elad left them - not touched, not
   re-verified, not assumed committed.
+
+## 2026-08-15 — Session 22: fix robots_cache staleness (combined approach)
+- Real incident, not a hypothetical: Session 21's MorphiSec re-check
+  found a persisted robots_cache.json entry saying "disallowed" when a
+  fresh live check of the real robots.txt (no Disallow rules for
+  User-agent: * at all) said otherwise - most likely a transient
+  bot-protection response at whatever moment it got cached. Under the
+  old 7-day TTL, one bad moment could silently skip a real company's
+  entire scan for a full week with zero visible symptom.
+- Asymmetric TTL: allowed:true keeps the original 7-day trust window
+  (being wrong there costs nothing - we just fetch normally, which is
+  always safe). allowed:false now gets a 1-hour window instead
+  (ROBOTS_CACHE_BLOCKED_TTL_SECONDS) - a bad "blocked" self-heals
+  within the hour, not the week.
+- Double-check before persisting a blocked result: a fresh "disallowed"
+  live check is no longer trusted off a single call - _is_allowed()
+  waits blocked_recheck_delay_seconds (5s default, overridable) and
+  checks once more; only two agreeing disallowed results get cached as
+  false. A one-time glitch essentially never repeats that fast; a real
+  Disallow rule always does.
+- Live re-verification: re-checked morphisec.com from a completely
+  fresh cache under the new logic - resolved to allowed:true on the
+  very first live check (the double-check path never even had to
+  trigger, since it wasn't blocked to begin with), consistent with the
+  original having been a one-off glitch, not a persistent block.
+- 5 new tests: cached-false-past-short-TTL triggers a recheck;
+  cached-true-past-short-but-within-long-TTL does not (proves the two
+  TTLs are genuinely asymmetric, not the same number twice); a single
+  transient block followed by allowed persists true; two consecutive
+  blocked responses persist false as before; the recheck genuinely
+  waits the configured delay between the two live checks (measured via
+  real call timestamps, not just trusted).
+- Test suite: 126/126 passing (was 121: 5 new), 0 real network calls in
+  the automated suite - the live MorphiSec re-verification was a
+  separate, disclosed manual check, same as every prior session's live
+  smoke tests.

@@ -38,8 +38,29 @@ DEFAULT_TIMEOUT_SECONDS = 10
 # robots.txt essentially never changes (PLAN.md "Robots.txt cache
 # persistence — chosen approach"), so a week-long TTL trades a
 # theoretical staleness window for not re-fetching it on every single run.
+# Session 22: this long TTL is deliberately asymmetric now — it only
+# applies to `allowed: true` cache entries. Being wrong about "allowed"
+# is low-risk (we just fetch normally, which is always safe); a week is
+# a fine price for not re-checking a domain that's never given us any
+# trouble.
 ROBOTS_CACHE_TTL_SECONDS = 7 * 24 * 60 * 60
+# A cached `allowed: false` gets trusted for a much shorter window. Real
+# incident this session responds to: MorphiSec got cached as
+# "disallowed" from what a fresh check later showed was a transient
+# glitch (its real robots.txt has no Disallow rules at all) — a wrong
+# "blocked" silently skips a real company for the entire cache window,
+# every single scan run, with no visible symptom at all. An hour bounds
+# that blast radius to "this run and maybe the next," not "a full week
+# of missed postings," while still avoiding a live re-check on every
+# single fetch to a domain that's actually, genuinely blocked.
+ROBOTS_CACHE_BLOCKED_TTL_SECONDS = 60 * 60
 DEFAULT_ROBOTS_CACHE_PATH = Path(__file__).resolve().parent.parent / "robots_cache.json"
+# How long to wait before re-checking a fresh "disallowed" result before
+# trusting it enough to cache. A few seconds is enough that a one-time
+# glitch (a momentary bot-protection challenge, a flaky response) almost
+# never repeats immediately after; a genuine, real Disallow rule always
+# will, since robots.txt content doesn't change on that timescale.
+DEFAULT_BLOCKED_RECHECK_DELAY_SECONDS = 5
 
 
 class ComplianceError(Exception):
@@ -62,11 +83,15 @@ class ComplianceAgent:
         user_agent=DEFAULT_USER_AGENT,
         timeout_seconds=DEFAULT_TIMEOUT_SECONDS,
         robots_cache_path=DEFAULT_ROBOTS_CACHE_PATH,
+        blocked_recheck_delay_seconds=DEFAULT_BLOCKED_RECHECK_DELAY_SECONDS,
     ):
         self.min_delay_seconds = min_delay_seconds
         self.user_agent = user_agent
         self.timeout_seconds = timeout_seconds
         self.robots_cache_path = Path(robots_cache_path)
+        # Session 22: overridable mainly so tests can drive this down to
+        # ~0 instead of waiting a real 5 seconds per blocked-domain test.
+        self.blocked_recheck_delay_seconds = blocked_recheck_delay_seconds
         self._domain_locks = {}
         self._last_request_at = {}
         # Guards robots_cache.json specifically, separate from the
@@ -121,9 +146,9 @@ class ComplianceAgent:
 
         Checks the persisted, domain-level robots_cache.json first (PLAN.md
         "Robots.txt cache persistence — chosen approach": entries shaped
-        {domain, allowed, checked_at}, ~7 day TTL) before ever re-fetching
-        robots.txt live. This is deliberately domain-level, not per-path:
-        every adapter today hits exactly one URL pattern per domain
+        {domain, allowed, checked_at}) before ever re-fetching robots.txt
+        live. This is deliberately domain-level, not per-path: every
+        adapter today hits exactly one URL pattern per domain
         (Greenhouse's /v1/boards/{slug}/jobs, Lever's /v0/postings/{slug}),
         so a single cached decision per domain is accurate for every call
         we actually make. A future adapter hitting multiple differently-
@@ -131,27 +156,51 @@ class ComplianceAgent:
         per-path instead — flagging that limitation here rather than
         silently building past it.
 
+        Session 22, two changes in response to a real incident (MorphiSec
+        — see ARCHITECTURE.md §6): the TTL is asymmetric
+        (ROBOTS_CACHE_TTL_SECONDS for `allowed: true`,
+        ROBOTS_CACHE_BLOCKED_TTL_SECONDS — much shorter — for
+        `allowed: false`), and a fresh "disallowed" result is re-checked
+        once, a few seconds later, before being trusted enough to cache;
+        only two agreeing checks get persisted as `false`. Both changes
+        target the same asymmetry: a wrong `allowed: true` costs nothing
+        (we just fetch, which is always safe), while a wrong
+        `allowed: false` silently skips a real company for as long as
+        the cache trusts it — that risk deserves a short leash and a
+        second opinion, not a week and blind trust.
+
         self._robots_cache_lock guards only the brief, synchronous file
-        read/write steps below, not the live robots.txt network fetch in
-        between. Holding it across the network call too would have been
-        simpler to reason about, but it would also have forced every
-        domain's first-ever robots.txt check to queue behind whichever
-        domain got there first — exactly the cross-domain blocking ADR-0021
-        exists to avoid. Two different domains hitting a cold cache at the
-        same time can now fetch robots.txt fully concurrently; only their
-        (near-instant, local-disk) writes to the shared cache file are
-        serialized. Same-domain calls can't race here at all regardless,
-        since fetch() already holds that domain's own lock around this
-        entire method.
+        read/write steps below, not the live robots.txt network fetch(es)
+        in between. Holding it across the network call too would have
+        been simpler to reason about, but it would also have forced
+        every domain's first-ever robots.txt check to queue behind
+        whichever domain got there first — exactly the cross-domain
+        blocking ADR-0021 exists to avoid. Two different domains hitting
+        a cold cache at the same time can now fetch robots.txt fully
+        concurrently; only their (near-instant, local-disk) writes to
+        the shared cache file are serialized. Same-domain calls can't
+        race here at all regardless, since fetch()/gate() already hold
+        that domain's own lock around this entire method.
         """
         async with self._robots_cache_lock:
             cache = self._read_robots_cache()
             entry = cache.get(domain)
             now = time.time()
-            if entry is not None and (now - entry["checked_at"]) < ROBOTS_CACHE_TTL_SECONDS:
-                return entry["allowed"]
+            if entry is not None:
+                ttl = ROBOTS_CACHE_TTL_SECONDS if entry["allowed"] else ROBOTS_CACHE_BLOCKED_TTL_SECONDS
+                if (now - entry["checked_at"]) < ttl:
+                    return entry["allowed"]
 
         allowed = await self._check_robots_live(domain, scheme, url)
+
+        if not allowed:
+            # Don't trust a single "disallowed" result enough to cache
+            # it — a transient glitch (a momentary bot-protection
+            # challenge, a flaky response) almost never repeats a few
+            # seconds later; a genuine block always will, since real
+            # robots.txt content doesn't change on that timescale.
+            await asyncio.sleep(self.blocked_recheck_delay_seconds)
+            allowed = await self._check_robots_live(domain, scheme, url)
 
         async with self._robots_cache_lock:
             cache = self._read_robots_cache()

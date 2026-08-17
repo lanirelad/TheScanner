@@ -112,7 +112,9 @@ def _blocking_agent(tmp_path):
     """
     from tests.test_compliance_agent import _FakeHTTPClient
 
-    agent = ComplianceAgent(min_delay_seconds=0.0, robots_cache_path=tmp_path / "robots_cache.json")
+    agent = ComplianceAgent(
+        min_delay_seconds=0.0, robots_cache_path=tmp_path / "robots_cache.json", blocked_recheck_delay_seconds=0
+    )
     agent._client = _FakeHTTPClient(robots_txt_status=200, robots_txt_text="User-agent: *\nDisallow: /\n")
     return agent
 

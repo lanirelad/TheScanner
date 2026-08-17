@@ -714,3 +714,29 @@ None — all decisions needed to start building are now in place.
   calls in the automated suite.
 - Session 20's 5 companies remain uncommitted exactly as Elad left them
   — not touched, not re-verified this session.
+- Sessions 20 + 21 were committed together as 95e922d after this
+  session's own write-up, per Elad's explicit choice.
+
+## Addendum — Session 22 executed: fix robots_cache staleness (2026-08-15)
+- Real incident, not hypothetical: Session 21's MorphiSec re-check found
+  a persisted robots_cache.json entry saying "disallowed" when a fresh
+  live check of the real robots.txt (no Disallow rules at all) said
+  otherwise — likely a transient bot-protection response at whatever
+  moment it got cached. Under the old 7-day TTL, one bad moment could
+  silently skip a real company's whole scan for a week, invisibly.
+- Asymmetric TTL: allowed:true keeps the original 7-day window (wrong
+  there costs nothing); allowed:false now gets 1 hour instead
+  (ROBOTS_CACHE_BLOCKED_TTL_SECONDS) — self-heals within the hour.
+- Double-check before persisting a blocked result: a fresh "disallowed"
+  live check waits blocked_recheck_delay_seconds (5s default) and
+  checks once more before being cached; only two agreeing results
+  persist as false.
+- Live re-verification: morphisec.com from a completely fresh cache now
+  resolves to allowed:true on the very first live check — the
+  double-check never had to trigger, since it wasn't blocked to begin
+  with, consistent with a one-off glitch rather than a real block.
+- 5 new tests covering both mechanisms independently (asymmetric TTL,
+  transient-block-then-allowed persists true, two-consecutive-blocks
+  persists false, real timing between the two checks).
+- Test suite: 126/126 passing (was 121: 5 new), 0 real network calls in
+  the automated suite.
