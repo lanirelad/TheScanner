@@ -874,3 +874,24 @@ None — all decisions needed to start building are now in place.
 - service-worker.js: added preferences.js to SHELL_FILES, bumped
   CACHE_NAME v3 -> v4.
 - 126/126 tests passing (job_id change updated existing assertions).
+
+## Addendum — Session 29 executed: fix Cloudflare-edge caching of service-worker.js (2026-08-19)
+- Session 27's fix was correct at the code level, but Elad still needed
+  a hard refresh - investigated the flagged Cloudflare-edge-caching
+  hypothesis empirically rather than assuming it.
+- Real headers on the live URL confirmed it: Cache-Control: public,
+  max-age=0, must-revalidate (Cloudflare's documented default) plus
+  CF-Cache-Status: HIT on the same response - the edge served the file
+  straight from cache without reaching origin, despite max-age=0.
+  Confirmed styles.css shows the identical default - the platform's
+  default isn't broken, it's just wrong for this one file specifically.
+- First tried Cache-Control: no-cache per the task's suggestion, but
+  checked Cloudflare's documented semantics first and found it means
+  "cache it, but revalidate" - not strong enough. Switched to
+  Cache-Control: no-store (Cloudflare's real "skip edge caching
+  entirely" directive) before shipping it.
+- Added pwa/_headers scoped to exactly /service-worker.js - every other
+  static asset keeps normal caching, which is desirable for the
+  cache-first PWA shell.
+- No Python/app-code changes - a Cloudflare static-assets config file.
+- 126/126 tests passing, unchanged.

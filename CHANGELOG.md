@@ -947,3 +947,38 @@
   itself picks up the new file for offline/cache-first use.
 - Test suite: 126/126 passing (Python side unchanged in count - the
   job_id addition updated existing assertions, not new test functions).
+
+## 2026-08-19 — Session 29: fix Cloudflare-edge caching of service-worker.js
+- Session 27's skipWaiting()/clients.claim() fix was correct at the
+  code level, but Elad still needed a hard refresh after the next
+  deploy - flagged then as possibly a Cloudflare-edge caching issue
+  upstream of the browser entirely, which a local dev server can never
+  reproduce. This session investigated and confirmed that hypothesis
+  empirically rather than assuming it.
+- Real headers, checked directly on the live URL
+  (https://thescanner.lanirelad.workers.dev/service-worker.js), not
+  guessed: Cache-Control: public, max-age=0, must-revalidate (Cloudflare
+  Workers' own documented default for static assets) *and*
+  CF-Cache-Status: HIT on the same response - Cloudflare's edge served
+  the file straight from cache without reaching the origin at all,
+  despite max-age=0. Confirmed this isn't unique to service-worker.js -
+  styles.css showed the identical default/HIT combination - so the
+  platform's default behavior isn't broken, it's just wrong specifically
+  for the one file whose entire job is detecting when it's outdated.
+- First attempt used Cache-Control: no-cache, per the task's own
+  suggestion - checked Cloudflare's documented semantics before trusting
+  it and found no-cache means "cache it, but revalidate with origin
+  before serving," which doesn't explain away the observed HIT and
+  isn't strong enough to guarantee the edge always reaches origin.
+  Switched to Cache-Control: no-store - Cloudflare's own documented
+  directive for skipping edge caching entirely - before shipping it,
+  rather than assuming the first guess would work.
+- Added pwa/_headers (Cloudflare Workers static-assets convention,
+  confirmed via Cloudflare's own docs to apply to a pure static-assets
+  deployment with no custom Worker script, which is what this project
+  is) scoped to exactly /service-worker.js - every other static asset
+  keeps Cloudflare's normal caching behavior, which is desirable for a
+  cache-first PWA shell (ARCHITECTURE.md §9a).
+- No Python/backend changes, no app code changes - purely a Cloudflare
+  static-assets configuration file.
+- Test suite: 126/126 passing, unchanged.

@@ -841,6 +841,43 @@ both real network hiccups, both visible with their actual error text in
 consistent with Greenhouse-domain company count being the real pacing
 floor: 40 real Greenhouse companies now, still well short of ~200.
 
+**Service worker: code-level fix (Session 27) then a real edge-caching
+fix on top of it (Session 29).** Every deploy required a hard refresh
+or incognito window to see changes — `service-worker.js`'s `install`
+handler already called `self.skipWaiting()` (present since Session 15),
+but `self.clients.claim()` in `activate` wasn't wrapped in its own
+`event.waitUntil()`, so the browser could consider `activate` finished
+before `clients.claim()` actually finished handing control of
+already-open tabs to the new worker. Session 27 fixed that and bumped
+`CACHE_NAME`, but Elad still needed a hard refresh afterward — pointing
+at something upstream of the browser entirely, which a local dev server
+structurally cannot reproduce (there's no CDN edge in front of
+`python -m http.server`).
+
+Session 29 confirmed that directly rather than assuming it: curled the
+real deployed URL
+(`https://thescanner.lanirelad.workers.dev/service-worker.js`) and
+found `Cache-Control: public, max-age=0, must-revalidate` (Cloudflare
+Workers' own documented default for static assets) *and*
+`CF-Cache-Status: HIT` on the same response — Cloudflare's edge served
+the file straight from its own cache without ever reaching the origin,
+despite `max-age=0`. Confirmed this default isn't unique to
+`service-worker.js` (`styles.css` shows the identical default+HIT
+combination) — the platform's behavior isn't broken, it's just wrong
+specifically for the one file whose entire purpose is detecting when
+it's outdated. First tried `Cache-Control: no-cache` (the task's own
+suggestion) but checked Cloudflare's documented semantics before
+trusting it: `no-cache` still means "cache it at the edge, but
+revalidate with origin before serving" — not strong enough to explain
+away, or reliably prevent, the observed `HIT`. Switched to
+`Cache-Control: no-store`, Cloudflare's actual documented directive for
+skipping edge caching entirely, added via `pwa/_headers` (the
+Workers-with-static-assets convention, confirmed via Cloudflare's own
+docs to apply here since this deployment has no custom Worker script
+intercepting responses) scoped to exactly `/service-worker.js` — every
+other static asset keeps the normal cache-first behavior the PWA shell
+actually wants.
+
 ## 10. Local-only preferences and application status (ADR-0011, ADR-0014)
 
 Two things are **never** written back to the shared repo or any backend —
