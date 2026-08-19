@@ -235,6 +235,38 @@ main {
   font-style: italic;
 }
 
+/* --- Role filters (Session 28): local-only display filter, never
+   changes what roles.json/the backend scan looks for — see
+   preferences.js. Hidden via the HTML `hidden` attribute (toggled from
+   app.js) when there's nothing to filter yet, rather than always
+   showing an empty "Show roles" heading. --- */
+.role-filters {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.role-filters h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.role-filter-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.role-filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
 /* --- Job groups + cards --- */
 .job-group h2 {
   font-size: 1rem;
@@ -302,9 +334,18 @@ main {
   margin-top: 0.4rem;
 }
 
+/* --- Mark-as-applied (Session 28): local-only, ADR-0011/ADR-0014 —
+   application_status never leaves this device's localStorage. --- */
+.job-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
 .apply-link {
   display: inline-block;
-  margin-top: 0.6rem;
   color: var(--radar-green);
   text-decoration: none;
   font-size: 0.85rem;
@@ -313,6 +354,36 @@ main {
 
 .apply-link:hover {
   text-decoration: underline;
+}
+
+.mark-applied-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.mark-applied-btn:hover {
+  border-color: var(--radar-green);
+  color: var(--text);
+}
+
+/* The card itself dims slightly once applied — a quiet "you've already
+   acted on this one" signal that doesn't fight for attention against
+   the new/still_open badge, which is about the posting, not the user's
+   own progress on it. */
+.job-card.applied {
+  opacity: 0.6;
+}
+
+.job-card.applied .mark-applied-btn {
+  background: color-mix(in srgb, var(--radar-green) 18%, transparent);
+  border-color: var(--radar-green);
+  color: var(--radar-green);
+  font-weight: 600;
 }
 
 .empty-state, .error-state {

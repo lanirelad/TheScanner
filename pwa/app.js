@@ -1,15 +1,24 @@
 "use strict";
 
 /**
- * TheScanner PWA — read-only real-data screen (Session 15).
+ * TheScanner PWA — real-data screen (Session 15) with local-only role
+ * selection and mark-as-applied (Session 28, ADR-0011/ADR-0014).
  *
- * Deliberately minimal: fetch the two JSON exports Session 14 already
- * builds (latest_scan.json, usage_summary.json) and render them. No role
- * selection, no "mark as applied", no theme persistence, no Web Push, no
- * manual-trigger button — all explicitly deferred to a later session so
- * this one only has to prove "real data on a real screen" works, without
- * any interactivity to also get right at the same time.
+ * Fetches the two JSON exports run.py builds (latest_scan.json,
+ * usage_summary.json) and renders them. Role-category filtering and
+ * application_status both live entirely in this device's localStorage
+ * via preferences.js (loaded before this file, see index.html) — they
+ * never change what's fetched, never write anywhere the backend can see,
+ * and are recomputed fresh from `currentScan` on every toggle rather
+ * than persisted as rendered HTML. Still explicitly deferred: theme
+ * persistence, Web Push, the manual-trigger button.
  */
+
+// Session 28: the most recently fetched scan, kept so the delegated
+// toggle/apply-button handlers below can re-render the job list after a
+// localStorage change without re-fetching — the data itself hasn't
+// changed, only which of it this device currently wants to see.
+let currentScan = null;
 
 const DATA_URLS = {
   latestScan: "latest_scan.json",
@@ -77,10 +86,11 @@ function renderBudget(usage) {
   }
 }
 
-function jobCardHTML(job) {
+function jobCardHTML(job, appliedMap) {
   const badgeLabel = job.scan_status === "new" ? "New" : "Still open";
+  const applied = isApplied(job.job_id, appliedMap);
   return `
-    <div class="job-card">
+    <div class="job-card ${applied ? "applied" : ""}">
       <div class="job-card-top">
         <div>
           <p class="job-title">${escapeHTML(job.title)}</p>
@@ -89,8 +99,11 @@ function jobCardHTML(job) {
         <span class="badge ${job.scan_status}">${badgeLabel}</span>
       </div>
       <span class="role-tag">${escapeHTML(job.label_en || job.role_category)}</span>
-      <div>
+      <div class="job-card-actions">
         <a class="apply-link" href="${escapeAttribute(job.source_url)}" target="_blank" rel="noopener noreferrer">Apply →</a>
+        <button type="button" class="mark-applied-btn" data-job-id="${escapeAttribute(job.job_id)}">
+          ${applied ? "✓ Applied" : "Mark as applied"}
+        </button>
       </div>
     </div>`;
 }
@@ -113,6 +126,21 @@ function renderJobGroups(scan) {
     return;
   }
 
+  // Session 28: client-side only — a job filtered out here is still in
+  // `scan.matches`, still fetched, just not rendered. This never touches
+  // roles.json or run.py; it's a display filter on top of data the
+  // backend already decided to include (see preferences.js's
+  // isRoleEnabled for why "no stored preference" defaults to showing
+  // everything the backend already returned).
+  const filters = loadRoleFilters();
+  const visibleMatches = scan.matches.filter((job) => shouldShowJob(job, filters));
+
+  if (visibleMatches.length === 0) {
+    container.innerHTML = '<p class="empty-state">No matches for the roles you’ve selected — try enabling more above.</p>';
+    return;
+  }
+
+  const appliedMap = loadAppliedJobs();
   const groups = [
     { status: "new", heading: "🆕 New" },
     { status: "still_open", heading: "📌 Still open" },
@@ -120,13 +148,44 @@ function renderJobGroups(scan) {
 
   container.innerHTML = groups
     .map((group) => {
-      const jobs = scan.matches.filter((m) => m.scan_status === group.status);
+      const jobs = visibleMatches.filter((m) => m.scan_status === group.status);
       if (jobs.length === 0) return "";
       return `
         <div class="job-group">
           <h2>${group.heading} (${jobs.length})</h2>
-          ${jobs.map(jobCardHTML).join("")}
+          ${jobs.map((job) => jobCardHTML(job, appliedMap)).join("")}
         </div>`;
+    })
+    .join("");
+}
+
+/** One toggle per role category actually worth showing a control for
+ * (see preferences.js's availableRoleCategories) — never fetches or
+ * duplicates roles.json itself, since every category here already came
+ * from data the backend already decided to include. Hides the whole
+ * section rather than rendering an empty "Show roles" heading when
+ * there's nothing to toggle yet (e.g. a scan with zero matches at all).
+ */
+function renderRoleFilters(scan) {
+  const section = document.getElementById("role-filters");
+  const container = document.getElementById("role-filter-toggles");
+  const filters = loadRoleFilters();
+  const categories = availableRoleCategories(scan.matches, filters);
+
+  if (categories.length === 0) {
+    section.hidden = true;
+    return;
+  }
+  section.hidden = false;
+
+  container.innerHTML = categories
+    .map(({ role_category, label }) => {
+      const checked = isRoleEnabled(role_category, filters);
+      return `
+        <label class="role-filter-toggle">
+          <input type="checkbox" data-role-category="${escapeAttribute(role_category)}" ${checked ? "checked" : ""} />
+          ${escapeHTML(label)}
+        </label>`;
     })
     .join("");
 }
@@ -142,13 +201,42 @@ async function main() {
       loadJSON(DATA_URLS.usageSummary),
     ]);
 
+    currentScan = scan;
     document.getElementById("generated-at").textContent = formatGeneratedAt(scan.generated_at);
     renderSummaryStrip(scan);
     renderBudget(usage);
+    renderRoleFilters(scan);
     renderJobGroups(scan);
   } catch (err) {
     renderError(`Couldn't load scan data: ${err.message}`);
   }
+}
+
+/** Delegated (not per-checkbox) so re-rendering #role-filter-toggles on
+ * every scan load never needs to re-attach listeners. Guards on
+ * `currentScan` being loaded — a click can't reach a checkbox that
+ * renderRoleFilters() never rendered, but the guard is cheap and honest
+ * about the real dependency rather than assuming ordering. */
+function initRoleFilterToggles() {
+  document.getElementById("role-filter-toggles").addEventListener("change", (event) => {
+    const checkbox = event.target.closest("input[data-role-category]");
+    if (!checkbox || !currentScan) return;
+    saveRoleFilters(toggleRoleFilter(checkbox.dataset.roleCategory, loadRoleFilters()));
+    renderJobGroups(currentScan);
+  });
+}
+
+/** Delegated on #job-groups for the same reason — job cards are
+ * rebuilt wholesale on every renderJobGroups() call, so a listener
+ * bound to one button's DOM node would be lost on the very next
+ * re-render. */
+function initApplyButtons() {
+  document.getElementById("job-groups").addEventListener("click", (event) => {
+    const button = event.target.closest(".mark-applied-btn");
+    if (!button || !currentScan) return;
+    saveAppliedJobs(toggleApplied(button.dataset.jobId, loadAppliedJobs()));
+    renderJobGroups(currentScan);
+  });
 }
 
 /** Theme toggle — cosmetic only this session, per scope: resets to dark
@@ -176,5 +264,7 @@ function registerServiceWorker() {
 }
 
 initThemeToggle();
+initRoleFilterToggles();
+initApplyButtons();
 registerServiceWorker();
 main();

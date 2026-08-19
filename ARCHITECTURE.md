@@ -855,6 +855,50 @@ gets their own independent local state, with no possibility of one
 install's filters or applied-marks affecting another's, and no login or
 per-user backend required.
 
+**Implemented (Session 28):** both live in `pwa/preferences.js`, a file
+with zero side effects on load — every function is a pure function or a
+thin `localStorage` wrapper, no DOM access, no network — deliberately
+separate from `app.js`, whose bottom section calls `main()` immediately
+on script load and needs a real DOM/fetchable JSON to do it. Role
+filters are stored as `{ [role_category]: false }` under
+`thescanner:role_filters` — only explicit off-toggles are persisted,
+since "on" is already the default (`isRoleEnabled` treats a missing key
+as enabled). This is a pure client-side display filter on top of
+`latest_scan.json`'s already-fetched matches — it never re-fetches,
+never touches `roles.json`, and the available toggle set is derived
+from the matches themselves (`availableRoleCategories`) rather than
+`roles.json`, which is never duplicated into `pwa/` (same reasoning
+Session 15 already established for the other JSON exports): every
+match already only ever comes from a category `roles.json`'s own
+`enabled` flag allowed through (`core/filters.py`, Session 11), so "no
+stored preference yet" and "show everything the backend already
+decided to include" are the same thing by construction, with no need
+to know `roles.json`'s contents at all. `application_status` is stored
+as `{ [job_id]: true }` under `thescanner:applied_jobs`, keyed by the
+same `job_id` `core/schema.py` already computes (ADR-0026) — reusing
+it rather than inventing a second ID scheme meant one small, explicitly
+scoped exception to `build_latest_scan_export()`'s "no internal fields"
+rule (see run.py's docstring). Both features use event delegation
+(on `#role-filter-toggles` and `#job-groups`) rather than per-element
+listeners, since both containers are rebuilt wholesale by every
+`renderJobGroups()`/`renderRoleFilters()` call — a listener bound to
+one specific checkbox or button would be silently lost on the very
+next re-render otherwise.
+
+**Testing `preferences.js` without Node.js (Session 28):** this
+sandbox has no Node.js installed at all (checked directly — `node`/
+`npm` are both absent), so there's no JS test runner available the way
+`pytest` is for the Python side. Rather than skip real coverage for
+genuinely-testable pure logic, `pwa/tests/preferences.test.html` is a
+plain, dependency-free HTML+JS harness: it loads `preferences.js`
+exactly the way `index.html` does and runs real assertions in an
+actual browser — the environment this code actually runs in anyway —
+with no build step or framework to install. Opening it directly (or
+driving it headlessly) re-runs all of it; results print to the page
+and the console. 23/23 real assertions pass, including full round-trips
+through real `localStorage` and confirming the toggle functions don't
+mutate their input arguments.
+
 ## 11. Push notifications (ADR-0012)
 
 ```

@@ -138,15 +138,19 @@ def test_latest_scan_export_shape_excludes_internal_and_device_local_fields():
     assert export["companies_failed"] == 0
     assert len(export["matches"]) == 1
     match = export["matches"][0]
-    # Exactly these seven fields — no job_id, matched_tag, first_seen_at/
+    # Exactly these eight fields — no matched_tag, first_seen_at/
     # last_seen_at (internal bookkeeping), and definitely no
     # application_status (ADR-0011/ADR-0014, device-local only, never
     # written by the backend). label_en (Session 17) rides alongside
     # role_category as the display string the UI should actually show.
+    # job_id (Session 28) is the one internal field that DOES ship — the
+    # PWA's mark-as-applied feature needs a stable per-job key to store
+    # application_status against in the device's own local storage.
     assert set(match.keys()) == {
-        "company", "title", "location", "role_category", "label_en", "source_url", "scan_status"
+        "job_id", "company", "title", "location", "role_category", "label_en", "source_url", "scan_status"
     }
     assert match == {
+        "job_id": compute_job_id("Wiz", "https://example.com/1"),
         "company": "Wiz",
         "title": "DevOps Engineer",
         "location": "Tel Aviv",

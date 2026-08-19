@@ -832,3 +832,45 @@ None — all decisions needed to start building are now in place.
   lifecycle pattern for this exact symptom. Real end-to-end
   confirmation needs an actual deploy Elad reloads against.
 - 126/126 tests passing, unchanged.
+
+## Addendum — Session 28 executed: role selection + mark-as-applied (2026-08-19)
+- Two real, functional PWA features, both purely local per ADR-0011/
+  ADR-0014 - never touch roles.json, run.py's scan logic, or shared data.
+- Added job_id to latest_scan.json's matches (the one allowed backend
+  change) - mark-as-applied's stable localStorage key, reusing the
+  existing sha256(company|absolute_url) rather than inventing a second
+  ID scheme.
+- Built pwa/preferences.js - a new file, separate from app.js, holding
+  every pure function (isRoleEnabled, shouldShowJob, toggleRoleFilter,
+  availableRoleCategories, isApplied, toggleApplied) plus localStorage
+  wrappers. Separate specifically so it's testable without executing
+  app.js's immediate-on-load bootstrap (fetch calls, DOM lookups).
+- Role selection: a small toggle row above the job list, one checkbox
+  per role category actually present in the current scan's matches
+  (union'd with any category the device has an explicit preference
+  for). Deliberately doesn't fetch/duplicate roles.json into pwa/ -
+  every match already only comes from a roles.json-enabled category by
+  construction, so "no stored preference" already equals "show
+  everything the backend included." localStorage key
+  thescanner:role_filters, only explicit off-toggles stored.
+- Mark as applied: a button per job card, localStorage key
+  thescanner:applied_jobs keyed by job_id, present=applied/absent=not
+  applied. Applied cards dim (opacity 0.6) with a "✓ Applied" button.
+- Both features use event delegation, not per-element listeners, since
+  both containers rebuild wholesale on every render.
+- Real test coverage despite no Node.js in this environment (checked
+  directly - node/npm both absent): built pwa/tests/preferences.test.html,
+  a dependency-free HTML+JS harness that loads preferences.js and runs
+  real assertions in an actual browser. 23/23 passing. Caught a real
+  bug in the harness itself (JSON.stringify equality is key-order
+  sensitive) and fixed it with a proper deepEqual before trusting the
+  results.
+- Verified live end-to-end: real run.py smoke test (63 attempted, 62
+  succeeded, 1 genuine transient ReadTimeout, 36 matches) for real
+  job_id-populated data, then in a real browser confirmed toggling a
+  role category actually hides/shows matching cards, marking a job
+  applied visibly updates the card and persists to localStorage, and
+  both states survive a real full page reload.
+- service-worker.js: added preferences.js to SHELL_FILES, bumped
+  CACHE_NAME v3 -> v4.
+- 126/126 tests passing (job_id change updated existing assertions).

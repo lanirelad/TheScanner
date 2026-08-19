@@ -164,9 +164,17 @@ def build_latest_scan_export(summary, generated_at):
 
     Pure function, no I/O — deliberately excludes `application_status`
     (ADR-0011/ADR-0014: device-local only, never written by the backend)
-    and every internal bookkeeping field a client doesn't need to render
-    a job list (`job_id`, `matched_tag`, `first_seen_at`/`last_seen_at` —
-    `scan_status` already captures what those two mean for display).
+    and internal bookkeeping fields a client has no use for
+    (`matched_tag`, `first_seen_at`/`last_seen_at` — `scan_status`
+    already captures what those two mean for display). `job_id` (Session
+    28) is the one exception to "no internal fields": mark-as-applied
+    needs a stable per-job key to store `application_status` against in
+    the device's own local storage, and `job_id` (already computed as
+    `sha256(company|absolute_url)`, ADR-0026) is exactly that key,
+    already stable and already computed — reusing it here means the
+    device's local storage and the backend's own dedup logic can never
+    disagree about which job is which, without inventing a second ID
+    scheme client-side.
     `companies_failed` stays a count here, not the per-company error list —
     that's what `failures` (Session 18) is for. Splitting them keeps
     `companies_failed` a stable summary number for existing UI (summary
@@ -188,6 +196,7 @@ def build_latest_scan_export(summary, generated_at):
         "failures": summary["companies_failed"],
         "matches": [
             {
+                "job_id": m["job_id"],
                 "company": m["company"],
                 "title": m["title"],
                 "location": m["location"],

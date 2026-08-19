@@ -870,3 +870,80 @@
   deploy Elad can reload against, which this session's push enables but
   can't itself observe from inside this sandbox.
 - Test suite: 126/126 passing, unchanged (PWA-only change).
+
+## 2026-08-19 — Session 28: role selection + mark-as-applied (local-only)
+- Two real, functional PWA features, both purely local to the device
+  per ADR-0011/ADR-0014 - neither ever touches roles.json, run.py's
+  scan logic, or any shared/backend data.
+- Added job_id to latest_scan.json's matches (the one explicitly-
+  allowed backend change) - mark-as-applied needs a stable per-job key
+  to store application_status against, and job_id (already
+  sha256(company|absolute_url), ADR-0026) is exactly that, already
+  computed, so reusing it means local storage and the backend's own
+  dedup logic can never disagree about which job is which.
+- Built pwa/preferences.js: a new, separate file (not a section of
+  app.js) holding every pure function and localStorage wrapper for both
+  features - isRoleEnabled, shouldShowJob, toggleRoleFilter,
+  availableRoleCategories, isApplied, toggleApplied, plus thin
+  load/save wrappers. Deliberately separate from app.js because app.js's
+  bottom section calls main()/initThemeToggle() immediately on load,
+  which needs a real DOM and successfully-fetchable JSON - a pure-logic
+  file with zero side effects on load can be tested completely
+  independently of that bootstrap.
+- Role selection: no settings modal - a small toggle row ("Show roles")
+  appears above the job list, one checkbox per role category actually
+  present in latest_scan.json's matches (union'd with any category the
+  device has an explicit preference for, so a previously-disabled
+  category doesn't silently reappear just because it has zero matches
+  this run). Deliberately does NOT fetch or duplicate roles.json into
+  pwa/ - since every match in latest_scan.json already only ever comes
+  from a category roles.json's own `enabled` flag allowed through
+  (core/filters.py, Session 11), "no stored preference yet" and "show
+  everything the backend already decided to include" are the same
+  thing by construction. Stored in localStorage under
+  thescanner:role_filters as { [role_category]: false } - only
+  explicit off-toggles are stored, "on" is the implicit default, so a
+  device that never opens the toggle panel keeps an empty {} forever.
+- Mark as applied: a button on every job card toggling
+  thescanner:applied_jobs (localStorage, keyed by job_id) between
+  present (applied) and absent (not_applied, the default). Applied
+  cards dim to 0.6 opacity and the button becomes "✓ Applied" -
+  distinguishable without fighting the new/still_open badge for
+  attention, since that badge is about the posting, this is about the
+  user's own progress on it.
+- Both features use event delegation (on #role-filter-toggles and
+  #job-groups respectively), not per-element listeners - both
+  containers get rebuilt wholesale on every render, so a listener bound
+  to one specific checkbox/button would be silently lost on the very
+  next re-render otherwise.
+- Real test coverage, not just visual behavior: this project has no
+  Node.js-based JS test runner (none existed before this session, and
+  this sandbox has no Node.js installed at all - checked directly, not
+  assumed). Built pwa/tests/preferences.test.html instead - a real,
+  dependency-free HTML+JS test harness that loads preferences.js
+  exactly as index.html does and runs real assertions in an actual
+  browser (the environment this code actually runs in anyway), no
+  build step or framework needed to re-run it. 23/23 real assertions
+  passing, covering both features' pure logic including round-trips
+  through real localStorage and confirming toggle functions don't
+  mutate their input. Caught and fixed a real bug in the test harness
+  itself while building it: JSON.stringify-based equality is key-order
+  sensitive, which produced two false failures against otherwise-
+  correct code - replaced with a proper order-independent deepEqual.
+- Verified live end-to-end, not just via the pure-function harness: ran
+  a real run.py live smoke test (63 attempted, 62 succeeded, 1 genuine
+  transient ReadTimeout - ScaleOps, 36 matches) to get real data with
+  job_id populated, then in a real browser: toggled a role category off
+  and confirmed matching cards actually disappeared (36 -> 8 cards,
+  confirmed via checking no DevOps Engineer role-tags remained visible),
+  toggled it back on (36 cards returned), marked a job applied and
+  confirmed the card visibly updated (button text, applied class,
+  computed opacity 0.6) and localStorage was written correctly, then
+  did a real full page reload and confirmed both the applied mark and
+  the role-filter state survived - not assumed from the code, actually
+  observed surviving a real reload.
+- service-worker.js: added preferences.js to SHELL_FILES, bumped
+  CACHE_NAME v3 -> v4 (same pattern as Sessions 24/27) so this deploy
+  itself picks up the new file for offline/cache-first use.
+- Test suite: 126/126 passing (Python side unchanged in count - the
+  job_id addition updated existing assertions, not new test functions).

@@ -38,6 +38,13 @@
       <p class="budget-note" id="budget-note"></p>
     </section>
 
+    <section class="role-filters" id="role-filters" aria-label="Role filters" hidden>
+      <h2>Show roles</h2>
+      <div class="role-filter-toggles" id="role-filter-toggles">
+        <!-- Filled by app.js: one toggle per role category seen in latest_scan.json's matches -->
+      </div>
+    </section>
+
     <div id="job-groups">
       <!-- Filled by app.js: one .job-group per scan_status, from latest_scan.json -->
     </div>
@@ -53,6 +60,7 @@
     <img src="real_mascot.png" alt="TheScanner mascot">
   </div>
 
+  <script src="preferences.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

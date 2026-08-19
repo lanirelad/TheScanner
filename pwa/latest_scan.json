@@ -1,20 +1,17 @@
 {
-  "generated_at": "2026-08-13T20:47:48Z",
+  "generated_at": "2026-08-19T18:55:53Z",
   "companies_attempted": 63,
-  "companies_succeeded": 61,
-  "companies_failed": 2,
+  "companies_succeeded": 62,
+  "companies_failed": 1,
   "failures": [
     {
-      "company": "Cato Networks",
-      "error": "ReadTimeout: "
-    },
-    {
-      "company": "Payoneer",
+      "company": "ScaleOps",
       "error": "ReadTimeout: "
     }
   ],
   "matches": [
     {
+      "job_id": "38ec1ec7373f3e1feeb5ff9ac947222db3fe3aee11942cf869262e135af426e0",
       "company": "Wiz",
       "title": "DevOps Engineer",
       "location": "Tel Aviv",
@@ -24,6 +21,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "5d1419388be51f2c25959d9cee6d2252a04534920d297ab5faf09065eff21f38",
       "company": "monday.com",
       "title": "DevOps Tech Lead (BigBrain)",
       "location": "Tel Aviv",
@@ -33,6 +31,27 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "550044ff47b730103bca391a32f7c2c821b1c5e88aa61c76f817a127c32e01bd",
+      "company": "monday.com",
+      "title": "R&D Technical Support (RTS)",
+      "location": "Tel Aviv",
+      "role_category": "technical_support",
+      "label_en": "Technical Support Engineer",
+      "source_url": "https://monday.com/careers/80f67a02-d68c-4934-9f42-de670a41103a",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "2add7b72daaff38b8a95ddfdbd429e77c0104b6d9f0a719d63ac78bfe7de07a8",
+      "company": "Optimove",
+      "title": "Site Reliability Team Leader",
+      "location": "Tel Aviv ",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://job-boards.eu.greenhouse.io/optimove/jobs/4954650101",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "a83a588bc91cd3a25808f4ade8071641d07111970fcd333f56d98abcedf39109",
       "company": "Mobileye",
       "title": "Data Platform Engineer",
       "location": "Petah Tikva, Israel",
@@ -42,6 +61,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "e2280076e57f47e9254ed6868ad0de6e9d59ff224e9d80dcfa0399d405983f01",
       "company": "Mobileye",
       "title": "DevOps & Infrastructure Engineer",
       "location": "Ramat Gan, Israel",
@@ -51,6 +71,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "c99dacc67f850ed8bc0d75b72c9347720ef3230bc794d5893d0bb129d02b48c6",
       "company": "Mobileye",
       "title": "Field Engineer in Braunschweig (Germany) - Relocation",
       "location": "Jerusalem, Israel",
@@ -60,6 +81,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "66b90879f3f54164a8faf2bfd29abc13382d38291526bcd919cecbf29ba870cd",
       "company": "Mobileye",
       "title": "Field Engineer in India (Chennai) - Relocation",
       "location": "Jerusalem, Israel",
@@ -69,6 +91,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "46bf62bb8abc44989ba004dc17ed5b2b888b76455b514a52fe8f97df1f35468f",
       "company": "Mobileye",
       "title": "Senior SRE & Linux Infrastructure Engineer",
       "location": "Jerusalem, Israel",
@@ -78,6 +101,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "ac612d3589c69e3125de3d421f4ff6a1700ca9db70a7d8b34f149dfb5ae7c61f",
       "company": "AppsFlyer",
       "title": "DevOps Platform Engineer",
       "location": "Herzliya",
@@ -87,6 +111,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "fdaff504fd1c948fc7b50ec70ad2f472e0d314cb311f694d43a92748bc4565ff",
       "company": "AppsFlyer",
       "title": "Senior Support Engineer",
       "location": "Herzliya",
@@ -96,15 +121,17 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "a69399aa0cc94b027224ef4a82ac649bf5067d3633085d4d16af044c61232a51",
       "company": "Axonius",
       "title": "DevOps Operations Engineer",
       "location": "Tel Aviv, Israel",
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.axonius.com/company/careers/open-jobs?gh_jid=7818899003",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
+      "job_id": "2650422580f43452ae184b548efc8db2b1ded84694ad11fa008550a1de591d85",
       "company": "Axonius",
       "title": "Senior DevEx/DevOps Engineer",
       "location": "Tel Aviv, Israel",
@@ -114,6 +141,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "459e1452050603c8f580516de73e576c9a14fbb5ca0ec1a443327ecef7e28dad",
       "company": "Descope",
       "title": "Staff DevOps Engineer",
       "location": "Tel Aviv",
@@ -123,6 +151,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "4664a1fca3cfb87b8122182ade25fb6bcd776cd2cba7fd337c08998cc3e97eb9",
       "company": "NICE",
       "title": "Devops Student",
       "location": "Israel - Raanana",
@@ -132,6 +161,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "7244fa6ec68cc13751ec092f4c1c9d46815ab58c4fd8b3c523759a34969c1bf6",
       "company": "Similarweb",
       "title": "Senior DevOps Engineer",
       "location": "Tel Aviv",
@@ -141,6 +171,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "5d69412f44d13a52e284d3bfd6da378a27c20669a3f7af522210e98f3f0eeedc",
       "company": "Taboola",
       "title": "Data Platform Engineering Team Leader",
       "location": "Tel Aviv, Israel",
@@ -150,6 +181,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "6263b449ce2b36f7cfff4825c1f634df4113bc0f4ada71898831c608f2723fe0",
       "company": "Taboola",
       "title": "Release Engineering Intern (Part-Time, 80%, One-year temporary position)",
       "location": "Tel Aviv, Israel",
@@ -159,6 +191,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "ff5970d24786583aac20caa840197877ebf0d32d3ffa2f8be695611be3d210ef",
       "company": "Taboola",
       "title": "Senior Site Reliability Engineer (SRE)",
       "location": "Tel Aviv, Israel",
@@ -168,6 +201,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "3ae7837bf8a4f02c2079c1470bedb060277466f30f5814e2c05176f479afa703",
       "company": "Torq",
       "title": "DevOps Engineer",
       "location": "Tel Aviv ",
@@ -177,6 +211,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "48d87ccccaaf14b3ef0baeba91b5dda2feaa5a3380290620e31f8de4a19e875f",
       "company": "BioCatch",
       "title": "Senior DevOps Infra Engineer",
       "location": "Tel-Aviv",
@@ -186,6 +221,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "d376eb1dd1f4a918b4436baf7aea240b08f425e1a819b13fc4541bc79d443104",
       "company": "WalkMe",
       "title": "DevOps Engineer Cloud Engineering Team",
       "location": "Tel Aviv",
@@ -195,6 +231,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "161cf4f3bd4d997f2d24ca9b84e4296960c24dfb07f8740c66936a38d547d590",
       "company": "WalkMe",
       "title": "Technical Support Engineer",
       "location": "Tel Aviv",
@@ -204,6 +241,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "801cfa5fb8d6388a3f5610d790e3d7c4a4c97833be2fa3305260e575e5e96a5c",
       "company": "Cognyte",
       "title": "Field Support Engineer and Asset Manager",
       "location": "Israel, Herzliya",
@@ -213,6 +251,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "63d0f96aabfe46f2365d3662a9e0d73f1fce1a66bafbfa29c02dc53a0ab7df53",
       "company": "Cyera",
       "title": "Automation Infrastructure Engineer",
       "location": "Tel Aviv",
@@ -222,15 +261,17 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "4c1563662fe214f441d6bb034346a773bf505a9d60060e05ee9bf29f9f665b37",
       "company": "Cyera",
-      "title": "Frontend Infrastructure Engineer",
+      "title": "DevOps Team Lead",
       "location": "Tel Aviv",
       "role_category": "devops",
       "label_en": "DevOps Engineer",
-      "source_url": "https://www.comeet.com/jobs/cyera/17.008/frontend-infrastructure-engineer/3F.75A",
-      "scan_status": "still_open"
+      "source_url": "https://www.comeet.com/jobs/cyera/17.008/devops-team-lead/89.F69",
+      "scan_status": "new"
     },
     {
+      "job_id": "a672fb27be2848822df4e373374678dfcba073285a75d63ed587873a864b3cf3",
       "company": "Cyera",
       "title": "Learning and Development Manager, Technical Support",
       "location": "Tel Aviv",
@@ -240,6 +281,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "712784e3d116d74c02a1f856b9000d4516388d407edbeb2eb2f42eee12acffe4",
       "company": "Cyera",
       "title": "Senior DevOps Engineer",
       "location": "Tel Aviv",
@@ -249,6 +291,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "6fae45f225e053b5cd1171f8c2c18dfee7828e37b14410b4be28e6e53e189764",
       "company": "Cyera",
       "title": "Senior Technical Support Engineer",
       "location": "Tel Aviv",
@@ -258,6 +301,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "4142ddb23f8c2a6b87835683d793d23ce415eaa129613da242bb6101aaec39b4",
       "company": "Infinidat",
       "title": "Platform Engineering Team Lead",
       "location": "Herzliya",
@@ -267,6 +311,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "abe1434afa752b137621ba2050f1edb3f33777be78b1914cb1741f83037b33ad",
       "company": "Infinidat",
       "title": "Python Infrastructure Engineer",
       "location": "Herzliya",
@@ -276,6 +321,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "02af0787790a51450c70cf158d26db60b25baac79e2525b4f452bc20c575b3c4",
       "company": "Infinidat",
       "title": "Senior Devops Engineer",
       "location": "Herzliya",
@@ -285,6 +331,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "8b2b8933ddfba6eaab96b1025f6aed1429c29a46732bf3580872100046764f73",
       "company": "Pipl",
       "title": "DevOps Engineer",
       "location": "Israel",
@@ -294,6 +341,7 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "6fa514cc53256a3b1518dccb282d8e5b665243f8309ce3656f378967ccb1d7cb",
       "company": "Riverside",
       "title": "DevOps Engineer",
       "location": "Israel",
@@ -303,40 +351,24 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "282dc29b43c6a8433bd81d2f97c45b5317582acc1887eb4103e209955a49daa8",
       "company": "Guardio",
       "title": "Senior DevOps Engineer",
       "location": "Tel-Aviv, Israel",
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://guard.io/careers",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
-      "company": "ScaleOps",
-      "title": "DevOps Engineer",
-      "location": "Tel Aviv",
-      "role_category": "devops",
-      "label_en": "DevOps Engineer",
-      "source_url": "https://job-boards.eu.greenhouse.io/scaleops/jobs/4913587101",
-      "scan_status": "new"
-    },
-    {
-      "company": "ScaleOps",
-      "title": "Devops Team Lead",
-      "location": "Tel Aviv",
-      "role_category": "devops",
-      "label_en": "DevOps Engineer",
-      "source_url": "https://job-boards.eu.greenhouse.io/scaleops/jobs/4913604101",
-      "scan_status": "new"
-    },
-    {
+      "job_id": "f0f324dcb8b5911c017f2b059ecb7c972181e9aa98c71b73b5b9e8dcbd770873",
       "company": "Zeroport",
       "title": "Devops Engineer",
       "location": "Herzliya",
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.zeroport.com/the-company/career-2",
-      "scan_status": "new"
+      "scan_status": "still_open"
     }
   ]
 }

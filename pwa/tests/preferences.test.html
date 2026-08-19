@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>preferences.js tests</title>
+</head>
+<body>
+<!--
+  Real test coverage for pwa/preferences.js's pure logic (Session 28).
+
+  This project's test suite is pytest, but pytest can't execute
+  JavaScript, and this environment has no Node.js installed (checked
+  directly, not assumed — `node`/`npm` are both absent). Rather than
+  skip real test coverage for genuinely-testable client-side logic (the
+  task's own explicit requirement), this is a real, plain-HTML+JS test
+  harness: it loads preferences.js exactly the way index.html does, runs
+  real assertions against the actual functions, and reports a real
+  pass/fail count on the page and in the console. Open it directly in
+  any browser (or drive it headlessly) to re-run — no build step, no
+  test framework dependency, matching this whole PWA's own "no bundler,
+  no framework" style.
+-->
+<h1>preferences.js tests</h1>
+<pre id="results">Running...</pre>
+
+<script src="../preferences.js"></script>
+<script>
+"use strict";
+
+const results = [];
+
+function test(name, fn) {
+  try {
+    fn();
+    results.push({ name, pass: true });
+  } catch (err) {
+    results.push({ name, pass: false, error: err.message });
+  }
+}
+
+function deepEqual(a, b) {
+  if (a === b) return true;
+  if (typeof a !== typeof b || a === null || b === null) return false;
+  if (Array.isArray(a) !== Array.isArray(b)) return false;
+  if (typeof a === "object") {
+    const aKeys = Object.keys(a);
+    const bKeys = Object.keys(b);
+    if (aKeys.length !== bKeys.length) return false;
+    return aKeys.every((key) => Object.prototype.hasOwnProperty.call(b, key) && deepEqual(a[key], b[key]));
+  }
+  return false;
+}
+
+// Real bug caught by this harness itself while writing these tests:
+// JSON.stringify-based comparison is key-order sensitive, but plain JS
+// objects (`{...filters, [key]: value}`) don't guarantee insertion
+// order matches what a hand-written expected literal happens to use.
+// Two of these tests initially reported false failures for exactly
+// that reason — deepEqual (order-independent) is what's actually
+// correct to assert against, since preferences.js's own callers never
+// rely on key order either.
+function assertEqual(actual, expected, label) {
+  if (!deepEqual(actual, expected)) {
+    throw new Error(`${label || "assertEqual"}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
+  }
+}
+
+function assertTrue(value, label) {
+  if (value !== true) throw new Error(`${label || "assertTrue"}: expected true, got ${JSON.stringify(value)}`);
+}
+
+function assertFalse(value, label) {
+  if (value !== false) throw new Error(`${label || "assertFalse"}: expected false, got ${JSON.stringify(value)}`);
+}
+
+// --- isRoleEnabled / shouldShowJob ------------------------------------
+
+test("isRoleEnabled: no entry at all -> enabled (default-on)", () => {
+  assertTrue(isRoleEnabled("devops", {}));
+});
+
+test("isRoleEnabled: explicit false -> disabled", () => {
+  assertFalse(isRoleEnabled("devops", { devops: false }));
+});
+
+test("isRoleEnabled: a different category being off doesn't affect this one", () => {
+  assertTrue(isRoleEnabled("devops", { technical_support: false }));
+});
+
+test("shouldShowJob: delegates to isRoleEnabled via job.role_category", () => {
+  const job = { role_category: "devops" };
+  assertTrue(shouldShowJob(job, {}));
+  assertFalse(shouldShowJob(job, { devops: false }));
+});
+
+// --- toggleRoleFilter ---------------------------------------------------
+
+test("toggleRoleFilter: enabled -> disabled stores an explicit false", () => {
+  const result = toggleRoleFilter("devops", {});
+  assertEqual(result, { devops: false });
+});
+
+test("toggleRoleFilter: disabled -> enabled deletes the key, not sets true", () => {
+  const result = toggleRoleFilter("devops", { devops: false });
+  assertEqual(result, {});
+});
+
+test("toggleRoleFilter: does not mutate its input (pure function)", () => {
+  const input = { devops: false };
+  const inputCopy = JSON.stringify(input);
+  toggleRoleFilter("devops", input);
+  assertEqual(JSON.parse(inputCopy), input, "input mutated");
+});
+
+test("toggleRoleFilter: leaves other categories' state untouched", () => {
+  const result = toggleRoleFilter("devops", { technical_support: false });
+  assertEqual(result, { devops: false, technical_support: false });
+});
+
+// --- availableRoleCategories ---------------------------------------------
+
+test("availableRoleCategories: derives from matches, dedups by role_category", () => {
+  const matches = [
+    { role_category: "devops", label_en: "DevOps Engineer" },
+    { role_category: "devops", label_en: "DevOps Engineer" },
+    { role_category: "technical_support", label_en: "Technical Support Engineer" },
+  ];
+  const result = availableRoleCategories(matches, {});
+  assertEqual(result, [
+    { role_category: "devops", label: "DevOps Engineer" },
+    { role_category: "technical_support", label: "Technical Support Engineer" },
+  ]);
+});
+
+test("availableRoleCategories: includes a filtered-off category with zero current matches", () => {
+  const matches = [{ role_category: "devops", label_en: "DevOps Engineer" }];
+  const filters = { project_manager: false };
+  const result = availableRoleCategories(matches, filters);
+  assertEqual(result, [
+    { role_category: "devops", label: "DevOps Engineer" },
+    { role_category: "project_manager", label: "project_manager" },
+  ]);
+});
+
+test("availableRoleCategories: falls back to the raw key when label_en is missing", () => {
+  const matches = [{ role_category: "devops" }];
+  const result = availableRoleCategories(matches, {});
+  assertEqual(result, [{ role_category: "devops", label: "devops" }]);
+});
+
+test("availableRoleCategories: empty matches and empty filters -> empty list", () => {
+  assertEqual(availableRoleCategories([], {}), []);
+});
+
+// --- isApplied / toggleApplied -------------------------------------------
+
+test("isApplied: no entry -> not applied", () => {
+  assertFalse(isApplied("abc123", {}));
+});
+
+test("isApplied: explicit true -> applied", () => {
+  assertTrue(isApplied("abc123", { abc123: true }));
+});
+
+test("toggleApplied: not_applied -> applied stores true", () => {
+  const result = toggleApplied("abc123", {});
+  assertEqual(result, { abc123: true });
+});
+
+test("toggleApplied: applied -> not_applied deletes the key, not sets false", () => {
+  const result = toggleApplied("abc123", { abc123: true });
+  assertEqual(result, {});
+});
+
+test("toggleApplied: does not mutate its input (pure function)", () => {
+  const input = { abc123: true };
+  const inputCopy = JSON.stringify(input);
+  toggleApplied("abc123", input);
+  assertEqual(JSON.parse(inputCopy), input, "input mutated");
+});
+
+test("toggleApplied: leaves other job_ids' state untouched", () => {
+  const result = toggleApplied("abc123", { def456: true });
+  assertEqual(result, { abc123: true, def456: true });
+});
+
+// --- loadRoleFilters / loadAppliedJobs: real localStorage round-trip -----
+
+test("saveRoleFilters + loadRoleFilters round-trips through real localStorage", () => {
+  localStorage.removeItem(ROLE_FILTERS_KEY);
+  saveRoleFilters({ devops: false });
+  assertEqual(loadRoleFilters(), { devops: false });
+  localStorage.removeItem(ROLE_FILTERS_KEY);
+});
+
+test("loadRoleFilters: missing key fails safe to {}", () => {
+  localStorage.removeItem(ROLE_FILTERS_KEY);
+  assertEqual(loadRoleFilters(), {});
+});
+
+test("loadRoleFilters: malformed JSON fails safe to {}, not a thrown error", () => {
+  localStorage.setItem(ROLE_FILTERS_KEY, "{not valid json");
+  assertEqual(loadRoleFilters(), {});
+  localStorage.removeItem(ROLE_FILTERS_KEY);
+});
+
+test("saveAppliedJobs + loadAppliedJobs round-trips through real localStorage", () => {
+  localStorage.removeItem(APPLIED_JOBS_KEY);
+  saveAppliedJobs({ abc123: true });
+  assertEqual(loadAppliedJobs(), { abc123: true });
+  localStorage.removeItem(APPLIED_JOBS_KEY);
+});
+
+test("loadAppliedJobs: missing key fails safe to {}", () => {
+  localStorage.removeItem(APPLIED_JOBS_KEY);
+  assertEqual(loadAppliedJobs(), {});
+});
+
+// --- report ---------------------------------------------------------------
+
+const passed = results.filter((r) => r.pass).length;
+const failed = results.length - passed;
+const lines = results.map((r) => (r.pass ? `PASS  ${r.name}` : `FAIL  ${r.name}\n      ${r.error}`));
+lines.push("", `${passed}/${results.length} passed${failed ? `, ${failed} FAILED` : ""}`);
+const output = lines.join("\n");
+document.getElementById("results").textContent = output;
+console.log(output);
+window.__TEST_RESULTS__ = { passed, failed, total: results.length };
+</script>
+</body>
+</html>
