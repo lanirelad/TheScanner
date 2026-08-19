@@ -334,13 +334,20 @@ main {
    rather than keeping .mascot-widget and adapting the internals to fit
    — one less layer of naming drift between this file and the source of
    truth. Nothing here is a guess: every value below (insets, colors,
-   the 3s sweep) is copied as given. --- */
+   the 3s sweep) is copied as given.
+
+   Session 26: removed .pct-badge (Session 25 confirmed it was a dead,
+   never-wired placeholder — the real budget percentage already renders
+   correctly in .budget-widget below) and the onclick it went with
+   (pointed at a showView()/.tab system that was never built and isn't
+   planned). No badge, nothing clickable — .sonar-corner is decorative
+   only now, so cursor: pointer came out too rather than leaving a
+   pointer cursor implying an interaction that no longer exists. --- */
 .sonar-corner {
   position: fixed;
   top: 16px; right: 16px;
   width: 200px; height: 200px;
   z-index: 100;
-  cursor: pointer;
 }
 .sonar-corner .radar-screen {
   position: absolute; inset: 38px;
@@ -385,16 +392,6 @@ main {
   z-index: 2;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
 }
-.sonar-corner .pct-badge {
-  position: absolute; bottom: -2px; right: -2px;
-  background: var(--teal); color: var(--bg);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 15px; font-weight: 700;
-  padding: 4px 10px; border-radius: 999px;
-  border: 2px solid var(--bg);
-  z-index: 3;
-}
-
 @media (max-width: 480px) {
   .summary-strip {
     grid-template-columns: 1fr 1fr;

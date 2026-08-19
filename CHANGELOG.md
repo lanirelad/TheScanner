@@ -799,3 +799,33 @@
   friction noted in Sessions 15/17/19.
 - No automated tests affected (PWA-only change, no Python touched);
   126/126 still passing.
+
+## 2026-08-19 — Session 26: remove the redundant mascot badge + broken onclick
+- Session 25's investigation confirmed the real budget percentage
+  already renders correctly in .budget-widget (working since Session
+  15, untouched) - the mascot's .pct-badge was a separate, dead,
+  never-wired "?%" placeholder duplicating nothing real. Elad's call:
+  don't wire it up, remove it - the real number is already shown
+  properly elsewhere.
+- Removed `<div class="pct-badge">?%</div>` from index.html and its
+  `.sonar-corner .pct-badge` CSS rule from styles.css entirely - not
+  hidden, not commented out. Grepped pwa/ afterward for "pct-badge" -
+  zero remaining references outside this session's own doc comment.
+- Removed the onclick="showView('stats', ...)" attribute from
+  .sonar-corner - confirmed (again, per Session 25) that showView()
+  and any .tab elements don't exist anywhere in this codebase, so there
+  was nothing for it to ever call. Also dropped .sonar-corner's
+  `cursor: pointer` - with nothing to click, a pointer cursor would
+  have implied an interaction that no longer exists.
+- Verified live, not assumed: served pwa/ locally, confirmed via
+  getComputedStyle/DOM query that .pct-badge no longer exists, the
+  onclick attribute is null, cursor resolves to "auto". Clicked
+  .sonar-corner programmatically and confirmed no new console error
+  appears (the only console error present is the same pre-existing,
+  unrelated service-worker registration failure in this sandboxed
+  environment, noted in Sessions 15/17/19/24). Confirmed .budget-widget
+  is completely unaffected: real data still renders correctly (e.g.
+  "5.23 / 2000 min", "0.26%").
+- .budget-widget and renderBudget() were not touched at all this
+  session, per explicit scope.
+- Test suite: 126/126 passing, unchanged (PWA-only change).

@@ -797,3 +797,17 @@ None — all decisions needed to start building are now in place.
   in this sandboxed local-preview setup - confirmed not caused by
   anything changed this session.
 - 126/126 tests passing, unchanged (PWA-only change, no Python touched).
+
+## Addendum — Session 26 executed: removed the mascot badge + broken onclick (2026-08-19)
+- Session 25 confirmed .budget-widget already shows the real percentage
+  correctly (Session 15, untouched); .pct-badge was a separate, dead,
+  never-wired "?%" placeholder. Elad's decision: remove it rather than
+  wire it up, since the real number is already shown properly.
+- Removed the pct-badge div and its CSS rule entirely, removed the
+  onclick="showView(...)" attribute (confirmed nothing exists for it
+  to call) and its now-meaningless cursor: pointer.
+- Verified live: pct-badge gone from the DOM, onclick attribute null,
+  cursor auto, clicking produces no new console error (only the
+  pre-existing unrelated service-worker issue), .budget-widget's real
+  data unaffected.
+- 126/126 tests passing, unchanged.

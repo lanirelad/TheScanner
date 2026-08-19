@@ -786,6 +786,27 @@ currently logs a harmless console error rather than doing anything —
 flagged, not silently dropped, same treatment as the `pct-badge`
 placeholder.
 
+**Mascot: `.pct-badge` and the broken `onclick` removed (Sessions
+25/26):** Session 25 (investigation only) confirmed Elad's on-screen
+"is this one thing or two" question resolves to two unrelated things:
+`.budget-widget` (Session 15, untouched, fully working — a real
+`renderBudget()` call renders a real `percent_used` from
+`usage_summary.json`) and `.pct-badge` (Session 24's literal `?%`
+placeholder on the mascot, never wired to any data or function). Since
+the real number already displays correctly elsewhere, Elad's call was
+to remove the badge rather than wire it up — Session 26 deleted
+`.pct-badge` from both `index.html` and `styles.css` entirely, and
+removed the `onclick="showView(...)"` attribute alongside it (Session
+25 re-confirmed `showView()`/`.tab` still don't exist anywhere in this
+codebase, and none are planned). `.sonar-corner`'s `cursor: pointer`
+came out too, since nothing is clickable there anymore. `.sonar-corner`
+is now purely decorative: `.radar-screen`, three `.range-ring`s, the
+`.crosshair`, the rotating `.sweep-bg`, and the mascot image — no badge,
+no click handler. Verified live: the element genuinely doesn't exist in
+the DOM, the `onclick` attribute is `null`, clicking produces no new
+console error, and `.budget-widget`'s real data is completely
+unaffected.
+
 **Real live-run timing at 47 companies (Session 18):** ~80 seconds real
 elapsed, not the ~5-minute target — see §4a for the honest shortfall in
 how many companies actually got harvested/verified this session (36 real
