@@ -61,10 +61,43 @@ function renderSummaryStrip(scan) {
     .join("");
 }
 
+/** Session 31: the bare Failed count above tells you *that* something
+ * broke but not *what* — latest_scan.json's `failures` list (Session 18)
+ * has always carried the real company + error text, just never rendered.
+ * A native <details> disclosure (see index.html) rather than custom
+ * expand/collapse JS — it's free accessibility and keyboard support for
+ * something that's genuinely optional detail, not primary content.
+ * Hidden outright on a clean scan rather than shown empty.
+ */
+function renderFailures(scan) {
+  const detail = document.getElementById("failures-detail");
+  const summary = document.getElementById("failures-summary");
+  const list = document.getElementById("failures-list");
+  const failures = scan.failures || [];
+
+  if (failures.length === 0) {
+    detail.hidden = true;
+    return;
+  }
+
+  detail.hidden = false;
+  summary.textContent = `Failure details (${failures.length})`;
+  list.innerHTML = failures
+    .map(
+      (f) => `
+      <li>
+        <span class="failure-company">${escapeHTML(f.company)}</span>
+        <span class="failure-error">${escapeHTML(f.error)}</span>
+      </li>`
+    )
+    .join("");
+}
+
 function renderBudget(usage) {
   const fill = document.getElementById("budget-bar-fill");
   const numbers = document.getElementById("budget-numbers");
   const note = document.getElementById("budget-note");
+  const reset = document.getElementById("budget-reset");
 
   // percent_used is deliberately not clamped by usage/budget.py — going
   // over 100% is the real signal. The bar's own width IS visually capped
@@ -85,6 +118,17 @@ function renderBudget(usage) {
       "Note: does not yet include the workflow's hourly check-in cost (only logged real scans count).";
   } else {
     note.textContent = "";
+  }
+
+  // Session 31: days_until_reset comes pre-computed from usage/budget.py
+  // (same reset_day_of_month it used), not recalculated here — this file
+  // has no business knowing GitHub's real billing-cycle day for Elad's
+  // account, only displaying what the backend already resolved it to.
+  if (typeof usage.days_until_reset === "number") {
+    const label = usage.days_until_reset === 0 ? "Resets today" : `Resets in ${usage.days_until_reset} day${usage.days_until_reset === 1 ? "" : "s"}`;
+    reset.textContent = `${label} (day ${usage.reset_day_of_month} of the month)`;
+  } else {
+    reset.textContent = "";
   }
 }
 
@@ -230,6 +274,7 @@ async function main() {
     currentScan = scan;
     document.getElementById("generated-at").textContent = formatGeneratedAt(scan.generated_at);
     renderSummaryStrip(scan);
+    renderFailures(scan);
     renderBudget(usage);
     renderRoleFilters(scan);
     renderJobGroups(scan);

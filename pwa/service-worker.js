@@ -18,7 +18,7 @@
  *   offline, which is the entire point of it being a PWA at all.
  */
 
-const CACHE_NAME = "thescanner-shell-v5";
+const CACHE_NAME = "thescanner-shell-v6";
 const DATA_FILES = ["latest_scan.json", "usage_summary.json"];
 
 const SHELL_FILES = [

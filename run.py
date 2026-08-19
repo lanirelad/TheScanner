@@ -21,7 +21,11 @@ from core.dedup import compute_scan_status
 from core.filters import RoleLocationFilter
 from core.schema import compute_job_id
 from storage.db import DEFAULT_DB_PATH, connect, get_known_job_ids, upsert_jobs
-from usage.budget import FREE_TIER_MONTHLY_MINUTES, compute_usage_summary
+from usage.budget import (
+    FREE_TIER_MONTHLY_MINUTES,
+    GITHUB_BILLING_RESET_DAY_OF_MONTH,
+    compute_usage_summary,
+)
 from usage.log import DEFAULT_USAGE_LOG_PATH, load_usage_log, record_scan_run
 
 REPO_ROOT = Path(__file__).resolve().parent
@@ -294,7 +298,11 @@ async def run(
     # usage_summary.json simply doesn't change during a stretch of those;
     # the next real run recomputes it fresh from the complete, current
     # usage_log.json, which is what keeps it accurate rather than stale.
-    usage_summary = compute_usage_summary(load_usage_log(usage_log_path), FREE_TIER_MONTHLY_MINUTES)
+    usage_summary = compute_usage_summary(
+        load_usage_log(usage_log_path),
+        FREE_TIER_MONTHLY_MINUTES,
+        reset_day_of_month=GITHUB_BILLING_RESET_DAY_OF_MONTH,
+    )
     write_json_file(usage_summary, usage_summary_path)
 
     print_summary(summary)

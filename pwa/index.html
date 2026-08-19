@@ -29,6 +29,13 @@
       <!-- Filled by app.js from latest_scan.json -->
     </section>
 
+    <details class="failures-detail" id="failures-detail" hidden>
+      <summary id="failures-summary">Failure details</summary>
+      <ul id="failures-list">
+        <!-- Filled by app.js from latest_scan.json's failures list -->
+      </ul>
+    </details>
+
     <section class="budget-widget" aria-label="Scan budget">
       <h2>GitHub Actions budget this month</h2>
       <div class="budget-bar-track">
@@ -36,6 +43,7 @@
       </div>
       <div class="budget-numbers" id="budget-numbers"></div>
       <p class="budget-note" id="budget-note"></p>
+      <p class="budget-reset" id="budget-reset"></p>
     </section>
 
     <section class="role-filters" id="role-filters" aria-label="Role filters" hidden>

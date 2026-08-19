@@ -182,6 +182,51 @@ main {
   color: var(--error-red);
 }
 
+/* --- Failure details (Session 31): real company+error list from
+   latest_scan.json's `failures`, collapsed by default since it's
+   optional depth beyond the summary strip's Failed count, and hidden
+   entirely (via the HTML `hidden` attribute) on a clean scan. --- */
+.failures-detail {
+  background: var(--bg-elevated);
+  border: 1px solid var(--error-red);
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  margin: -0.25rem 0 1rem;
+  font-size: 0.85rem;
+}
+
+.failures-detail summary {
+  cursor: pointer;
+  color: var(--error-red);
+  font-weight: 600;
+}
+
+.failures-detail ul {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.failures-detail li {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.failures-detail li:first-child {
+  border-top: none;
+}
+
+.failure-company {
+  font-weight: 600;
+}
+
+.failure-error {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+}
+
 .generated-at {
   color: var(--text-dim);
   font-size: 0.8rem;
@@ -233,6 +278,12 @@ main {
   color: var(--text-dim);
   margin: 0.5rem 0 0;
   font-style: italic;
+}
+
+.budget-reset {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin: 0.35rem 0 0;
 }
 
 /* --- Role filters (Session 28): local-only display filter, never

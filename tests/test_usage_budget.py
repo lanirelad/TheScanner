@@ -19,6 +19,8 @@ def test_fresh_month_with_no_entries_is_zero_percent():
         "minutes_cap": 2000,
         "percent_used": 0.0,
         "includes_checkin_overhead": False,
+        "reset_day_of_month": 1,
+        "days_until_reset": 23,  # August 9 -> September 1
     }
 
 
@@ -67,3 +69,51 @@ def test_entries_from_a_different_year_same_month_are_excluded():
     summary = compute_usage_summary(entries, monthly_cap_minutes=2000, now=AUGUST_9)
 
     assert summary["minutes_used_this_month"] == 0.0
+
+
+# --- days_until_reset (Session 31, ADR pending) --------------------------
+# GitHub's real billing-cycle reset day varies per account (confirmed via
+# research, not assumed) — reset_day_of_month is a parameter precisely so
+# it never has to be. These pin down the two tricky cases: today being the
+# reset day itself, and a reset day that doesn't exist in every month.
+
+
+def test_days_until_reset_defaults_to_the_1st():
+    summary = compute_usage_summary([], monthly_cap_minutes=2000, now=AUGUST_9)
+
+    assert summary["reset_day_of_month"] == 1
+    assert summary["days_until_reset"] == 23  # Aug 9 -> Sep 1
+
+
+def test_days_until_reset_is_zero_when_today_is_the_reset_day():
+    now = datetime(2026, 8, 1, tzinfo=timezone.utc)
+
+    summary = compute_usage_summary([], monthly_cap_minutes=2000, now=now, reset_day_of_month=1)
+
+    assert summary["days_until_reset"] == 0
+
+
+def test_days_until_reset_counts_forward_to_a_mid_month_reset_day():
+    now = datetime(2026, 8, 9, tzinfo=timezone.utc)
+
+    summary = compute_usage_summary([], monthly_cap_minutes=2000, now=now, reset_day_of_month=15)
+
+    assert summary["days_until_reset"] == 6
+
+
+def test_days_until_reset_rolls_over_when_the_reset_day_already_passed_this_month():
+    now = datetime(2026, 8, 20, tzinfo=timezone.utc)
+
+    summary = compute_usage_summary([], monthly_cap_minutes=2000, now=now, reset_day_of_month=15)
+
+    assert summary["days_until_reset"] == 26  # Aug 20 -> Sep 15
+
+
+def test_days_until_reset_clamps_to_the_real_last_day_of_a_short_month():
+    # February 2026 has 28 days — reset_day_of_month=31 must clamp to
+    # Feb 28, not silently roll into March via naive date construction.
+    now = datetime(2026, 2, 20, tzinfo=timezone.utc)
+
+    summary = compute_usage_summary([], monthly_cap_minutes=2000, now=now, reset_day_of_month=31)
+
+    assert summary["days_until_reset"] == 8  # Feb 20 -> Feb 28

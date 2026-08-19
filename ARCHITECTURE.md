@@ -667,6 +667,29 @@ gate-check log a small entry on every skip too, `compute_usage_summary()`
 needs no code change at all — it would just start summing genuinely
 complete data.
 
+**Both real gaps closed in the PWA itself (Session 31):** Session 18's
+`failures` list and Session 14's budget numbers were both already correct
+data sitting unrendered. `app.js`'s new `renderFailures()` shows the real
+`{company, error}` pairs in a collapsible `<details>` under the summary
+strip (hidden entirely on a clean scan) — no new backend data needed, just
+the missing render call. Separately, GitHub's real Actions-minutes
+billing-cycle reset date depends on each account's personal billing
+cycle — confirmed via research to vary per account, not safely assumable
+as the 1st of the calendar month — so `usage/budget.py` gained a named,
+documented constant (`GITHUB_BILLING_RESET_DAY_OF_MONTH`, default `1`,
+same pattern as `FREE_TIER_MONTHLY_MINUTES`) that Elad corrects directly
+in that file after checking his own account's Settings → Billing & plans.
+`compute_usage_summary()` computes `days_until_reset` from it (a new
+`_next_reset_date()` helper, `calendar.monthrange`-clamped so a
+`reset_day_of_month` of 29–31 degrades to the real last day of a short
+month instead of rolling into the wrong one), with `now` and
+`reset_day_of_month` both injectable — same deterministic-testing shape
+as `schedule/gate.py`'s `now_utc`. Both new fields
+(`reset_day_of_month`, `days_until_reset`) ride along in
+`usage_summary.json` for `app.js`'s `renderBudget()` to display in
+`.budget-widget`; the PWA only displays what the backend already
+resolved, it never computes GitHub's billing rules itself.
+
 **The first real PWA (Session 15) — read-only, `pwa/` as the deployment
 root:** `pwa/` holds the entire deployed site (`index.html`, `styles.css`,
 `app.js`, `service-worker.js`, `manifest.json`, icons/mascot art) —

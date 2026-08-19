@@ -1045,3 +1045,45 @@
   to service-worker.js itself.
 - Test suite: 126/126 Python tests passing, unchanged (no backend
   changes this session).
+
+## 2026-08-19 — Session 31: real failure detail + days-until-budget-reset
+- Part 1: rendered latest_scan.json's `failures` list (real company +
+  error text, built Session 18) for the first time - previously only a
+  bare Failed count was shown. New app.js renderFailures() populates a
+  native <details>/<summary> disclosure just under the summary strip;
+  hidden entirely on a clean scan, expandable to a per-company error
+  list otherwise. No new data shape needed - the data was already
+  correct, just unrendered.
+- Part 2: added a real, configurable GitHub Actions billing-cycle reset
+  day - GITHUB_BILLING_RESET_DAY_OF_MONTH in usage/budget.py, default 1,
+  same explicit-constant pattern as FREE_TIER_MONTHLY_MINUTES. Confirmed
+  via research that GitHub's real reset date depends on each account's
+  personal billing cycle and is not safely assumable as the 1st, so this
+  is deliberately a named, documented, editable value rather than a
+  hardcoded assumption. Elad needs to check Settings -> Billing & plans
+  on his real account and correct the constant if it isn't day 1.
+- Computed days_until_reset server-side in compute_usage_summary (new
+  _next_reset_date() helper, calendar.monthrange-based clamping for
+  reset days that don't exist in every month, e.g. 31 in a 30-day
+  month or February) rather than in the PWA's JS - `now` and
+  `reset_day_of_month` are both injectable parameters, same
+  deterministic-testing pattern as schedule/gate.py's `now_utc`.
+  usage_summary.json gained two new fields: reset_day_of_month,
+  days_until_reset. Rendered in .budget-widget via a new #budget-reset
+  line.
+- Regenerated pwa/usage_summary.json by hand from the real current
+  usage_log.json and today's date, since no live scan ran this session
+  to regenerate it via run.py.
+- Bumped service-worker.js's CACHE_NAME v5 -> v6 (index.html/app.js/
+  styles.css all changed and are cache-first shell files).
+- No pure-JS changes to preferences.js this session (all new logic is
+  server-side Python) - pwa/tests/preferences.test.html stays at
+  38/38, unchanged.
+- Verified live in the sandbox browser against the real current
+  latest_scan.json (which already had one real failure, ScaleOps/
+  ReadTimeout) and usage_summary.json - failure text renders correctly,
+  the detail hides correctly when failures is empty, and the reset
+  countdown matches the real computed value.
+- Test suite: 131/131 Python tests passing (5 new tests covering the
+  default reset day, today-is-reset-day, mid-month countdown,
+  month-boundary rollover, and short-month/February clamping).
