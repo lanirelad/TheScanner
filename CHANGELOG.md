@@ -829,3 +829,44 @@
 - .budget-widget and renderBudget() were not touched at all this
   session, per explicit scope.
 - Test suite: 126/126 passing, unchanged (PWA-only change).
+
+## 2026-08-19 — Session 27: service worker skipWaiting/clients.claim fix
+- Real bug: every prior deploy required a hard refresh or incognito
+  window to see changes, because the service worker waited to activate
+  a new version until every old tab closed - confusing enough that it
+  made the mascot fix look broken earlier when it was really just a
+  stale cache.
+- Checked before changing anything, per this project's own discipline:
+  self.skipWaiting() was already present in the install handler since
+  Session 15 - the task's premise that it needed to be added didn't
+  match reality. Flagged rather than silently re-added as a no-op.
+- The real, genuine gap: self.clients.claim() was already being called
+  in the activate handler too, but as a bare statement, not wrapped in
+  its own event.waitUntil() - the browser is free to consider the
+  activate event finished as soon as the existing cache-cleanup
+  waitUntil settles, without ever actually waiting for claim() to
+  finish handing control of already-open tabs to the new worker. Fixed
+  by wrapping it: event.waitUntil(self.clients.claim()) as a second,
+  independent waitUntil call alongside the existing cache-cleanup one -
+  each waitUntil() call independently extends the event's lifetime, so
+  this doesn't replace or reorder the cleanup logic.
+- Bumped CACHE_NAME from thescanner-shell-v2 to -v3, same pattern
+  Session 24 already used, so this deploy itself is real evidence the
+  fix works (a version bump that should now take over live tabs
+  without a hard refresh).
+- Verification, disclosed honestly: this sandbox's service worker
+  registration fails outright ("unknown error occurred when fetching
+  the script") - the same pre-existing limitation noted in Sessions
+  15/17/19/24/26, confirmed again, not a regression from this change.
+  Could not perform the task's requested live "old tab picks up new
+  version without hard refresh" test in this environment as a result.
+  Verified what was possible instead: the file's JS is syntactically
+  valid (checked via new Function() against the actual served file
+  content), and the fix was verified by direct code reading against
+  the documented ServiceWorker lifecycle semantics (skipWaiting() on
+  install + a properly-awaited clients.claim() on activate is the
+  standard, well-documented fix for exactly this "requires hard
+  refresh" symptom). The real end-to-end confirmation needs an actual
+  deploy Elad can reload against, which this session's push enables but
+  can't itself observe from inside this sandbox.
+- Test suite: 126/126 passing, unchanged (PWA-only change).

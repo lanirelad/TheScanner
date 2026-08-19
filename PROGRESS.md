@@ -811,3 +811,24 @@ None — all decisions needed to start building are now in place.
   pre-existing unrelated service-worker issue), .budget-widget's real
   data unaffected.
 - 126/126 tests passing, unchanged.
+
+## Addendum — Session 27 executed: service worker skipWaiting/clients.claim fix (2026-08-19)
+- Real bug: deploys required a hard refresh/incognito to see changes,
+  since the SW waited for all old tabs to close before activating.
+- Checked first: self.skipWaiting() was already present since Session
+  15 - the task's premise it was missing didn't match reality, flagged
+  rather than silently re-added.
+- Real gap: self.clients.claim() was already called too, but not
+  wrapped in its own event.waitUntil() - fixed by wrapping it as a
+  second, independent waitUntil() alongside the existing cache-cleanup
+  one.
+- Bumped CACHE_NAME v2 -> v3 (same pattern as Session 24) so this
+  deploy is itself evidence of the fix.
+- Verification honestly disclosed: this sandbox's service worker
+  registration fails outright (same pre-existing limitation as
+  Sessions 15/17/19/24/26) - couldn't run the requested live
+  "old tab picks up new version" test here. Verified what was possible:
+  JS syntax valid, fix matches the standard documented ServiceWorker
+  lifecycle pattern for this exact symptom. Real end-to-end
+  confirmation needs an actual deploy Elad reloads against.
+- 126/126 tests passing, unchanged.

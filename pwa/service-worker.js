@@ -18,7 +18,7 @@
  *   offline, which is the entire point of it being a PWA at all.
  */
 
-const CACHE_NAME = "thescanner-shell-v2";
+const CACHE_NAME = "thescanner-shell-v3";
 const DATA_FILES = ["latest_scan.json", "usage_summary.json"];
 
 const SHELL_FILES = [
@@ -36,6 +36,11 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_FILES))
   );
+  // Session 27: was already present here since Session 15, but flagging
+  // it rather than assuming it's what fixed the real "needs a hard
+  // refresh to see a deploy" bug Elad hit — skipWaiting() alone doesn't
+  // hand control of already-open tabs to the new worker; that's what
+  // clients.claim() below is for, and it wasn't correctly awaited.
   self.skipWaiting();
 });
 
@@ -45,7 +50,15 @@ self.addEventListener("activate", (event) => {
       Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)))
     )
   );
-  self.clients.claim();
+  // Session 27: clients.claim() was already being called here, but not
+  // wrapped in its own event.waitUntil — the browser is free to consider
+  // "activate" finished (and potentially recycle this worker) as soon as
+  // the cache-cleanup waitUntil above settles, without ever waiting for
+  // claim() to actually finish handing control of already-open tabs to
+  // this new worker. Each event.waitUntil() call independently extends
+  // the event's lifetime, so this is a second one, not a replacement for
+  // the cache-cleanup line above.
+  event.waitUntil(self.clients.claim());
 });
 
 function isDataFileRequest(url) {
