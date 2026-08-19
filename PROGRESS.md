@@ -740,3 +740,60 @@ None — all decisions needed to start building are now in place.
   persists false, real timing between the two checks).
 - Test suite: 126/126 passing (was 121: 5 new), 0 real network calls in
   the automated suite.
+
+## Addendum — Session 23 executed: fix the mascot, blocked on two real gaps (2026-08-15/17)
+- Root cause confirmed by planning-Claude directly against the real
+  demo.html: Session 15 never had that file, so it invented a 4-frame
+  flap-cycling animation instead of the real single static photo.
+- Removed the frame-cycling mechanism entirely: app.js's
+  initMascotAnimation()/setInterval deleted, index.html's mascot <img>
+  now references real_mascot.png with no JS hook, service-worker.js's
+  shell manifest updated (cache bumped v1 -> v2 so old frames actually
+  evict), pwa/bat-frame-1..4.png + mascot-widget.png deleted.
+  batPoses.png itself (root-level source) confirmed unreferenced
+  anywhere else via a full-repo grep - left on disk, not deleted, since
+  the task only asked to check its usage.
+- Two real blockers, disclosed rather than guessed past:
+  1. real_mascot.png was never actually placed on disk this session
+     (checked repo, pwa/, scratchpad, Downloads, Desktop) despite being
+     described as "provided." Asked twice, no answer either time. The
+     PWA now correctly references the right filename but the file
+     itself is missing - a broken image until it's actually placed.
+  2. The task describes a 5-element radar structure (.radar-screen,
+     .range-ring x3, .crosshair, .sweep-bg, .pct-badge) as already
+     built - it isn't; this repo only ever had a single .ping-ring.
+     Didn't invent the missing structure from a text description alone
+     (same failure mode this session exists to fix) - left it
+     unchanged, flagged for real clarification. Also flagged: the
+     task's "200px badge" sizing claim doesn't match this repo's actual
+     84px/64px, which Session 17 never touched either.
+- Nothing committed or pushed - a partially-broken PWA (missing image)
+  shouldn't ship regardless of the standing confirmation requirement.
+
+## Addendum — Session 24 executed: exact radar structure + mascot placed (2026-08-19)
+- Both Session 23 blockers resolved with real, verbatim values now
+  that planning-Claude has seen the actual reference file directly.
+- real_mascot.png confirmed placed at pwa/real_mascot.png by Elad -
+  verified directly: 480x320, RGBA with real transparency, loads and
+  renders correctly (confirmed via img.complete/naturalWidth/Height,
+  not assumed).
+- Replaced .mascot-widget/.ping-ring (Session 15's guess) with the
+  exact .sonar-corner structure given verbatim - radar-screen, 3
+  range-rings, crosshair, sweep-bg (3s rotating conic-gradient), the
+  mascot image, and a pct-badge ("?%" placeholder, real percentage is
+  separate future work). Renamed the container to .sonar-corner to
+  match the real reference exactly.
+- Verified element-by-element via getComputedStyle (same standard as
+  Session 17's wordmark fix) - every position/inset/size/color/
+  animation value confirmed matching exactly, including both crosshair
+  pseudo-elements and the sweep animation's full property set.
+- Old .ping-ring/.mascot-widget/@keyframes ping fully removed - grepped
+  and confirmed zero remaining references.
+- Included the given onclick="showView(...)" verbatim as instructed -
+  showView()/tabs don't exist yet (future work), so this currently logs
+  a harmless console error on click rather than doing anything.
+  Flagged, not hidden.
+- Unrelated, pre-existing finding: service worker registration fails
+  in this sandboxed local-preview setup - confirmed not caused by
+  anything changed this session.
+- 126/126 tests passing, unchanged (PWA-only change, no Python touched).

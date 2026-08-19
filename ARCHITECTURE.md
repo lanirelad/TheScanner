@@ -724,6 +724,68 @@ through to `latest_scan.json` as a `label_en` field alongside
 that would have meant duplicating `roles.json` into `pwa/` the same way
 Session 15 deliberately avoided duplicating the scan/usage exports.
 
+**Mascot: the real root cause, and two more real gaps found while fixing
+it (Session 23):** Elad reported the mascot "still not what I wanted"
+after Session 17. Root cause, confirmed by planning-Claude directly
+against the actual `demo.html` (which Elad has decided will never be
+committed here): Session 15 never had that file, so instead of the real
+design — one single static photo — it invented a different one: a
+4-frame flap-cycling animation (`bat-frame-1..4.png`, cropped from
+`batPoses.png` via Pillow, swapped every 500ms via `setInterval`). Not
+a smaller mismatch like the wordmark/teal color — a structurally
+different mechanism. Removed entirely: `app.js`'s
+`initMascotAnimation()`, the four frame PNGs, `mascot-widget.png`, and
+their `service-worker.js` cache entries (cache name bumped so old
+cached frames actually evict, not just stop being referenced).
+`index.html`'s mascot `<img>` now points at `real_mascot.png` — a
+single static image, no JS hook. `batPoses.png` itself (the root-level
+source, outside `pwa/`) is confirmed unreferenced anywhere else via a
+full-repo grep; left on disk rather than deleted, since only its
+generated derivatives were in scope.
+
+Two real blockers surfaced doing this, neither guessed past: (1)
+`real_mascot.png` was never actually placed anywhere on disk this
+session despite being described as already provided — the code now
+references the correct filename, but the file itself is still missing,
+so the widget will show a broken image until it's placed in `pwa/`.
+(2) The task described a 5-element radar structure (`.radar-screen`,
+`.range-ring` ×3, `.crosshair`, `.sweep-bg`, `.pct-badge`) as already
+built in this widget — it isn't; this repo's actual `styles.css` only
+ever had a single `.ping-ring`, and the task's "200px badge" sizing
+claim doesn't match the real 84px/64px either (Session 17 never
+touched mascot sizing). Left both unchanged rather than inventing a
+radar structure from a text description alone — doing that would risk
+exactly the "guessed instead of using the real design" failure mode
+this session exists to correct.
+
+**Mascot: both real blockers resolved with real values (Session 24):**
+`real_mascot.png` was placed at `pwa/real_mascot.png` and verified
+directly — 480×320, RGBA with real alpha transparency, loads correctly.
+The `.mascot-widget`/`.ping-ring` guess was replaced entirely with the
+exact `.sonar-corner` structure from the real reference file, given
+verbatim (the same successful pattern as Session 17's wordmark fix and
+Session 19's `--teal` values): `.radar-screen` (radial-gradient disc),
+three `.range-ring` elements, a `.crosshair` (via `::before`/`::after`),
+the rotating `.sweep-bg` (conic-gradient, 3s linear infinite,
+`mix-blend-mode: screen`), the mascot `<img>`, and a `.pct-badge`
+showing a literal `?%` placeholder (the real percentage needs the
+usage-budget calculator wired into the PWA, which doesn't exist yet —
+separate, explicitly out-of-scope future work). The container was
+renamed from `.mascot-widget` to `.sonar-corner` to match the real
+reference exactly, rather than keeping the old name — one less layer
+of naming drift between this file and the actual source design going
+forward. Verified element-by-element via `getComputedStyle` (not visual
+inspection): every position/inset/size/color/animation value on all
+eight elements/pseudo-elements matches the given spec exactly. The old
+`.ping-ring`/`.mascot-widget`/`@keyframes ping` are fully removed —
+confirmed via a full `pwa/` grep, zero remaining references outside
+historical comments. The given `onclick="showView('stats', ...)"` was
+kept verbatim as instructed; `showView()` and the tabs system it
+targets don't exist in this codebase yet, so clicking the mascot
+currently logs a harmless console error rather than doing anything —
+flagged, not silently dropped, same treatment as the `pct-badge`
+placeholder.
+
 **Real live-run timing at 47 companies (Session 18):** ~80 seconds real
 elapsed, not the ~5-minute target — see §4a for the honest shortfall in
 how many companies actually got harvested/verified this session (36 real

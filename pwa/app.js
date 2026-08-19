@@ -167,18 +167,6 @@ function initThemeToggle() {
   });
 }
 
-/** Cycles the corner mascot through its 4 captured flight-pose frames on a
- * simple interval — a lightweight stand-in for a real flap animation
- * without shipping a video/GIF. */
-function initMascotAnimation() {
-  const frame = document.getElementById("mascot-frame");
-  let pose = 1;
-  setInterval(() => {
-    pose = (pose % 4) + 1;
-    frame.src = `bat-frame-${pose}.png`;
-  }, 500);
-}
-
 function registerServiceWorker() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js").catch((err) => {
@@ -188,6 +176,5 @@ function registerServiceWorker() {
 }
 
 initThemeToggle();
-initMascotAnimation();
 registerServiceWorker();
 main();

@@ -43,9 +43,15 @@
     </div>
   </main>
 
-  <div class="mascot-widget" aria-hidden="true">
-    <div class="ping-ring"></div>
-    <img id="mascot-frame" src="bat-frame-1.png" alt="" />
+  <div class="sonar-corner" onclick="showView('stats', document.querySelectorAll('.tab')[1])">
+    <div class="radar-screen"></div>
+    <div class="range-ring r1"></div>
+    <div class="range-ring r2"></div>
+    <div class="range-ring r3"></div>
+    <div class="crosshair"></div>
+    <div class="sweep-bg"></div>
+    <img src="real_mascot.png" alt="TheScanner mascot">
+    <div class="pct-badge">?%</div>
   </div>
 
   <script src="app.js"></script>

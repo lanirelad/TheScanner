@@ -12,13 +12,13 @@
  *   correctness problem, not just a UX nitpick. Falls back to the last
  *   cached copy only when the network request itself fails (offline).
  * - Everything else (the shell — index.html, styles.css, app.js,
- *   manifest.json, icons, mascot frames) is cache-first: none of it
+ *   manifest.json, icons, the mascot image) is cache-first: none of it
  *   changes between deploys in a way that matters if it's a request or
  *   two stale, and cache-first is what makes the shell open instantly
  *   offline, which is the entire point of it being a PWA at all.
  */
 
-const CACHE_NAME = "thescanner-shell-v1";
+const CACHE_NAME = "thescanner-shell-v2";
 const DATA_FILES = ["latest_scan.json", "usage_summary.json"];
 
 const SHELL_FILES = [
@@ -29,11 +29,7 @@ const SHELL_FILES = [
   "manifest.json",
   "icons/icon-192.png",
   "icons/icon-512.png",
-  "mascot-widget.png",
-  "bat-frame-1.png",
-  "bat-frame-2.png",
-  "bat-frame-3.png",
-  "bat-frame-4.png",
+  "real_mascot.png",
 ];
 
 self.addEventListener("install", (event) => {

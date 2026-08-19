@@ -706,3 +706,96 @@
   the automated suite - the live MorphiSec re-verification was a
   separate, disclosed manual check, same as every prior session's live
   smoke tests.
+
+## 2026-08-15/17 — Session 23: fix the mascot (real root cause, partially blocked)
+- Real root cause confirmed (planning-Claude compared directly against
+  the actual demo.html, which Elad has decided will never be committed
+  to this repo): Session 15 never had that file, so instead of a single
+  static photo it invented a 4-frame flap-cycling animation
+  (bat-frame-1..4.png cropped from batPoses.png via Pillow, swapped on
+  a 500ms setInterval) - a different design, not a smaller mismatch.
+- Removed the entire frame-cycling mechanism: initMascotAnimation() and
+  its setInterval deleted from app.js; index.html's mascot <img> now
+  references a single real_mascot.png with no id/JS hook; deleted
+  pwa/bat-frame-1.png through -4.png and pwa/mascot-widget.png;
+  service-worker.js's SHELL_FILES list updated to match (cache name
+  bumped v1 -> v2 so the old cached frames actually get evicted on
+  next activation, not just stop being referenced).
+- batPoses.png (root-level source, outside pwa/) is not referenced
+  directly anywhere in the shipped app - confirmed via a full-repo
+  grep, not assumed - only its now-deleted derivatives were. Left it
+  on disk rather than deleting it: it's a raw source asset outside the
+  deployed directory, deleting original source material is a more
+  irreversible call than removing generated derivatives, and the task
+  only asked to check its usage, not to delete it.
+- Real blocker, disclosed rather than worked around: real_mascot.png
+  itself was never actually placed anywhere on disk this session
+  (checked the repo, pwa/, the scratchpad, Downloads, Desktop) despite
+  the task describing it as "provided." Asked twice; got no answer
+  either time. index.html/service-worker.js now correctly reference
+  real_mascot.png by the name it should have, but the file itself is
+  still missing - the PWA will show a broken image in that spot until
+  it's actually placed in pwa/.
+- Second real blocker found while investigating, not assumed away: the
+  task describes a 5-element radar structure (.radar-screen,
+  .range-ring x3, .crosshair, .sweep-bg, .pct-badge) as "already
+  correctly built" in the current widget - it isn't. This repo's actual
+  pwa/styles.css only ever had a single .ping-ring. Session 15 built a
+  simpler design than the real reference from the start; that gap was
+  never caught until this session. Did not invent the missing
+  structure from a text description alone - that risks the exact
+  "guessed instead of using the real thing" failure mode this session
+  exists to fix. Left the existing .ping-ring in place, unchanged.
+- Also flagged, not silently corrected: the task's "200px badge" sizing
+  claim doesn't match this repo either (currently 84px desktop / 64px
+  mobile, and Session 17 never touched mascot sizing) - left unchanged
+  pending real clarification, same reasoning as the radar-structure gap.
+- Nothing committed or pushed this session - a genuinely incomplete,
+  partially-broken PWA state (missing image file) shouldn't ship
+  regardless of the standing per-action confirmation requirement.
+
+## 2026-08-19 — Session 24: exact radar structure + real mascot file placed
+- Both of Session 23's real blockers resolved with real, verbatim
+  values from planning-Claude having now seen the actual reference
+  file directly - the same pattern that worked for the wordmark fix
+  (Session 17) and the --teal color (Session 19).
+- real_mascot.png confirmed placed at pwa/real_mascot.png by Elad -
+  verified directly (not assumed): 480x320, RGBA with real alpha
+  transparency, exactly matching spec. Loads and renders correctly
+  (img.complete === true, naturalWidth/Height 480x320).
+- Replaced the entire .mascot-widget/.ping-ring implementation (Session
+  15's guess, since it never had the real file) with the exact
+  .sonar-corner structure given verbatim: radar-screen (radial-gradient
+  circle), 3 concentric range-rings, a crosshair (via ::before/::after
+  pseudo-elements), the rotating sweep-bg (conic-gradient, 3s linear
+  infinite, mix-blend-mode screen), the mascot image, and a pct-badge
+  ("?%" placeholder - the real percentage is separate future work, the
+  usage-budget calculator isn't wired into the PWA yet). Renamed the
+  container from .mascot-widget to .sonar-corner to match the real
+  reference exactly, rather than keeping the old name and adapting
+  internals to fit - one less layer of naming drift from here on.
+- Verified element-by-element via getComputedStyle, not visual
+  inspection (same standard as Session 17's wordmark fix): every
+  position/inset/size/color/animation value on .sonar-corner,
+  .radar-screen, all three .range-ring variants, .crosshair (including
+  both pseudo-elements), .sweep-bg (including animation-name/duration/
+  timing-function/iteration-count/mix-blend-mode), .sonar-corner img,
+  and .pct-badge matches the given spec exactly - confirmed via direct
+  computed-value comparison, not eyeballing.
+- Old .ping-ring/.mascot-widget/@keyframes ping fully removed - grepped
+  the whole pwa/ tree afterward and confirmed zero remaining references
+  outside historical doc comments.
+- Included the given onclick="showView('stats', ...)" verbatim, as
+  instructed - showView() and the tabs system it references don't
+  exist in this codebase yet (a future session's work, same category
+  as the pct-badge placeholder), so clicking the mascot currently logs
+  a harmless "showView is not defined" console error rather than doing
+  anything. Flagged, not silently dropped or worked around.
+- Known, pre-existing, unrelated finding while verifying live: the
+  service worker fails to register in this sandboxed local-preview
+  environment ("unknown error occurred when fetching the script") -
+  confirmed this is not caused by anything changed this session (no
+  service-worker.js logic touched), consistent with similar sandbox
+  friction noted in Sessions 15/17/19.
+- No automated tests affected (PWA-only change, no Python touched);
+  126/126 still passing.
