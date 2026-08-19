@@ -895,3 +895,36 @@ None — all decisions needed to start building are now in place.
   cache-first PWA shell.
 - No Python/app-code changes - a Cloudflare static-assets config file.
 - 126/126 tests passing, unchanged.
+
+## Addendum — Session 30 executed: "Ignore" state + Ignored section (2026-08-19)
+- Extended Session 28's boolean applied/not-applied into a real
+  tri-state per-job status: not_set / applied / ignored, mutually
+  exclusive, enforced in one place (setJobStatus).
+- State model: new key thescanner:job_status (values "applied"/
+  "ignored") rather than overloading the old thescanner:applied_jobs
+  boolean key. Confirmed the real data-loss risk before choosing this
+  path, not assumed it away - Elad has been actively using the PWA
+  since Session 28, so a clean break risked discarding real marks.
+  Chose migrate-on-read (loadJobStatuses merges the legacy key's `true`
+  entries in as "applied" whenever the new key has no opinion yet for
+  that job_id) over a one-time destructive migration - the legacy key
+  is never written to or deleted, so there's no half-migrated state and
+  no data-loss risk even if something goes wrong.
+- Added an Ignore button next to Mark as applied on every job card, one
+  delegated click handler for both.
+- Rendering: new partitionByIgnored(matches, statuses) pure function
+  splits ignored jobs into a new "Ignored" section at the bottom;
+  applied jobs are NOT partitioned, they stay exactly where Session 28
+  put them, only ignored jobs move.
+- Real test coverage: pwa/tests/preferences.test.html extended to
+  38/38 passing - status transitions, mutual-exclusivity enforcement in
+  both directions, partitionByIgnored, and 5 dedicated migration tests.
+- Verified live end-to-end: seeded a real legacy applied_jobs entry,
+  confirmed migration renders it correctly with zero interaction,
+  confirmed the migrated-applied -> ignored transition works correctly
+  (moves to Ignored section, no dual state), confirmed the reverse, and
+  confirmed both states survive a real full page reload.
+- Bumped service-worker.js's CACHE_NAME v4 -> v5, since app.js/
+  styles.css/preferences.js all changed substantively and are
+  cache-first shell files.
+- 126/126 Python tests passing, unchanged.

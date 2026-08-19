@@ -10,7 +10,9 @@
  * - Which role categories this device wants to see (a client-side
  *   display filter on top of latest_scan.json's matches — it does not
  *   change what roles.json/the backend scan looks for at all).
- * - application_status ("applied"/not) per job_id.
+ * - Per-job local status: not_set / applied / ignored (Session 30
+ *   extended this from Session 28's plain applied/not-applied boolean —
+ *   see JOB_STATUS_KEY below for the migration story).
  *
  * Deliberately a separate file from app.js, not just a separate
  * section of it: app.js's bottom section calls main()/initThemeToggle()/
@@ -27,7 +29,30 @@
  */
 
 const ROLE_FILTERS_KEY = "thescanner:role_filters";
-const APPLIED_JOBS_KEY = "thescanner:applied_jobs";
+
+/** Session 28's original key: { [job_id]: true } meant "applied," any
+ * other job simply had no entry. Read-only from here on — never
+ * written to again — kept purely so loadJobStatuses() below can migrate
+ * a device's existing marks forward without ever deleting the source
+ * data it migrated from. Real risk considered before choosing a
+ * migration over a clean break: Elad has been actively using this PWA
+ * since Session 28 shipped (he's the one who reported Session 27's
+ * caching bug from real usage), so a clean break risks silently
+ * discarding marks he's already made — not a risk worth taking to save
+ * a few lines of code. */
+const LEGACY_APPLIED_JOBS_KEY = "thescanner:applied_jobs";
+
+/** Session 30's tri-state key. Shape: { [job_id]: "applied" | "ignored" }.
+ * No stored "not_set" value — same "don't persist the default state"
+ * reasoning as ROLE_FILTERS_KEY above; absence of a key (in both this
+ * key and the legacy one) means not_set. */
+const JOB_STATUS_KEY = "thescanner:job_status";
+
+const JOB_STATUS = Object.freeze({
+  NOT_SET: "not_set",
+  APPLIED: "applied",
+  IGNORED: "ignored",
+});
 
 /** Read this device's stored role-category toggles.
  *
@@ -118,39 +143,106 @@ function availableRoleCategories(matches, filters) {
   return Array.from(labels.entries()).map(([role_category, label]) => ({ role_category, label }));
 }
 
-/** Read this device's stored applied/not-applied marks.
- *
- * Shape: { [job_id]: true }. Absence of a key means not_applied — same
- * "don't store the default state" reasoning as loadRoleFilters above.
- */
-function loadAppliedJobs() {
+function _readJSON(key) {
   try {
-    const raw = localStorage.getItem(APPLIED_JOBS_KEY);
+    const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : {};
   } catch {
     return {};
   }
 }
 
-function saveAppliedJobs(appliedMap) {
-  localStorage.setItem(APPLIED_JOBS_KEY, JSON.stringify(appliedMap));
-}
-
-function isApplied(jobId, appliedMap) {
-  return appliedMap[jobId] === true;
-}
-
-/** Toggle one job's applied state. Pure — returns a new object, never
- * mutates `appliedMap`. Deletes the key on toggling back to
- * not_applied rather than storing an explicit `false`, for the same
- * "don't persist the default state" reason as toggleRoleFilter.
+/** Read this device's per-job statuses, migrating Session 28's legacy
+ * key forward on every read rather than as a one-time destructive
+ * migration step — simpler, and there's no window where a read could
+ * observe a half-migrated state, since nothing is ever deleted.
+ *
+ * A legacy `true` entry is only honored when the new key has no opinion
+ * for that job_id at all — once a job has been explicitly touched under
+ * the new tri-state model (including being explicitly toggled back to
+ * not_set, i.e. deleted from the new key), the legacy entry is
+ * permanently superseded for that job_id. In practice this means: an
+ * old "applied" mark keeps showing as applied until the user interacts
+ * with that specific job again, at which point it's fully governed by
+ * the new key from then on.
  */
-function toggleApplied(jobId, appliedMap) {
-  const next = { ...appliedMap };
-  if (isApplied(jobId, appliedMap)) {
+function loadJobStatuses() {
+  const legacy = _readJSON(LEGACY_APPLIED_JOBS_KEY);
+  const current = _readJSON(JOB_STATUS_KEY);
+  const merged = {};
+  for (const jobId of Object.keys(legacy)) {
+    if (legacy[jobId] === true) {
+      merged[jobId] = JOB_STATUS.APPLIED;
+    }
+  }
+  Object.assign(merged, current);
+  return merged;
+}
+
+function saveJobStatuses(statuses) {
+  localStorage.setItem(JOB_STATUS_KEY, JSON.stringify(statuses));
+}
+
+function getJobStatus(jobId, statuses) {
+  return statuses[jobId] || JOB_STATUS.NOT_SET;
+}
+
+function isApplied(jobId, statuses) {
+  return getJobStatus(jobId, statuses) === JOB_STATUS.APPLIED;
+}
+
+function isIgnored(jobId, statuses) {
+  return getJobStatus(jobId, statuses) === JOB_STATUS.IGNORED;
+}
+
+/** Set one job's status outright. Pure — returns a new object, never
+ * mutates `statuses`. Deletes the key for NOT_SET rather than storing
+ * it explicitly, same "don't persist the default state" reasoning as
+ * toggleRoleFilter. This is the one place that enforces the tri-state's
+ * mutual exclusivity: setting a job to any status always fully replaces
+ * whatever it was before — there is no code path that could leave a
+ * job marked both applied and ignored at once.
+ */
+function setJobStatus(jobId, statuses, newStatus) {
+  const next = { ...statuses };
+  if (newStatus === JOB_STATUS.NOT_SET) {
     delete next[jobId];
   } else {
-    next[jobId] = true;
+    next[jobId] = newStatus;
   }
   return next;
+}
+
+/** Toggle one job between APPLIED and NOT_SET. If the job was IGNORED,
+ * this moves it straight to APPLIED (not NOT_SET) — clicking "Mark as
+ * applied" is a real statement of intent about this specific status,
+ * not a blind toggle of whatever was there before.
+ */
+function toggleApplied(jobId, statuses) {
+  const next = isApplied(jobId, statuses) ? JOB_STATUS.NOT_SET : JOB_STATUS.APPLIED;
+  return setJobStatus(jobId, statuses, next);
+}
+
+/** Toggle one job between IGNORED and NOT_SET — same "was it already
+ * applied? then move straight to ignored" reasoning as toggleApplied.
+ */
+function toggleIgnored(jobId, statuses) {
+  const next = isIgnored(jobId, statuses) ? JOB_STATUS.NOT_SET : JOB_STATUS.IGNORED;
+  return setJobStatus(jobId, statuses, next);
+}
+
+/** Split `matches` into the jobs that stay in their normal new/
+ * still_open groups and the ones that move to the Ignored section.
+ * Pure function of (matches, statuses) — no I/O. Applied jobs are
+ * deliberately NOT split out here — they stay wherever `matches`
+ * already puts them, same position and grouping as before this
+ * session, only visually marked (see app.js's jobCardHTML).
+ */
+function partitionByIgnored(matches, statuses) {
+  const active = [];
+  const ignored = [];
+  for (const job of matches) {
+    (isIgnored(job.job_id, statuses) ? ignored : active).push(job);
+  }
+  return { active, ignored };
 }

@@ -982,3 +982,66 @@
 - No Python/backend changes, no app code changes - purely a Cloudflare
   static-assets configuration file.
 - Test suite: 126/126 passing, unchanged.
+
+## 2026-08-19 — Session 30: "Ignore" state + Ignored section
+- Extended Session 28's boolean applied/not-applied into a real tri-state
+  per-job status: not_set / applied / ignored, mutually exclusive.
+- State model: kept preferences.js's key/value approach but moved to a
+  new key (thescanner:job_status, values "applied"/"ignored") rather
+  than overloading the old thescanner:applied_jobs key's boolean shape.
+  Confirmed the real data-loss risk before choosing this, not assumed
+  it away: Elad has been actively using the PWA since Session 28
+  shipped (he's the one who reported Session 27's caching bug from real
+  usage), so a clean break risked silently discarding marks he'd
+  already made. Chose migrate-on-read instead of a one-time destructive
+  migration: loadJobStatuses() merges the legacy key's `true` entries in
+  as "applied" every time it's called, only when the new key has no
+  opinion yet for that job_id - the legacy key is never written to or
+  deleted, so there's no window where a read could observe a
+  half-migrated state and no risk of losing the original data even if
+  something goes wrong. Verified live with a real seeded legacy entry:
+  it renders correctly as applied on first load with zero interaction,
+  and survives being read repeatedly without ever being touched.
+- Added an "Ignore" button next to "Mark as applied" on every job card.
+  Both buttons funnel through one delegated click handler (same
+  "container rebuilt wholesale, needs delegation" reasoning as Session
+  28) that loads the current statuses once, toggles the right job_id
+  via toggleApplied/toggleIgnored, and re-renders.
+- Rendering: preferences.js's new partitionByIgnored(matches, statuses)
+  pure function splits ignored jobs out before the new/still_open
+  grouping happens; a new "🙈 Ignored" section renders them at the very
+  bottom, separated by a dashed top border. Applied jobs are
+  deliberately NOT partitioned - they stay in their normal new/
+  still_open group, same position and visual treatment Session 28 built
+  (a dimmed card, "✓ Applied" button) - only ignored jobs move.
+- Mutual exclusivity enforced in one place (setJobStatus) rather than
+  scattered checks: setting any status always fully replaces whatever
+  was there before, so there's no code path that could leave a job
+  marked both applied and ignored. Verified both directions live and in
+  the test harness: clicking Ignore on an already-Applied job moves it
+  straight to Ignored (not both), and clicking Mark as applied on an
+  Ignored job moves it straight to Applied.
+- Real test coverage: extended pwa/tests/preferences.test.html (same
+  no-Node.js dependency-free HTML+JS harness as Session 28) to 38/38
+  passing - covers getJobStatus/isApplied/isIgnored, setJobStatus's
+  mutual-exclusivity enforcement, both toggle functions' cross-status
+  transitions, partitionByIgnored, and five dedicated migration tests
+  (fresh migration, read-only/non-destructive, new-key-supersedes-
+  legacy for a shared job_id, non-overlapping merge, missing-keys
+  fail-safe).
+- Verified live end-to-end beyond the harness: seeded a real legacy
+  thescanner:applied_jobs entry, confirmed it renders as applied with
+  zero interaction, confirmed toggling Ignore on it produces the
+  correct migrated-applied -> ignored transition (moves to the Ignored
+  section, legacy key untouched, new key correctly says "ignored" not
+  both), confirmed toggling Mark as applied afterward correctly reverses
+  it, and confirmed both the applied state and the Ignored section
+  survive a real full page reload.
+- Bumped service-worker.js's CACHE_NAME v4 -> v5 - app.js/styles.css/
+  preferences.js all changed substantively this session, and those are
+  cache-first shell files; without a version bump already-installed
+  devices would keep serving the pre-Ignore-feature JS/CSS indefinitely
+  regardless of Session 29's edge-caching fix, which only ever applied
+  to service-worker.js itself.
+- Test suite: 126/126 Python tests passing, unchanged (no backend
+  changes this session).

@@ -6,7 +6,8 @@
 </head>
 <body>
 <!--
-  Real test coverage for pwa/preferences.js's pure logic (Session 28).
+  Real test coverage for pwa/preferences.js's pure logic (Session 28,
+  extended with the tri-state applied/ignored/not_set model in Session 30).
 
   This project's test suite is pytest, but pytest can't execute
   JavaScript, and this environment has no Node.js installed (checked
@@ -152,39 +153,115 @@ test("availableRoleCategories: empty matches and empty filters -> empty list", (
   assertEqual(availableRoleCategories([], {}), []);
 });
 
-// --- isApplied / toggleApplied -------------------------------------------
+// --- getJobStatus / isApplied / isIgnored (Session 30 tri-state) --------
 
-test("isApplied: no entry -> not applied", () => {
+test("getJobStatus: no entry -> not_set", () => {
+  assertEqual(getJobStatus("abc123", {}), JOB_STATUS.NOT_SET);
+});
+
+test("getJobStatus: reads the stored value directly", () => {
+  assertEqual(getJobStatus("abc123", { abc123: "applied" }), JOB_STATUS.APPLIED);
+  assertEqual(getJobStatus("abc123", { abc123: "ignored" }), JOB_STATUS.IGNORED);
+});
+
+test("isApplied / isIgnored: agree with getJobStatus, mutually exclusive", () => {
+  const applied = { abc123: "applied" };
+  const ignored = { abc123: "ignored" };
+  assertTrue(isApplied("abc123", applied));
+  assertFalse(isIgnored("abc123", applied));
+  assertTrue(isIgnored("abc123", ignored));
+  assertFalse(isApplied("abc123", ignored));
   assertFalse(isApplied("abc123", {}));
+  assertFalse(isIgnored("abc123", {}));
 });
 
-test("isApplied: explicit true -> applied", () => {
-  assertTrue(isApplied("abc123", { abc123: true }));
+// --- setJobStatus: the one place that enforces mutual exclusivity -------
+
+test("setJobStatus: NOT_SET deletes the key, doesn't store it", () => {
+  assertEqual(setJobStatus("abc123", { abc123: "applied" }, JOB_STATUS.NOT_SET), {});
 });
 
-test("toggleApplied: not_applied -> applied stores true", () => {
-  const result = toggleApplied("abc123", {});
-  assertEqual(result, { abc123: true });
+test("setJobStatus: APPLIED overwrites a prior IGNORED outright, not both", () => {
+  const result = setJobStatus("abc123", { abc123: "ignored" }, JOB_STATUS.APPLIED);
+  assertEqual(result, { abc123: "applied" });
 });
 
-test("toggleApplied: applied -> not_applied deletes the key, not sets false", () => {
-  const result = toggleApplied("abc123", { abc123: true });
-  assertEqual(result, {});
+test("setJobStatus: IGNORED overwrites a prior APPLIED outright, not both", () => {
+  const result = setJobStatus("abc123", { abc123: "applied" }, JOB_STATUS.IGNORED);
+  assertEqual(result, { abc123: "ignored" });
 });
 
-test("toggleApplied: does not mutate its input (pure function)", () => {
-  const input = { abc123: true };
+test("setJobStatus: does not mutate its input (pure function)", () => {
+  const input = { abc123: "applied" };
   const inputCopy = JSON.stringify(input);
-  toggleApplied("abc123", input);
+  setJobStatus("abc123", input, JOB_STATUS.IGNORED);
   assertEqual(JSON.parse(inputCopy), input, "input mutated");
 });
 
-test("toggleApplied: leaves other job_ids' state untouched", () => {
-  const result = toggleApplied("abc123", { def456: true });
-  assertEqual(result, { abc123: true, def456: true });
+test("setJobStatus: leaves other job_ids' state untouched", () => {
+  const result = setJobStatus("abc123", { def456: "applied" }, JOB_STATUS.IGNORED);
+  assertEqual(result, { abc123: "ignored", def456: "applied" });
 });
 
-// --- loadRoleFilters / loadAppliedJobs: real localStorage round-trip -----
+// --- toggleApplied / toggleIgnored: the actual button behaviors ---------
+
+test("toggleApplied: not_set -> applied", () => {
+  assertEqual(toggleApplied("abc123", {}), { abc123: "applied" });
+});
+
+test("toggleApplied: applied -> not_set (deletes, doesn't store false-equivalent)", () => {
+  assertEqual(toggleApplied("abc123", { abc123: "applied" }), {});
+});
+
+test("toggleApplied: clicking Applied on an Ignored job moves it to Applied, not both", () => {
+  const result = toggleApplied("abc123", { abc123: "ignored" });
+  assertEqual(result, { abc123: "applied" });
+  assertFalse(isIgnored("abc123", result), "should no longer be ignored");
+});
+
+test("toggleIgnored: not_set -> ignored", () => {
+  assertEqual(toggleIgnored("abc123", {}), { abc123: "ignored" });
+});
+
+test("toggleIgnored: ignored -> not_set", () => {
+  assertEqual(toggleIgnored("abc123", { abc123: "ignored" }), {});
+});
+
+test("toggleIgnored: clicking Ignore on an already-Applied job moves it to Ignored, not both", () => {
+  const result = toggleIgnored("abc123", { abc123: "applied" });
+  assertEqual(result, { abc123: "ignored" });
+  assertFalse(isApplied("abc123", result), "should no longer be applied");
+});
+
+test("toggleApplied/toggleIgnored: do not mutate their input (pure functions)", () => {
+  const input = { abc123: "applied" };
+  const inputCopy = JSON.stringify(input);
+  toggleApplied("abc123", input);
+  toggleIgnored("abc123", input);
+  assertEqual(JSON.parse(inputCopy), input, "input mutated");
+});
+
+// --- partitionByIgnored ---------------------------------------------------
+
+test("partitionByIgnored: splits ignored out, leaves applied/not_set in active", () => {
+  const matches = [
+    { job_id: "a", scan_status: "new" },
+    { job_id: "b", scan_status: "new" },
+    { job_id: "c", scan_status: "still_open" },
+  ];
+  const statuses = { a: "applied", b: "ignored" };
+  const { active, ignored } = partitionByIgnored(matches, statuses);
+  assertEqual(active.map((j) => j.job_id), ["a", "c"]);
+  assertEqual(ignored.map((j) => j.job_id), ["b"]);
+});
+
+test("partitionByIgnored: empty matches -> both lists empty", () => {
+  const { active, ignored } = partitionByIgnored([], {});
+  assertEqual(active, []);
+  assertEqual(ignored, []);
+});
+
+// --- loadRoleFilters: real localStorage round-trip -----------------------
 
 test("saveRoleFilters + loadRoleFilters round-trips through real localStorage", () => {
   localStorage.removeItem(ROLE_FILTERS_KEY);
@@ -204,16 +281,53 @@ test("loadRoleFilters: malformed JSON fails safe to {}, not a thrown error", () 
   localStorage.removeItem(ROLE_FILTERS_KEY);
 });
 
-test("saveAppliedJobs + loadAppliedJobs round-trips through real localStorage", () => {
-  localStorage.removeItem(APPLIED_JOBS_KEY);
-  saveAppliedJobs({ abc123: true });
-  assertEqual(loadAppliedJobs(), { abc123: true });
-  localStorage.removeItem(APPLIED_JOBS_KEY);
+// --- loadJobStatuses: real localStorage round-trip + legacy migration ---
+
+test("saveJobStatuses + loadJobStatuses round-trips through real localStorage", () => {
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+  saveJobStatuses({ abc123: "ignored" });
+  assertEqual(loadJobStatuses(), { abc123: "ignored" });
+  localStorage.removeItem(JOB_STATUS_KEY);
 });
 
-test("loadAppliedJobs: missing key fails safe to {}", () => {
-  localStorage.removeItem(APPLIED_JOBS_KEY);
-  assertEqual(loadAppliedJobs(), {});
+test("loadJobStatuses: missing keys fail safe to {}", () => {
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+  assertEqual(loadJobStatuses(), {});
+});
+
+test("loadJobStatuses: migrates a Session 28 legacy 'applied: true' entry", () => {
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.setItem(LEGACY_APPLIED_JOBS_KEY, JSON.stringify({ oldjob: true }));
+  assertEqual(loadJobStatuses(), { oldjob: "applied" });
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+});
+
+test("loadJobStatuses: never deletes the legacy key (migration is read-only)", () => {
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.setItem(LEGACY_APPLIED_JOBS_KEY, JSON.stringify({ oldjob: true }));
+  loadJobStatuses();
+  assertEqual(JSON.parse(localStorage.getItem(LEGACY_APPLIED_JOBS_KEY)), { oldjob: true });
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+});
+
+test("loadJobStatuses: an explicit new-key entry supersedes the legacy one for the same job_id", () => {
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.setItem(LEGACY_APPLIED_JOBS_KEY, JSON.stringify({ shared: true }));
+  saveJobStatuses({ shared: "ignored" });
+  assertEqual(loadJobStatuses(), { shared: "ignored" });
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+});
+
+test("loadJobStatuses: legacy and new keys merge non-overlapping job_ids", () => {
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.setItem(LEGACY_APPLIED_JOBS_KEY, JSON.stringify({ oldjob: true }));
+  saveJobStatuses({ newjob: "ignored" });
+  assertEqual(loadJobStatuses(), { oldjob: "applied", newjob: "ignored" });
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
 });
 
 // --- report ---------------------------------------------------------------

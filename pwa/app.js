@@ -2,12 +2,14 @@
 
 /**
  * TheScanner PWA — real-data screen (Session 15) with local-only role
- * selection and mark-as-applied (Session 28, ADR-0011/ADR-0014).
+ * selection (Session 28) and a tri-state per-job status — not_set /
+ * applied / ignored (Session 28's applied/not-applied, extended with
+ * "ignored" in Session 30) — per ADR-0011/ADR-0014.
  *
  * Fetches the two JSON exports run.py builds (latest_scan.json,
  * usage_summary.json) and renders them. Role-category filtering and
- * application_status both live entirely in this device's localStorage
- * via preferences.js (loaded before this file, see index.html) — they
+ * per-job status both live entirely in this device's localStorage via
+ * preferences.js (loaded before this file, see index.html) — they
  * never change what's fetched, never write anywhere the backend can see,
  * and are recomputed fresh from `currentScan` on every toggle rather
  * than persisted as rendered HTML. Still explicitly deferred: theme
@@ -86,11 +88,12 @@ function renderBudget(usage) {
   }
 }
 
-function jobCardHTML(job, appliedMap) {
+function jobCardHTML(job, statuses) {
   const badgeLabel = job.scan_status === "new" ? "New" : "Still open";
-  const applied = isApplied(job.job_id, appliedMap);
+  const applied = isApplied(job.job_id, statuses);
+  const ignored = isIgnored(job.job_id, statuses);
   return `
-    <div class="job-card ${applied ? "applied" : ""}">
+    <div class="job-card ${applied ? "applied" : ""} ${ignored ? "ignored" : ""}">
       <div class="job-card-top">
         <div>
           <p class="job-title">${escapeHTML(job.title)}</p>
@@ -101,9 +104,14 @@ function jobCardHTML(job, appliedMap) {
       <span class="role-tag">${escapeHTML(job.label_en || job.role_category)}</span>
       <div class="job-card-actions">
         <a class="apply-link" href="${escapeAttribute(job.source_url)}" target="_blank" rel="noopener noreferrer">Apply →</a>
-        <button type="button" class="mark-applied-btn" data-job-id="${escapeAttribute(job.job_id)}">
-          ${applied ? "✓ Applied" : "Mark as applied"}
-        </button>
+        <div class="job-card-buttons">
+          <button type="button" class="mark-applied-btn" data-job-id="${escapeAttribute(job.job_id)}">
+            ${applied ? "✓ Applied" : "Mark as applied"}
+          </button>
+          <button type="button" class="mark-ignored-btn" data-job-id="${escapeAttribute(job.job_id)}">
+            ${ignored ? "🙈 Ignored" : "Ignore"}
+          </button>
+        </div>
       </div>
     </div>`;
 }
@@ -140,23 +148,41 @@ function renderJobGroups(scan) {
     return;
   }
 
-  const appliedMap = loadAppliedJobs();
+  const statuses = loadJobStatuses();
+  // Session 30: ignored jobs are pulled out of their normal new/
+  // still_open grouping entirely and rendered in their own section at
+  // the bottom instead. Applied jobs are NOT partitioned here — they
+  // stay in `active`, same position and grouping as always, only
+  // visually marked (jobCardHTML) — this is deliberately narrower than
+  // Session 28's role-category filter, which hides jobs outright.
+  const { active, ignored } = partitionByIgnored(visibleMatches, statuses);
+
   const groups = [
     { status: "new", heading: "🆕 New" },
     { status: "still_open", heading: "📌 Still open" },
   ];
 
-  container.innerHTML = groups
+  let html = groups
     .map((group) => {
-      const jobs = visibleMatches.filter((m) => m.scan_status === group.status);
+      const jobs = active.filter((m) => m.scan_status === group.status);
       if (jobs.length === 0) return "";
       return `
         <div class="job-group">
           <h2>${group.heading} (${jobs.length})</h2>
-          ${jobs.map((job) => jobCardHTML(job, appliedMap)).join("")}
+          ${jobs.map((job) => jobCardHTML(job, statuses)).join("")}
         </div>`;
     })
     .join("");
+
+  if (ignored.length > 0) {
+    html += `
+      <div class="job-group job-group-ignored">
+        <h2>🙈 Ignored (${ignored.length})</h2>
+        ${ignored.map((job) => jobCardHTML(job, statuses)).join("")}
+      </div>`;
+  }
+
+  container.innerHTML = html;
 }
 
 /** One toggle per role category actually worth showing a control for
@@ -229,12 +255,19 @@ function initRoleFilterToggles() {
 /** Delegated on #job-groups for the same reason — job cards are
  * rebuilt wholesale on every renderJobGroups() call, so a listener
  * bound to one button's DOM node would be lost on the very next
- * re-render. */
-function initApplyButtons() {
+ * re-render. Handles both status buttons here rather than two separate
+ * listeners, since they share the same "load statuses, toggle one
+ * job_id, save, re-render" shape and the same container. */
+function initJobActionButtons() {
   document.getElementById("job-groups").addEventListener("click", (event) => {
-    const button = event.target.closest(".mark-applied-btn");
-    if (!button || !currentScan) return;
-    saveAppliedJobs(toggleApplied(button.dataset.jobId, loadAppliedJobs()));
+    const applyBtn = event.target.closest(".mark-applied-btn");
+    const ignoreBtn = event.target.closest(".mark-ignored-btn");
+    if ((!applyBtn && !ignoreBtn) || !currentScan) return;
+
+    const statuses = loadJobStatuses();
+    const jobId = (applyBtn || ignoreBtn).dataset.jobId;
+    const next = applyBtn ? toggleApplied(jobId, statuses) : toggleIgnored(jobId, statuses);
+    saveJobStatuses(next);
     renderJobGroups(currentScan);
   });
 }
@@ -265,6 +298,6 @@ function registerServiceWorker() {
 
 initThemeToggle();
 initRoleFilterToggles();
-initApplyButtons();
+initJobActionButtons();
 registerServiceWorker();
 main();

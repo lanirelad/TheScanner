@@ -936,6 +936,40 @@ and the console. 23/23 real assertions pass, including full round-trips
 through real `localStorage` and confirming the toggle functions don't
 mutate their input arguments.
 
+**Tri-state job status + a safe migration (Session 30):** extended
+Session 28's plain applied/not-applied boolean into a real tri-state —
+`not_set` / `applied` / `ignored`, mutually exclusive, enforced in
+exactly one place (`setJobStatus`, which always fully replaces whatever
+status was there before, so no code path can leave a job marked both
+applied and ignored). Stored under a new key, `thescanner:job_status`
+(values `"applied"`/`"ignored"`, absence means `not_set` — same
+"don't persist the default state" reasoning as `ROLE_FILTERS_KEY`),
+rather than overloading Session 28's `thescanner:applied_jobs` boolean
+shape in place. This was a real decision, not a default: Elad has been
+actively using the PWA since Session 28 shipped (he's the one who
+reported Session 27's caching bug from real usage), so a clean break
+risked silently discarding marks he'd already made — a real risk,
+confirmed rather than assumed away. Chose migrate-on-read over a
+one-time destructive migration: `loadJobStatuses()` merges the legacy
+key's `true` entries in as `"applied"` on every call, only for a
+job_id the new key has no opinion about yet — the legacy key is never
+written to or deleted, so there's no window where a read could observe
+a half-migrated state, and no data loss even if something goes wrong
+partway. Ignored jobs are pulled out of their normal new/still_open
+grouping by a new pure function, `partitionByIgnored(matches, statuses)`,
+and rendered in their own "Ignored" section at the very bottom of the
+list; applied jobs are deliberately **not** partitioned by this
+function — they stay exactly where Session 28 already puts them, same
+position and visual treatment, since only the *ignored* status changes
+where a job is grouped. Verified live with a real seeded legacy entry
+(not just the test harness): it renders as applied with zero
+interaction on first load, correctly transitions straight to ignored
+when the Ignore button is clicked (not both), correctly reverses, and
+both the legacy key's original data and the new key's state survive a
+real full page reload untouched. `pwa/tests/preferences.test.html`
+grew from 23 to 38 real assertions, including five dedicated to the
+migration behavior itself.
+
 ## 11. Push notifications (ADR-0012)
 
 ```

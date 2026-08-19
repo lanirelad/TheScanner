@@ -356,7 +356,13 @@ main {
   text-decoration: underline;
 }
 
-.mark-applied-btn {
+.job-card-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.mark-applied-btn,
+.mark-ignored-btn {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-dim);
@@ -368,6 +374,11 @@ main {
 
 .mark-applied-btn:hover {
   border-color: var(--radar-green);
+  color: var(--text);
+}
+
+.mark-ignored-btn:hover {
+  border-color: var(--text-dim);
   color: var(--text);
 }
 
@@ -384,6 +395,35 @@ main {
   border-color: var(--radar-green);
   color: var(--radar-green);
   font-weight: 600;
+}
+
+/* Ignored jobs (Session 30) dim further than applied — they've already
+   moved out of the new/still_open groups entirely into their own
+   section below, so this is a secondary confirmation inside that
+   section, not the primary "you acted on this" signal the way it is
+   for applied cards still sitting among active matches. */
+.job-card.ignored {
+  opacity: 0.45;
+}
+
+.job-card.ignored .mark-ignored-btn {
+  background: color-mix(in srgb, var(--text-dim) 18%, transparent);
+  border-color: var(--text-dim);
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* The Ignored section itself sits visually apart at the bottom of the
+   list — a top border and dimmer heading, rather than looking like just
+   another new/still_open group with a different emoji. */
+.job-group-ignored {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+}
+
+.job-group-ignored h2 {
+  color: var(--text-dim);
 }
 
 .empty-state, .error-state {
