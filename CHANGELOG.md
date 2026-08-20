@@ -1087,3 +1087,59 @@
 - Test suite: 131/131 Python tests passing (5 new tests covering the
   default reset day, today-is-reset-day, mid-month countdown,
   month-boundary rollover, and short-month/February clamping).
+
+## 2026-08-20 — Session 32: Growth playbook Phase 1 — ATS pattern recognition
+- Built recognition-only fingerprints for Workday, SmartRecruiters, and
+  iCIMS in discovery/playwright_probe.py - deliberately separate from
+  the existing Greenhouse/Lever/Comeet detection, since this project has
+  no adapter for any of these three. Each verified against one real live
+  example before being trusted: NVIDIA (Workday), Nielsen
+  (SmartRecruiters), Wake County Public Schools (iCIMS) - all 3 correctly
+  recognized via a real compliance-gated Playwright probe.
+- Re-ran recognition against Session 21's real 16-zero-signal-company
+  batch (plus MorphiSec, plus a fresh re-check of the 3 previously
+  robots.txt-blocked companies) - real career-page URLs had to be
+  re-derived via web research this session, since Session 21's own
+  harvesting script and candidate list were never committed to the repo.
+- Honest result on the actual task scope: 0 of ~20 companies checked use
+  Workday, SmartRecruiters, or iCIMS - a real, disclosed negative result.
+- Real result found instead: re-deriving current career-page URLs
+  surfaced 8 real hits on the 4 platforms this project already
+  supports - 6 Comeet (Reco, Zenity found directly via PlaywrightProbe;
+  Overwolf, Artlist, Claroty, DriveNets found via web research after a
+  real gap was found - Comeet's widget domain is comeet.co, not
+  comeet.com, which the existing CM_RE regex doesn't match at all) and 2
+  Greenhouse (Datarails, newly listed since Session 21; Aidoc, recovered
+  from Session 21's robots.txt-blocked list). All 8 merged into
+  companies.json (63 -> 71) after live API verification.
+- Isolated a real, non-transient block distinct from Session 22's
+  transient-glitch case: BlazeMeter and Centrical's own WAF returns HTTP
+  403 to this project's httpx client specifically (confirmed via direct
+  comparison - curl and a real browser both get through cleanly at the
+  same moment httpx doesn't) even on robots.txt itself, which
+  ComplianceAgent's existing 401/403 handling correctly treats as
+  disallow-everything. Documented as intentional, not a bug.
+- Created companies_unscannable.json (new file, ARCHITECTURE.md 14, new
+  section - neither existed before this session, backfilled per
+  ADR-0030's protocol) with 4 positively-confirmed entries: Totango
+  (uses Rippling's ATS, a real platform observed live but out of this
+  session's scope), Namogoo (blocked by an active bot-protection
+  challenge, not robots.txt), BlazeMeter and Centrical (the WAF finding
+  above). Deliberately excludes companies with no recognized signal at
+  all (Coralogix, Guesty, MorphiSec, HiBob, Attenti, Definity, Quantum
+  Art, Upwind) - those are honest unknowns, not positive findings, and
+  stay recorded in PROGRESS.md's prose instead.
+- Backfilled PLAN.md's "Company-growth playbook" section (also
+  referenced by the task as if it already existed, also didn't) -
+  documents Phases 0/0.5 from Sessions 18-21 and this session's Phase 1
+  result, plus two flagged-not-built opportunities: extending Comeet
+  detection to catch the comeet.co widget domain, and the still-open
+  decision on whether any unsupported platform is common enough to
+  justify a fifth adapter (one data point - Totango/Rippling - isn't
+  enough to decide that yet).
+- Test suite: 140/140 passing (was 131: 9 new for the fingerprint
+  logic). Live python run.py smoke test against the updated 71-company
+  companies.json: 71/71 attempted and succeeded, 0 failures, 5 immediate
+  new real DevOps-category matches from the newly added companies.
+- No adapter built for any of the three recognized-but-unsupported
+  platforms, per the task's explicit scope.

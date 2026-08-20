@@ -4638,5 +4638,75 @@
     "domain": "senai.com",
     "allowed": true,
     "checked_at": 1786653353.186252
+  },
+  "nvidia.wd5.myworkdayjobs.com": {
+    "domain": "nvidia.wd5.myworkdayjobs.com",
+    "allowed": true,
+    "checked_at": 1787171350.8737326
+  },
+  "careers.smartrecruiters.com": {
+    "domain": "careers.smartrecruiters.com",
+    "allowed": true,
+    "checked_at": 1787171357.367885
+  },
+  "careers-wcpss.icims.com": {
+    "domain": "careers-wcpss.icims.com",
+    "allowed": true,
+    "checked_at": 1787171360.8624516
+  },
+  "zenity.io": {
+    "domain": "zenity.io",
+    "allowed": true,
+    "checked_at": 1787171406.7447932
+  },
+  "www.morphisec.com": {
+    "domain": "www.morphisec.com",
+    "allowed": true,
+    "checked_at": 1787171406.8920138
+  },
+  "www.attentigroup.com": {
+    "domain": "www.attentigroup.com",
+    "allowed": true,
+    "checked_at": 1787171407.2780354
+  },
+  "www.definity.ai": {
+    "domain": "www.definity.ai",
+    "allowed": true,
+    "checked_at": 1787171407.6086557
+  },
+  "www.artlistjobs.io": {
+    "domain": "www.artlistjobs.io",
+    "allowed": true,
+    "checked_at": 1787171407.67929
+  },
+  "www.quantum-art.tech": {
+    "domain": "www.quantum-art.tech",
+    "allowed": true,
+    "checked_at": 1787171407.81461
+  },
+  "www.upwind.io": {
+    "domain": "www.upwind.io",
+    "allowed": true,
+    "checked_at": 1787171407.8840048
+  },
+  "www.reco.ai": {
+    "domain": "www.reco.ai",
+    "allowed": true,
+    "checked_at": 1787171407.9376533
+  },
+  "www.blazemeter.com": {
+    "domain": "www.blazemeter.com",
+    "allowed": false,
+    "checked_at": 1787205170.757708
+  },
+  "www.centrical.com": {
+    "domain": "www.centrical.com",
+    "allowed": false,
+    "checked_at": 1787205170.7284293
+  },
+  "www.aidoc.com": {
+    "domain": "www.aidoc.com",
+    "allowed": true,
+    "checked_at": 1787205163.5398688
   }
 }

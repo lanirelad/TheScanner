@@ -979,3 +979,140 @@ None — all decisions needed to start building are now in place.
 - Test suite: 131/131 Python tests passing (5 new: reset-day default,
   today-is-reset-day, mid-month countdown, month-boundary rollover,
   short-month clamp).
+
+## Addendum — Session 32 executed: Growth playbook Phase 1 — ATS pattern recognition (2026-08-20)
+- Doc/reality gap, ADR-0030 protocol applied: the task referenced
+  PLAN.md's "Company-growth playbook" section and ARCHITECTURE.md §14
+  (`companies_unscannable.json`) as already existing — neither did
+  (checked directly: PLAN.md had no such section, ARCHITECTURE.md ended
+  at §13). Built both from the task's own explicit, unambiguous
+  description rather than blocking, flagged here per protocol.
+- Also checked directly rather than assumed: Session 21's own harvesting
+  script and its exact candidate URLs were never committed to the repo
+  (no `discover_round3.py`, no candidate JSON survives) — only the
+  reusable `discovery/playwright_probe.py` module was. Every company's
+  career-page URL this session used was re-derived via real web research
+  (WebSearch), not copied from a prior session's script.
+- Built recognition-only fingerprints for Workday, SmartRecruiters, and
+  iCIMS in `discovery/playwright_probe.py` (`WORKDAY_RE`,
+  `SMARTRECRUITERS_RE`, `ICIMS_RE`, `_detect_unsupported_platform()`),
+  deliberately separate from `_detect_ats()`/`GH_RE`/`LV_RE`/`CM_RE` — a
+  match here can never be mistaken for something this project can
+  actually fetch jobs from. `PlaywrightProbe.probe()` now falls back to
+  this check only once every supported-ATS check has already come back
+  empty, and a real ATS hit always wins if a page somehow shows both.
+  9 new unit tests (6 pure-function, 3 probe-integration via the
+  existing fake-browser harness).
+- Each fingerprint empirically verified against one real, live example
+  before being trusted (via a compliance-gated PlaywrightProbe call, not
+  assumed from documentation alone): NVIDIA
+  (`nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite`) for Workday,
+  Nielsen (`careers.smartrecruiters.com/TheNielsenCompany`) for
+  SmartRecruiters, Wake County Public Schools
+  (`careers-wcpss.icims.com`) for iCIMS — all 3 correctly recognized.
+- Re-ran recognition against Session 21's real batch: the 16
+  fully-inspected zero-signal companies (Coralogix, Guesty, Totango,
+  Overwolf, Namogoo, HiBob, Artlist, Attenti, Claroty, Datarails*,
+  DriveNets, Definity, Quantum Art, Reco, Zenity, Upwind — *Datarails
+  wasn't actually in Session 21's batch, see below) plus MorphiSec (also
+  fully inspected in that batch, zero signal, just narratively separated
+  in Session 21's writeup because it also surfaced the robots_cache
+  staleness bug) plus a fresh re-check of the 3 previously robots.txt-
+  blocked companies (BlazeMeter, Aidoc, Centrical).
+- **Honest result for the actual task scope:** 0 of these ~20 companies
+  use Workday, SmartRecruiters, or iCIMS. A real, disclosed negative
+  result for the 3 specifically-targeted platforms — same "don't spin a
+  negative result positive" standard as Session 21's own conclusion.
+- **Real result found instead:** re-deriving each company's actual
+  current career-page URL via web research (rather than reusing
+  Session 21's uncommitted, unrecoverable candidate list) surfaced 8 real
+  hits on the 4 platforms this project already supports:
+  - **PlaywrightProbe found directly** (existing `CM_RE`, rendered-DOM
+    evidence): Reco (comeet, `reco/3A.00D`, 18 real jobs), Zenity
+    (comeet, `zenity/19.000`, 38 real jobs).
+  - **Found via web research, confirmed via the real API** (the
+    company's own career page doesn't expose the link anywhere
+    `PlaywrightProbe`'s evidence sources cover — see the `comeet.co` gap
+    below): Overwolf (comeet, `overwolf/b1.001`, 9 real jobs), Artlist
+    (comeet, `artlist/85.003`, 10 real jobs — independently
+    cross-confirmed via a live `COMEET.init({token, "company-uid":
+    "85.003", ...})` call found in the page's own rendered HTML),
+    Claroty (comeet, `Claroty/F2.004`, 24 real jobs), DriveNets (comeet,
+    `drivenets/72.006`, 30 real jobs), Datarails (greenhouse,
+    `datarails`, 14 real jobs — newly listed there since Session 21, not
+    something any prior session missed).
+  - **Recovered from Session 21's robots.txt-blocked list:** Aidoc
+    (greenhouse, `aidocmedical`, 35 real jobs) — see the WAF finding
+    below for why this one specifically flipped from blocked to
+    scannable.
+  - All 8 merged into `companies.json` (63 -> 71) with per-company
+    `note` fields, then verified with a real, clean end-to-end
+    `python run.py` run: 71/71 attempted and succeeded, 0 failures, 5
+    immediate real DevOps-category matches from the new companies
+    (Aidoc, Zenity, Claroty, DriveNets x2).
+- **Real gap found, not fixed this session (flagged for a future
+  phase):** Comeet's own widget-loading domain is `comeet.co`
+  (`www.comeet.co/careers-api/api.js`), completely distinct from the
+  public job-page domain `comeet.com` that `CM_RE` matches — confirmed
+  by directly inspecting Overwolf's and Artlist's real network requests
+  and rendered HTML. This is almost certainly why 4 of the 6 new Comeet
+  companies above needed web research instead of being caught by
+  `PlaywrightProbe` directly — the widget script tag alone doesn't carry
+  the slug/uid (that's in a separate `COMEET.init(...)` call), so fixing
+  this is "parse that call when only the widget domain is observed," not
+  a one-line regex tweak. Left as a documented opportunity in PLAN.md,
+  not built now — out of this session's explicit recognition-only scope.
+- **Real, non-transient block found and explained, not just re-observed
+  (BlazeMeter, Centrical):** re-checking these 2 with a fresh
+  `ComplianceAgent` instance still reported robots.txt-blocked — but
+  direct `curl` with the exact same User-Agent string got a normal HTTP
+  200 with no disallow rules for `/careers` at all. Isolated the real
+  cause: a raw `httpx.AsyncClient` request (this project's actual
+  fetch client) gets HTTP 403 from these sites' own WAF on robots.txt
+  itself, while `curl` and Playwright's real browser do not — a WAF
+  fingerprinting the HTTP client library, not a genuine robots.txt
+  restriction. `ComplianceAgent`'s existing 401/403-on-robots.txt
+  handling (mirrors `urllib.robotparser`'s own documented semantics)
+  correctly treats this as disallow-everything — confirmed as intended,
+  documented behavior, not a bug to fix. Different in kind from Session
+  22's transient-glitch case (that one self-heals within an hour; a WAF
+  fingerprinting the client library does not), so recorded explicitly in
+  `companies_unscannable.json` rather than left to be silently
+  rediscovered by a future session.
+- **Aidoc, by contrast, really did flip from blocked to scannable**
+  between Session 21 and this session — re-checked twice for confidence,
+  both times Playwright's real browser got through cleanly and found a
+  real, working Greenhouse slug (`aidocmedical`). First company this
+  project has ever added via a Playwright-recovered hit rather than a
+  static-`httpx` discovery.
+- **`companies_unscannable.json` (new file, ARCHITECTURE.md §14, new):**
+  4 entries — only companies *positively identified* as unscannable for
+  a specific, confirmed reason, not every company with no signal at all:
+  Totango (Rippling ATS, `ats.rippling.com`/`ats.us1.rippling.com`
+  observed live — a real platform, just not one of the 3 this session
+  scoped or one of this project's 4 supported ones), Namogoo (blocked by
+  a live Cloudflare Turnstile bot-protection challenge, not robots.txt —
+  the real page content is never reached), BlazeMeter and Centrical (the
+  WAF-fingerprinting finding above).
+- **Genuinely unresolved, deliberately NOT added to
+  `companies_unscannable.json`** (no recognized signal from any of this
+  project's 7 known platforms — an honest unknown, not a positive
+  finding): Coralogix, Guesty, MorphiSec, HiBob, Attenti (rebranded to
+  "Allied Universal Electronic Monitoring" since the research this
+  session found it under — the original careers URL now redirects
+  elsewhere entirely), Definity (real company, real $12M Series A per
+  Calcalist's own 2026 funding coverage, but its `/careers` path 404s —
+  hiring appears to be email-only, `careers@definity.ai`, at least for
+  now), Quantum Art, Upwind. Real career pages load fine for all of
+  these; worth another look with more evidence sources (e.g. actually
+  clicking through to a job listing rather than just inspecting the
+  landing page) in a future session, not concluded as "unsupported
+  platform" from a single landing-page inspection.
+- Docs added, not just this addendum: PLAN.md's "Company-growth
+  playbook" section (new, backfills Phases 0/0.5 from Sessions 18-21 and
+  records Phase 1's real result), ARCHITECTURE.md §14.
+- Test suite: 140/140 passing (was 131: 9 new for the fingerprint
+  logic). Live `python run.py` smoke test: 71/71 companies
+  attempted/succeeded, 0 failures.
+- No adapter built for Workday, SmartRecruiters, or iCIMS, per the
+  task's explicit scope — recognition only this session.

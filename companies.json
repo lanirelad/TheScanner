@@ -1,5 +1,5 @@
 {
-  "_note": "63 companies across 3 ATS platforms plus 1 custom-domain company. Session 18: 9->47 by guessing ATS slugs from company names and validating against the live API (34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected). Session 19: 47->58 by inverting the method — fetching each candidate's own real career page and reading its actual ATS directly off of it (1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk). Session 20: 58->63 using the same domain-first method against a real, research-sourced candidate list (Calcalist/CTech 2026 funding-rounds coverage + StartupBlink's Israel ranking) rather than a hand-compiled name list — 3 new Greenhouse + 2 new Comeet; 2 raw hits (Enigma, CopilotKit) rejected on review for zero Israel signal, the exact generic-word-collision risk flagged going into that session. See ARCHITECTURE.md/PROGRESS.md Session 18-20 notes for the honest shortfall against the ~200 Greenhouse target and each session's sourcing method. 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
+  "_note": "71 companies across 3 ATS platforms plus 1 custom-domain company. Session 18: 9->47 by guessing ATS slugs from company names and validating against the live API (34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected). Session 19: 47->58 by inverting the method — fetching each candidate's own real career page and reading its actual ATS directly off of it (1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk). Session 20: 58->63 using the same domain-first method against a real, research-sourced candidate list (Calcalist/CTech 2026 funding-rounds coverage + StartupBlink's Israel ranking) rather than a hand-compiled name list — 3 new Greenhouse + 2 new Comeet; 2 raw hits (Enigma, CopilotKit) rejected on review for zero Israel signal, the exact generic-word-collision risk flagged going into that session. Session 32: 63->71 — a Growth playbook Phase 1 session aimed at recognizing Workday/SmartRecruiters/iCIMS (0 real hits for those 3) turned up 8 real hits on the 4 platforms this project already supports instead, re-checking Session 21's zero-signal batch with web research (real career-page URLs, since Session 21's own candidate list/script were never committed) and PlaywrightProbe: 6 new Comeet (2 via PlaywrightProbe directly, 4 via web research surfacing a real Comeet link the probe's evidence sources didn't cover), 2 new Greenhouse (Datarails, newly listed since Session 21; Aidoc, one of Session 21's 3 robots.txt-blocked companies — its WAF still blocks this project's httpx client but not Playwright's real browser). See ARCHITECTURE.md/PROGRESS.md Session 18-20/32 notes for the honest shortfall against the ~200 Greenhouse target and each session's sourcing method. 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
   "companies": [
     {
       "name": "Wiz",
@@ -453,6 +453,68 @@
       "career_page": "https://www.comeet.com/jobs/zyg/DA.006",
       "ats_uid": "DA.006",
       "note": "Session 20: domain-first discovery — fetched https://www.zyg.com/careers (the company's own real career page) through the Compliance Agent and read the actual comeet link directly off of it, then confirmed against the real API — 11 real open postings at verification time, including at least one Israel-located posting confirming genuine R&D presence."
+    },
+    {
+      "name": "Datarails",
+      "ats": "greenhouse",
+      "ats_slug": "datarails",
+      "career_page": "https://job-boards.greenhouse.io/datarails",
+      "note": "Session 32: found via web research while re-deriving career-page URLs for Session 21's zero-signal batch (not present in any prior session's candidate list) — confirmed against the real API, 14 real open postings at verification time."
+    },
+    {
+      "name": "Aidoc",
+      "ats": "greenhouse",
+      "ats_slug": "aidocmedical",
+      "career_page": "https://job-boards.greenhouse.io/aidocmedical",
+      "note": "Session 32: one of Session 21's 3 robots.txt-blocked companies, re-checked as part of this session's recognition re-scan. This project's httpx client still gets HTTP 403 from aidoc.com's own WAF on a plain GET, but Playwright's real browser is not blocked and found a real, working Greenhouse slug — 35 real open postings at verification time. First real company this project has added via a Playwright-recovered hit, not a static httpx discovery."
+    },
+    {
+      "name": "Reco",
+      "ats": "comeet",
+      "ats_slug": "reco",
+      "career_page": "https://www.comeet.com/jobs/reco/3A.00D",
+      "ats_uid": "3A.00D",
+      "note": "Session 32: found via PlaywrightProbe against Session 21's zero-signal batch — the real Comeet link was only present in the client-rendered DOM, invisible to a static httpx GET. Confirmed against the real API — 18 real open postings at verification time."
+    },
+    {
+      "name": "Zenity",
+      "ats": "comeet",
+      "ats_slug": "zenity",
+      "career_page": "https://www.comeet.com/jobs/zenity/19.000",
+      "ats_uid": "19.000",
+      "note": "Session 32: found via PlaywrightProbe against Session 21's zero-signal batch — the real Comeet link was only present in the client-rendered DOM, invisible to a static httpx GET. Confirmed against the real API — 38 real open postings at verification time."
+    },
+    {
+      "name": "Overwolf",
+      "ats": "comeet",
+      "ats_slug": "overwolf",
+      "career_page": "https://www.comeet.com/jobs/overwolf/b1.001",
+      "ats_uid": "b1.001",
+      "note": "Session 32: real Comeet usage confirmed two ways — the site's own careers.overwolf.com page loads Comeet's widget script from comeet.co (a domain this project's CM_RE doesn't match at all, a real gap flagged for a future session), and the exact slug/uid was found via web research and confirmed against the real API — 9 real open postings at verification time."
+    },
+    {
+      "name": "Artlist",
+      "ats": "comeet",
+      "ats_slug": "artlist",
+      "career_page": "https://www.comeet.com/jobs/artlist/85.003",
+      "ats_uid": "85.003",
+      "note": "Session 32: real Comeet usage confirmed directly — the rendered careers page's own inline script called COMEET.init() with this exact slug/uid, alongside independent confirmation via web research. Confirmed against the real API — 10 real open postings at verification time. Same comeet.co widget-domain gap as Overwolf above (CM_RE didn't catch this one on its own either)."
+    },
+    {
+      "name": "Claroty",
+      "ats": "comeet",
+      "ats_slug": "Claroty",
+      "career_page": "https://www.comeet.com/jobs/Claroty/F2.004",
+      "ats_uid": "F2.004",
+      "note": "Session 32: found via web research (the company's own claroty.com/careers page links out to this URL without embedding it anywhere PlaywrightProbe's evidence sources cover — a real gap distinct from the comeet.co widget-domain one, since this is a genuine outbound link the probe never clicked). Confirmed against the real API — 24 real open postings at verification time. Slug is genuinely mixed-case in the real URL, unlike every other Comeet company in this file."
+    },
+    {
+      "name": "DriveNets",
+      "ats": "comeet",
+      "ats_slug": "drivenets",
+      "career_page": "https://www.comeet.com/jobs/drivenets/72.006",
+      "ats_uid": "72.006",
+      "note": "Session 32: same as Claroty above — found via web research, the real comeet.com link isn't reachable from drivenets.com/careers/'s own evidence sources. Confirmed against the real API — 30 real open postings at verification time."
     }
   ]
 }

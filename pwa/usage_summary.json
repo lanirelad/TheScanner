@@ -1,8 +1,8 @@
 {
-  "minutes_used_this_month": 6.905957258333304,
+  "minutes_used_this_month": 8.083450118333651,
   "minutes_cap": 2000,
-  "percent_used": 0.3452978629166652,
+  "percent_used": 0.4041725059166825,
   "includes_checkin_overhead": false,
   "reset_day_of_month": 1,
-  "days_until_reset": 13
+  "days_until_reset": 12
 }

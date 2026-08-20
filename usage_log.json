@@ -76,5 +76,11 @@
     "duration_minutes": 1.6790253599989229,
     "company_count": 63,
     "track": "stable"
+  },
+  {
+    "date": "2026-08-20",
+    "duration_minutes": 1.1774928600003478,
+    "company_count": 71,
+    "track": "stable"
   }
 ]

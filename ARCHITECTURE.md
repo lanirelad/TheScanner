@@ -1024,3 +1024,70 @@ Implemented Session 5: code moved from the root-level `usage_log.py` into
 `usage/log.py` (re-exported via `usage/__init__.py`, same pattern as
 `compliance/__init__.py`). `usage_log.json` — the data file itself — still
 lives at the repo root, unchanged; only the module code moved.
+
+## 14. `companies_unscannable.json` (Growth playbook, Session 32)
+
+Neither this section nor the file it describes existed before Session 32
+— the task that introduced them referenced both as if already decided.
+Per ADR-0030's protocol, built from the task's own explicit, unambiguous
+shape rather than blocked on, flagged here rather than silently assumed.
+
+**Purpose:** a repo-root JSON file recording companies this project has
+*positively confirmed* it cannot currently scan, and why — a permanent,
+reviewable record instead of a fact re-derived from memory or a stale
+chat summary every time it comes up again. Deliberately narrower than
+"every company we found nothing for": a company with no recognized
+signal at all (no supported ATS, no known-unsupported platform, no
+confirmed block) is *not* added here — that's an unresolved unknown, not
+a positive finding, and this file only ever records the latter. See
+PROGRESS.md's Session 32 addendum for that separate "genuinely
+unresolved" list, which stays in prose rather than this structured file
+on purpose.
+
+**Shape:**
+```json
+{
+  "_note": "...",
+  "unscannable_companies": [
+    {
+      "name": "Totango",
+      "reason": "human-readable, specific, cites the real evidence",
+      "platform_if_known": "rippling",
+      "checked_at": "2026-08-20T05:50:10Z"
+    }
+  ]
+}
+```
+`platform_if_known` is `null` when the reason isn't platform-specific at
+all (e.g. a WAF block) — the field exists for the cases where recognition
+succeeded, not as a required label for every entry.
+
+**What actually earns an entry, per Session 32's real cases:**
+- A confirmed unsupported ATS platform (Workday/SmartRecruiters/iCIMS, or
+  any other platform directly observed — Session 32's first entry is
+  Rippling, found via its `ats.rippling.com` domain, not one of the three
+  this session built fingerprints for at all).
+- A confirmed, non-transient access block that isn't a normal robots.txt
+  disallow — e.g. a live bot-protection JS challenge that a real browser
+  never gets past, or a WAF that returns HTTP 403 to this project's
+  specific httpx client (but not to curl or a real browser) even on
+  robots.txt itself, which per `ComplianceAgent`'s existing 401/403
+  handling correctly resolves to disallow-everything (see
+  `compliance/agent.py`'s `_check_robots_live` — this is documented,
+  intentional behavior, not a bug). This is a different kind of block
+  than the transient bot-protection glitch Session 22 already built
+  self-healing for (ADR: asymmetric robots_cache TTL) — that one flips
+  back within an hour on its own; a WAF fingerprinting the client library
+  itself does not, so it's worth recording explicitly rather than
+  re-discovering on every future session that happens to check again.
+
+**What doesn't:** Session 21/22's ordinary transient robots.txt blocks —
+those already have a real, working self-healing mechanism (the 1-hour
+blocked-entry TTL) and don't need a second, parallel "permanent" record
+that could go stale the moment the block lifts.
+
+Recognition itself is discovery-only (ADR-0031's Playwright,
+`discovery/playwright_probe.py`'s `_detect_unsupported_platform()`) —
+this file is populated by a Claude Code onboarding session reading that
+output, the same way `companies.json` itself is maintained, never
+written by the production scan pipeline.

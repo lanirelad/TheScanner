@@ -239,3 +239,57 @@ on. Phase 2 (adapters) was already complete as of Session 7's ADR-0025.
   GitHub template (or provide clear fork-and-deploy docs) once/if the app
   is ever shared beyond Elad. Not urgent now, but keep the repo structure
   clone-friendly (no hardcoded personal values outside config files).
+
+## Company-growth playbook (this section didn't exist before Session 32
+— the task that introduced "Phase 1" referenced it as if it did; added
+now per ADR-0030's protocol, backfilling what Sessions 18-21 already did
+plus a real record of Session 32 so the phase numbering means something
+going forward)
+- **Phase 0 (Sessions 18-20):** guessed/researched company names, guessed
+  or read off their real ATS slug directly, validated against the live
+  API. 9 -> 63 companies. Structurally hit a ceiling: three independent
+  sourcing methods all landed in the same low single-digit-percent hit
+  rate, diagnosed as most real career pages being client-rendered SPAs a
+  static `httpx` GET can't see into (ADR-0031).
+- **Phase 0.5 (Session 21):** Playwright-based discovery approved for
+  onboarding sessions only (ADR-0031). Real, honest negative result on a
+  20-company batch: JS-rendering wasn't the actual blocker for that
+  batch — 16 fully-inspected companies (17 counting MorphiSec, narratively
+  separated because it also surfaced a robots_cache bug) showed zero
+  signal for any of this project's 4 supported platforms.
+- **Phase 1 (Session 32): recognize unsupported platforms.** Built
+  recognition-only fingerprints (never adapters) for Workday,
+  SmartRecruiters, and iCIMS in `discovery/playwright_probe.py`, each
+  empirically verified against one real example before being trusted.
+  Real result re-running recognition against Session 21's batch: 0 of
+  those companies use any of these 3 platforms. Instead, re-deriving
+  real career-page URLs via web research (Session 21's own candidate
+  list/script were never committed to the repo) surfaced 8 real hits on
+  the 4 platforms this project already supports — 6 Comeet, 2
+  Greenhouse — merged into `companies.json` (63 -> 71) after live
+  verification. `companies_unscannable.json` now holds 4 positively
+  confirmed cases (1 real platform — Rippling — plus 3 confirmed access
+  blocks). See PROGRESS.md's Session 32 addendum for the full per-company
+  breakdown and the honest "genuinely unresolved" list (companies with no
+  recognized signal at all, deliberately not force-fit into either
+  outcome).
+- **Real gap surfaced, not yet fixed (flagged for a future phase):**
+  Comeet's own widget-loading domain is `comeet.co` (`www.comeet.co/
+  careers-api/api.js`), distinct from the public job-page domain
+  `comeet.com` this project's `CM_RE` regex matches — a real detection
+  gap that likely caused some of the Comeet hits Session 32 found via web
+  research instead of `PlaywrightProbe` directly (Overwolf, Artlist,
+  Claroty, DriveNets). Extending `CM_RE`/`_detect_ats` to also parse a
+  `COMEET.init({token, "company-uid", ...})` call when only the widget
+  domain is observed would likely surface more Comeet-using companies
+  automatically on the next re-scan, without needing web research per
+  company. Not built this session — flagged as the most promising next
+  step, not proven to be worth a whole adapter-scale effort yet.
+- **Open decision, deliberately not made yet:** whether to build a real
+  adapter for whichever unsupported platform proves most common. Session
+  32 only confirmed one company (Totango) on one platform (Rippling) —
+  not enough real signal to justify committing to build against it. A
+  future phase re-running recognition against a much larger candidate
+  pool (not just Session 21's 20-company batch) would give an honest
+  answer to "is any one platform common enough to be worth a fifth
+  adapter," rather than guessing from one data point.

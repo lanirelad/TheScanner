@@ -39,6 +39,24 @@ LV_RE = re.compile(r"(?:jobs|api)\.lever\.co/(?:v0/postings/)?([a-zA-Z0-9_-]+)")
 LV_EU_RE = re.compile(r"jobs\.eu\.lever\.co/([a-zA-Z0-9_-]+)")
 CM_RE = re.compile(r"comeet\.com/jobs/([a-zA-Z0-9_-]+)/([a-zA-Z0-9.]+)")
 
+# Session 32 (Growth playbook Phase 1): recognition-only signatures for
+# three platforms this project has no adapter for — Workday,
+# SmartRecruiters, iCIMS. Each pattern was checked against real
+# documentation and empirically verified against one live real-world
+# example before being trusted (see PROGRESS.md's Session 32 addendum):
+#   - Workday: nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite
+#   - SmartRecruiters: careers.smartrecruiters.com/TheNielsenCompany
+#   - iCIMS: careers-wcpss.icims.com
+# Deliberately kept separate from _detect_ats()/GH_RE/LV_RE/CM_RE above —
+# this project has no adapter for any of these three, so a match here
+# must never be mistaken for something the scan pipeline can fetch jobs
+# from. It only feeds `companies_unscannable.json` (ARCHITECTURE.md §14),
+# a record of *why* a company can't be scanned yet, not a new ATS this
+# codebase can act on.
+WORKDAY_RE = re.compile(r"([a-zA-Z0-9_-]+\.wd\d+\.myworkdayjobs\.com)")
+SMARTRECRUITERS_RE = re.compile(r"(?:careers|jobs|api)\.smartrecruiters\.com/(?:v1/companies/)?([a-zA-Z0-9_-]+)")
+ICIMS_RE = re.compile(r"([a-zA-Z0-9_-]+\.icims\.com)")
+
 DEFAULT_WAIT_TIMEOUT_MS = 8000
 
 
@@ -63,6 +81,26 @@ def _detect_ats(haystack):
     m = LV_RE.search(haystack)
     if m:
         return {"ats": "lever", "slug": m.group(1)}
+    return None
+
+
+def _detect_unsupported_platform(haystack):
+    """Recognition only (Session 32) — identifies a company as using
+    Workday, SmartRecruiters, or iCIMS without this project having any
+    ability to actually fetch jobs from it. Only ever consulted by
+    `probe()` below after `_detect_ats()` has already found nothing —
+    if a page somehow matched both, the real, supported ATS always wins.
+    Returns {"platform", "identifier"} or None.
+    """
+    m = WORKDAY_RE.search(haystack)
+    if m:
+        return {"platform": "workday", "identifier": m.group(1)}
+    m = SMARTRECRUITERS_RE.search(haystack)
+    if m:
+        return {"platform": "smartrecruiters", "identifier": m.group(1)}
+    m = ICIMS_RE.search(haystack)
+    if m:
+        return {"platform": "icims", "identifier": m.group(1)}
     return None
 
 
@@ -163,11 +201,39 @@ class PlaywrightProbe:
                     evidence = "network_request"
                     break
 
-        if hit is None:
+        if hit is not None:
+            hit["source_url"] = url
+            hit["final_url"] = final_url
+            hit["evidence"] = evidence
+            hit["network_requests_observed"] = len(requests_seen)
+            return hit
+
+        # Session 32: only reached once every supported-ATS check above
+        # has already come back empty — a real ATS match always wins over
+        # an unsupported-platform recognition, since those are the two
+        # meaningfully different outcomes ("this project can act on this"
+        # vs. "this project can only note this down").
+        unsupported = _detect_unsupported_platform(final_url)
+        evidence = "redirect_target"
+        if unsupported is None:
+            unsupported = _detect_unsupported_platform(html)
+            evidence = "rendered_dom"
+        if unsupported is None:
+            for request_url in requests_seen:
+                unsupported = _detect_unsupported_platform(request_url)
+                if unsupported is not None:
+                    evidence = "network_request"
+                    break
+
+        if unsupported is None:
             return None
 
-        hit["source_url"] = url
-        hit["final_url"] = final_url
-        hit["evidence"] = evidence
-        hit["network_requests_observed"] = len(requests_seen)
-        return hit
+        return {
+            "ats": None,
+            "unsupported_platform": unsupported["platform"],
+            "platform_identifier": unsupported["identifier"],
+            "source_url": url,
+            "final_url": final_url,
+            "evidence": evidence,
+            "network_requests_observed": len(requests_seen),
+        }

@@ -1,0 +1,29 @@
+{
+  "_note": "New this session (Session 32, Growth playbook Phase 1). Neither this file nor an ARCHITECTURE.md section describing it existed before this session — the task that introduced it referenced both as if already decided; per ADR-0030's protocol, built from the task's own explicit, unambiguous shape and flagged here rather than blocked on. Only companies POSITIVELY IDENTIFIED as unscannable for a real, confirmed reason go here — a company this project simply found no signal for at all (no recognized ATS, no confirmed block) is NOT added; see PROGRESS.md's Session 32 addendum for that honest 'genuinely unresolved' list, kept out of this file on purpose so it stays a record of confirmed reasons, not a catch-all for unknowns.",
+  "unscannable_companies": [
+    {
+      "name": "Totango",
+      "reason": "Uses Rippling's ATS product (ats.rippling.com / ats.us1.rippling.com observed as real network requests on the live totango.com/careers page) — not one of Workday/SmartRecruiters/iCIMS this session scoped, and not one of this project's 4 supported platforms either. No adapter exists for Rippling.",
+      "platform_if_known": "rippling",
+      "checked_at": "2026-08-20T05:50:10Z"
+    },
+    {
+      "name": "Namogoo",
+      "reason": "The real careers page (namogoo.com/careers) is behind an active bot-protection JS challenge (Cloudflare Turnstile served via abtasty.com) — Playwright's real browser never reaches actual page content, it lands on a 'Just a moment...' challenge page instead. Not a robots.txt block; this is the page itself refusing automated access outright.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-20T05:50:10Z"
+    },
+    {
+      "name": "BlazeMeter",
+      "reason": "This project's httpx client receives HTTP 403 from the site's own WAF on a plain GET of robots.txt itself, which — per ComplianceAgent's documented 401/403-on-robots.txt handling (mirrors urllib.robotparser's own semantics) — resolves to disallow-everything. Confirmed non-transient and client-specific: curl and a real Playwright browser both get a normal 200 with no disallow rules for /careers at all, at the same moment httpx gets 403 — a WAF fingerprinting this project's plain-httpx client specifically, not a genuine robots.txt restriction or a real platform-support gap.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-20T05:50:10Z"
+    },
+    {
+      "name": "Centrical",
+      "reason": "Same confirmed finding as BlazeMeter above: this project's httpx client gets HTTP 403 on robots.txt itself (resolving to disallow-everything per ComplianceAgent's policy), while curl and Playwright's real browser are not blocked.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-20T05:50:10Z"
+    }
+  ]
+}

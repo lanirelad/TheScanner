@@ -10,7 +10,7 @@ Chromium present in every environment that runs this suite.
 import pytest
 
 from compliance.agent import ComplianceAgent, ComplianceError
-from discovery.playwright_probe import PlaywrightProbe, _detect_ats
+from discovery.playwright_probe import PlaywrightProbe, _detect_ats, _detect_unsupported_platform
 
 
 # --- _detect_ats: pure function, same detection targets as the static
@@ -52,6 +52,47 @@ def test_detect_ats_finds_comeet_link_with_slug_and_uid():
 
 def test_detect_ats_returns_none_when_nothing_matches():
     assert _detect_ats("<html><body>just a normal careers page, no ATS mentioned</body></html>") is None
+
+
+# --- _detect_unsupported_platform (Session 32, Growth playbook Phase 1):
+# recognition-only signatures for three platforms this project has no
+# adapter for. Each real-world shape below was empirically verified
+# against one live example before being trusted — see PROGRESS.md's
+# Session 32 addendum for the real URLs checked.
+
+
+def test_detect_unsupported_platform_finds_workday():
+    hit = _detect_unsupported_platform(
+        "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite"
+    )
+    assert hit == {"platform": "workday", "identifier": "nvidia.wd5.myworkdayjobs.com"}
+
+
+def test_detect_unsupported_platform_finds_smartrecruiters():
+    hit = _detect_unsupported_platform("https://careers.smartrecruiters.com/TheNielsenCompany")
+    assert hit == {"platform": "smartrecruiters", "identifier": "TheNielsenCompany"}
+
+
+def test_detect_unsupported_platform_finds_smartrecruiters_api_domain():
+    hit = _detect_unsupported_platform(
+        "https://api.smartrecruiters.com/v1/companies/TheNielsenCompany/postings"
+    )
+    assert hit == {"platform": "smartrecruiters", "identifier": "TheNielsenCompany"}
+
+
+def test_detect_unsupported_platform_finds_icims():
+    hit = _detect_unsupported_platform("https://careers-wcpss.icims.com/jobs/search")
+    assert hit == {"platform": "icims", "identifier": "careers-wcpss.icims.com"}
+
+
+def test_detect_unsupported_platform_returns_none_when_nothing_matches():
+    assert _detect_unsupported_platform("<html>just a normal careers page</html>") is None
+
+
+def test_detect_unsupported_platform_never_fires_on_a_supported_ats_link():
+    # Guards against the two detectors overlapping — a Greenhouse link
+    # must never also register as one of these three.
+    assert _detect_unsupported_platform("https://job-boards.greenhouse.io/acmeco") is None
 
 
 # --- PlaywrightProbe: compliance-gate integration ------------------------
@@ -196,6 +237,70 @@ async def test_probe_detects_ats_from_an_observed_network_request(tmp_path):
     assert hit["slug"] == "acmeco"
     assert hit["evidence"] == "network_request"
     assert hit["network_requests_observed"] == 3
+
+
+async def test_probe_recognizes_workday_from_a_client_side_redirect(tmp_path):
+    # Same shape as test_probe_detects_ats_from_a_client_side_redirect,
+    # but landing on an unsupported platform — probe() must still report
+    # it, just never as `ats` (this project has no Workday adapter).
+    agent = _allowing_agent(tmp_path)
+    page = _FakePage(
+        final_url="https://acme.wd5.myworkdayjobs.com/AcmeExternalCareerSite",
+        html="<html>loading...</html>",
+    )
+    probe = _probe_with_fake_browser(agent, page)
+
+    hit = await probe.probe("https://acme.example/careers")
+
+    assert hit == {
+        "ats": None,
+        "unsupported_platform": "workday",
+        "platform_identifier": "acme.wd5.myworkdayjobs.com",
+        "source_url": "https://acme.example/careers",
+        "final_url": "https://acme.wd5.myworkdayjobs.com/AcmeExternalCareerSite",
+        "evidence": "redirect_target",
+        "network_requests_observed": 0,
+    }
+
+
+async def test_probe_recognizes_smartrecruiters_from_an_observed_network_request(tmp_path):
+    agent = _allowing_agent(tmp_path)
+    page = _FakePage(
+        final_url="https://acme.example/careers",
+        html="<html><body>Loading jobs...</body></html>",
+        observed_request_urls=[
+            "https://acme.example/static/app.js",
+            "https://api.smartrecruiters.com/v1/companies/AcmeCo/postings",
+        ],
+    )
+    probe = _probe_with_fake_browser(agent, page)
+
+    hit = await probe.probe("https://acme.example/careers")
+
+    assert hit["ats"] is None
+    assert hit["unsupported_platform"] == "smartrecruiters"
+    assert hit["platform_identifier"] == "AcmeCo"
+    assert hit["evidence"] == "network_request"
+
+
+async def test_probe_prefers_a_real_ats_hit_over_an_unsupported_platform_match(tmp_path):
+    # If a page somehow shows signals for both (unlikely, but the logic
+    # must be unambiguous about it), the platform this project can
+    # actually act on wins.
+    agent = _allowing_agent(tmp_path)
+    page = _FakePage(
+        final_url="https://acme.example/careers",
+        html=(
+            '<a href="https://jobs.lever.co/acmeco">Apply via Lever</a>'
+            '<a href="https://acme.wd5.myworkdayjobs.com/AcmeExternalCareerSite">Old Workday link</a>'
+        ),
+    )
+    probe = _probe_with_fake_browser(agent, page)
+
+    hit = await probe.probe("https://acme.example/careers")
+
+    assert hit["ats"] == "lever"
+    assert "unsupported_platform" not in hit
 
 
 async def test_probe_returns_none_when_nothing_matches_anywhere(tmp_path):
