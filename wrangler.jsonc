@@ -21,17 +21,21 @@
 // that matched no asset at all — true for all three new API paths, so
 // no extra `run_worker_first` config is needed here.
 //
-// kv_namespaces is NOT added yet — the real "thescanner-subscriptions"
-// namespace doesn't exist in Cloudflare yet as of Session 33 (confirmed
-// with Elad directly, not assumed). Once it's created, add:
-//   "kv_namespaces": [ { "binding": "SUBSCRIPTIONS", "id": "<real 32-char hex namespace ID from the Cloudflare dashboard>" } ]
-// worker/index.js already expects `env.SUBSCRIPTIONS` under exactly that
-// binding name.
+// kv_namespaces (Session 34): the real "thescanner-subscriptions"
+// namespace now exists — binding name confirmed against worker/index.js's
+// own `env.SUBSCRIPTIONS` references before wiring this, not assumed from
+// Session 33's handoff text alone.
 {
   "name": "thescanner",
   "compatibility_date": "2026-08-11",
   "main": "./worker/index.js",
   "assets": {
     "directory": "./pwa"
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "SUBSCRIPTIONS",
+      "id": "20e5d53ef79f4bc89d416cbb8b036b7f"
+    }
+  ]
 }
