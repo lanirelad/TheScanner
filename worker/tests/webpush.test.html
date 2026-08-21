@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>worker/webpush.js tests</title>
+</head>
+<body>
+<!--
+  Real test coverage for worker/webpush.js (Session 33) — VAPID JWT
+  signing (RFC 8292) and aes128gcm Web Push encryption (RFC 8291/8188).
+
+  Same "no Node.js in this environment" constraint and the same fix
+  Session 28 already established for pwa/preferences.js: a plain,
+  dependency-free HTML+JS harness, opened directly in a real browser
+  (or driven headlessly) instead of a Node-based test runner. The
+  Workers runtime and a browser's JS engine both implement the same
+  standard Web Crypto API (`crypto.subtle`) — this file is genuinely
+  exercising the same crypto primitives worker/webpush.js calls in
+  production, not a mock of them.
+
+  What this harness CAN verify, with no live Cloudflare Worker, no real
+  KV namespace, and no real subscribed device: that a VAPID JWT this
+  code signs actually verifies against its own public key, and that a
+  push payload this code encrypts actually decrypts back to the exact
+  original bytes when the *receiving* side of RFC 8291 (written
+  independently below, not imported from webpush.js) is run against it.
+  What it CANNOT verify: that a real push service (FCM, Mozilla's
+  autopush, etc.) accepts and delivers the resulting HTTP request — that
+  needs a real subscribed device, which doesn't exist yet (the PWA
+  doesn't register for push until a future session). See PROGRESS.md's
+  Session 33 addendum for this distinction stated plainly.
+-->
+<h1>worker/webpush.js tests</h1>
+<pre id="results">Running...</pre>
+
+<script type="module">
+"use strict";
+
+import { base64UrlEncode, base64UrlDecode, buildVapidJwt, encryptPushPayload } from "../webpush.js";
+
+const results = [];
+
+async function test(name, fn) {
+  try {
+    await fn();
+    results.push({ name, pass: true });
+  } catch (err) {
+    results.push({ name, pass: false, error: err.message });
+  }
+}
+
+function assertTrue(value, label) {
+  if (value !== true) throw new Error(`${label || "assertTrue"}: expected true, got ${JSON.stringify(value)}`);
+}
+
+function assertEqualBytes(a, b, label) {
+  const aArr = new Uint8Array(a);
+  const bArr = new Uint8Array(b);
+  if (aArr.length !== bArr.length || !aArr.every((v, i) => v === bArr[i])) {
+    throw new Error(`${label || "assertEqualBytes"}: byte arrays differ (lengths ${aArr.length} vs ${bArr.length})`);
+  }
+}
+
+function concatBytes(...parts) {
+  const total = parts.reduce((sum, p) => sum + p.length, 0);
+  const out = new Uint8Array(total);
+  let offset = 0;
+  for (const p of parts) {
+    out.set(p, offset);
+    offset += p.length;
+  }
+  return out;
+}
+
+// Independent HKDF, written separately from webpush.js's own copy on
+// purpose — this simulates the *receiving* browser's side of RFC 8291,
+// which never shares code with the sending side in real life either.
+async function hkdf(salt, ikm, info, lengthBytes) {
+  const key = await crypto.subtle.importKey("raw", ikm, { name: "HKDF" }, false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits({ name: "HKDF", hash: "SHA-256", salt, info }, key, lengthBytes * 8);
+  return new Uint8Array(bits);
+}
+
+/** The receiving side of RFC 8291 — what a real browser's push service
+ * delivery does after decrypting an incoming aes128gcm message. Takes
+ * the receiver's own real key pair (never transmitted) plus the bytes
+ * encryptPushPayload() produced, and returns the recovered plaintext.
+ */
+async function decryptPushPayload(bodyBytes, receiverPrivateKey, receiverPublicKeyBytes, authSecret) {
+  const salt = bodyBytes.slice(0, 16);
+  const keyIdLength = bodyBytes[20];
+  const asPublicKeyBytes = bodyBytes.slice(21, 21 + keyIdLength);
+  const ciphertext = bodyBytes.slice(21 + keyIdLength);
+
+  const asPublicKey = await crypto.subtle.importKey("raw", asPublicKeyBytes, { name: "ECDH", namedCurve: "P-256" }, false, []);
+  const ecdhSecretBits = await crypto.subtle.deriveBits({ name: "ECDH", public: asPublicKey }, receiverPrivateKey, 256);
+  const ecdhSecret = new Uint8Array(ecdhSecretBits);
+
+  const encoder = new TextEncoder();
+  const keyInfo = concatBytes(encoder.encode("WebPush: info\0"), receiverPublicKeyBytes, asPublicKeyBytes);
+  const ikm = await hkdf(authSecret, ecdhSecret, keyInfo, 32);
+
+  const cek = await hkdf(salt, ikm, encoder.encode("Content-Encoding: aes128gcm\0"), 16);
+  const nonce = await hkdf(salt, ikm, encoder.encode("Content-Encoding: nonce\0"), 12);
+
+  const cekKey = await crypto.subtle.importKey("raw", cek, { name: "AES-GCM" }, false, ["decrypt"]);
+  const paddedPlaintext = new Uint8Array(
+    await crypto.subtle.decrypt({ name: "AES-GCM", iv: nonce, tagLength: 128 }, cekKey, ciphertext)
+  );
+  // Strip the single trailing 0x02 record delimiter (RFC 8188 §2) —
+  // encryptPushPayload() never adds extra zero padding after it.
+  return paddedPlaintext.slice(0, paddedPlaintext.length - 1);
+}
+
+// --- base64UrlEncode / base64UrlDecode ---------------------------------
+
+await test("base64UrlEncode/Decode round-trips arbitrary bytes, no padding chars", () => {
+  const original = crypto.getRandomValues(new Uint8Array(37)); // odd length on purpose, forces real base64 padding internally
+  const encoded = base64UrlEncode(original);
+  assertTrue(!encoded.includes("+") && !encoded.includes("/") && !encoded.includes("="), "encoded value must be URL-safe, unpadded");
+  assertEqualBytes(base64UrlDecode(encoded), original, "round-trip");
+});
+
+// --- buildVapidJwt (RFC 8292) -------------------------------------------
+
+await test("buildVapidJwt produces a JWT that verifies against its own public key", async () => {
+  const keyPair = await crypto.subtle.generateKey({ name: "ECDSA", namedCurve: "P-256" }, true, ["sign", "verify"]);
+  const publicRaw = new Uint8Array(await crypto.subtle.exportKey("raw", keyPair.publicKey));
+  const jwkPrivate = await crypto.subtle.exportKey("jwk", keyPair.privateKey);
+
+  const publicB64Url = base64UrlEncode(publicRaw);
+  const privateB64Url = jwkPrivate.d; // already base64url, same encoding buildVapidJwt expects from env.VAPID_PRIVATE_KEY
+
+  const jwt = await buildVapidJwt("https://push.example.com", "mailto:test@example.com", publicB64Url, privateB64Url);
+  const parts = jwt.split(".");
+  assertTrue(parts.length === 3, "JWT must have exactly 3 dot-separated parts");
+
+  const header = JSON.parse(new TextDecoder().decode(base64UrlDecode(parts[0])));
+  assertTrue(header.alg === "ES256" && header.typ === "JWT", "header must be {typ: JWT, alg: ES256}");
+
+  const claims = JSON.parse(new TextDecoder().decode(base64UrlDecode(parts[1])));
+  assertTrue(claims.aud === "https://push.example.com", "aud must match the push service origin passed in");
+  assertTrue(claims.sub === "mailto:test@example.com", "sub must match the subject passed in");
+  assertTrue(claims.exp > Math.floor(Date.now() / 1000), "exp must be in the future");
+
+  // The real point of this test: verify the signature actually validates
+  // against the public key, using Web Crypto's own ECDSA verify — not
+  // just "did buildVapidJwt run without throwing."
+  const signingInput = new TextEncoder().encode(`${parts[0]}.${parts[1]}`);
+  const signature = base64UrlDecode(parts[2]);
+  const verified = await crypto.subtle.verify({ name: "ECDSA", hash: "SHA-256" }, keyPair.publicKey, signature, signingInput);
+  assertTrue(verified, "signature must verify against the same key pair's public key");
+});
+
+await test("buildVapidJwt rejects tampered claims (sanity check on the verify step itself)", async () => {
+  const keyPair = await crypto.subtle.generateKey({ name: "ECDSA", namedCurve: "P-256" }, true, ["sign", "verify"]);
+  const publicRaw = new Uint8Array(await crypto.subtle.exportKey("raw", keyPair.publicKey));
+  const jwkPrivate = await crypto.subtle.exportKey("jwk", keyPair.privateKey);
+
+  const jwt = await buildVapidJwt("https://push.example.com", "mailto:test@example.com", base64UrlEncode(publicRaw), jwkPrivate.d);
+  const [header, claims, signature] = jwt.split(".");
+  const tamperedClaims = base64UrlEncode(new TextEncoder().encode('{"aud":"https://evil.example.com"}'));
+
+  const verified = await crypto.subtle.verify(
+    { name: "ECDSA", hash: "SHA-256" },
+    keyPair.publicKey,
+    base64UrlDecode(signature),
+    new TextEncoder().encode(`${header}.${tamperedClaims}`)
+  );
+  assertTrue(verified === false, "a signature over different claims must not verify");
+});
+
+// --- encryptPushPayload (RFC 8291 + RFC 8188 aes128gcm) -----------------
+
+await test("encryptPushPayload round-trips through an independent RFC 8291 receiver implementation", async () => {
+  // Simulates the *browser's* half of a real subscription: its own real
+  // ECDH key pair (never transmitted) plus a random 16-byte auth secret.
+  const receiverKeyPair = await crypto.subtle.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
+  const receiverPublicKeyBytes = new Uint8Array(await crypto.subtle.exportKey("raw", receiverKeyPair.publicKey));
+  const authSecret = crypto.getRandomValues(new Uint8Array(16));
+
+  const plaintext = new TextEncoder().encode(JSON.stringify({ title: "TheScanner", body: "3 new matches" }));
+
+  const body = await encryptPushPayload(plaintext, base64UrlEncode(receiverPublicKeyBytes), base64UrlEncode(authSecret));
+
+  assertTrue(body.length > 16 + 4 + 1 + 65 + 16, "body must be at least header + a GCM tag long");
+
+  const recovered = await decryptPushPayload(body, receiverKeyPair.privateKey, receiverPublicKeyBytes, authSecret);
+  assertEqualBytes(recovered, plaintext, "decrypted plaintext must exactly match the original payload bytes");
+});
+
+await test("encryptPushPayload produces a different salt/ciphertext on every call (no nonce reuse)", async () => {
+  const receiverKeyPair = await crypto.subtle.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
+  const receiverPublicKeyBytes = new Uint8Array(await crypto.subtle.exportKey("raw", receiverKeyPair.publicKey));
+  const authSecret = crypto.getRandomValues(new Uint8Array(16));
+  const plaintext = new TextEncoder().encode("same payload both times");
+
+  const bodyA = await encryptPushPayload(plaintext, base64UrlEncode(receiverPublicKeyBytes), base64UrlEncode(authSecret));
+  const bodyB = await encryptPushPayload(plaintext, base64UrlEncode(receiverPublicKeyBytes), base64UrlEncode(authSecret));
+
+  const saltA = Array.from(bodyA.slice(0, 16)).join(",");
+  const saltB = Array.from(bodyB.slice(0, 16)).join(",");
+  assertTrue(saltA !== saltB, "two encryptions of the same payload must use different random salts/ephemeral keys");
+});
+
+// --- report --------------------------------------------------------------
+
+const passed = results.filter((r) => r.pass).length;
+const summaryLines = results.map((r) => (r.pass ? `PASS  ${r.name}` : `FAIL  ${r.name}\n      ${r.error}`));
+const summary = `${passed}/${results.length} passed\n\n${summaryLines.join("\n")}`;
+document.getElementById("results").textContent = summary;
+console.log(summary);
+window.__TEST_RESULTS__ = results;
+</script>
+</body>
+</html>

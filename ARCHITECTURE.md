@@ -1007,6 +1007,84 @@ GitHub Actions scan finds new matches
 No third-party messaging account (Telegram, etc.) is required — Web Push is
 built into Android/Chrome and is free.
 
+**Backend implemented (Session 33) — the Worker side only, no PWA
+changes yet.** `thescanner`'s Worker went from assets-only to a real
+`main` script (`worker/index.js`) coexisting with the static `pwa/`
+assets. Confirmed against Cloudflare's current docs, not assumed: the
+`assets.run_worker_first` default (`false`) already means a static file
+is served first whenever one matches, and the Worker's `fetch` handler
+only ever runs for a request matching no asset at all — true by
+construction for every route below, since none of them are real files
+under `pwa/`. No extra routing config was needed.
+
+Three routes, all `POST`-only:
+
+- **`/api/push-subscribe`** — stores a browser's real `PushSubscription`
+  object (`endpoint`, `keys.p256dh`, `keys.auth`) in the
+  `thescanner-subscriptions` KV namespace, keyed as `sub:<sha256-hex of
+  endpoint>`. Hashing the endpoint rather than using it directly as the
+  KV key caps the key at a fixed short length regardless of a given push
+  service's real endpoint URL length, and avoids the endpoint URL itself
+  (which the subscriber's push-service identity can be inferred from)
+  sitting as a plainly-readable KV key name.
+- **`/api/trigger-scan`** — calls GitHub's real
+  `POST /repos/{owner}/{repo}/actions/workflows/scan.yml/dispatches`
+  (verified against GitHub's own docs and a live unauthenticated probe
+  this session, including a real, dated 2026-02-19 GitHub changelog
+  entry confirming the endpoint's actual current response shape: `204
+  No Content` by default, or `200` with `run_url`/`html_url` details
+  when `return_run_details: true` is passed in the body — the Worker
+  passes that flag so a future PWA session can link straight to the
+  real run). Protected by a shared-secret header (`X-Trigger-Secret`,
+  checked against the `TRIGGER_SECRET` Cloudflare secret) — deliberately
+  simple, matching this being a personal single-owner app rather than
+  something needing real multi-user auth.
+- **`/api/notify`** — encrypts a JSON payload per RFC 8291 ("Message
+  Encryption for Web Push") + RFC 8188's `aes128gcm` content encoding,
+  signs a VAPID JWT per RFC 8292, and POSTs the result to every stored
+  subscription's real endpoint. A subscription whose push service
+  responds `404`/`410` (the standard "this subscription is gone") is
+  deleted from KV on the spot, not left to fail forever on every future
+  call. This is the endpoint the scan workflow will call after a real
+  scan finds new matches — wiring that specific caller is explicitly a
+  separate future session, not built now.
+
+**Hand-rolled Web Push crypto, not the `web-push` npm package
+(`worker/webpush.js`):** this repo has no build/bundle step of its own,
+and Cloudflare's Git-integration deploy (ADR-0029a) running on
+Cloudflare's own infrastructure was never verified this session to
+actually run `npm install` for a Workers-with-static-assets project —
+introducing a `package.json` dependency this session couldn't test
+end-to-end felt riskier than using what's already guaranteed to exist:
+`crypto.subtle` (Web Crypto API), built into the Workers runtime with no
+install step, the same standard API every browser also implements.
+
+**Real verification performed this session, and what's still
+unverified:** neither the GitHub PAT nor the `thescanner-subscriptions`
+KV namespace exists yet (confirmed directly with Elad, not assumed) —
+so nothing about the real GitHub dispatch call or real KV storage could
+be tested end-to-end. What *could* be verified, and was: `worker/
+webpush.js`'s VAPID JWT signing and RFC 8291 encryption logic, in a real
+browser's `crypto.subtle` (the same WebCrypto standard the Workers
+runtime implements) — a dependency-free test harness
+(`worker/tests/webpush.test.html`, same pattern as `pwa/tests/
+preferences.test.html`) independently re-implements the *receiving*
+side of RFC 8291 and confirms a message this code encrypts decrypts
+back to the exact original bytes, and that a JWT this code signs
+verifies against its own public key (and correctly fails to verify
+against tampered claims). The real, generated VAPID key pair (not just
+a random test one) was separately confirmed to work with this exact
+signing code. `worker/index.js`'s routing — 404 for unknown paths, 405
+for non-POST, clean diagnosable 500s when a KV/secret isn't configured
+yet, real request validation, and (with fake KV/fetch standing in for
+Cloudflare's real bindings) the full subscribe → notify → sent/removed/
+failed accounting path — was verified the same way. What remains
+genuinely unverified: a live Cloudflare deploy of this Worker, a real
+KV namespace, a real GitHub PAT actually dispatching `scan.yml`, and a
+real subscribed device actually receiving a push notification — none of
+that is possible until Elad finishes the two setup steps and a future
+session adds the PWA's own subscribe/trigger-scan UI.
+
 ## 12. Environment hygiene
 
 (To be filled in as friction is discovered — e.g. Python version, OS quirks,

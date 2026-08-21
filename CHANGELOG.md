@@ -1143,3 +1143,60 @@
   new real DevOps-category matches from the newly added companies.
 - No adapter built for any of the three recognized-but-unsupported
   platforms, per the task's explicit scope.
+
+## 2026-08-20 — Session 33: Cloudflare Worker backend - push subscriptions + manual trigger
+- Checked directly (not assumed) whether Elad's two setup prerequisites
+  were done: neither the fine-grained GitHub PAT nor the
+  thescanner-subscriptions KV namespace exists yet. Built everything
+  that doesn't depend on either, stopped cleanly at the points that do.
+- wrangler.jsonc gained a real main field (worker/index.js) alongside
+  the existing static assets.directory - confirmed via Cloudflare's
+  current docs that assets.run_worker_first defaults to false, so the
+  existing PWA keeps being served exactly as before and the Worker only
+  runs for the three new API paths, none of which collide with a real
+  static file. kv_namespaces deliberately left out until the real
+  namespace ID exists; the exact entry to add is documented in a
+  wrangler.jsonc comment.
+- Generated a real VAPID key pair locally (deterministic P-256 ECDSA,
+  no live API needed). Implemented all three routes
+  (/api/push-subscribe, /api/trigger-scan, /api/notify) plus a
+  hand-rolled Web Push crypto module (worker/webpush.js - RFC 8291/8188
+  aes128gcm encryption, RFC 8292 VAPID signing) on native crypto.subtle
+  rather than the web-push npm package, since this repo has no verified
+  build step for Cloudflare's Git-integration deploy to run against.
+- Resolved a real discrepancy between two sources on GitHub's
+  workflow_dispatch endpoint's success response by checking a dated,
+  authoritative GitHub changelog entry directly: the true default is
+  still 204 No Content, not the 200-with-run-details a generic doc
+  summary claimed - opted into the newer return_run_details:true
+  behavior explicitly rather than assuming either behavior blindly.
+- /api/trigger-scan protected by a shared-secret header checked against
+  a real, randomly-generated TRIGGER_SECRET value (Python's CSPRNG) -
+  deliberately simple, matching the task's own "don't over-engineer
+  auth for a personal single-owner app" instruction.
+- Added defensive guards so a route missing its KV binding or a secret
+  returns a clean, diagnosable JSON 500 instead of crashing - concretely
+  relevant this session since both real prerequisites are still
+  missing.
+- Real verification, real limits disclosed: no live Worker/KV
+  namespace/PAT/subscribed device exist yet, so the GitHub dispatch call
+  and KV storage were never tested end-to-end - not possible this
+  session. What was verified, in a real browser's crypto.subtle (the
+  same WebCrypto standard the Workers runtime implements): a new
+  dependency-free test harness (worker/tests/webpush.test.html, 5/5
+  passing, same pattern as pwa/tests/preferences.test.html)
+  independently re-implements RFC 8291's receiving side and confirms a
+  round-trip decrypt recovers the exact original bytes, no nonce reuse
+  across calls, and a signed VAPID JWT verifies against its own public
+  key (and correctly fails against tampered claims) - including with
+  the real generated key pair, not just a random test one. Routing
+  logic (404/405/500-guards/400-validation/real SHA-256 KV keying/401
+  on a wrong secret/the full notify sent-removed-failed accounting with
+  three simulated push-service outcomes) verified live with fake
+  KV/fetch standing in for Cloudflare's real bindings.
+- Docs updated: ARCHITECTURE.md SS11 (real implementation replacing the
+  "not built yet" sketch), DEPLOY.md (fully rewritten - was still
+  describing the superseded GitHub Pages plan).
+- No PWA frontend changes this session, per the task's explicit scope.
+- Test suite: 140/140 Python tests passing, unchanged. 5/5 new
+  worker/tests/webpush.test.html assertions passing.
