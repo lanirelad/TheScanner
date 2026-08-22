@@ -21,10 +21,18 @@
 // that matched no asset at all — true for all three new API paths, so
 // no extra `run_worker_first` config is needed here.
 //
-// kv_namespaces (Session 34): the real "thescanner-subscriptions"
-// namespace now exists — binding name confirmed against worker/index.js's
-// own `env.SUBSCRIPTIONS` references before wiring this, not assumed from
-// Session 33's handoff text alone.
+// kv_namespaces (Session 34): binding name confirmed against
+// worker/index.js's own `env.SUBSCRIPTIONS` references before wiring
+// this, not assumed from Session 33's handoff text alone.
+//
+// This is the SECOND real namespace ID this field has held — the first
+// (20e5d53ef79f4bc89d416cbb8b036b7f) was deleted from the Cloudflare
+// account partway through this same session (while troubleshooting an
+// unrelated secret-save issue), which broke every subsequent Worker
+// config save until a new namespace was created and this ID updated to
+// match. If this ever needs replacing again: update the id below, then
+// commit/push — nothing else in this repo references the namespace ID
+// directly.
 {
   "name": "thescanner",
   "compatibility_date": "2026-08-11",
@@ -35,7 +43,7 @@
   "kv_namespaces": [
     {
       "binding": "SUBSCRIPTIONS",
-      "id": "20e5d53ef79f4bc89d416cbb8b036b7f"
+      "id": "4a0c469887b54578be3c5e352f2f05ac"
     }
   ]
 }
