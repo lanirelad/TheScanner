@@ -1200,3 +1200,30 @@
 - No PWA frontend changes this session, per the task's explicit scope.
 - Test suite: 140/140 Python tests passing, unchanged. 5/5 new
   worker/tests/webpush.test.html assertions passing.
+
+## 2026-08-20 — Session 34: wire the real KV namespace + verify the Worker end to end
+- Added the real kv_namespaces binding to wrangler.jsonc (binding name
+  SUBSCRIPTIONS, confirmed against worker/index.js). Asked Elad to
+  confirm all four secrets directly rather than trust the task text.
+- Real incident, resolved live: TRIGGER_SECRET and the VAPID keys
+  briefly behaved as unset despite being confirmed set (resolved after
+  a re-check/short delay); GITHUB_PAT then kept failing even after
+  being confirmed correctly listed - diagnosis surfaced that the real
+  KV namespace had been deleted from the Cloudflare account mid-session
+  (while troubleshooting the secret, not something asked for), which
+  was blocking every subsequent Worker config save. Elad created a
+  replacement namespace; wrangler.jsonc was updated to the new real ID
+  and pushed, which cleared the error and let GITHUB_PAT save
+  successfully.
+- Real end-to-end confirmation - the actual point of this session: a
+  live curl to /api/trigger-scan returned a real workflow_run_id and
+  html_url, and Elad independently confirmed via the GitHub Actions tab
+  that the run genuinely exists. First real, live proof the Worker ->
+  GitHub API -> workflow_dispatch path actually works.
+- Real KV read/write confirmed against the replacement namespace: a
+  synthetic push-subscribe call's stored key was independently verified
+  to be exactly sha256(the test endpoint used), retrieved correctly by
+  a follow-up /api/notify call. Two harmless synthetic test entries
+  remain in the live namespace - safe to ignore or delete manually.
+- Files changed: wrangler.jsonc only (two commits).
+- Test suite: 140/140 Python tests passing, unchanged.

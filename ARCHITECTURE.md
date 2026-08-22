@@ -1078,12 +1078,32 @@ signing code. `worker/index.js`'s routing — 404 for unknown paths, 405
 for non-POST, clean diagnosable 500s when a KV/secret isn't configured
 yet, real request validation, and (with fake KV/fetch standing in for
 Cloudflare's real bindings) the full subscribe → notify → sent/removed/
-failed accounting path — was verified the same way. What remains
-genuinely unverified: a live Cloudflare deploy of this Worker, a real
-KV namespace, a real GitHub PAT actually dispatching `scan.yml`, and a
-real subscribed device actually receiving a push notification — none of
-that is possible until Elad finishes the two setup steps and a future
-session adds the PWA's own subscribe/trigger-scan UI.
+failed accounting path — was verified the same way.
+
+**Everything above is now live-verified for real (Session 34), except
+one piece.** Elad created the real KV namespace and set all four
+secrets; `wrangler.jsonc` got the real `kv_namespaces` binding. A real
+`curl -X POST -H "X-Trigger-Secret: ..." .../api/trigger-scan` against
+the live deployed Worker returned a real `workflow_run_id`/`html_url`,
+and Elad independently confirmed on GitHub's own Actions tab that the
+run genuinely exists — the first live proof the Worker → GitHub API →
+`workflow_dispatch` path actually works end to end, not just "the code
+should work." A real `/api/push-subscribe` call followed by
+`/api/notify` confirmed KV read/write end to end too (the stored key
+was independently verified to be exactly `sha256(endpoint)` for the
+test subscription used). Real incident along the way, worth recording:
+the KV namespace got deleted from the Cloudflare account mid-session
+during unrelated secret troubleshooting, which silently blocked every
+subsequent Worker config save (including the `GITHUB_PAT` secret) until
+diagnosed and a replacement namespace's ID was wired in.
+
+The one thing still genuinely unverified: a real subscribed device
+actually receiving a push notification. `/api/notify` correctly
+processes real KV entries and correctly rejects the synthetic (fake)
+subscription keys used in this session's KV test as invalid crypto
+material — but no real browser has ever subscribed yet. That needs a
+future session's PWA-side subscribe UI before it can be tested for
+real.
 
 ## 12. Environment hygiene
 

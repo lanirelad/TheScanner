@@ -1230,3 +1230,73 @@ None — all decisions needed to start building are now in place.
 - Test suite: 140/140 Python tests passing, unchanged (no Python files
   touched this session). 5/5 new `worker/tests/webpush.test.html`
   assertions passing.
+
+## Addendum — Session 34 executed: wire the real KV namespace + verify the Worker end to end (2026-08-20)
+- Elad's account-side setup this session depended on: KV namespace
+  `thescanner-subscriptions` (real ID `20e5d53ef79f4bc89d416cbb8b036b7f`)
+  created, and all four secrets (`VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`,
+  `TRIGGER_SECRET`, `GITHUB_PAT`) reportedly set. Added the real
+  `kv_namespaces` binding to `wrangler.jsonc` (binding name `SUBSCRIPTIONS`,
+  confirmed against `worker/index.js`'s own references, not assumed).
+  Asked Elad to confirm the four secrets directly rather than trust the
+  task text — he confirmed all four.
+- **Real, live discrepancy found immediately, not assumed away:**
+  despite that confirmation, the first live tests showed `TRIGGER_SECRET`
+  and the VAPID keys both behaving as unset. Surfaced this to Elad
+  rather than guessing; he re-checked and both started working shortly
+  after (real propagation/save timing, not a config error on either
+  side, as far as either of us could tell).
+- **Real incident, mid-session:** `GITHUB_PAT` kept reporting as unset
+  even after Elad confirmed it was listed correctly in the dashboard
+  (right name, `secret_text` type, alongside the three working secrets).
+  Diagnosed step by step: first suspected a blank value and asked Elad
+  to delete-and-re-add the *secret* — while trying to re-save it, the
+  Cloudflare dashboard surfaced "KV namespace
+  '20e5d53ef79f4bc89d416cbb8b036b7f' not found," meaning the real
+  namespace had been deleted from the account. Elad had deleted it
+  himself while troubleshooting — a genuine miscommunication worth
+  recording plainly: it was suggested he delete-and-re-add the
+  *GITHUB_PAT secret*, not the KV namespace, and the confusion likely
+  came from that error banner appearing mid-troubleshooting and reading
+  as something to "clean up." Once flagged, resolved cleanly: Elad
+  created a new namespace, gave its real ID
+  (`4a0c469887b54578be3c5e352f2f05ac`), `wrangler.jsonc` was updated to
+  point at it (with an explicit note in-file that this is the *second*
+  real ID this field has held, and why), committed/pushed, and the
+  namespace-not-found error was gone — the `GITHUB_PAT` secret saved
+  successfully right after.
+- **Real end-to-end confirmation, the actual point of this session:**
+  ```
+  curl -X POST -H "X-Trigger-Secret: <redacted>" https://thescanner.lanirelad.workers.dev/api/trigger-scan
+  ```
+  returned `{"ok":true,"message":"Scan triggered.","details":{"workflow_run_id":32595950850,"run_url":"...","html_url":"https://github.com/lanirelad/TheScanner/actions/runs/32595950850"}}`
+  with `HTTP 200` — and Elad independently confirmed via the real GitHub
+  Actions tab that this run genuinely exists and started. This is the
+  first real, live proof that the Worker → GitHub API → workflow_dispatch
+  path actually works, not just "the code should work."
+- **Real KV read/write confirmed twice** — once against the original
+  namespace (before it was deleted, so no longer valid evidence) and
+  again against the replacement: `POST /api/push-subscribe` with a
+  synthetic-but-correctly-shaped `PushSubscription` object returned
+  `{"ok":true}`, and a follow-up `POST /api/notify` call listed and
+  retrieved exactly that entry back — its KV key
+  (`sub:fd0489006d2fbf3381f0dca098243e04cf2a74422ee9f02619d3ccfc6f81124d`)
+  was independently verified in this session to be exactly
+  `sha256("https://fcm.googleapis.com/fcm/send/session34-recheck-token")`,
+  the endpoint used in the test. `/api/notify`'s reported failure
+  (`"Failed to import raw EC key data: Invalid point encoding"`) is the
+  *correct*, expected outcome for that call — the test used fake
+  `p256dh`/`auth` values, not a real browser subscription, so the
+  encryption step correctly rejects them as invalid crypto material
+  rather than silently accepting garbage. This confirms KV read/write
+  end to end, exactly what this session's task asked for — real push
+  delivery to a real device is still untested, and needs the PWA's own
+  subscribe UI from a future session.
+- Two harmless synthetic test entries are now sitting in the real live
+  KV namespace (from this session's push-subscribe verification calls).
+  They'll only ever surface as a harmless "failed" entry if `/api/notify`
+  is ever called for real before they're cleaned up — safe to ignore, or
+  delete manually via the Cloudflare dashboard's KV browser.
+- Files changed: `wrangler.jsonc` only (two commits: the real binding
+  added, then the namespace ID corrected after the mid-session deletion).
+- Test suite: 140/140 Python tests passing, unchanged.
