@@ -62,6 +62,43 @@ DEFAULT_ROBOTS_CACHE_PATH = Path(__file__).resolve().parent.parent / "robots_cac
 # will, since robots.txt content doesn't change on that timescale.
 DEFAULT_BLOCKED_RECHECK_DELAY_SECONDS = 5
 
+# Session 36: httpx.AsyncClient() with no `limits=` argument silently
+# inherits the library's own default (Limits(max_connections=100,
+# max_keepalive_connections=20) — confirmed by reading
+# httpx._config.DEFAULT_LIMITS directly, not assumed from docs), which
+# Session 35 flagged as an unexamined implicit ceiling rather than a
+# deliberate one. Real constraints behind the chosen values below:
+# - GitHub Actions' free-tier "ubuntu-latest" runner (where this project's
+#   only production caller, .github/workflows/scan.yml, actually runs) is
+#   a 2-core/~7GB shared VM (confirmed via GitHub's own current runner
+#   spec docs) — a real but not severely limiting constraint for
+#   connection *count* specifically: each open httpx/TLS connection's
+#   memory footprint is a few KB, not MB, so even several hundred
+#   concurrent connections is nowhere near that 7GB budget.
+# - Real domain concentration today (Session 36): companies.json's 76
+#   companies resolve to only 6 distinct real fetch domains (Greenhouse/
+#   EU-Greenhouse/Lever/EU-Lever/Comeet/one custom domain) — same-domain
+#   fetches are already serialized by ComplianceAgent's own per-domain
+#   lock regardless of this limit, so today's real simultaneous-
+#   connection count is bounded by domain count (6), nowhere near even
+#   httpx's own 100-connection default.
+# - ADR-0021's own stated target is "potentially thousands" of
+#   independent per-domain lanes once custom-domain companies make up a
+#   meaningful share of the ~8,000-9,000-company full universe — the
+#   httpx default of 100 would start silently throttling well before
+#   that, at a scale nobody would notice until a scan mysteriously
+#   slowed down. 200 is chosen as a deliberate middle value: double
+#   httpx's own default, comfortably covers the ~200-Greenhouse-company
+#   near-term scale target already discussed elsewhere in this project's
+#   docs even in the (unlikely, since same-domain fetches share one
+#   lane) worst case of every one of them being a genuinely distinct
+#   domain, and stays modest enough that a 2-core/7GB shared runner is
+#   never a real concern. Not "as high as possible" — a deliberate,
+#   reasoned number, revisit if `companies.json` grows enough that
+#   custom-domain companies become a large share of it.
+DEFAULT_MAX_CONNECTIONS = 200
+DEFAULT_MAX_KEEPALIVE_CONNECTIONS = 20
+
 
 class ComplianceError(Exception):
     """Raised when a fetch is blocked by robots.txt or another compliance rule."""
@@ -84,6 +121,8 @@ class ComplianceAgent:
         timeout_seconds=DEFAULT_TIMEOUT_SECONDS,
         robots_cache_path=DEFAULT_ROBOTS_CACHE_PATH,
         blocked_recheck_delay_seconds=DEFAULT_BLOCKED_RECHECK_DELAY_SECONDS,
+        max_connections=DEFAULT_MAX_CONNECTIONS,
+        max_keepalive_connections=DEFAULT_MAX_KEEPALIVE_CONNECTIONS,
     ):
         self.min_delay_seconds = min_delay_seconds
         self.user_agent = user_agent
@@ -101,7 +140,19 @@ class ComplianceAgent:
         # why one lock is enough even though it's held across a network
         # call.
         self._robots_cache_lock = asyncio.Lock()
-        self._client = httpx.AsyncClient()
+        # Session 36: a deliberate, documented connection limit (see
+        # DEFAULT_MAX_CONNECTIONS above) rather than httpx's own implicit
+        # default — overridable per-instance the same way every other
+        # tunable here is, so a test can assert the real configured value
+        # without needing to inspect httpx's own internals to do it.
+        self.max_connections = max_connections
+        self.max_keepalive_connections = max_keepalive_connections
+        self._client = httpx.AsyncClient(
+            limits=httpx.Limits(
+                max_connections=max_connections,
+                max_keepalive_connections=max_keepalive_connections,
+            )
+        )
 
     async def aclose(self):
         await self._client.aclose()

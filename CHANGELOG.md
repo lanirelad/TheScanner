@@ -1273,3 +1273,38 @@
   companies.json: 76/76 attempted and succeeded, 0 failures, 4
   immediate new real matches (2 Coralogix, 2 Upwind).
 - Test suite: 143/143 passing (was 140: 3 new for CM_WIDGET_UID_RE).
+
+## 2026-08-23 — Session 36: Comeet domain check + connection limit + CustomAdapter CSS strategy
+- Confirmed via code (adapters/comeet.py's fixed CAREER_PAGE_URL_TEMPLATE)
+  and live timing that all 26 Comeet companies - including the 5
+  white-labeled/embedded ones Session 35 found - share one real pacing
+  lane at scan time (www.comeet.com directly), regardless of what any
+  company's own site proxies. ~39s of pure pacing floor at today's
+  count, same order of magnitude as Greenhouse's own domain
+  concentration.
+- Set a deliberate httpx connection limit (200 max connections, 20 max
+  keepalive - both configurable) replacing the library's unexamined
+  100/20 default, reasoned from GitHub Actions' real runner specs and
+  today's real 6-domain count. New tests inspect a real (non-fake)
+  ComplianceAgent's actual httpx connection-pool internals to confirm
+  the value is genuinely applied, not just documented.
+- Built CustomAdapter's second real extraction strategy (css_selectors,
+  adapters/custom.py) alongside the original json_blob one from Session
+  6 - custom_selectors.json now requires an explicit "strategy" field.
+  Confirmed against a plain httpx GET (not a browser snapshot) for all
+  3 real companies flagged in Session 35 (ForSight Robotics, AIR,
+  Quantum Art) before writing selectors - all genuinely server-rendered
+  Webflow CMS collections. Handled two real per-company quirks
+  honestly: a genuinely empty CMS field (Quantum Art's location) comes
+  through as null, not empty string; a company with zero real per-job
+  links at all (AIR's listings open a JS modal) falls back to the
+  career page URL rather than a fabricated one.
+- Moved ForSight Robotics, AIR, and Quantum Art from
+  companies_unscannable.json back into companies.json (76 -> 79) - a
+  real capability gained, not a new discovery. companies_unscannable.json:
+  10 -> 7.
+- Live python run.py smoke test: 79/79 attempted and succeeded, 0
+  failures, including a real ForSight Robotics match flowing through
+  the full production pipeline end to end.
+- Test suite: 152/152 passing (was 143: 2 new for the connection-limit
+  verification, 7 new for the css_selectors strategy).

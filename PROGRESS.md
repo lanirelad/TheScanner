@@ -1401,3 +1401,97 @@ None — all decisions needed to start building are now in place.
   immediate new real matches from the newly added companies (2 from
   Coralogix, 2 from Upwind).
 - Test suite: 143/143 passing (was 140: 3 new for `CM_WIDGET_UID_RE`).
+
+## Addendum — Session 36 executed: Comeet domain check + connection limit + CustomAdapter CSS strategy (2026-08-23)
+- **Part 1 — Comeet domain-sharing, checked via code first, then live
+  timing:** `adapters/comeet.py`'s `CAREER_PAGE_URL_TEMPLATE =
+  "https://www.comeet.com/jobs/{slug}/{uid}"` is a fixed constant with
+  no branching — confirmed by reading the code, not assumed from the
+  white-labeling pattern Session 35 found. Every one of the 26 Comeet
+  companies in `companies.json`, including all 5 white-labeled/embedded
+  ones (Coralogix, Guesty, Upwind, Port, Kela Technologies), fetches
+  `www.comeet.com` directly at scan time regardless of what their own
+  marketing site proxies. Verified live, not just from the code: fetched
+  4 real Comeet companies in sequence, logged each one's actual real
+  fetch domain (all `www.comeet.com`) and real elapsed time — 0.83s for
+  the first, ~2.0-2.2s for each subsequent one, matching the real
+  ~1.5s per-domain rate-limit wait plus response time. Real, disclosed
+  implication: 26 Comeet companies cost roughly 26 × 1.5s ≈ 39s of pure
+  pacing floor today — the same kind of domain-concentration effect
+  already documented for Greenhouse, at a similar order of magnitude.
+- **Part 2 — deliberate httpx connection limit:** `ComplianceAgent`
+  now constructs `httpx.AsyncClient(limits=httpx.Limits(
+  max_connections=200, max_keepalive_connections=20))`, both values
+  overridable via new constructor parameters, replacing the previously
+  unexamined library default (100/20). Reasoning grounded in real
+  numbers, not a round guess: GitHub Actions' real `ubuntu-latest`
+  runner spec (2-core/~7GB, confirmed via GitHub's own current docs) —
+  connection-count memory overhead is genuinely small per-connection,
+  so this isn't a real resource risk at 200; today's real domain count
+  is only 6 across all 79 companies (same-domain fetches already
+  serialize via the per-domain lock regardless of this limit); and
+  ADR-0021's own "potentially thousands of lanes" target, which the old
+  100-connection default would start silently throttling well before
+  reaching. Verified as actually applied, not just documented in a
+  comment — new tests in `tests/test_compliance_agent.py` construct a
+  *real* `ComplianceAgent` (not the fake HTTP client every other test in
+  that file uses) and inspect the real httpx client's own connection
+  pool internals (`agent._client._transport._pool._max_connections`/
+  `_max_keepalive_connections`) — confirmed directly against the
+  installed httpx version first that this is genuinely the only way to
+  read a configured `Limits` back out, since httpx has no public API
+  for it.
+- **Part 3 — `CustomAdapter`'s second real strategy:** built
+  `css_selectors` (`adapters/custom.py`) alongside the original
+  `json_blob` strategy (Session 6) — `custom_selectors.json` now
+  requires an explicit `"strategy"` field rather than leaving it
+  implicit (monday.com's own entry updated to say `"json_blob"`
+  explicitly). Confirmed against a **plain `httpx` GET** for all three
+  target companies (ForSight Robotics, AIR, Quantum Art) before writing
+  any selectors — all three are genuinely server-rendered Webflow CMS
+  collections, no headless browser needed, same reasoning §1's Session
+  6 note already established for the JSON-blob strategy. Real,
+  per-company quirks the schema had to accommodate rather than idealize
+  away: Quantum Art's `.career-location` element is present on every
+  job but genuinely text-empty (Webflow's own `w-dyn-bind-empty` marker
+  for an unbound CMS field) — `_select_text` returns `None`, not `""`,
+  same "safe empty field" philosophy `_get_path` already had. AIR's
+  real listings have zero `<a>` tags inside any job item at all
+  (clicking one opens a JS `data-popup` modal, not a link) —
+  `url_selector` is optional, and every position's `absolute_url` falls
+  back to the company's own `career_page_url` when there's no real
+  per-job link, an honest answer rather than a fabricated one.
+  `beautifulsoup4` added to `requirements.txt` (its own bundled
+  `soupsieve` dependency is what actually powers CSS `.select()` — no
+  `lxml` needed, confirmed `html.parser` alone is sufficient for all
+  three real fixtures).
+- Real verification, not synthetic-only: fetched all three companies
+  live via `CustomAdapter` + the real `ComplianceAgent`, confirmed real
+  job counts (ForSight Robotics: 8,
+  AIR: 6, Quantum Art: 20) and one real role-filter match (ForSight
+  Robotics' "Technical Support," Caesarea, Israel). Real HTML fixtures
+  captured from that same plain `httpx` GET (not a browser snapshot) —
+  `tests/fixtures/{forsight,air,quantumart}_stage1_raw.html` — back 7
+  new fixture-based tests plus 2 synthetic-HTML tests for the scoping/
+  empty-selector edge cases the real fixtures didn't happen to exercise
+  on their own.
+- Moved ForSight Robotics, AIR, and Quantum Art from
+  `companies_unscannable.json` back into `companies.json` (76 -> 79) —
+  not new discoveries, a real capability this project's own tooling
+  gained. `companies_unscannable.json`'s own `_note` updated to explain
+  why: its design is for reasons true independent of this project's
+  code (an unsupported platform, a real network block), and a gap in
+  this project's own tooling is fixable — once fixed, the entry stops
+  being accurate and doesn't belong there anymore. `companies_unscannable.json`:
+  10 -> 7 entries.
+- Live `python run.py` smoke test against the updated 79-company
+  `companies.json`: 79/79 attempted and succeeded, 0 failures, including
+  the real ForSight Robotics "Technical Support" match flowing all the
+  way through the real production pipeline end to end (not just the
+  isolated adapter call).
+- Docs updated: ARCHITECTURE.md §4a (Comeet domain-sharing, the
+  connection-limit reasoning, `CustomAdapter`'s second strategy and its
+  real quirks), PLAN.md (growth-playbook "Phase 3"), this file,
+  CHANGELOG.md.
+- Test suite: 152/152 passing (was 143: 2 new for the connection-limit
+  verification, 7 new for the `css_selectors` strategy).

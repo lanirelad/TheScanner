@@ -304,19 +304,47 @@ Sourcing strategy, largest-yield first:
    lower-priority "custom scraper" bucket, handled by `CustomAdapter`
    (Session 6) — config-driven via `custom_selectors.json`, not a bespoke
    Python subclass per company. Onboarding a new company here means adding
-   a config entry (career page URL, which `<script id="...">` tag to parse
-   as JSON, which key holds the positions list, field name mapping) *only
-   if it shares a rendering pattern `CustomAdapter` already knows how to
-   read* (confirmed for monday.com: server-rendered HTML with a JSON data-
-   hydration blob, no JS execution needed — see §1's Session 6 note). A
-   company using a genuinely different pattern, or one that truly requires
-   executing JavaScript, needs either a new extraction strategy added to
-   `CustomAdapter` or a real headless-browser decision — still real
-   per-company effort in those cases, just less of it than a full bespoke
+   a config entry *for whichever of `CustomAdapter`'s two real strategies
+   the company's own rendering pattern actually matches* — `json_blob`
+   (a `<script id="...">` tag holding a JSON data-hydration blob, career
+   page URL, which key holds the positions list, field name mapping;
+   confirmed for monday.com — server-rendered HTML, no JS execution
+   needed, see §1's Session 6 note) or `css_selectors` (Session 36: a
+   plain, already-server-rendered HTML element per job with no JSON
+   blob at all — an `item_selector` for each job's container, then
+   `field_selectors` for title/department/location resolved *relative
+   to that one item*, plus an optional `url_selector`; confirmed for
+   ForSight Robotics, AIR, and Quantum Art, all three real Webflow CMS
+   collections). A company using a genuinely different pattern from
+   either of these two, or one that truly requires executing
+   JavaScript to reveal its data at all, still needs a real third
+   strategy or a headless-browser decision — real per-company
+   engineering in those cases, just less of it than a full bespoke
    adapter class every time.
 
 The Compliance Agent (§6) still gates every fetch regardless of list size —
 scale changes the size of `companies.json`, not the safety rules.
+
+**`CustomAdapter`'s `css_selectors` strategy, real quirks it had to
+handle (Session 36):** confirmed all three real companies' job data is
+present in a plain `httpx` GET, not just a browser-rendered snapshot,
+before writing selectors against it (`beautifulsoup4` added to
+`requirements.txt`, chosen over `lxml`/full browser rendering since
+none of it needs anything beyond `html.parser` — every one of these
+Webflow CMS collections is genuinely server-rendered for SEO, same
+reasoning §1's Session 6 note already established for the JSON-blob
+strategy). Two real, per-company data quirks the schema had to
+tolerate rather than assume away: Quantum Art's own `.career-location`
+element is present on every job but genuinely text-empty (Webflow's own
+`w-dyn-bind-empty` marker for an unbound CMS field) — `_select_text`
+returns `None` for that, not an empty string, same "safe empty field"
+philosophy `_get_path` already had for the JSON strategy. AIR's real
+listings have zero `<a>` tags anywhere inside any job item at all
+(clicking one opens a JS `data-popup` modal instead of navigating
+anywhere) — `url_selector` is optional, and every position's
+`absolute_url` falls back to the company's own `career_page_url` when
+there's no real per-job link to resolve, which is still an honest,
+actionable answer rather than a fabricated URL.
 
 **Session 18 — harvesting toward a real ~5-minute scan, real result short
 of the target:** Elad wanted a genuine test of ADR-0021's concurrency
@@ -477,22 +505,65 @@ domain (so ADR-0002's rate limit is real), but two different domains'
 fetches never wait on each other at all — cross-domain fan-out is, by
 design, as wide as `companies.json` is long.
 
-One real, currently-dormant limit exists a layer below the application
-code: `ComplianceAgent.__init__` constructs `httpx.AsyncClient()` with no
-`limits=` argument, so it inherits httpx's own library default
-(`Limits(max_connections=100, max_keepalive_connections=20,
-keepalive_expiry=5.0)`, confirmed by reading `httpx._config.DEFAULT_LIMITS`
-directly in the installed version — not from httpx's docs alone). At
-today's 76 companies this ceiling is never reached (companies sharing a
-domain, like every Greenhouse company, share one domain's connection
-pool slot dynamics, not 76 separate ones) — but it's a real, currently
-un-configured constraint that would start silently throttling well
-before `companies.json` reaches the "~200 Greenhouse companies" scale
-target this section already discusses, let alone the ~8,000-9,000-company
-full universe ADR-0021 was written for. Worth a deliberate `limits=`
-value in a future session once company count actually approaches that
-range — not needed today, and not built this session (Elad asked for a
-report of current behavior, not a change).
+**Comeet's own domain concentration, confirmed the same way Greenhouse's
+already was (Session 36):** does every Comeet company — including the
+5 white-labeled/embedded ones Session 35 found (Coralogix, Guesty,
+Upwind, Port, Kela Technologies) — ultimately pace through the same
+domain during a real scan? Checked the code first, not assumed from the
+white-labeling pattern alone: `adapters/comeet.py`'s
+`CAREER_PAGE_URL_TEMPLATE = "https://www.comeet.com/jobs/{slug}/{uid}"`
+is a fixed constant with no branching on the company at all — every
+`ComeetAdapter.fetch_stage1_jobs()` call fetches `www.comeet.com`
+directly, regardless of whatever a given company's own marketing site
+proxies or white-labels. This is a deliberate, real architectural
+choice already made back in Session 5/19 (verify against the real
+public Comeet page, not the company's own site) that happens to also
+mean every one of the 26 Comeet companies in `companies.json` shares
+one rate-limit lane, same as Greenhouse. Confirmed live, not just from
+the code: fetched 4 real Comeet companies (including 2 white-labeled
+ones) in sequence and timed it — the first resolved in 0.83s, every
+subsequent one took ~2.0-2.2s (the real ~1.5s per-domain wait plus real
+response time), and all 4 requests' actual target host was
+`www.comeet.com`. At today's 26 Comeet companies this costs roughly
+26 × 1.5s ≈ 39s of pure pacing floor — the same order of magnitude as
+Greenhouse's own domain-concentration effect at a similar company
+count, not yet a dominant cost at 79 total companies but worth knowing
+before Comeet's share of `companies.json` grows much further.
+
+**A deliberate httpx connection limit, not the library's implicit
+default (Session 36):** `ComplianceAgent` now constructs
+`httpx.AsyncClient(limits=httpx.Limits(max_connections=200,
+max_keepalive_connections=20))` — both values overridable per-instance
+(`max_connections`/`max_keepalive_connections` constructor
+parameters), replacing the previously-unconfigured library default
+`Limits(max_connections=100, max_keepalive_connections=20,
+keepalive_expiry=5.0)` flagged above. Real reasoning behind 200, not a
+round number picked for its own sake: (1) this project's only
+production caller (`.github/workflows/scan.yml`) runs on GitHub
+Actions' free-tier `ubuntu-latest` runner — a 2-core/~7GB shared VM
+(confirmed via GitHub's own current runner spec docs, not assumed) —
+where connection-count memory overhead is a non-issue (each open
+TLS/HTTP connection costs a few KB, not MB) but a genuinely unbounded
+number would still be an unreasonable thing to ask of a shared runner;
+(2) real domain concentration today is only 6 distinct fetch domains
+across `companies.json`'s 79 companies (Greenhouse ×2 regions, Lever
+×2 regions, Comeet, one custom domain) — same-domain fetches are
+already serialized by `ComplianceAgent`'s own per-domain lock
+regardless of this limit, so today's real simultaneous-connection need
+is nowhere near even the old 100-connection default; (3) ADR-0021's own
+stated target is "potentially thousands" of per-domain lanes once
+custom-domain companies make up a real share of the ~8,000-9,000-company
+full universe — 200 is deliberately double the old default, comfortably
+covering the ~200-Greenhouse-company near-term scale target already
+discussed in this section, without being "as high as possible for no
+reason." Verified as actually applied, not just documented in a
+comment: `tests/test_compliance_agent.py`'s new tests construct a real
+(non-fake) `ComplianceAgent` and inspect the real httpx client's own
+connection pool (`agent._client._transport._pool._max_connections`) —
+httpx has no public API for reading a configured `Limits` back out, so
+this is genuinely the only way to confirm the value reached httpx's
+actual connection pool rather than sitting unused as an instance
+attribute.
 
 ## 5. Sandbox (domain-specific hook #1)
 

@@ -338,3 +338,38 @@ async def test_the_recheck_waits_the_configured_delay_before_trying_again(tmp_pa
     assert len(robots_call_times) == 2
     spacing = robots_call_times[1] - robots_call_times[0]
     assert spacing >= delay - 0.05, f"expected >= ~{delay}s between the two robots.txt checks, got {spacing}s"
+
+
+# --- Connection limit (Session 36): a deliberate httpx.Limits value,
+# not the library's implicit default. These tests inspect the *real*
+# httpx.AsyncClient ComplianceAgent constructs — not a fake — since the
+# whole point is confirming the configured value actually reaches
+# httpx's own connection pool, not just that it's stored as an unused
+# instance attribute. httpx has no public API for reading a client's
+# configured Limits back out; `_transport._pool._max*` is the only way
+# to see what was actually applied, confirmed directly against the
+# installed httpx version before relying on it here.
+
+
+async def test_default_connection_limits_are_actually_applied_to_the_real_client(tmp_path):
+    agent = ComplianceAgent(robots_cache_path=tmp_path / "robots_cache.json")
+    try:
+        pool = agent._client._transport._pool
+        assert pool._max_connections == 200
+        assert pool._max_keepalive_connections == 20
+    finally:
+        await agent.aclose()
+
+
+async def test_custom_connection_limits_are_actually_applied_to_the_real_client(tmp_path):
+    agent = ComplianceAgent(
+        robots_cache_path=tmp_path / "robots_cache.json",
+        max_connections=50,
+        max_keepalive_connections=5,
+    )
+    try:
+        pool = agent._client._transport._pool
+        assert pool._max_connections == 50
+        assert pool._max_keepalive_connections == 5
+    finally:
+        await agent.aclose()

@@ -1,13 +1,21 @@
-"""Fixture-based tests for CustomAdapter (ADR-0006).
+"""Fixture-based tests for CustomAdapter (ADR-0006, extended Session 36
+with a second real strategy).
 
-Runs entirely against a cached HTML fixture — never makes a live network
+Runs entirely against cached HTML fixtures — never makes a live network
 call. tests/fixtures/monday_stage1_raw.html is a real Stage 1 response
 captured from a one-time manual smoke test against monday.com's careers
-page (Session 6).
+page (Session 6). tests/fixtures/{forsight,air,quantumart}_stage1_raw.html
+(Session 36) are real responses from a plain `httpx` GET against each
+company's real careers page — not a browser-rendered snapshot — since
+that's exactly what CustomAdapter itself fetches in production; all three
+companies' real job data was confirmed present in that plain GET before
+trusting the css_selectors strategy against it at all.
 """
 
 import json
 from pathlib import Path
+
+import pytest
 
 from adapters.custom import CustomAdapter, load_custom_selectors, parse_stage1_jobs
 from core.filters import RoleLocationFilter
@@ -120,6 +128,7 @@ def test_find_list_by_key_locates_positions_nested_under_an_arbitrary_wrapper_ke
     </script></head><body></body></html>
     """
     config = {
+        "strategy": "json_blob",
         "script_id": "__NEXT_DATA__",
         "positions_key": "positions",
         "field_map": {"title": "name", "department": "department", "location": "location.name"},
@@ -176,3 +185,110 @@ async def test_custom_adapter_uses_injected_compliance_agent_and_config():
 
     assert jobs == parse_stage1_jobs(html, config)
     assert fake_agent.fetched_urls == ["https://monday.com/careers"]
+
+
+def test_parse_stage1_jobs_raises_on_an_unknown_strategy():
+    with pytest.raises(ValueError, match="unknown custom_selectors strategy"):
+        parse_stage1_jobs("<html></html>", {"strategy": "xml_blob"})
+
+
+# --- css_selectors strategy (Session 36) — real fixtures, real companies,
+# real selectors, verified against Session 35's 3 genuinely-custom finds. ---
+
+
+def _config_for(name):
+    selectors = load_custom_selectors(REPO_ROOT / "custom_selectors.json")
+    return selectors[name]
+
+
+def _load_fixture(name, filename):
+    html = (FIXTURES_DIR / filename).read_text(encoding="utf-8")
+    return parse_stage1_jobs(html, _config_for(name))
+
+
+def test_forsight_robotics_real_fixture_shape_and_a_real_job():
+    jobs = _load_fixture("ForSight Robotics", "forsight_stage1_raw.html")
+    assert len(jobs) == 8
+    for job in jobs:
+        assert set(job.keys()) == {"title", "department", "location", "absolute_url"}
+
+    job = _job_by_title(jobs, "R&D Mechanical Engineer")
+    assert job["department"] == "R&D"
+    assert job["location"] == "Israel, Caesarea"
+    # Real per-position link resolved from a site-relative href.
+    assert job["absolute_url"] == "https://forsightrobotics.com/positions/position-c5_07f"
+
+
+def test_forsight_robotics_real_job_matches_the_role_filter():
+    role_filter = _build_filter()
+    jobs = _load_fixture("ForSight Robotics", "forsight_stage1_raw.html")
+    job = _job_by_title(jobs, "Technical Support")
+
+    result = role_filter.match(job)
+    assert result == {
+        "matched": True,
+        "role_category": "technical_support",
+        "matched_tag": "technical support",
+    }
+
+
+def test_air_real_fixture_falls_back_to_the_career_page_url_with_no_per_job_link():
+    # Real, confirmed quirk (not synthetic): AIR's real listings open a
+    # JS data-popup modal, not a link — zero <a> tags inside any job item.
+    jobs = _load_fixture("AIR", "air_stage1_raw.html")
+    assert len(jobs) >= 1
+    for job in jobs:
+        assert job["absolute_url"] == "https://www.airev.aero/careers"
+
+    job = _job_by_title(jobs, "UAV Operator")
+    assert job["department"] == "Flight Operations"
+    assert job["location"] == "Kfar Yona, Israel"
+
+
+def test_quantum_art_real_fixture_handles_a_genuinely_empty_location_field():
+    # Real, confirmed quirk: Quantum Art's .career-location element exists
+    # (Webflow's w-dyn-bind-empty marker) but is genuinely text-empty for
+    # every position — this must come through as None, not "".
+    jobs = _load_fixture("Quantum Art", "quantumart_stage1_raw.html")
+    assert len(jobs) == 20
+
+    job = _job_by_title(jobs, "Product Manager")
+    assert job["department"] == "Product Management"
+    assert job["location"] is None
+    assert job["absolute_url"] == "https://www.quantum-art.tech/positions/position-6d_f69"
+
+
+def test_css_selectors_field_selector_matches_relative_to_the_item_not_the_whole_document():
+    # Two synthetic items with the same class names elsewhere on the page
+    # must never cross-match — each field selector is scoped to its own
+    # item, not re-run against the full document.
+    html = """
+    <html><body>
+      <div class="job"><h3 class="title">Role One</h3><span class="loc">Tel Aviv</span></div>
+      <div class="job"><h3 class="title">Role Two</h3><span class="loc">Berlin</span></div>
+    </body></html>
+    """
+    config = {
+        "strategy": "css_selectors",
+        "career_page_url": "https://example.com/careers",
+        "item_selector": ".job",
+        "field_selectors": {"title": ".title", "department": None, "location": ".loc"},
+    }
+
+    jobs = parse_stage1_jobs(html, config)
+
+    assert jobs == [
+        {"title": "Role One", "department": None, "location": "Tel Aviv", "absolute_url": "https://example.com/careers"},
+        {"title": "Role Two", "department": None, "location": "Berlin", "absolute_url": "https://example.com/careers"},
+    ]
+
+
+def test_css_selectors_returns_empty_list_when_item_selector_matches_nothing():
+    config = {
+        "strategy": "css_selectors",
+        "career_page_url": "https://example.com/careers",
+        "item_selector": ".no-such-class",
+        "field_selectors": {"title": ".title", "department": ".dept", "location": ".loc"},
+    }
+    jobs = parse_stage1_jobs("<html><body>redesigned, nothing matches</body></html>", config)
+    assert jobs == []

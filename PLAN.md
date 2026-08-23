@@ -337,3 +337,26 @@ going forward)
   the JSON strategy) worth adding to `CustomAdapter` as a second real
   strategy, now that there's more than one hypothetical company that
   would benefit from it.
+- **Phase 3 (Session 36): built the CSS-selector strategy Phase 2
+  flagged.** `CustomAdapter` gained a second real strategy
+  (`css_selectors`, `adapters/custom.py`) alongside the original
+  `json_blob` one — config-driven the same way, `custom_selectors.json`
+  now requires an explicit `strategy` field (monday.com's own entry
+  updated to say `"json_blob"` rather than leaving it implicit). Real
+  result: ForSight Robotics, AIR, and Quantum Art — all three flagged
+  unscannable in Session 35 specifically because of this gap — moved
+  back into `companies.json` (76 -> 79) once real fetched data was
+  confirmed against all three, not synthetic test data alone. Real
+  per-company quirks the schema had to handle rather than assume away:
+  a genuinely empty CMS field (Quantum Art's location), and a company
+  with zero real per-job links at all (AIR's listings open a JS modal
+  instead) — see ARCHITECTURE.md §4a for both. Also confirmed (Session
+  36, Part 1) that Comeet's own 26 companies share one real pacing lane
+  exactly like Greenhouse's, regardless of white-labeling — `adapters/
+  comeet.py`'s URL template always targets `www.comeet.com` directly,
+  by design, since Session 5/19. Set a deliberate httpx connection
+  limit (200, up from the library's implicit 100) reasoned from GitHub
+  Actions' real runner specs and today's real domain count (still just
+  6), rather than leaving it as an unexamined default — see
+  ARCHITECTURE.md §4a for the full reasoning and how it was verified as
+  actually applied, not just documented.
