@@ -1,5 +1,5 @@
 {
-  "_note": "New this session (Session 32, Growth playbook Phase 1). Neither this file nor an ARCHITECTURE.md section describing it existed before this session — the task that introduced it referenced both as if already decided; per ADR-0030's protocol, built from the task's own explicit, unambiguous shape and flagged here rather than blocked on. Only companies POSITIVELY IDENTIFIED as unscannable for a real, confirmed reason go here — a company this project simply found no signal for at all (no recognized ATS, no confirmed block) is NOT added; see PROGRESS.md's Session 32 addendum for that honest 'genuinely unresolved' list, kept out of this file on purpose so it stays a record of confirmed reasons, not a catch-all for unknowns. Session 36: ForSight Robotics, AIR, and Quantum Art (added Session 35 for a real extraction-capability gap) moved back OUT of this file into companies.json — CustomAdapter grew the css_selectors strategy that closes exactly that gap, confirmed against real fetched data for all three. This file's design is for reasons that are true independent of this project's own tooling (a platform with no adapter, a real network block) — a gap in this project's own code is fixable, and once fixed the entry stops being accurate, so it doesn't belong here anymore.",
+  "_note": "New this session (Session 32, Growth playbook Phase 1). Neither this file nor an ARCHITECTURE.md section describing it existed before this session — the task that introduced it referenced both as if already decided; per ADR-0030's protocol, built from the task's own explicit, unambiguous shape and flagged here rather than blocked on. Only companies POSITIVELY IDENTIFIED as unscannable for a real, confirmed reason go here — a company this project simply found no signal for at all (no recognized ATS, no confirmed block) is NOT added; see PROGRESS.md's Session 32 addendum for that honest 'genuinely unresolved' list, kept out of this file on purpose so it stays a record of confirmed reasons, not a catch-all for unknowns. Session 36: ForSight Robotics, AIR, and Quantum Art (added Session 35 for a real extraction-capability gap) moved back OUT of this file into companies.json — CustomAdapter grew the css_selectors strategy that closes exactly that gap, confirmed against real fetched data for all three. This file's design is for reasons that are true independent of this project's own tooling (a platform with no adapter, a real network block) — a gap in this project's own code is fixable, and once fixed the entry stops being accurate, so it doesn't belong here anymore. Session 37: 7->15 — 8 new entries, all from Wikipedia's 'strong likely-active subset' candidate list, all confirmed live (not from secondhand research alone) as genuinely acquired/absorbed-with-no-distinct-presence or actively bot-blocked. Real reminder from this batch: a Wikipedia category being 'strong likely-active' doesn't mean unacquired — several of these were acquired within the last year or two, after the category page was likely last edited.",
   "unscannable_companies": [
     {
       "name": "Totango",
@@ -42,6 +42,54 @@
       "reason": "Session 32's original finding re-confirmed, not re-derived: real Israeli data-engineering startup ($12M Series A, definity.ai) with no public job listings at all — /careers 404s, and the real root page has no careers section or position data either. Hiring appears to be email-only (careers@definity.ai per Session 32's research).",
       "platform_if_known": null,
       "checked_at": "2026-08-23T06:32:36Z"
+    },
+    {
+      "name": "CyberArk",
+      "reason": "Wikipedia \"strong likely-active subset\" candidate. Real, confirmed, live: cyberark.com/careers/ redirects fully to a real Palo Alto Networks careers URL (paloaltonetworks.com/idira) — CyberArk's Feb 2026 acquisition by Palo Alto Networks means there is no distinct CyberArk careers presence left to scan at all.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T18:46:18Z"
+    },
+    {
+      "name": "Cybersixgill",
+      "reason": "Wikipedia \"strong likely-active subset\" candidate. Real, confirmed, live: cybersixgill.com/careers redirects to bitsight.com/cybersixgill, and the real careers content there is served by Workday (bitsight.wd1.myworkdayjobs.com) — confirms Cybersixgill's acquisition by Bitsight left no distinct careers presence, and Workday is an unsupported platform regardless.",
+      "platform_if_known": "workday",
+      "checked_at": "2026-08-23T18:46:18Z"
+    },
+    {
+      "name": "Perimeter 81",
+      "reason": "Wikipedia \"strong likely-active subset\" candidate. Real, confirmed, live: perimeter81.com/careers redirects to sase.checkpoint.com/careers — Perimeter 81 was acquired by and rebranded into Check Point's \"Harmony SASE\" product; no distinct Perimeter 81 careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T18:46:18Z"
+    },
+    {
+      "name": "Zerto",
+      "reason": "Wikipedia \"strong likely-active subset\" candidate. Real, confirmed, live: zerto.com/careers/ redirects fully to careers.hpe.com — Zerto's 2021 acquisition by HPE means there is no distinct Zerto careers presence, only HPE's own global (and enormous, largely irrelevant) careers site.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T18:46:18Z"
+    },
+    {
+      "name": "Gigya",
+      "reason": "Wikipedia \"strong likely-active subset\" candidate. Real, confirmed, live: gigya.com/careers/ resolves to nothing (about:blank in a real browser) — Gigya's 2017 acquisition by SAP (now \"SAP Customer Data Cloud\") left no distinct Gigya careers presence at all.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T18:46:18Z"
+    },
+    {
+      "name": "OverOps",
+      "reason": "Wikipedia \"strong likely-active subset\" candidate. Real, confirmed, live: overops.com/careers/ redirects to a Harness.io product page (harness.io/products/service-reliability-management), not a careers page — OverOps was acquired by and absorbed into Harness as a product line, no distinct hiring presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T18:46:18Z"
+    },
+    {
+      "name": "Formula Systems",
+      "reason": "Wikipedia \"strong likely-active subset\" candidate. Real, confirmed, live: formulasystems.com/careers is a genuine 404. Formula Systems is a pure holding company (owns/owned stakes in Magic Software and, until 2025, Sapiens) — not an operating employer with its own job postings at all.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T18:46:18Z"
+    },
+    {
+      "name": "Radware",
+      "reason": "Wikipedia \"strong likely-active subset\" candidate. The real careers page is behind an active bot-protection challenge (Radware's own \"Shieldsquare\"/PerimeterX-style product, served from perfdrive.com/hcaptcha.com) — a real browser never reaches actual page content. Notable, slightly ironic detail: Radware is itself a cybersecurity/bot-mitigation vendor, being blocked by what is very likely its own product.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T18:46:18Z"
     }
   ]
 }

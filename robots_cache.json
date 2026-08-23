@@ -312,7 +312,7 @@
   "cellebrite.com": {
     "domain": "cellebrite.com",
     "allowed": true,
-    "checked_at": 1786615880.008814
+    "checked_at": 1787509749.9674087
   },
   "capriza.com": {
     "domain": "capriza.com",
@@ -332,7 +332,7 @@
   "checkmarx.com": {
     "domain": "checkmarx.com",
     "allowed": true,
-    "checked_at": 1786615880.667295
+    "checked_at": 1787509757.6041605
   },
   "cidersecurity.com": {
     "domain": "cidersecurity.com",
@@ -1457,7 +1457,7 @@
   "papayaglobal.com": {
     "domain": "papayaglobal.com",
     "allowed": false,
-    "checked_at": 1786615934.355096
+    "checked_at": 1787509772.0370684
   },
   "panorays.com": {
     "domain": "panorays.com",
@@ -2342,7 +2342,7 @@
   "xmcyber.com": {
     "domain": "xmcyber.com",
     "allowed": false,
-    "checked_at": 1786615971.2269287
+    "checked_at": 1787509741.340474
   },
   "zigit.com": {
     "domain": "zigit.com",
@@ -2962,7 +2962,7 @@
   "www.k2view.com": {
     "domain": "www.k2view.com",
     "allowed": true,
-    "checked_at": 1786617904.3518345
+    "checked_at": 1787509762.2174864
   },
   "www.joytunes.com": {
     "domain": "www.joytunes.com",
@@ -3467,7 +3467,7 @@
   "www.wiliot.com": {
     "domain": "www.wiliot.com",
     "allowed": true,
-    "checked_at": 1786617959.4662642
+    "checked_at": 1787509809.2013884
   },
   "careers.wix.com": {
     "domain": "careers.wix.com",
@@ -4738,5 +4738,170 @@
     "domain": "www.airev.aero",
     "allowed": true,
     "checked_at": 1787458869.7621474
+  },
+  "neureality.ai": {
+    "domain": "neureality.ai",
+    "allowed": true,
+    "checked_at": 1787509561.2943425
+  },
+  "www.nanox.vision": {
+    "domain": "www.nanox.vision",
+    "allowed": true,
+    "checked_at": 1787509572.8242714
+  },
+  "terasky.com": {
+    "domain": "terasky.com",
+    "allowed": true,
+    "checked_at": 1787509582.2793913
+  },
+  "careers.doit.com": {
+    "domain": "careers.doit.com",
+    "allowed": true,
+    "checked_at": 1787509588.9077644
+  },
+  "sela.com": {
+    "domain": "sela.com",
+    "allowed": true,
+    "checked_at": 1787509592.6708403
+  },
+  "careers.nebius.com": {
+    "domain": "careers.nebius.com",
+    "allowed": true,
+    "checked_at": 1787509601.2184043
+  },
+  "cybersixgill.com": {
+    "domain": "cybersixgill.com",
+    "allowed": true,
+    "checked_at": 1787509727.404001
+  },
+  "www.gigaspaces.com": {
+    "domain": "www.gigaspaces.com",
+    "allowed": true,
+    "checked_at": 1787509742.8987055
+  },
+  "careers.checkpoint.com": {
+    "domain": "careers.checkpoint.com",
+    "allowed": false,
+    "checked_at": 1787509756.977892
+  },
+  "www.radware.com": {
+    "domain": "www.radware.com",
+    "allowed": true,
+    "checked_at": 1787509772.873897
+  },
+  "careers.sapiens.com": {
+    "domain": "careers.sapiens.com",
+    "allowed": true,
+    "checked_at": 1787509782.4003475
+  },
+  "starkware.co": {
+    "domain": "starkware.co",
+    "allowed": true,
+    "checked_at": 1787509786.874897
+  },
+  "transmitsecurity.com": {
+    "domain": "transmitsecurity.com",
+    "allowed": true,
+    "checked_at": 1787509795.1432447
+  },
+  "careers.varonis.com": {
+    "domain": "careers.varonis.com",
+    "allowed": true,
+    "checked_at": 1787509801.7384903
+  },
+  "www.any.do": {
+    "domain": "www.any.do",
+    "allowed": true,
+    "checked_at": 1787509815.3682847
+  },
+  "dealhub.io": {
+    "domain": "dealhub.io",
+    "allowed": true,
+    "checked_at": 1787509818.098201
+  },
+  "careers.cyberark.com": {
+    "domain": "careers.cyberark.com",
+    "allowed": true,
+    "checked_at": 1787509827.7327614
+  },
+  "cyberint.com": {
+    "domain": "cyberint.com",
+    "allowed": false,
+    "checked_at": 1787509842.312485
+  },
+  "www.magicsoftware.com": {
+    "domain": "www.magicsoftware.com",
+    "allowed": false,
+    "checked_at": 1787509847.89828
+  },
+  "www.zoominfo.com": {
+    "domain": "www.zoominfo.com",
+    "allowed": true,
+    "checked_at": 1787509848.3177826
+  },
+  "www.neureality.ai": {
+    "domain": "www.neureality.ai",
+    "allowed": true,
+    "checked_at": 1787510238.6606436
+  },
+  "www.terasky.com": {
+    "domain": "www.terasky.com",
+    "allowed": true,
+    "checked_at": 1787510336.8036442
+  },
+  "www.sela.co.il": {
+    "domain": "www.sela.co.il",
+    "allowed": true,
+    "checked_at": 1787510346.7521784
+  },
+  "www.sapiens.com": {
+    "domain": "www.sapiens.com",
+    "allowed": false,
+    "checked_at": 1787510370.1338263
+  },
+  "www.starkware.co": {
+    "domain": "www.starkware.co",
+    "allowed": true,
+    "checked_at": 1787510371.449247
+  },
+  "www.varonis.com": {
+    "domain": "www.varonis.com",
+    "allowed": true,
+    "checked_at": 1787510379.909721
+  },
+  "www.dealhub.io": {
+    "domain": "www.dealhub.io",
+    "allowed": true,
+    "checked_at": 1787510387.448908
+  },
+  "www.cyberark.com": {
+    "domain": "www.cyberark.com",
+    "allowed": true,
+    "checked_at": 1787510404.0000093
+  },
+  "www.perimeter81.com": {
+    "domain": "www.perimeter81.com",
+    "allowed": true,
+    "checked_at": 1787510553.8481631
+  },
+  "www.zerto.com": {
+    "domain": "www.zerto.com",
+    "allowed": true,
+    "checked_at": 1787510557.5216072
+  },
+  "www.gigya.com": {
+    "domain": "www.gigya.com",
+    "allowed": true,
+    "checked_at": 1787510569.188341
+  },
+  "www.overops.com": {
+    "domain": "www.overops.com",
+    "allowed": true,
+    "checked_at": 1787510570.6374414
+  },
+  "www.formulasystems.com": {
+    "domain": "www.formulasystems.com",
+    "allowed": true,
+    "checked_at": 1787510578.7625635
   }
 }

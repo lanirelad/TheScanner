@@ -360,3 +360,39 @@ going forward)
   6), rather than leaving it as an unexamined default — see
   ARCHITECTURE.md §4a for the full reasoning and how it was verified as
   actually applied, not just documented.
+- **Phase 4 (Session 37): the largest candidate pool assembled so far,
+  first verification pass.** Three independently-sourced files (Hebrew
+  business media, Elad's own LinkedIn browsing, Wikipedia's Israeli
+  company categories) combined to roughly 450 real candidate names —
+  an order of magnitude beyond any prior single round. Explicitly
+  scoped as multi-session work from the start; this session prioritized
+  Wikipedia's own "strong likely-active subset" (37 names, historical-
+  category caveat acknowledged going in) and LinkedIn's explicitly-
+  flagged actively-hiring names first, per the task's own priority
+  order. Real result: 12 new companies (9 Comeet, 3 Greenhouse) —
+  `companies.json` 79 -> 91 — and 8 new `companies_unscannable.json`
+  entries, every one confirmed live (not from secondhand research
+  alone) as genuinely acquired/absorbed with no distinct careers
+  presence left, or actively bot-blocked. Both flagged identity-
+  collision risks resolved with real evidence: Foresight Automotive
+  and ForSight Robotics are confirmed different companies (similar
+  name, different industries, different domains); Nanox Vision and
+  Nano-X are confirmed the *same* company (Nano-X Imaging Ltd.'s own
+  official domain is literally nanox.vision).
+- **Resume-from-here, explicit per the task's own instruction not to
+  fake completeness:** within the Wikipedia priority subset, 15 names
+  remain genuinely unresolved (not forced into either bucket) — XM
+  Cyber (a search-sourced uid turned out to be wrong; real one not yet
+  found), Check Point/Papaya Global/Cyberint/Sapiens International (all
+  robots.txt-blocked at check time — may just need a retry, per
+  ADR-0002's own self-healing TTL design, not necessarily a permanent
+  block), Cellebrite/Checkmarx/StarkWare Industries/Varonis Systems/
+  Any.do/DealHub/TeraSky/Sela/ZoomInfo (no recognized-platform signal
+  found in this pass — genuinely unresolved, not confirmed-unscannable).
+  Entirely untouched this session: ~54 more names in
+  candidates_linkedin_sourced.md, the ~165-name combined media-research
+  list, and the other Wikipedia categories (cybersecurity, AI, solar
+  energy, internet companies) plus the still-missing complete 153-name
+  English Wikipedia "Software companies of Israel" list (referenced in
+  the task's own attachments but never actually pasted in — flagged
+  again here, still needed for a future session to work from).

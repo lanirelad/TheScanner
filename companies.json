@@ -1,5 +1,5 @@
 {
-  "_note": "79 companies across 3 ATS platforms plus 4 custom-domain companies. Session 36: 76->79 — moved ForSight Robotics, AIR, and Quantum Art here from companies_unscannable.json now that CustomAdapter has a second real extraction strategy (css_selectors, custom_selectors.json) built specifically to close the gap that put them there in Session 35. Not new discoveries — a real capability this project's own tooling gained. Session 18: 9->47 by guessing ATS slugs from company names and validating against the live API (34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected). Session 19: 47->58 by inverting the method — fetching each candidate's own real career page and reading its actual ATS directly off of it (1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk). Session 20: 58->63 using the same domain-first method against a real, research-sourced candidate list (Calcalist/CTech 2026 funding-rounds coverage + StartupBlink's Israel ranking) rather than a hand-compiled name list — 3 new Greenhouse + 2 new Comeet; 2 raw hits (Enigma, CopilotKit) rejected on review for zero Israel signal, the exact generic-word-collision risk flagged going into that session. Session 32: 63->71 — a Growth playbook Phase 1 session aimed at recognizing Workday/SmartRecruiters/iCIMS (0 real hits for those 3) turned up 8 real hits on the 4 platforms this project already supports instead, re-checking Session 21's zero-signal batch with web research (real career-page URLs, since Session 21's own candidate list/script were never committed) and PlaywrightProbe: 6 new Comeet (2 via PlaywrightProbe directly, 4 via web research surfacing a real Comeet link the probe's evidence sources didn't cover), 2 new Greenhouse (Datarails, newly listed since Session 21; Aidoc, one of Session 21's 3 robots.txt-blocked companies — its WAF still blocks this project's httpx client but not Playwright's real browser). Session 35: 71->76 — custom-domain-focused harvesting (2 new real candidates: Port, Kela Technologies) plus resolving 3 of Session 32's 8 genuinely-unresolved companies (Coralogix, Guesty, Upwind) after finding they white-label/embed Comeet in a way the public comeet.com URL scheme never reveals — the real company-uid was recoverable from an individual job's apply-iframe URL even with no visible public link on the page (see discovery/playwright_probe.py's new CM_WIDGET_UID_RE, fixing the comeet.co detection gap Session 32 flagged). See ARCHITECTURE.md/PROGRESS.md Session 18-20/32/35 notes for the honest shortfall against the ~200 Greenhouse target and each session's sourcing method. 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
+  "_note": "91 companies across 3 ATS platforms plus 4 custom-domain companies. Session 37: 79->91 — first verification pass against a combined ~450-name candidate pool from 3 independently-sourced files (Hebrew business media, Elad's own LinkedIn browsing, Wikipedia's Israeli company categories), prioritizing Wikipedia's explicitly-flagged 'strong likely-active subset' plus LinkedIn's explicitly-flagged actively-hiring names first, per that session's own scope. 9 new Comeet (Foresight Automotive, Xsight Labs, K2view, Wiliot, Lusha, Atera, Nano-X Vision, NeuReality, GigaSpaces), 3 new Greenhouse (DoiT International, Nebius, Transmit Security). Resolved 2 flagged identity-collision risks (Foresight Automotive vs. the already-known ForSight Robotics: confirmed different; Nanox Vision vs. Nano-X: confirmed the same company). Only a fraction of the ~450-name pool was reached this session — see PROGRESS.md's Session 37 addendum for the explicit resume-from-here state. Session 36: 76->79 — moved ForSight Robotics, AIR, and Quantum Art here from companies_unscannable.json now that CustomAdapter has a second real extraction strategy (css_selectors, custom_selectors.json) built specifically to close the gap that put them there in Session 35. Not new discoveries — a real capability this project's own tooling gained. Session 18: 9->47 by guessing ATS slugs from company names and validating against the live API (34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected). Session 19: 47->58 by inverting the method — fetching each candidate's own real career page and reading its actual ATS directly off of it (1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk). Session 20: 58->63 using the same domain-first method against a real, research-sourced candidate list (Calcalist/CTech 2026 funding-rounds coverage + StartupBlink's Israel ranking) rather than a hand-compiled name list — 3 new Greenhouse + 2 new Comeet; 2 raw hits (Enigma, CopilotKit) rejected on review for zero Israel signal, the exact generic-word-collision risk flagged going into that session. Session 32: 63->71 — a Growth playbook Phase 1 session aimed at recognizing Workday/SmartRecruiters/iCIMS (0 real hits for those 3) turned up 8 real hits on the 4 platforms this project already supports instead, re-checking Session 21's zero-signal batch with web research (real career-page URLs, since Session 21's own candidate list/script were never committed) and PlaywrightProbe: 6 new Comeet (2 via PlaywrightProbe directly, 4 via web research surfacing a real Comeet link the probe's evidence sources didn't cover), 2 new Greenhouse (Datarails, newly listed since Session 21; Aidoc, one of Session 21's 3 robots.txt-blocked companies — its WAF still blocks this project's httpx client but not Playwright's real browser). Session 35: 71->76 — custom-domain-focused harvesting (2 new real candidates: Port, Kela Technologies) plus resolving 3 of Session 32's 8 genuinely-unresolved companies (Coralogix, Guesty, Upwind) after finding they white-label/embed Comeet in a way the public comeet.com URL scheme never reveals — the real company-uid was recoverable from an individual job's apply-iframe URL even with no visible public link on the page (see discovery/playwright_probe.py's new CM_WIDGET_UID_RE, fixing the comeet.co detection gap Session 32 flagged). See ARCHITECTURE.md/PROGRESS.md Session 18-20/32/35 notes for the honest shortfall against the ~200 Greenhouse target and each session's sourcing method. 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
   "companies": [
     {
       "name": "Wiz",
@@ -573,6 +573,99 @@
       "ats": "custom",
       "career_page": "https://www.quantum-art.tech/careers",
       "note": "Session 36: moved here from companies_unscannable.json. Real Webflow CMS job listings, 20 real open postings at verification time (quantum-computing R&D roles) — genuinely no matching role_category today, but a real, working, scannable integration now rather than an unscannable one. Real quirk the css_selectors strategy had to handle: this company's own .career-location field is present but genuinely empty for every position (Webflow's own \"unbound CMS field\" state), which correctly comes through as location: null, not a parsing failure."
+    },
+    {
+      "name": "Foresight Automotive",
+      "ats": "comeet",
+      "ats_slug": "foresightauto",
+      "career_page": "https://www.comeet.com/jobs/foresightauto/13.000",
+      "ats_uid": "13.000",
+      "note": "Session 37: real Comeet link surfaced directly in web-research search snippets (comeet.com/jobs/foresightauto/13.000/...) for foresightauto.com/careers/. Explicitly disambiguated from the similarly-named ForSight Robotics (already in this file since Session 36, forsightrobotics.com) — confirmed genuinely different companies (automotive stereo-vision vs. ophthalmic surgical robotics, different spelling, different domains) before treating this as a new candidate. Confirmed against the real API — 5 real open postings (Ness Ziona) at verification time."
+    },
+    {
+      "name": "Xsight Labs",
+      "ats": "comeet",
+      "ats_slug": "xsightlabs",
+      "career_page": "https://www.comeet.com/jobs/xsightlabs/46.00C",
+      "ats_uid": "46.00C",
+      "note": "Session 37: LinkedIn-sourced candidate (Elad's own browsing). Real Comeet link found directly in web research. Confirmed against the real API — 17 real open postings (Givatayim) at verification time."
+    },
+    {
+      "name": "K2view",
+      "ats": "comeet",
+      "ats_slug": "k2view",
+      "career_page": "https://www.comeet.com/jobs/k2view/D5.000",
+      "ats_uid": "D5.000",
+      "note": "Session 37: Wikipedia \"strong likely-active subset\" candidate. Found via PlaywrightProbe against k2view.com/careers/ (rendered-DOM evidence). Confirmed against the real API — 2 real open postings at verification time."
+    },
+    {
+      "name": "Wiliot",
+      "ats": "comeet",
+      "ats_slug": "wiliot",
+      "career_page": "https://www.comeet.com/jobs/wiliot/F6.003",
+      "ats_uid": "F6.003",
+      "note": "Session 37: Wikipedia \"strong likely-active subset\" candidate. PlaywrightProbe found the real company-uid (F6.003) via an observed network request on wiliot.com/careers, but not a public slug — the slug \"wiliot\" was guessed from the company name (same pattern as most Comeet companies in this file) and confirmed against the real API — 22 real open postings, 10 Israel-located, at verification time."
+    },
+    {
+      "name": "Lusha",
+      "ats": "comeet",
+      "ats_slug": "lusha",
+      "career_page": "https://www.comeet.com/jobs/lusha/73.00B",
+      "ats_uid": "73.00B",
+      "note": "Session 37: Wikipedia \"strong likely-active subset\" candidate. Real Comeet link found directly in web research. Confirmed against the real API — 8 real open postings (Tel Aviv) at verification time."
+    },
+    {
+      "name": "Atera",
+      "ats": "comeet",
+      "ats_slug": "atera",
+      "career_page": "https://www.comeet.com/jobs/atera/63.00B",
+      "ats_uid": "63.00B",
+      "note": "Session 37: Wikipedia \"strong likely-active subset\" candidate (listed as \"Atera Networks\" there; the real company's own branding and domain, atera.com, both just say \"Atera\" — used here). Real Comeet link found directly in web research. Confirmed against the real API — 22 real open postings, including real Tel Aviv-located roles, at verification time."
+    },
+    {
+      "name": "Nano-X Vision",
+      "ats": "comeet",
+      "ats_slug": "nanox",
+      "career_page": "https://www.comeet.com/jobs/nanox/43.00F",
+      "ats_uid": "43.00F",
+      "note": "Session 37: resolves the \"Nanox Vision vs. Nano-X\" identity question flagged in candidates_linkedin_sourced.md — confirmed the SAME company (Nano-X Imaging Ltd.'s own official domain is literally nanox.vision), not two candidates. White-labels Comeet under its own domain (wp-content/plugins/comeet-wp-plugin, same pattern as Session 35's Coralogix/Guesty) — the real company-uid (43.00F) was found via an individual job's apply-iframe URL, then the slug \"nanox\" confirmed against the real API — 3 real open postings, including one real Israel-located role, at verification time."
+    },
+    {
+      "name": "NeuReality",
+      "ats": "comeet",
+      "ats_slug": "neurealityai",
+      "career_page": "https://www.comeet.com/jobs/neurealityai/89.002",
+      "ats_uid": "89.002",
+      "note": "Session 37: LinkedIn-sourced candidate. Same white-labeled-Comeet pattern as Nano-X Vision above (neureality.ai's own comeet-wp-plugin, real company-uid 89.002 found via an individual job's apply-iframe URL). The slug \"neureality\" alone redirected to Comeet's homepage (wrong) — \"neurealityai\" confirmed correct against the real API. 8 real open postings, 5 Israel-located, at verification time."
+    },
+    {
+      "name": "GigaSpaces",
+      "ats": "comeet",
+      "ats_slug": "gigaspaces",
+      "career_page": "https://www.comeet.com/jobs/gigaspaces/C5.00E",
+      "ats_uid": "C5.00E",
+      "note": "Session 37: Wikipedia \"strong likely-active subset\" candidate. Real Comeet link found in web research, and independently confirmed genuine (not a guessed/wrong uid) by reading the raw API response directly: COMPANY_DATA = {\"name\": \"GigaSpaces\", \"location\": \"Israel\", ...} is real and present. 0 real open postings at verification time (COMPANY_POSITIONS_DATA is genuinely empty right now) — added anyway since the integration itself is confirmed real and working, matching this project's existing precedent (e.g. AT&T Israel R&D Center, Session 5) of including a verified-real company even at a low or momentarily-zero current match count."
+    },
+    {
+      "name": "DoiT International",
+      "ats": "greenhouse",
+      "ats_slug": "doitintl",
+      "career_page": "https://job-boards.greenhouse.io/doitintl",
+      "note": "Session 37: LinkedIn-sourced candidate, real Greenhouse slug found via PlaywrightProbe against careers.doit.com/jobs. Confirmed against the real API — 84 real open postings, 7 Israel-located, at verification time."
+    },
+    {
+      "name": "Nebius",
+      "ats": "greenhouse",
+      "ats_slug": "nebius",
+      "career_page": "https://job-boards.greenhouse.io/nebius",
+      "note": "Session 37: LinkedIn-sourced candidate. Formerly Yandex N.V.'s international arm, renamed/spun out as Nebius Group N.V. (Nasdaq: NBIS) — not primarily an Israeli company, but confirmed to have a real, substantial Israel hiring presence, not just a token listing. Real Greenhouse slug found via PlaywrightProbe against careers.nebius.com. Confirmed against the real API — 357 real open postings total, 44 Israel-located, at verification time."
+    },
+    {
+      "name": "Transmit Security",
+      "ats": "greenhouse",
+      "ats_slug": "transmitsecurity",
+      "career_page": "https://job-boards.greenhouse.io/transmitsecurity",
+      "note": "Session 37: Wikipedia \"strong likely-active subset\" candidate. PlaywrightProbe's first pass matched GH_RE against an embedded /embed/job_board widget path and returned the false-positive slug \"embed\" (the same class of mistake as Session 18's shield/bold/vim precedent) — caught by checking real job counts before trusting it, then found the real slug (\"transmitsecurity\") in the widget's own `?for=transmitsecurity` query parameter. Confirmed against the real API — 14 real open postings, 11 Israel-located, at verification time."
     }
   ]
 }

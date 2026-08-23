@@ -578,3 +578,30 @@ already a separate, differently-billed concern (ADR-0023: it draws on
 Elad's own Claude plan, never GitHub Actions minutes), where a heavier,
 slower tool is an acceptable, bounded cost for solving a real, confirmed
 problem — not a general-purpose upgrade to the whole system.
+
+### ADR-0032 — No automated LinkedIn scraping, ever
+**Status:** Accepted
+**Context:** LinkedIn's real job-search data would be a genuinely
+valuable discovery source — likely the single richest source of
+"which companies are actively hiring right now" signal available. Session
+37's task referenced this ADR as already-decided (doc/reality gap per
+ADR-0030's own protocol — this repo had no such entry until now, added
+verbatim from the task's own unambiguous description rather than
+blocked on).
+**Decision:** This project will never build automated tooling
+(scraping, an unofficial API client, or any bot-like automated
+browsing) against LinkedIn. A person (Elad) manually browsing LinkedIn
+himself, in his own normal personal use, and sharing the plain company
+names he found is fine — those names are plain facts, not copyrighted
+content, and nothing about that touches LinkedIn's systems. What's
+rejected specifically is Claude Code or any part of this codebase ever
+automating a LinkedIn visit, login, search, or scrape on its own.
+**Why:** LinkedIn's terms of service prohibit automated scraping, and
+it aggressively detects and blocks bot-like access patterns — the
+opposite of every other source this project's discovery sessions use
+(Greenhouse/Lever/Comeet's own public APIs, company career pages
+respecting robots.txt, Wikipedia's own permissively-licensed category
+pages). This project's whole compliance posture (ADR-0002, ADR-0019)
+is built on only ever fetching things it has a real, defensible right
+to fetch — LinkedIn is the one real source that fails that test
+outright, regardless of how valuable its data would be.

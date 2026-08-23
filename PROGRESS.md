@@ -1495,3 +1495,110 @@ None — all decisions needed to start building are now in place.
   CHANGELOG.md.
 - Test suite: 152/152 passing (was 143: 2 new for the connection-limit
   verification, 7 new for the `css_selectors` strategy).
+
+## Addendum — Session 37 executed: big verification pass — 3 combined candidate lists (2026-08-23)
+- Three independently-sourced candidate files arrived as task attachments
+  (Hebrew business media/recruiting sites, Elad's own manual LinkedIn
+  browsing, Wikipedia's Israeli company categories) — combined, roughly
+  450 real candidate names, an order of magnitude beyond any prior
+  single harvesting round. Explicitly scoped by the task as likely
+  multi-session work; this session prioritized (1) Wikipedia's own
+  "strong likely-active subset" (37 names) and (2) LinkedIn's
+  explicitly-flagged actively-hiring names, per the task's own priority
+  order — the ~165-name media list and the rest of the LinkedIn/
+  Wikipedia lists were deliberately deferred, not rushed.
+- **Dedup result:** computed against the real, current `companies.json`
+  (79) + `companies_unscannable.json` (7) before touching anything new.
+  LinkedIn list: 64 names, 2 already known (Cloudinary, Centrical).
+  Media list: 173 names, 8 already known (Lightricks, Fireblocks,
+  SafeBreach, Axonius, Orca Security, Melio, Pagaya, Innovid). Wikipedia
+  "strong likely-active subset": 37 names, 8 already known (Cato
+  Networks, Cognyte, Infinidat, Lightricks, MyHeritage, Sisense, SysAid
+  Technologies, NiCE — the last two via a case/naming-variant match,
+  not a literal string match).
+- **Identity collisions, both resolved with real evidence, not
+  assumption:** Foresight Automotive (foresightauto.com, automotive
+  stereo-vision, NASDAQ/TASE: FRSX, Ness Ziona) vs. ForSight Robotics
+  (already in `companies.json` since Session 36, forsightrobotics.com,
+  ophthalmic surgical robotics, Yokne'am Illit) — confirmed genuinely
+  different companies (different spelling, different industries,
+  different domains, different founding). Nanox Vision vs. Nano-X —
+  confirmed the *same* company: Nano-X Imaging Ltd.'s own official
+  website is literally `nanox.vision`.
+- **Verification method:** delegated initial domain/status research for
+  ~37 companies to two background research agents (kept the main
+  session's own context free for the actual live verification work),
+  then did every real compliance-gated fetch/ATS-detection/API-
+  confirmation myself, live, through the real `ComplianceAgent` — the
+  agents' research was treated as a lead to verify, never as a
+  substitute for it (confirmed this mattered: several research-agent
+  findings turned out to need correction or a slightly different real
+  URL once actually fetched).
+- **12 new companies confirmed and added** (9 Comeet, 3 Greenhouse) —
+  see `companies.json`'s own per-company notes for the full story of
+  each. Two real methodology notes worth calling out: (1) Wiliot and
+  Nano-X Vision's real `company-uid` came from an observed network
+  request / an individual job's apply-iframe URL respectively — no
+  public slug was ever visible on the page itself, matching the same
+  white-labeled-Comeet pattern Session 35 found for Coralogix/Guesty.
+  (2) Transmit Security's first detection pass returned a false-
+  positive slug, `"embed"` (from an embedded Greenhouse widget's own
+  `/embed/job_board` path) — caught before trusting it, same class of
+  mistake as Session 18's shield/bold/vim precedent, then resolved to
+  the real slug (`transmitsecurity`) found in the widget's own `?for=`
+  query parameter.
+- **8 new `companies_unscannable.json` entries, every one confirmed
+  live** (not from the research agents' secondhand findings alone) —
+  CyberArk, Perimeter 81, Zerto, Gigya, Formula Systems, and OverOps
+  all genuinely redirect to (or 404 where their acquirer never even
+  built a redirect) an acquirer's own careers page or product page,
+  confirmed by actually loading each real URL in a real browser and
+  checking the real final URL/title, not trusting a research summary's
+  claim on its own. Cybersixgill redirects to Bitsight, whose careers
+  content is served by Workday — a real, additional confirmed Workday
+  sighting beyond Session 32's original 3. Radware's real careers page
+  is blocked by an active bot-protection challenge (perfdrive.com/
+  hcaptcha.com) — probably its own product, a small irony worth noting.
+- **Real, honest negative results, not forced into either bucket:** 15
+  names from the Wikipedia priority subset remain genuinely unresolved
+  — XM Cyber (a search-sourced company-uid turned out to be genuinely
+  invalid when checked against the real API — `COMPANY_DATA` came back
+  unassigned, not a real record), Check Point/Papaya Global/Cyberint/
+  Sapiens International (robots.txt-blocked at check time — a
+  transient-glitch self-heal is plausible per ADR-0002's own TTL
+  design, not confirmed as a permanent block the way Session 32/35's
+  WAF-fingerprinting findings were), and Cellebrite/Checkmarx/StarkWare
+  Industries/Varonis Systems/Any.do/DealHub/TeraSky/Sela/ZoomInfo
+  (genuinely no recognized-platform signal found in this pass).
+- **Real end-to-end confirmation:** live `python run.py` smoke test
+  against the updated 91-company `companies.json`: 90/91 succeeded, 1
+  genuine transient failure (Smarsh, `ReadTimeout` — an existing
+  company, unrelated to this session's additions, the same kind of
+  real network hiccup Session 20 also disclosed rather than hid). 9
+  real new matches surfaced immediately from the newly added companies
+  (Wiliot's DevOps Engineer; 6 real Nebius matches including a
+  technical_support one; Transmit Security's Senior DevOps Engineer).
+- **Session completeness: explicitly NOT finished — resume-from-here
+  state, per the task's own instruction not to fake completeness.**
+  Untouched this session: ~54 more names in the LinkedIn file beyond
+  the explicitly-prioritized ones, the ~165-name combined media-
+  research list, the other Wikipedia categories (cybersecurity 31,
+  AI 5, solar energy 11, internet companies 38), and the complete
+  153-name English Wikipedia "Software companies of Israel" category —
+  referenced in the task's own attachment text as available but never
+  actually included in what this session received; still needed before
+  a future session can work through that specific list (explicit
+  caveat already on record: expect an elevated "company no longer
+  exists" rate there, since it's a historical, not current-activity,
+  category).
+- Doc gap resolved per ADR-0030's own protocol: the task referenced
+  ADR-0032 ("rejected building automated LinkedIn-scraping tooling") as
+  already decided — it wasn't in `DECISIONS.md` yet. Added verbatim
+  from the task's own unambiguous description.
+- Docs updated: DECISIONS.md (new ADR-0032), PLAN.md (growth-playbook
+  "Phase 4," explicit resume-from-here note), this file, CHANGELOG.md.
+- Test suite: 152/152 passing, unchanged (no code changes this
+  session — pure data/config work on `companies.json`/
+  `companies_unscannable.json`/`DECISIONS.md`). Live `python run.py`
+  smoke test: 90/91 attempted succeeded (1 real transient failure,
+  unrelated to this session), 9 immediate new real matches.

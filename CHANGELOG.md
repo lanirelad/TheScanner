@@ -1308,3 +1308,45 @@
   the full production pipeline end to end.
 - Test suite: 152/152 passing (was 143: 2 new for the connection-limit
   verification, 7 new for the css_selectors strategy).
+
+## 2026-08-23 — Session 37: big verification pass - 3 combined candidate lists
+- Three independently-sourced candidate files (Hebrew business media,
+  Elad's own LinkedIn browsing, Wikipedia's Israeli company categories)
+  combined to roughly 450 real names - an order of magnitude beyond any
+  prior round. Deduped against the real current companies.json/
+  companies_unscannable.json first (18 names across all three files
+  already known). Prioritized Wikipedia's "strong likely-active
+  subset" and LinkedIn's explicitly-flagged actively-hiring names per
+  the task's own scope, deliberately deferring the larger media/
+  historical-Wikipedia lists rather than rushing them.
+- Resolved both flagged identity-collision risks with real evidence:
+  Foresight Automotive vs. ForSight Robotics confirmed different
+  companies; Nanox Vision vs. Nano-X confirmed the same company (Nano-X
+  Imaging's own domain is literally nanox.vision).
+- Delegated initial domain/status research to background agents, then
+  did every real verification fetch personally through the live
+  ComplianceAgent - the research was a lead to verify, not a
+  substitute, and several findings needed real correction once
+  actually fetched (a false-positive "embed" slug for Transmit
+  Security, an invalid searched-up uid for XM Cyber).
+- 12 new companies added (9 Comeet, 3 Greenhouse) - companies.json
+  79 -> 91. 8 new companies_unscannable.json entries (7 -> 15), every
+  one confirmed live (not from research alone) as genuinely acquired/
+  absorbed with no distinct careers presence, or actively bot-blocked.
+- Real, honest negative results: 15 names from the priority subset
+  remain genuinely unresolved (some robots.txt-blocked at check time,
+  some no recognized-platform signal found) - not forced into either
+  bucket.
+- Session explicitly NOT finished - resume-from-here state recorded:
+  ~54 more LinkedIn names, the ~165-name media list, other Wikipedia
+  categories, and the complete 153-name English Wikipedia category
+  (referenced in the task's attachments but never actually included)
+  all remain for a future session.
+- Doc gap resolved per ADR-0030: added ADR-0032 (no automated LinkedIn
+  scraping, ever) to DECISIONS.md, referenced by the task as already
+  decided but missing from the repo.
+- Live python run.py smoke test: 90/91 attempted succeeded (1 real
+  transient failure, Smarsh ReadTimeout, unrelated to this session), 9
+  immediate new real matches from the newly added companies.
+- Test suite: 152/152 passing, unchanged (no code changes this session
+  - pure data/config work).
