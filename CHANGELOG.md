@@ -1227,3 +1227,49 @@
   remain in the live namespace - safe to ignore or delete manually.
 - Files changed: wrangler.jsonc only (two commits).
 - Test suite: 140/140 Python tests passing, unchanged.
+
+## 2026-08-23 — Session 35: concurrency reality check + custom-domain-focused harvesting
+- Part 1: read run.py/compliance/agent.py directly rather than
+  theorizing. Real answer: no application-level concurrency cap exists
+  anywhere - one asyncio.gather() call schedules every company at once,
+  matching ADR-0021's own explicit design intent ("potentially
+  thousands" of concurrent per-domain lanes). One real, currently-dormant
+  limit exists a layer below the app code: httpx.AsyncClient()'s
+  unconfigured default connection pool caps at 100 - not reached at
+  today's 76 companies, but worth revisiting as the company count grows
+  toward the ~200/~8,000-9,000 targets already discussed. No code
+  change - a report, not a fix.
+- Part 2: verified 6 new candidates (Majestic Labs, Port, Kela
+  Technologies, Line 5, ForSight Robotics, AIR) as real, distinct
+  companies before doing anything else - Kela Technologies required
+  disambiguating from an unrelated, older cybercrime-threat-intel
+  company sharing the same name.
+- Fixed the comeet.co gap flagged in Session 32: added CM_WIDGET_UID_RE
+  to discovery/playwright_probe.py, recognizing a company-uid= query
+  parameter on any comeet.co request even with no public comeet.com
+  link on the page at all - this directly resolved 3 of Session 32's 8
+  genuinely-unresolved companies.
+- Real result: Coralogix and Guesty turned out to be real Comeet
+  customers all along, invisible to two prior sessions because both
+  white-label Comeet through a WordPress plugin under their own
+  domain/URL scheme; Upwind embeds Comeet's widget directly. All three
+  confirmed against the real API (50/13/51 real jobs respectively,
+  matching each page's own displayed counts exactly). Port and Kela
+  Technologies (both new candidates) also confirmed real Comeet hits.
+  companies.json: 71 -> 76.
+- ForSight Robotics, AIR, and Quantum Art positively identified as
+  custom career pages with real, structured job data that
+  CustomAdapter's current JSON-only extraction strategy can't parse
+  (a real architectural gap now hit by 3 companies, not theoretical) -
+  added to companies_unscannable.json with that specific reason.
+  Majestic Labs and Line 5 (new candidates) and Definity (Session 32,
+  re-confirmed) have no structured job data published at all.
+  companies_unscannable.json: 4 -> 10 entries.
+- MorphiSec, HiBob, and Attenti remain genuinely unresolved even after
+  a deeper pass specifically checking for the Comeet white-label
+  pattern that resolved the other three - a real, disclosed negative
+  result, not forced into either bucket.
+- Live python run.py smoke test against the updated 76-company
+  companies.json: 76/76 attempted and succeeded, 0 failures, 4
+  immediate new real matches (2 Coralogix, 2 Upwind).
+- Test suite: 143/143 passing (was 140: 3 new for CM_WIDGET_UID_RE).

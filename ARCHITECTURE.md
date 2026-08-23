@@ -457,6 +457,43 @@ to confirm the mechanism actually pays off somewhere real, rather than
 spending a large batch of exploratory calls chasing the same negative
 result at scale.
 
+**Real concurrency behavior, investigated not theorized (Session 35):**
+Elad asked what actually happens when the scan fetches many companies on
+genuinely different domains at once — is there an enforced cap? Read
+directly, not assumed: **no.** `run.py`'s `run()` calls
+`asyncio.gather(*[fetch_company(company, agent, custom_selectors) for
+company in companies])` — every company in `companies.json`, one task
+each, all created and scheduled at once, with no `asyncio.Semaphore` or
+similar limiter anywhere in `run.py` or `compliance/agent.py` (checked
+directly — grepped for `Semaphore`/`gather`/every `asyncio.` call in
+both files). This is exactly the behavior ADR-0021 chose async/await
+*for* — its own context explicitly anticipated "potentially thousands of
+independent per-domain rate-limit lanes needing to run concurrently,"
+which only pays off if nothing caps how many run at once.
+
+What actually *does* bound concurrency today is per-domain, not global:
+`ComplianceAgent._lock_for_domain()` serializes fetches to the *same*
+domain (so ADR-0002's rate limit is real), but two different domains'
+fetches never wait on each other at all — cross-domain fan-out is, by
+design, as wide as `companies.json` is long.
+
+One real, currently-dormant limit exists a layer below the application
+code: `ComplianceAgent.__init__` constructs `httpx.AsyncClient()` with no
+`limits=` argument, so it inherits httpx's own library default
+(`Limits(max_connections=100, max_keepalive_connections=20,
+keepalive_expiry=5.0)`, confirmed by reading `httpx._config.DEFAULT_LIMITS`
+directly in the installed version — not from httpx's docs alone). At
+today's 76 companies this ceiling is never reached (companies sharing a
+domain, like every Greenhouse company, share one domain's connection
+pool slot dynamics, not 76 separate ones) — but it's a real, currently
+un-configured constraint that would start silently throttling well
+before `companies.json` reaches the "~200 Greenhouse companies" scale
+target this section already discusses, let alone the ~8,000-9,000-company
+full universe ADR-0021 was written for. Worth a deliberate `limits=`
+value in a future session once company count actually approaches that
+range — not needed today, and not built this session (Elad asked for a
+report of current behavior, not a change).
+
 ## 5. Sandbox (domain-specific hook #1)
 
 A fixed set of 3–5 test companies with cached fixture responses (saved JSON/HTML

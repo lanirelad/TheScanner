@@ -39,6 +39,29 @@ LV_RE = re.compile(r"(?:jobs|api)\.lever\.co/(?:v0/postings/)?([a-zA-Z0-9_-]+)")
 LV_EU_RE = re.compile(r"jobs\.eu\.lever\.co/([a-zA-Z0-9_-]+)")
 CM_RE = re.compile(r"comeet\.com/jobs/([a-zA-Z0-9_-]+)/([a-zA-Z0-9.]+)")
 
+# Session 35: the comeet.co gap flagged in Session 32 — Comeet's own
+# widget-serving domain (comeet.co, not comeet.com) never matched CM_RE
+# above at all, which is exactly why 7 of the real Comeet companies
+# found this session (Coralogix, Guesty, Overwolf, Artlist, Claroty,
+# DriveNets, Upwind) needed manual web research instead of being caught
+# automatically. This regex catches the specific shape confirmed
+# empirically this session across three companies' real white-labeled
+# Comeet integrations (a WordPress plugin proxying Comeet under the
+# company's own domain, e.g. coralogix.com/careers/co/.../4B.75E/...):
+# every one of them exposes a `company-uid=` query parameter on a
+# comeet.co request (the apply/social iframe URLs, or the widget's own
+# api.js init call) even though the surrounding page never shows a
+# public comeet.com/jobs/{slug}/{uid} link anywhere. Deliberately
+# returns `slug: None` — a company-uid alone is enough to *recognize*
+# the company as Comeet-backed, but the real public comeet.com URL still
+# needs a slug, which this pattern never reveals (Coralogix's white-label
+# plugin serves jobs from its own domain, not comeet.com, precisely so
+# the public page doesn't need to exist at all) — confirming the slug
+# still takes one manual guess-and-verify step against the real
+# ComeetAdapter, same as every other company this session, just with
+# the uid already known instead of needing to be found too.
+CM_WIDGET_UID_RE = re.compile(r"comeet\.co/[^\s\"']*[?&]company-uid=([a-zA-Z0-9.]+)")
+
 # Session 32 (Growth playbook Phase 1): recognition-only signatures for
 # three platforms this project has no adapter for — Workday,
 # SmartRecruiters, iCIMS. Each pattern was checked against real
@@ -81,6 +104,9 @@ def _detect_ats(haystack):
     m = LV_RE.search(haystack)
     if m:
         return {"ats": "lever", "slug": m.group(1)}
+    m = CM_WIDGET_UID_RE.search(haystack)
+    if m:
+        return {"ats": "comeet", "slug": None, "uid": m.group(1)}
     return None
 
 

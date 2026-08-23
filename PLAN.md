@@ -293,3 +293,47 @@ going forward)
   pool (not just Session 21's 20-company batch) would give an honest
   answer to "is any one platform common enough to be worth a fifth
   adapter," rather than guessing from one data point.
+- **Phase 2 (Session 35): custom-domain-focused harvesting + the
+  comeet.co fix.** Explicit goal shift from Phase 1's "grow the count"
+  to "find companies with genuinely bespoke or minimal public hiring
+  infrastructure — exactly the roles that wouldn't appear on LinkedIn/
+  aggregator sites either," the actual differentiation this project
+  exists for. Checked 6 new candidates from real 2026 funding coverage
+  (Majestic Labs, Port, Kela Technologies, Line 5, ForSight Robotics,
+  AIR) — all verified as real, distinct companies first (Kela
+  Technologies in particular shares its name with an unrelated,
+  older cybercrime-threat-intel firm; disambiguated before touching
+  anything). Fixed the comeet.co gap flagged in Phase 1: added
+  `CM_WIDGET_UID_RE` to `discovery/playwright_probe.py`, recognizing a
+  `company-uid=` parameter on any `comeet.co` request even when no
+  public `comeet.com/jobs/{slug}/{uid}` link exists anywhere on the
+  page — this is exactly what resolved 3 of Phase 1's genuinely-
+  unresolved companies (Coralogix, Guesty, Upwind), each white-labeling
+  or embedding Comeet in a way the old detection couldn't see at all.
+  Real result: 5 new Comeet companies merged into `companies.json`
+  (Port, Kela Technologies, Coralogix, Guesty, Upwind — 71 -> 76), 7
+  new `companies_unscannable.json` entries split across two genuinely
+  different reasons (4 real, confirmed custom career pages with real
+  structured job data that CustomAdapter's current JSON-only extraction
+  strategy can't parse — Coralogix and Guesty turned out to *not* need
+  this bucket once their real Comeet integration was found, but
+  ForSight Robotics, AIR, and Quantum Art do, plus Session 32's
+  Definity re-confirmed; and 2 real companies with no structured job
+  data published at all — Majestic Labs, Line 5, both genuinely
+  stealth/pre-launch on hiring). 3 of Session 32's 8 unresolved
+  companies remain genuinely unresolved even after this deeper pass
+  (MorphiSec, HiBob, Attenti) — a real, disclosed negative result, not
+  forced into either bucket.
+- **Real architectural signal, not yet acted on:** this session found
+  the same "real job data, rendered as static HTML with no JSON blob"
+  pattern in 5 different real companies (Coralogix and Guesty turned
+  out to be Comeet after all, but ForSight Robotics/AIR/Quantum Art
+  genuinely aren't anything this project recognizes) — suggesting this
+  pattern might be *more* common in the wild than the JSON-hydration
+  pattern `CustomAdapter` currently supports (its only real confirmed
+  user is still monday.com, from Session 6). Worth a real evaluation in
+  a future phase: is a CSS-selector-based extraction strategy (parse a
+  repeating job-item element by class/structure, config-driven same as
+  the JSON strategy) worth adding to `CustomAdapter` as a second real
+  strategy, now that there's more than one hypothetical company that
+  would benefit from it.

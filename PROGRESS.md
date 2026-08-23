@@ -1300,3 +1300,104 @@ None — all decisions needed to start building are now in place.
 - Files changed: `wrangler.jsonc` only (two commits: the real binding
   added, then the namespace ID corrected after the mid-session deletion).
 - Test suite: 140/140 Python tests passing, unchanged.
+
+## Addendum — Session 35 executed: concurrency reality check + custom-domain-focused harvesting (2026-08-23)
+- **Part 1, investigated not theorized:** read `run.py`/`compliance/agent.py`
+  directly (grepped every `asyncio.`/`Semaphore` call in both) rather
+  than answering from memory. Real answer: no application-level
+  concurrency cap exists anywhere — `run()`'s single `asyncio.gather()`
+  call schedules every company in `companies.json` as its own task at
+  once, and `ComplianceAgent` only ever serializes fetches to the *same*
+  domain (`_lock_for_domain`), never across domains. This is exactly
+  the behavior ADR-0021 chose async for — its own context explicitly
+  anticipated "potentially thousands" of concurrent per-domain lanes,
+  which only pays off with no artificial cap. One real, currently-dormant
+  limit does exist a layer below the application code, not by design:
+  `ComplianceAgent` constructs `httpx.AsyncClient()` with no `limits=`
+  argument, inheriting httpx's own library default
+  (`max_connections=100`, confirmed by reading the installed version's
+  `httpx._config.DEFAULT_LIMITS` directly). Not reached at today's 76
+  companies, but a real, unconfigured ceiling worth revisiting once the
+  company count actually approaches the ~200-Greenhouse or
+  ~8,000-9,000-company scale targets already discussed elsewhere in
+  this doc. Documented in ARCHITECTURE.md §4a; no code change made
+  (Elad asked for the real current behavior, not a change).
+- **Part 2, new candidates verified real before touching anything else:**
+  Majestic Labs, Port, Kela Technologies, Line 5, ForSight Robotics, AIR
+  — all confirmed as real, distinct companies via web research first.
+  Kela Technologies specifically required disambiguation: a real,
+  unrelated, older cybercrime-threat-intel company also uses the bare
+  name "Kela" — resolved by checking kela.io directly (the defense-tech
+  company's real domain), which itself links to the real Comeet URL
+  used to confirm it.
+- **New candidates, real result:** Port (comeet, `port/59.004`, 36 real
+  jobs including a real Israel posting) and Kela Technologies (comeet,
+  `kelasys/2A.007`, 20 real jobs) confirmed and merged. Majestic Labs,
+  Line 5, ForSight Robotics, and AIR are all real companies with no
+  usable data path yet — see `companies_unscannable.json` additions
+  below for the specific, different reasons each one earned an entry.
+- **Session 32's 8 genuinely-unresolved companies, real resolution for
+  5 of 8:**
+  - **Coralogix and Guesty — resolved, a genuinely new discovery
+    pattern.** Both turned out to be real Comeet customers all along,
+    invisible to every prior check (Sessions 21, 32) because both
+    white-label Comeet through a real WordPress plugin
+    (`wp-content/plugins/comeet-wp-plugin-*`) under their own domain and
+    URL scheme (`coralogix.com/careers/co/{location}/{id}/{slug}/`,
+    `guesty.com/careers-open-positions/co/{location}/{id}/{slug}/`) —
+    no public `comeet.com` link anywhere on the page at all. The real
+    `company-uid` was recoverable from an individual job's own
+    apply/social iframe URL (a `company-uid=` query parameter,
+    `06.004` for Coralogix, `10.000` for Guesty), confirmed against the
+    real public Comeet API by guessing the slug from the company name —
+    50 real jobs for Coralogix (exactly matching the page's own
+    department-filter total), 13 for Guesty (exactly matching its own
+    "13 open positions" count, including a real Israel posting).
+  - **Upwind — resolved.** Embeds Comeet's own widget script
+    (`comeet.co/careers-api/api.js`) directly; the widget's own request
+    URL exposed `company-uid=49.004`, and the slug `upwind` (guessed
+    from the company name) confirmed against the real API — 51 real
+    jobs.
+  - **ForSight Robotics, AIR, Quantum Art — positively identified as
+    custom, added to `companies_unscannable.json` with a specific,
+    actionable reason (not a vague "unknown").** All three have real,
+    structured, currently-open job listings visible in their rendered
+    pages, but rendered as static HTML (Webflow CMS-collection elements
+    for ForSight/AIR, a similar static pattern for Quantum Art) rather
+    than the JSON-in-a-script-tag pattern `CustomAdapter` currently
+    parses (its documented limit, confirmed hit for real by 3 companies
+    in one session rather than staying theoretical).
+  - **Definity — re-confirmed, not re-derived.** Session 32's original
+    finding (`/careers` 404s, no real job listings, email-only hiring)
+    held up on a fresh check of the real root domain too.
+  - **MorphiSec, HiBob, Attenti — still genuinely unresolved.** Checked
+    deeper than Session 32 did (specifically for the Comeet white-label
+    pattern that resolved Coralogix/Guesty/Upwind, including clicking
+    HiBob's/MorphiSec's own "view positions" buttons) — real, honest
+    negative result, not forced into either bucket. HiBob's and
+    MorphiSec's own visible page text mentions open positions/roles but
+    no extractable structure or ATS signal was found anywhere; Attenti
+    has since rebranded to "Allied Universal Electronic Monitoring"
+    (per Session 32) and still shows no job data on its current site.
+- **comeet.co fix, done (it was quick and directly enabled the 3
+  resolutions above):** added `CM_WIDGET_UID_RE` to
+  `discovery/playwright_probe.py` — recognizes a `company-uid=` query
+  parameter on any `comeet.co` request as a real Comeet signal even when
+  no public `comeet.com/jobs/{slug}/{uid}` link exists anywhere
+  (`_detect_ats` now falls back to this after every other pattern,
+  returning `slug: None` honestly — a company-uid alone confirms the
+  platform but a real slug still needs one guess-and-verify step against
+  the public API, same as every other company found this session). 3
+  new unit tests using the exact real URL shapes captured from
+  Coralogix/Guesty this session.
+- `companies.json`: 71 -> 76 (Port, Kela Technologies, Coralogix,
+  Guesty, Upwind — all Comeet). `companies_unscannable.json`: 4 -> 10
+  entries added this session, split honestly across two different real
+  reasons per the file's own design (a custom-HTML extraction gap vs.
+  no job data published at all) rather than lumped into one vague
+  bucket.
+- Live `python run.py` smoke test against the updated 76-company
+  `companies.json`: 76/76 attempted and succeeded, 0 failures, 4
+  immediate new real matches from the newly added companies (2 from
+  Coralogix, 2 from Upwind).
+- Test suite: 143/143 passing (was 140: 3 new for `CM_WIDGET_UID_RE`).

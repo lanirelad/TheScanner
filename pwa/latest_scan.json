@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-22T20:11:37Z",
-  "companies_attempted": 71,
-  "companies_succeeded": 71,
+  "generated_at": "2026-08-23T06:33:42Z",
+  "companies_attempted": 76,
+  "companies_succeeded": 76,
   "companies_failed": 0,
   "failures": [],
   "matches": [
@@ -416,14 +416,14 @@
       "scan_status": "still_open"
     },
     {
-      "job_id": "844687ba1118bfee32e00c2ee925514377b5c1d06f148866a93687bac652dd58",
+      "job_id": "e49ba7f7b96d7f766d3d77d7d82e605d338b23824e0ea55c78c231d05d248e24",
       "company": "DriveNets",
       "title": "IT Devops Engineer",
       "location": "Raanana, Israel",
       "role_category": "devops",
       "label_en": "DevOps Engineer",
-      "source_url": "https://drivenets.com/job/?id=86.161",
-      "scan_status": "still_open"
+      "source_url": "https://drivenets.com/job/?id=86.161&employee",
+      "scan_status": "new"
     },
     {
       "job_id": "5fbe10fb571e8fa57493d3f17d3cc4164e6664a73fb81ded85b18587029a0c1f",
@@ -434,6 +434,46 @@
       "label_en": "DevOps Engineer",
       "source_url": "https://drivenets.com/job/?id=D2.666",
       "scan_status": "still_open"
+    },
+    {
+      "job_id": "50365724942baf53c57ed69d2a3196a33c134f34aa76896a5cd4071926e7a623",
+      "company": "Coralogix",
+      "title": "Site Reliability Engineer",
+      "location": "Ramat Gan, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://coralogix.com/careers/co/ramat-gan-israel/62.E68/site-reliability-engineer/all/",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "e3df7e5382780d5d3fed4dead9f7e8f84a690b3292445c7aff570595bda9d123",
+      "company": "Coralogix",
+      "title": "Technical Support Engineer",
+      "location": "Ramat Gan, Israel",
+      "role_category": "technical_support",
+      "label_en": "Technical Support Engineer",
+      "source_url": "https://coralogix.com/careers/co/ramat-gan-israel/C1.D6F/technical-support-engineer/all/",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "e2c32ef970b1b3a6dfbaf627c19910838a3cd3c7a88290219c7bb90247d74aaa",
+      "company": "Upwind",
+      "title": "Technical Support Engineer – Student Position",
+      "location": "Tel Aviv",
+      "role_category": "technical_support",
+      "label_en": "Technical Support Engineer",
+      "source_url": "https://www.upwind.io/careers/co/tel-aviv/78.E65/technical-support-engineer-student-position/all#jobs",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "efdc1d8a2d0333ad187691ac6888c19f030ead30d835122806a9fc905b9fde55",
+      "company": "Upwind",
+      "title": "Technical Support Specialist",
+      "location": "Tel Aviv",
+      "role_category": "technical_support",
+      "label_en": "Technical Support Engineer",
+      "source_url": "https://www.upwind.io/careers/co/tel-aviv/04.F41/technical-support-specialist/all",
+      "scan_status": "new"
     }
   ]
 }

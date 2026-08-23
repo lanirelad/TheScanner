@@ -1,5 +1,5 @@
 {
-  "_note": "71 companies across 3 ATS platforms plus 1 custom-domain company. Session 18: 9->47 by guessing ATS slugs from company names and validating against the live API (34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected). Session 19: 47->58 by inverting the method — fetching each candidate's own real career page and reading its actual ATS directly off of it (1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk). Session 20: 58->63 using the same domain-first method against a real, research-sourced candidate list (Calcalist/CTech 2026 funding-rounds coverage + StartupBlink's Israel ranking) rather than a hand-compiled name list — 3 new Greenhouse + 2 new Comeet; 2 raw hits (Enigma, CopilotKit) rejected on review for zero Israel signal, the exact generic-word-collision risk flagged going into that session. Session 32: 63->71 — a Growth playbook Phase 1 session aimed at recognizing Workday/SmartRecruiters/iCIMS (0 real hits for those 3) turned up 8 real hits on the 4 platforms this project already supports instead, re-checking Session 21's zero-signal batch with web research (real career-page URLs, since Session 21's own candidate list/script were never committed) and PlaywrightProbe: 6 new Comeet (2 via PlaywrightProbe directly, 4 via web research surfacing a real Comeet link the probe's evidence sources didn't cover), 2 new Greenhouse (Datarails, newly listed since Session 21; Aidoc, one of Session 21's 3 robots.txt-blocked companies — its WAF still blocks this project's httpx client but not Playwright's real browser). See ARCHITECTURE.md/PROGRESS.md Session 18-20/32 notes for the honest shortfall against the ~200 Greenhouse target and each session's sourcing method. 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
+  "_note": "76 companies across 3 ATS platforms plus 1 custom-domain company. Session 18: 9->47 by guessing ATS slugs from company names and validating against the live API (34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected). Session 19: 47->58 by inverting the method — fetching each candidate's own real career page and reading its actual ATS directly off of it (1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk). Session 20: 58->63 using the same domain-first method against a real, research-sourced candidate list (Calcalist/CTech 2026 funding-rounds coverage + StartupBlink's Israel ranking) rather than a hand-compiled name list — 3 new Greenhouse + 2 new Comeet; 2 raw hits (Enigma, CopilotKit) rejected on review for zero Israel signal, the exact generic-word-collision risk flagged going into that session. Session 32: 63->71 — a Growth playbook Phase 1 session aimed at recognizing Workday/SmartRecruiters/iCIMS (0 real hits for those 3) turned up 8 real hits on the 4 platforms this project already supports instead, re-checking Session 21's zero-signal batch with web research (real career-page URLs, since Session 21's own candidate list/script were never committed) and PlaywrightProbe: 6 new Comeet (2 via PlaywrightProbe directly, 4 via web research surfacing a real Comeet link the probe's evidence sources didn't cover), 2 new Greenhouse (Datarails, newly listed since Session 21; Aidoc, one of Session 21's 3 robots.txt-blocked companies — its WAF still blocks this project's httpx client but not Playwright's real browser). Session 35: 71->76 — custom-domain-focused harvesting (2 new real candidates: Port, Kela Technologies) plus resolving 3 of Session 32's 8 genuinely-unresolved companies (Coralogix, Guesty, Upwind) after finding they white-label/embed Comeet in a way the public comeet.com URL scheme never reveals — the real company-uid was recoverable from an individual job's apply-iframe URL even with no visible public link on the page (see discovery/playwright_probe.py's new CM_WIDGET_UID_RE, fixing the comeet.co detection gap Session 32 flagged). See ARCHITECTURE.md/PROGRESS.md Session 18-20/32/35 notes for the honest shortfall against the ~200 Greenhouse target and each session's sourcing method. 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
   "companies": [
     {
       "name": "Wiz",
@@ -515,6 +515,46 @@
       "career_page": "https://www.comeet.com/jobs/drivenets/72.006",
       "ats_uid": "72.006",
       "note": "Session 32: same as Claroty above — found via web research, the real comeet.com link isn't reachable from drivenets.com/careers/'s own evidence sources. Confirmed against the real API — 30 real open postings at verification time."
+    },
+    {
+      "name": "Port",
+      "ats": "comeet",
+      "ats_slug": "port",
+      "career_page": "https://www.comeet.com/jobs/port/59.004",
+      "ats_uid": "59.004",
+      "note": "Session 35: new candidate from real 2026 funding coverage ($100M Series C, agentic engineering platform), found directly via PlaywrightProbe against port.io/careers (existing CM_RE, rendered-DOM evidence). Confirmed against the real API — 36 real open postings at verification time, including a real Israel-located posting (AI Data Engineer, Tel Aviv)."
+    },
+    {
+      "name": "Kela Technologies",
+      "ats": "comeet",
+      "ats_slug": "kelasys",
+      "career_page": "https://www.comeet.com/jobs/kelasys/2A.007",
+      "ats_uid": "2A.007",
+      "note": "Session 35: new candidate from real 2026 funding coverage (defense-tech, $200M raise). Two real, distinct companies share the name \"Kela\" (this one — Kela Technologies, kela.io — and an unrelated older cybercrime-threat-intel firm) — disambiguated by checking kela.io directly, which links to this exact comeet.com URL on its own root page. Confirmed against the real API — 20 real open postings (Tel Aviv) at verification time."
+    },
+    {
+      "name": "Coralogix",
+      "ats": "comeet",
+      "ats_slug": "coralogix",
+      "career_page": "https://www.comeet.com/jobs/coralogix/06.004",
+      "ats_uid": "06.004",
+      "note": "Session 35: one of Session 32's 8 genuinely-unresolved companies, now resolved. coralogix.com/careers/ white-labels Comeet through a real WordPress plugin (wp-content/plugins/comeet-wp-plugin-*) under its own domain/URL scheme (/careers/co/{location}/{id}/{slug}/) — no public comeet.com link anywhere on the page, which is why Sessions 21/32 found zero signal. The real company-uid (06.004) was found in an individual job's apply-iframe URL (a `company-uid=` query parameter — see discovery/playwright_probe.py's new CM_WIDGET_UID_RE), then confirmed by guessing the slug against the real public comeet.com API — 50 real open postings, exactly matching the '50' total shown in the page's own department-filter counts."
+    },
+    {
+      "name": "Guesty",
+      "ats": "comeet",
+      "ats_slug": "guesty",
+      "career_page": "https://www.comeet.com/jobs/guesty/10.000",
+      "ats_uid": "10.000",
+      "note": "Session 35: same white-labeled-Comeet pattern as Coralogix above (guesty.com/careers-open-positions/co/{location}/{id}/{slug}/, same real company-uid=10.000 found via an individual job's iframe URL, cookie-consent banner explicitly lists \"Comeet\" as a third-party provider). Confirmed against the real API — 13 real open postings, exactly matching the page's own '13 open positions' count, including a real Israel-located posting (Head of Finance Applications)."
+    },
+    {
+      "name": "Upwind",
+      "ats": "comeet",
+      "ats_slug": "upwind",
+      "career_page": "https://www.comeet.com/jobs/upwind/49.004",
+      "ats_uid": "49.004",
+      "note": "Session 35: one of Session 32's 8 genuinely-unresolved companies, now resolved. upwind.io/careers embeds Comeet's own widget (comeet.co/careers-api/api.js) directly rather than white-labeling it — the widget's own request URL exposed company-uid=49.004, and the slug \"upwind\" (guessed from the company name, same pattern as most other Comeet companies in this file) confirmed against the real API — 51 real open postings at verification time."
     }
   ]
 }

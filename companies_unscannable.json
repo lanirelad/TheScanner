@@ -24,6 +24,42 @@
       "reason": "Same confirmed finding as BlazeMeter above: this project's httpx client gets HTTP 403 on robots.txt itself (resolving to disallow-everything per ComplianceAgent's policy), while curl and Playwright's real browser are not blocked.",
       "platform_if_known": null,
       "checked_at": "2026-08-20T05:50:10Z"
+    },
+    {
+      "name": "ForSight Robotics",
+      "reason": "Real, confirmed Israeli medtech company ($125M Series B) with a genuinely custom career page (forsightrobotics.com/careers) — real, structured open positions ARE published (e.g. 'R&D Mechanical Engineer, Israel, Caesarea, Full time') but rendered as plain Webflow CMS-collection HTML elements (.c-list_list-item, grouped by department via a small inline JS helper), not the JSON-in-a-script-tag pattern CustomAdapter currently knows how to parse (adapters/custom.py's own documented limit — a genuinely different rendering pattern needs a second extraction strategy, not just a new config entry). Real data exists; this project's tooling can't extract it yet.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T06:32:36Z"
+    },
+    {
+      "name": "AIR",
+      "reason": "Real, confirmed Israeli eVTOL company ($1B in orders, airev.aero) with real, detailed open positions published (full job descriptions, e.g. UAS/eVTOL flight-test roles) but rendered as static Webflow HTML with no JSON data blob — same extraction gap as ForSight Robotics above. Apply mechanism is email-only per position (mailto:careers@airev.aero) even where a real structured listing exists.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T06:32:36Z"
+    },
+    {
+      "name": "Quantum Art",
+      "reason": "One of Session 32's 8 genuinely-unresolved companies, now positively identified. Real, confirmed Israeli quantum-computing company with a rich, real open-positions list (18 real roles with title+department, e.g. 'THEORETICAL PHYSICIST - ION TRAP / THEORY AND ALGORITHMS GROUP') visible in the rendered page, but the same Webflow-style static-HTML pattern as ForSight Robotics/AIR above — no JSON blob CustomAdapter can parse.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T06:32:36Z"
+    },
+    {
+      "name": "Majestic Labs",
+      "reason": "Real, confirmed Israeli/US AI-chip startup ($112M raised, majestic-labs.ai) — real careers page exists but publishes no structured position list at all, only a 'shipping soon' message and a mailto:careers@majestic-labs.ai invitation. No structured job data exists on the page for any adapter to extract, custom or otherwise.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T06:32:36Z"
+    },
+    {
+      "name": "Line 5",
+      "reason": "Real, confirmed Israeli defense-tech startup ($20M seed, line5.ai) — genuinely stealth-mode: the real careers page is a near-empty placeholder ('quietly building what's next') with only a mailto:contact@line5.ai link, no structured job data published anywhere on the site.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T06:32:36Z"
+    },
+    {
+      "name": "Definity",
+      "reason": "Session 32's original finding re-confirmed, not re-derived: real Israeli data-engineering startup ($12M Series A, definity.ai) with no public job listings at all — /careers 404s, and the real root page has no careers section or position data either. Hiring appears to be email-only (careers@definity.ai per Session 32's research).",
+      "platform_if_known": null,
+      "checked_at": "2026-08-23T06:32:36Z"
     }
   ]
 }

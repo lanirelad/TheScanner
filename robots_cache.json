@@ -492,7 +492,7 @@
   "coralogix.com": {
     "domain": "coralogix.com",
     "allowed": true,
-    "checked_at": 1786615886.7510405
+    "checked_at": 1787459618.2529302
   },
   "cropx.com": {
     "domain": "cropx.com",
@@ -2897,7 +2897,7 @@
   "www.guesty.com": {
     "domain": "www.guesty.com",
     "allowed": true,
-    "checked_at": 1786617896.9053545
+    "checked_at": 1787459624.5624557
   },
   "www.gripsecurity.com": {
     "domain": "www.gripsecurity.com",
@@ -2927,7 +2927,7 @@
   "www.hibob.com": {
     "domain": "www.hibob.com",
     "allowed": true,
-    "checked_at": 1786617898.7265642
+    "checked_at": 1787459640.98679
   },
   "www.hasoffers.com": {
     "domain": "www.hasoffers.com",
@@ -4708,5 +4708,35 @@
     "domain": "www.aidoc.com",
     "allowed": true,
     "checked_at": 1787205163.5398688
+  },
+  "majestic-labs.ai": {
+    "domain": "majestic-labs.ai",
+    "allowed": true,
+    "checked_at": 1787458852.004441
+  },
+  "www.port.io": {
+    "domain": "www.port.io",
+    "allowed": true,
+    "checked_at": 1787458857.4826798
+  },
+  "kela.io": {
+    "domain": "kela.io",
+    "allowed": true,
+    "checked_at": 1787458861.500138
+  },
+  "line5.ai": {
+    "domain": "line5.ai",
+    "allowed": true,
+    "checked_at": 1787458862.9050956
+  },
+  "forsightrobotics.com": {
+    "domain": "forsightrobotics.com",
+    "allowed": true,
+    "checked_at": 1787458866.216279
+  },
+  "www.airev.aero": {
+    "domain": "www.airev.aero",
+    "allowed": true,
+    "checked_at": 1787458869.7621474
   }
 }

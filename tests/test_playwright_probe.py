@@ -54,6 +54,40 @@ def test_detect_ats_returns_none_when_nothing_matches():
     assert _detect_ats("<html><body>just a normal careers page, no ATS mentioned</body></html>") is None
 
 
+# --- comeet.co widget-domain fallback (Session 35: the gap Session 32
+# flagged). Real examples captured this session from three companies'
+# white-labeled Comeet integrations — a WordPress plugin proxying
+# Comeet under the company's own domain, never showing a public
+# comeet.com/jobs/{slug}/{uid} link anywhere on the page itself.
+
+
+def test_detect_ats_finds_comeet_via_widget_company_uid_when_no_public_link_exists():
+    # Real URL shape from Coralogix's own apply-iframe (company-uid
+    # confirmed against the real Comeet API this session: coralogix/06.004).
+    hit = _detect_ats(
+        "https://www.comeet.co/jobs/06.004/4B.75E/apply?token=X&company-uid=06.004&candidate-source-storage=true"
+    )
+    assert hit == {"ats": "comeet", "slug": None, "uid": "06.004"}
+
+
+def test_detect_ats_finds_comeet_via_widget_company_uid_real_guesty_shape():
+    # Real URL shape from Guesty's social-share iframe (company-uid
+    # confirmed against the real Comeet API this session: guesty/10.000).
+    hit = _detect_ats("https://www.comeet.co/jobs/10.000/5F.862/social?token=X&company-uid=10.000")
+    assert hit == {"ats": "comeet", "slug": None, "uid": "10.000"}
+
+
+def test_detect_ats_prefers_a_public_comeet_com_link_over_the_widget_fallback():
+    # A page that has BOTH a real public link and a widget URL should
+    # resolve via the public link — it already carries a slug, which the
+    # widget-only fallback structurally can never provide.
+    hit = _detect_ats(
+        "https://www.comeet.com/jobs/acmeco/12.345 ... "
+        "https://www.comeet.co/jobs/12.345/AB.123/apply?company-uid=12.345"
+    )
+    assert hit == {"ats": "comeet", "slug": "acmeco", "uid": "12.345"}
+
+
 # --- _detect_unsupported_platform (Session 32, Growth playbook Phase 1):
 # recognition-only signatures for three platforms this project has no
 # adapter for. Each real-world shape below was empirically verified
