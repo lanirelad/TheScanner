@@ -1,14 +1,9 @@
 {
-  "generated_at": "2026-08-23T18:48:55Z",
-  "companies_attempted": 91,
-  "companies_succeeded": 90,
-  "companies_failed": 1,
-  "failures": [
-    {
-      "company": "Smarsh",
-      "error": "ReadTimeout: "
-    }
-  ],
+  "generated_at": "2026-08-24T03:35:44Z",
+  "companies_attempted": 102,
+  "companies_succeeded": 102,
+  "companies_failed": 0,
+  "failures": [],
   "matches": [
     {
       "job_id": "38ec1ec7373f3e1feeb5ff9ac947222db3fe3aee11942cf869262e135af426e0",
@@ -401,13 +396,13 @@
       "scan_status": "still_open"
     },
     {
-      "job_id": "8ccdaae9ab7a2543d4e74198fb5aa185fc568d966d00790048d96363eea3f205",
+      "job_id": "f6e8e4bab8561c71c87d9d760643c71700f1e23eb9f6c2f643001ec1c3ddbbab",
       "company": "Zenity",
       "title": "DevOps Team Lead",
       "location": "Tel Aviv",
       "role_category": "devops",
       "label_en": "DevOps Engineer",
-      "source_url": "https://zenity.io/careers/hybrid-tel-aviv-jaffa-tel-aviv-district-israel/platform-team-lead/A5.070",
+      "source_url": "https://zenity.io/careers/hybrid-tel-aviv-jaffa-tel-aviv-district-israel/devops-team-lead/A5.070?+job+board&gh_src=UpWest+job+board",
       "scan_status": "still_open"
     },
     {
@@ -461,34 +456,34 @@
       "scan_status": "still_open"
     },
     {
-      "job_id": "4166b5bc092916bfc1ee6319039fb2d286f84c80f14af8c21bb1447aa485351d",
+      "job_id": "e3df7e5382780d5d3fed4dead9f7e8f84a690b3292445c7aff570595bda9d123",
       "company": "Coralogix",
       "title": "Technical Support Engineer",
       "location": "Ramat Gan, Israel",
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
-      "source_url": "https://coralogix.com/careers/co/ramat-gan-israel/C1.D6F/technical-support-engineer/all/?t=1786276438950",
+      "source_url": "https://coralogix.com/careers/co/ramat-gan-israel/C1.D6F/technical-support-engineer/all/",
       "scan_status": "still_open"
     },
     {
-      "job_id": "649fbcdc1b4a11d1081523d96d3653e1cb0c294f57171a838ba742ae338a204f",
+      "job_id": "4a1d3acd05faad18a8184830e68cdb5e05d5416318d47681cbef104ef9a45586",
       "company": "Upwind",
       "title": "Technical Support Engineer – Student Position",
       "location": "Tel Aviv",
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
-      "source_url": "https://www.upwind.io/careers/co/tel-aviv/78.E65/technical-support-engineer-student-position/all#jobs?t=1787501610480",
+      "source_url": "https://www.upwind.io/careers/co/tel-aviv/78.E65/technical-support-engineer-student-position/all",
       "scan_status": "still_open"
     },
     {
-      "job_id": "2bb7acd5538ea691a942d6ea4abfe714c85eb7623d28059d6e2db571e051c0f5",
+      "job_id": "efdc1d8a2d0333ad187691ac6888c19f030ead30d835122806a9fc905b9fde55",
       "company": "Upwind",
       "title": "Technical Support Specialist",
       "location": "Tel Aviv",
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
-      "source_url": "https://www.upwind.io/careers/co/tel-aviv/04.F41/technical-support-specialist/all#jobs",
-      "scan_status": "new"
+      "source_url": "https://www.upwind.io/careers/co/tel-aviv/04.F41/technical-support-specialist/all",
+      "scan_status": "still_open"
     },
     {
       "job_id": "1b84dba9f2f7baf59072922644c97fdff20f26d51c2e737c96fd963153d68d2d",
@@ -508,17 +503,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.wiliot.com/positions/position-52_f66",
-      "scan_status": "new"
-    },
-    {
-      "job_id": "0cf760c6786a3cdfe69e7267238adfb9a86431a9b7a86a40201a27aa15836fee",
-      "company": "Nebius",
-      "title": "Data Center IT Infrastructure Engineer",
-      "location": "Israel",
-      "role_category": "devops",
-      "label_en": "DevOps Engineer",
-      "source_url": "https://careers.nebius.com/?gh_jid=4784157101",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "job_id": "e901cf213bd047ee4a4d9ddffabe84bd9a2c230ad62f77b084bac78fc1244e84",
@@ -528,7 +513,17 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://careers.nebius.com/?gh_jid=4784195101",
-      "scan_status": "new"
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "0cf760c6786a3cdfe69e7267238adfb9a86431a9b7a86a40201a27aa15836fee",
+      "company": "Nebius",
+      "title": "Data Center IT Infrastructure Engineer",
+      "location": "Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://careers.nebius.com/?gh_jid=4784157101",
+      "scan_status": "still_open"
     },
     {
       "job_id": "7052360799d6f0625d99aa914ba06706ed7002fab7f678740192086369790226",
@@ -538,7 +533,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://careers.nebius.com/?gh_jid=4902258101",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "job_id": "c6a17e96f2b8a41cc8939372fe296db84924a76c2482d2d76199c46658abecc9",
@@ -548,7 +543,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://careers.nebius.com/?gh_jid=4948062101",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "job_id": "7759c55d0b066af9276961b985d30e59cfbd00c738d3d362f5ef309916a1b51f",
@@ -558,7 +553,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://careers.nebius.com/?gh_jid=4889227101",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "job_id": "84b3db2ebde4abc9e50088c816579910188e8b9a2f908a244a1b5a6091c03162",
@@ -568,7 +563,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://careers.nebius.com/?gh_jid=4376374101",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "job_id": "32bf77ef9f510e1fa089e8a52a972ca6e8f626ddbe19ef225604a6bcdaf5e7da",
@@ -578,7 +573,7 @@
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
       "source_url": "https://careers.nebius.com/?gh_jid=4918253101",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "job_id": "83eafecf2e44b81de8f1424c1e994ec61e46cc9c0c66e632ed595898d9f1d7e9",
@@ -588,7 +583,97 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.transmitsecurity.com/about/careers/job?gh_jid=7945746002",
-      "scan_status": "new"
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "2c21efbfcc9c4886461f4b2cf95aaf133bff10ce65d83e1a1cff32fe808682c6",
+      "company": "Fetcherr",
+      "title": "Devops Team Lead",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.fetcherr.io/careers/12d61",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "2c21efbfcc9c4886461f4b2cf95aaf133bff10ce65d83e1a1cff32fe808682c6",
+      "company": "Fetcherr",
+      "title": "Devops Team Lead",
+      "location": "Netanya",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.fetcherr.io/careers/12d61",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "e71b61423d4bb847867fab445d47406a6782907f9e2e777f61dfcba5727c3935",
+      "company": "Fetcherr",
+      "title": "Senior DevOps Engineer",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.fetcherr.io/careers/93d6e",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "ddf407ebf24a410356934dfa3b340d0da447122621cf074dcd67a88aa73a0713",
+      "company": "Fetcherr",
+      "title": "Support Engineer",
+      "location": "Netanya",
+      "role_category": "technical_support",
+      "label_en": "Technical Support Engineer",
+      "source_url": "https://www.fetcherr.io/careers/40f62",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "71ce37b2a6c5ca723cfb8ece93c6ff779555c87c470800707fbb0caf16ece203",
+      "company": "Commit",
+      "title": "DevOps Team Lead",
+      "location": "Petah Tikva",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.comm-it.com/commit-jobs#career-sec",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "4ec2bee47e083d2a9197ab7c936bdfe07a03e49f15b8adb3c8ff73aa5af0f577",
+      "company": "Eitan Medical",
+      "title": "Senior DevOps",
+      "location": "Israel, Netanya",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.comeet.com/jobs/eitanmedical/C6.00F/senior-devops/AD.F63",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "207a41be300d079e22240f95f24865fc17823e1748480716df731c7331e79093",
+      "company": "KMS Lighthouse",
+      "title": "DevOps Team Leader",
+      "location": "Petah Tikva, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://kmslh.com/careers/co/petah-tikva-israel/6E.E69/devops-team-lead/all/",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "98d13a3c53ab941b83baf92263bbbfb629bcbffb2afc043144fda2d978e2c9cb",
+      "company": "CodeValue",
+      "title": "DevOps Engineer",
+      "location": "Jerusalem",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.comeet.com/jobs/codevalue/81.009/devops-engineer/7D.F6F",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "69a5ebc1a4f8a58f18f94cca8c482eef3696e963050ba0c1185339dd01708c33",
+      "company": "CodeValue",
+      "title": "DevOps Engineer- Yokneam",
+      "location": "Yokne'am",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://codevalue.com/careers/co/devops/04.20F/devops-engineer-yokneam/all/",
+      "scan_status": "still_open"
     }
   ]
 }

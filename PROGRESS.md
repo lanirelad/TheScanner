@@ -1602,3 +1602,126 @@ None — all decisions needed to start building are now in place.
   `companies_unscannable.json`/`DECISIONS.md`). Live `python run.py`
   smoke test: 90/91 attempted succeeded (1 real transient failure,
   unrelated to this session), 9 immediate new real matches.
+
+## Addendum — Session 38 executed: commit Session 37 + robots.txt recheck + continue verification (2026-08-24)
+- **Part 1:** Session 37's pending work (91 companies, 15 unscannable
+  entries, ADR-0032) committed and pushed as its own commit (`4fb8ff6`)
+  before this session's own changes, confirmed with Elad first.
+- **Part 2, robots.txt recheck:** Check Point, Papaya Global, Cyberint
+  all re-checked live — still genuinely blocked, and confirmed this
+  isn't an httpx-specific WAF artifact (`curl` with the exact same
+  User-Agent also gets a real `403` on `robots.txt` itself for all
+  three, unlike the BlazeMeter/Centrical pattern from Session 32/35).
+  Sapiens International's robots.txt self-healed (no longer blocked)
+  but still shows no recognized ATS signal — genuinely unresolved, not
+  blocked. **XM Cyber: a real Session 37 mistake found and fixed, not
+  a fresh discovery.** Session 37 concluded the researched slug/uid
+  (`xmcyber`/`15.005`) was invalid because the raw HTML contains an
+  empty, template-default `var COMPANY_DATA;` declaration *before* the
+  real `COMPANY_DATA = {"name": "XM Cyber", "location": "Israel", ...}`
+  assignment later in the same script — Session 37's own check matched
+  the first occurrence and never read further. Re-verified directly
+  against the real API this session: the record is genuinely real,
+  `COMPANY_POSITIONS_DATA = [];` is genuinely empty right now (same
+  "confirmed real, zero current postings" shape as GigaSpaces) — added
+  to `companies.json`.
+- **Part 3, continued verification:** Delegated initial domain/status
+  research to two background agents (one for the remaining 53 LinkedIn
+  names, one for 126 remaining Wikipedia names) to keep the main
+  session's context free for the real fetch/verification work — the
+  Wikipedia-batch agent hit an org spend-limit error partway through
+  and returned nothing usable; the LinkedIn-batch agent completed with
+  a rich, real result. Given the failed agent, the Wikipedia 153-list
+  pass this session was done more narrowly: a direct, hand-picked
+  live-verification batch on the names judged most likely still active
+  (not an exhaustive pass) — real, honest result: 12 of 14 checked came
+  back with no recognized signal, a genuinely high null rate consistent
+  with the task's own "expect elevated defunct/no-ATS rate" caveat, not
+  a sign of a broken check.
+- **10 new companies confirmed and added** from the LinkedIn list (all
+  found via the research agent's real domain leads, then verified
+  personally through the live `ComplianceAgent`): Fetcherr, Commit,
+  Eitan Medical, KMS Lighthouse, Chargeflow, Airobotics, CodeValue
+  (all Comeet), D-Fend Solutions (Lever), GitLab (Greenhouse, a large
+  global company included per standing "don't pre-filter" policy — 5
+  Israel-remote-eligible postings among 203 total), and Parallel
+  Wireless (Lever, added after a real self-caught correction — see
+  below).
+- **Real self-caught mistake, corrected before finalizing, not left in
+  the commit:** the Israel-location check used for Fetcherr and
+  Parallel Wireless searched only for the literal substring `"israel"`
+  in each job's location string — this correctly found Fetcherr's
+  company-level `"location": "Israel"` metadata (a different check,
+  fine), but for Parallel Wireless it produced a false "0 Israel
+  postings" result, since its real Israel roles are tagged with the
+  city name alone (`"Kfar Saba"`), never the word "Israel" at all.
+  Caught by reading the real full location list directly during the
+  live end-to-end smoke test (Parallel Wireless's real DevOps match,
+  "Sr. Principal, DevOps | Kfar Saba," was sitting right there) —
+  corrected before finalizing this session's work, not discovered
+  later. Worth remembering for future sessions: a location-string
+  substring check for "israel" is not sufficient on its own; real
+  Israeli city names need checking too.
+- **Real, honest negative results from the hand-picked Wikipedia
+  batch:** Amdocs, Any.do, Cellebrite, Checkmarx, DealHub, StarkWare
+  Industries, Varonis Systems, ZoomInfo, Waves Audio, Mind CTI,
+  CallApp, Starlims — no recognized-platform signal found.
+  TeleMessage and Ericom Software — robots.txt-blocked at check time.
+- **Large-enterprise/institution batch (LinkedIn-sourced), per standing
+  "don't pre-filter" policy — real, expected negative results:** IAI,
+  Elbit Systems Israel, HARMAN International, Applied Materials
+  Israel, Migdal Group, Phoenix Financial, Discount Bank, BDO Israel,
+  Weizmann Institute of Science — no recognized-platform signal found
+  on any of their real careers pages (consistent with the task's own
+  expectation that large institutions often route through internal/
+  non-self-service systems).
+- **Real staffing/recruiting agencies and job boards, excluded on
+  purpose, not silently dropped:** Ethosia, Mertens, Allpha Innovation,
+  comblack, Extreme (Israeli IT-outsourcing firm, unrelated to Extreme
+  Networks the US company — real identity-collision risk flagged by
+  the research agent and confirmed), Logica-IT, OnTarget Communications
+  — these are placement/consulting agencies, not employers whose own
+  roles this project should be tracking. Unilink, SQLink Group, and
+  Bynet Software Systems flagged as borderline consulting-house cases,
+  left genuinely unresolved rather than force-classified either way.
+- **Real, honest negative results, robots.txt-blocked, or subsidiary-
+  of-larger-group (LinkedIn-sourced), not yet resolved:** Matrix,
+  Bright Data, Camtek, BigData Boutique, Comet (real identity-collision
+  risk flagged — several unrelated companies share this name, this
+  session's check didn't disambiguate which), ERGO NEXT Insurance,
+  Bynet Data Communications (robots.txt-blocked), CONTROP Precision
+  Technologies (robots.txt-blocked), Planview/Chainalysis/DAZN (global
+  companies with only a satellite Israel presence, not independently
+  re-verified this session), Istra Research, Paytag, abra (real
+  identity-collision risk vs. Abra the US crypto company, flagged not
+  resolved), Bagira, SpotNet, Tehiru Aerial Systems (two related
+  domains/names found, not disambiguated), Utimaco/Shop Circle/
+  IgniteTech (no real Israel connection found by the research agent —
+  likely don't belong in this scan at all, not independently confirmed
+  this session), Horizon Technologies (real identity-collision risk —
+  multiple unrelated companies share this name — flagged not resolved).
+- **Session completeness: explicitly NOT finished — resume-from-here
+  state, per the task's own instruction.** LinkedIn list: fully
+  triaged (every one of the 53 remaining names now has a real,
+  documented disposition — checked-and-added, checked-and-negative,
+  excluded-as-agency, or flagged-collision-unresolved). Media list
+  (~163 names after dedup): **entirely untouched this session** —
+  deprioritized per the task's own explicit ordering (LinkedIn, then
+  media, then Wikipedia). Wikipedia 153-list: only 14 names got a real
+  hand-picked live check (all negative or blocked) out of ~112
+  remaining after dedup — the bulk of this list is untouched, and the
+  background research agent that would have triaged defunct-vs-active
+  status for the rest failed on an org spend limit partway through.
+  The 4 additional Wikipedia categories (cybersecurity 31, AI 5, solar
+  energy 11, internet companies 38) were not attempted at all — still
+  only referenced as existing, never fetched.
+- Docs updated: `companies.json`/`companies_unscannable.json`'s own
+  `_note` fields, this file, CHANGELOG.md.
+- Test suite: 152/152 passing, unchanged (no code changes this
+  session — pure data/config work). Live `python run.py` smoke test:
+  102/102 attempted succeeded on retry (an initial run hit a real but
+  clearly transient DNS-resolution blip affecting ~46 unrelated,
+  pre-existing companies uniformly — confirmed transient by an
+  immediate clean retry, not a regression from this session's
+  changes), 9 immediate new real matches from the newly added
+  companies.

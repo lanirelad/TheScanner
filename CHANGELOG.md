@@ -1350,3 +1350,39 @@
   immediate new real matches from the newly added companies.
 - Test suite: 152/152 passing, unchanged (no code changes this session
   - pure data/config work).
+
+## 2026-08-24 — Session 38: commit Session 37 + robots.txt recheck + continue verification
+- Committed Session 37's pending work (4fb8ff6) before starting this
+  session's own changes, confirmed with Elad first.
+- Robots.txt recheck: Check Point/Papaya Global/Cyberint still
+  genuinely blocked (confirmed via curl too, not an httpx-specific WAF
+  artifact); Sapiens International self-healed but still no ATS
+  signal found. Found and fixed a real Session 37 mistake: XM Cyber's
+  slug/uid was wrongly marked invalid because the check matched an
+  empty template-default declaration instead of the real one further
+  down the same script - the record is genuinely real, added.
+- Delegated research to two background agents (LinkedIn's remaining 53
+  names, Wikipedia's remaining 126) - the Wikipedia agent hit an org
+  spend limit and returned nothing usable, so that list got a smaller,
+  hand-picked live-verification pass instead of a full one.
+- 10 new companies added from the LinkedIn list (Fetcherr, Commit,
+  Eitan Medical, KMS Lighthouse, Chargeflow, Airobotics, CodeValue,
+  D-Fend Solutions, GitLab, Parallel Wireless) plus XM Cyber's
+  correction - companies.json 91 -> 102.
+- Real self-caught mistake, corrected before finalizing: an
+  Israel-location check that only searched for the literal substring
+  "israel" missed Parallel Wireless's real Kfar Saba-tagged roles
+  (including a real DevOps match) - caught during the live smoke test,
+  fixed before committing.
+- LinkedIn list fully triaged (every remaining name has a real
+  disposition: added, negative, excluded-as-agency, or
+  flagged-collision-unresolved). Media list (~163 names) entirely
+  untouched. Wikipedia 153-list: only 14 hand-picked names checked
+  (all negative/blocked) of ~112 remaining - explicitly not finished.
+  4 additional Wikipedia categories not attempted at all.
+- Live python run.py smoke test: 102/102 on retry (an initial run hit
+  a real but clearly transient DNS blip affecting ~46 unrelated
+  pre-existing companies, confirmed transient by immediate clean
+  retry), 9 immediate new real matches.
+- Test suite: 152/152 passing, unchanged (no code changes this
+  session).

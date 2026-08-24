@@ -2557,7 +2557,7 @@
   "www.amdocs.com": {
     "domain": "www.amdocs.com",
     "allowed": true,
-    "checked_at": 1786617865.8515878
+    "checked_at": 1787541892.3518214
   },
   "www.appcharge.com": {
     "domain": "www.appcharge.com",
@@ -4903,5 +4903,125 @@
     "domain": "www.formulasystems.com",
     "allowed": true,
     "checked_at": 1787510578.7625635
+  },
+  "www.comm-it.com": {
+    "domain": "www.comm-it.com",
+    "allowed": true,
+    "checked_at": 1787541630.153589
+  },
+  "www.matrix.co.il": {
+    "domain": "www.matrix.co.il",
+    "allowed": true,
+    "checked_at": 1787541638.8450136
+  },
+  "brightdata.com": {
+    "domain": "brightdata.com",
+    "allowed": true,
+    "checked_at": 1787541640.3559227
+  },
+  "www.camtek.com": {
+    "domain": "www.camtek.com",
+    "allowed": true,
+    "checked_at": 1787541646.6037338
+  },
+  "www.bigdataboutique.com": {
+    "domain": "www.bigdataboutique.com",
+    "allowed": true,
+    "checked_at": 1787541647.6065674
+  },
+  "www.comet.com": {
+    "domain": "www.comet.com",
+    "allowed": true,
+    "checked_at": 1787541653.9211526
+  },
+  "www.bynet.co.il": {
+    "domain": "www.bynet.co.il",
+    "allowed": false,
+    "checked_at": 1787541668.0549798
+  },
+  "www.nextinsurance.com": {
+    "domain": "www.nextinsurance.com",
+    "allowed": true,
+    "checked_at": 1787541670.1971653
+  },
+  "www.controp.com": {
+    "domain": "www.controp.com",
+    "allowed": false,
+    "checked_at": 1787541681.1813102
+  },
+  "www.iai.co.il": {
+    "domain": "www.iai.co.il",
+    "allowed": true,
+    "checked_at": 1787541770.1767583
+  },
+  "elbitsystems.com": {
+    "domain": "elbitsystems.com",
+    "allowed": true,
+    "checked_at": 1787541771.3167262
+  },
+  "jobs.harman.com": {
+    "domain": "jobs.harman.com",
+    "allowed": true,
+    "checked_at": 1787541776.6218638
+  },
+  "appliedmaterials.com": {
+    "domain": "appliedmaterials.com",
+    "allowed": true,
+    "checked_at": 1787541780.6473563
+  },
+  "www.migdal.co.il": {
+    "domain": "www.migdal.co.il",
+    "allowed": true,
+    "checked_at": 1787541782.5796142
+  },
+  "www.fnx.co.il": {
+    "domain": "www.fnx.co.il",
+    "allowed": true,
+    "checked_at": 1787541792.3026853
+  },
+  "www.discountbank.co.il": {
+    "domain": "www.discountbank.co.il",
+    "allowed": true,
+    "checked_at": 1787541793.010227
+  },
+  "www.bdo.co.il": {
+    "domain": "www.bdo.co.il",
+    "allowed": true,
+    "checked_at": 1787541795.8307455
+  },
+  "www.weizmann.ac.il": {
+    "domain": "www.weizmann.ac.il",
+    "allowed": true,
+    "checked_at": 1787541802.153826
+  },
+  "www.waves.com": {
+    "domain": "www.waves.com",
+    "allowed": true,
+    "checked_at": 1787541937.1667497
+  },
+  "www.mindcti.com": {
+    "domain": "www.mindcti.com",
+    "allowed": true,
+    "checked_at": 1787541943.2469802
+  },
+  "www.telemessage.com": {
+    "domain": "www.telemessage.com",
+    "allowed": false,
+    "checked_at": 1787541953.9502134
+  },
+  "www.callapp.com": {
+    "domain": "www.callapp.com",
+    "allowed": true,
+    "checked_at": 1787541955.8788252
+  },
+  "www.ericom.com": {
+    "domain": "www.ericom.com",
+    "allowed": false,
+    "checked_at": 1787541968.4271452
+  },
+  "www.starlims.com": {
+    "domain": "www.starlims.com",
+    "allowed": true,
+    "checked_at": 1787541969.6255078
   }
 }

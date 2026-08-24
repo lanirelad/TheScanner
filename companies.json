@@ -1,5 +1,5 @@
 {
-  "_note": "91 companies across 3 ATS platforms plus 4 custom-domain companies. Session 37: 79->91 — first verification pass against a combined ~450-name candidate pool from 3 independently-sourced files (Hebrew business media, Elad's own LinkedIn browsing, Wikipedia's Israeli company categories), prioritizing Wikipedia's explicitly-flagged 'strong likely-active subset' plus LinkedIn's explicitly-flagged actively-hiring names first, per that session's own scope. 9 new Comeet (Foresight Automotive, Xsight Labs, K2view, Wiliot, Lusha, Atera, Nano-X Vision, NeuReality, GigaSpaces), 3 new Greenhouse (DoiT International, Nebius, Transmit Security). Resolved 2 flagged identity-collision risks (Foresight Automotive vs. the already-known ForSight Robotics: confirmed different; Nanox Vision vs. Nano-X: confirmed the same company). Only a fraction of the ~450-name pool was reached this session — see PROGRESS.md's Session 37 addendum for the explicit resume-from-here state. Session 36: 76->79 — moved ForSight Robotics, AIR, and Quantum Art here from companies_unscannable.json now that CustomAdapter has a second real extraction strategy (css_selectors, custom_selectors.json) built specifically to close the gap that put them there in Session 35. Not new discoveries — a real capability this project's own tooling gained. Session 18: 9->47 by guessing ATS slugs from company names and validating against the live API (34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected). Session 19: 47->58 by inverting the method — fetching each candidate's own real career page and reading its actual ATS directly off of it (1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk). Session 20: 58->63 using the same domain-first method against a real, research-sourced candidate list (Calcalist/CTech 2026 funding-rounds coverage + StartupBlink's Israel ranking) rather than a hand-compiled name list — 3 new Greenhouse + 2 new Comeet; 2 raw hits (Enigma, CopilotKit) rejected on review for zero Israel signal, the exact generic-word-collision risk flagged going into that session. Session 32: 63->71 — a Growth playbook Phase 1 session aimed at recognizing Workday/SmartRecruiters/iCIMS (0 real hits for those 3) turned up 8 real hits on the 4 platforms this project already supports instead, re-checking Session 21's zero-signal batch with web research (real career-page URLs, since Session 21's own candidate list/script were never committed) and PlaywrightProbe: 6 new Comeet (2 via PlaywrightProbe directly, 4 via web research surfacing a real Comeet link the probe's evidence sources didn't cover), 2 new Greenhouse (Datarails, newly listed since Session 21; Aidoc, one of Session 21's 3 robots.txt-blocked companies — its WAF still blocks this project's httpx client but not Playwright's real browser). Session 35: 71->76 — custom-domain-focused harvesting (2 new real candidates: Port, Kela Technologies) plus resolving 3 of Session 32's 8 genuinely-unresolved companies (Coralogix, Guesty, Upwind) after finding they white-label/embed Comeet in a way the public comeet.com URL scheme never reveals — the real company-uid was recoverable from an individual job's apply-iframe URL even with no visible public link on the page (see discovery/playwright_probe.py's new CM_WIDGET_UID_RE, fixing the comeet.co detection gap Session 32 flagged). See ARCHITECTURE.md/PROGRESS.md Session 18-20/32/35 notes for the honest shortfall against the ~200 Greenhouse target and each session's sourcing method. 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
+  "_note": "102 companies across 3 ATS platforms plus 4 custom-domain companies. Session 38: 91->102 — continues Session 37's big verification pass. Fixed a real Session 37 bug (XM Cyber's slug/uid was wrongly marked invalid — the check matched an empty template-default `var COMPANY_DATA;` declaration instead of the real assignment later in the same script). Added 10 more real companies from the LinkedIn-sourced list (Fetcherr, Commit, Eitan Medical, KMS Lighthouse, Chargeflow, Airobotics, CodeValue, D-Fend Solutions, GitLab, Parallel Wireless) plus XM Cyber's correction. Real self-caught mistake this session too: initially left Parallel Wireless unresolved after a flawed 'israel' substring-only location check missed real Israeli-city-only locations (Kfar Saba) — corrected before finalizing by reading the real full location list directly. Only a further fraction of the combined candidate pool was reached — see PROGRESS.md's Session 38 addendum for the explicit resume-from-here state (most of the ~163-name media list, ~112 remaining Wikipedia 153-list names, and the 4 additional Wikipedia categories are still untouched). Session 37: 79->91 — first verification pass against a combined ~450-name candidate pool from 3 independently-sourced files (Hebrew business media, Elad's own LinkedIn browsing, Wikipedia's Israeli company categories), prioritizing Wikipedia's explicitly-flagged 'strong likely-active subset' plus LinkedIn's explicitly-flagged actively-hiring names first, per that session's own scope. 9 new Comeet (Foresight Automotive, Xsight Labs, K2view, Wiliot, Lusha, Atera, Nano-X Vision, NeuReality, GigaSpaces), 3 new Greenhouse (DoiT International, Nebius, Transmit Security). Resolved 2 flagged identity-collision risks (Foresight Automotive vs. the already-known ForSight Robotics: confirmed different; Nanox Vision vs. Nano-X: confirmed the same company). Only a fraction of the ~450-name pool was reached this session — see PROGRESS.md's Session 37 addendum for the explicit resume-from-here state. Session 36: 76->79 — moved ForSight Robotics, AIR, and Quantum Art here from companies_unscannable.json now that CustomAdapter has a second real extraction strategy (css_selectors, custom_selectors.json) built specifically to close the gap that put them there in Session 35. Not new discoveries — a real capability this project's own tooling gained. Session 18: 9->47 by guessing ATS slugs from company names and validating against the live API (34 new Greenhouse + 4 new Lever, ~14% hit rate, 3 slug collisions caught and rejected). Session 19: 47->58 by inverting the method — fetching each candidate's own real career page and reading its actual ATS directly off of it (1 new Greenhouse + 10 new Comeet, lower raw hit rate but zero collision risk). Session 20: 58->63 using the same domain-first method against a real, research-sourced candidate list (Calcalist/CTech 2026 funding-rounds coverage + StartupBlink's Israel ranking) rather than a hand-compiled name list — 3 new Greenhouse + 2 new Comeet; 2 raw hits (Enigma, CopilotKit) rejected on review for zero Israel signal, the exact generic-word-collision risk flagged going into that session. Session 32: 63->71 — a Growth playbook Phase 1 session aimed at recognizing Workday/SmartRecruiters/iCIMS (0 real hits for those 3) turned up 8 real hits on the 4 platforms this project already supports instead, re-checking Session 21's zero-signal batch with web research (real career-page URLs, since Session 21's own candidate list/script were never committed) and PlaywrightProbe: 6 new Comeet (2 via PlaywrightProbe directly, 4 via web research surfacing a real Comeet link the probe's evidence sources didn't cover), 2 new Greenhouse (Datarails, newly listed since Session 21; Aidoc, one of Session 21's 3 robots.txt-blocked companies — its WAF still blocks this project's httpx client but not Playwright's real browser). Session 35: 71->76 — custom-domain-focused harvesting (2 new real candidates: Port, Kela Technologies) plus resolving 3 of Session 32's 8 genuinely-unresolved companies (Coralogix, Guesty, Upwind) after finding they white-label/embed Comeet in a way the public comeet.com URL scheme never reveals — the real company-uid was recoverable from an individual job's apply-iframe URL even with no visible public link on the page (see discovery/playwright_probe.py's new CM_WIDGET_UID_RE, fixing the comeet.co detection gap Session 32 flagged). See ARCHITECTURE.md/PROGRESS.md Session 18-20/32/35 notes for the honest shortfall against the ~200 Greenhouse target and each session's sourcing method. 2 entries (Optimove/Mobileye) are EU-region-hosted, live-verified in Session 13. This is still NOT the ~8,000-9,000-company target universe. Harvesting the full list happens via Claude Code sessions per ADR-0023, not as part of routine scans.",
   "companies": [
     {
       "name": "Wiz",
@@ -666,6 +666,91 @@
       "ats_slug": "transmitsecurity",
       "career_page": "https://job-boards.greenhouse.io/transmitsecurity",
       "note": "Session 37: Wikipedia \"strong likely-active subset\" candidate. PlaywrightProbe's first pass matched GH_RE against an embedded /embed/job_board widget path and returned the false-positive slug \"embed\" (the same class of mistake as Session 18's shield/bold/vim precedent) — caught by checking real job counts before trusting it, then found the real slug (\"transmitsecurity\") in the widget's own `?for=transmitsecurity` query parameter. Confirmed against the real API — 14 real open postings, 11 Israel-located, at verification time."
+    },
+    {
+      "name": "XM Cyber",
+      "ats": "comeet",
+      "ats_slug": "xmcyber",
+      "career_page": "https://www.comeet.com/jobs/xmcyber/15.005",
+      "ats_uid": "15.005",
+      "note": "Session 38: corrects a real Session 37 mistake, not a new discovery — Session 37 concluded this slug/uid was invalid by matching the first (empty, template-default) `var COMPANY_DATA;` declaration in the raw HTML and never reading further to the real `COMPANY_DATA = {\"name\": \"XM Cyber\", \"location\": \"Israel\", ...}` assignment later in the same script. Re-checked directly against the raw API response this session: the company record is real and correctly identified, `COMPANY_POSITIONS_DATA = [];` is genuinely empty right now (0 real open postings at verification time) — added anyway per the same precedent as GigaSpaces (Session 37): a confirmed-real, working integration with a momentarily empty postings list still belongs in the scan rotation for when postings appear."
+    },
+    {
+      "name": "Fetcherr",
+      "ats": "comeet",
+      "ats_slug": "fetcherr",
+      "career_page": "https://www.comeet.com/jobs/fetcherr/68.006",
+      "ats_uid": "68.006",
+      "note": "Session 38: LinkedIn-sourced candidate. Comeet's own COMPANY_DATA declares `\"location\": \"Israel\"` — confirmed real, Israel-based company — even though 0 of the 41 current real postings happen to be Israel-tagged right now (most are US-based sales roles). Added on the strength of the structural company-location confirmation, same reasoning as GigaSpaces/XM Cyber's zero-current-postings precedent, not on a resolving slug alone."
+    },
+    {
+      "name": "Commit",
+      "ats": "comeet",
+      "ats_slug": "commit",
+      "career_page": "https://www.comeet.com/jobs/commit/76.008",
+      "ats_uid": "76.008",
+      "note": "Session 38: LinkedIn-sourced candidate (comm-it.com, a real IT-services/consulting company — distinguished from several unrelated same-name entities). Company-uid found via PlaywrightProbe's network-request evidence (no public slug visible on comm-it.com/commit-jobs itself); slug \"commit\" guessed from the company's own casual/short name and confirmed against the real API — 141 real open postings, 5 Israel-located, at verification time."
+    },
+    {
+      "name": "Eitan Medical",
+      "ats": "comeet",
+      "ats_slug": "eitanmedical",
+      "career_page": "https://www.comeet.com/jobs/eitanmedical/C6.00F",
+      "ats_uid": "C6.00F",
+      "note": "Session 38: LinkedIn-sourced candidate. Real Comeet link found in web research. Confirmed against the real API — 8 real open postings, including a real Netanya, Israel-located role, at verification time."
+    },
+    {
+      "name": "KMS Lighthouse",
+      "ats": "comeet",
+      "ats_slug": "kmslh",
+      "career_page": "https://www.comeet.com/jobs/kmslh/97.008",
+      "ats_uid": "97.008",
+      "note": "Session 38: LinkedIn-sourced candidate. Real Comeet link found in web research. Confirmed against the real API — 8 real open postings, including a real Petah Tikva, Israel-located role, at verification time."
+    },
+    {
+      "name": "Chargeflow",
+      "ats": "comeet",
+      "ats_slug": "chargeflow",
+      "career_page": "https://www.comeet.com/jobs/chargeflow/29.001",
+      "ats_uid": "29.001",
+      "note": "Session 38: LinkedIn-sourced candidate. Real Comeet link found in web research. Confirmed against the real API — 7 real open postings, including a real Israel-located role, at verification time."
+    },
+    {
+      "name": "Airobotics",
+      "ats": "comeet",
+      "ats_slug": "airobotics",
+      "career_page": "https://www.comeet.com/jobs/airobotics/AA.005",
+      "ats_uid": "AA.005",
+      "note": "Session 38: LinkedIn-sourced candidate (also independently appears in the Hebrew-media candidate list under Robotics/Automation). Real Comeet link found in web research. Confirmed against the real API — 26 real open postings, including real Petah Tikva, Israel-located roles, at verification time."
+    },
+    {
+      "name": "CodeValue",
+      "ats": "comeet",
+      "ats_slug": "codevalue",
+      "career_page": "https://www.comeet.com/jobs/codevalue/81.009",
+      "ats_uid": "81.009",
+      "note": "Session 38: LinkedIn-sourced candidate. Real Comeet link found in web research. Confirmed against the real API — 32 real open postings, including real Herzliya, Israel-located roles, at verification time."
+    },
+    {
+      "name": "D-Fend Solutions",
+      "ats": "lever",
+      "ats_slug": "d-fendsolutions",
+      "career_page": "https://jobs.lever.co/d-fendsolutions",
+      "note": "Session 38: LinkedIn-sourced candidate. Real Lever link found in web research. Confirmed against the real API — 31 real open postings, including real Raanana, Israel-located roles, at verification time."
+    },
+    {
+      "name": "GitLab",
+      "ats": "greenhouse",
+      "ats_slug": "gitlab",
+      "career_page": "https://job-boards.greenhouse.io/gitlab",
+      "note": "Session 38: LinkedIn-sourced candidate — a large global remote-first company, not Israel-native, included per this project's standing \"don't pre-filter large global companies, let real verification decide\" policy. Confirmed against the real API — 203 real open postings globally, 5 explicitly Israel-remote-eligible, at verification time (e.g. \"Director of Engineering, Security Factory\", remote Israel/UK)."
+    },
+    {
+      "name": "Parallel Wireless",
+      "ats": "lever",
+      "ats_slug": "parallelwireless",
+      "career_page": "https://jobs.lever.co/parallelwireless",
+      "note": "Session 38: LinkedIn-sourced candidate — real Lever link found in web research. Initially, incorrectly, left unresolved this same session after a flawed check (searching only for the literal substring \"israel\" in each job's location, which missed real Israeli-city-only locations like \"Kfar Saba\") found zero matches among 36 postings. Corrected before finalizing the session by reading the real full location list directly: multiple genuine Kfar Saba, Israel roles exist, including a real DevOps match (\"Sr. Principal, DevOps\"). US (New Hampshire) headquartered company with a real, substantial Kfar Saba R&D presence, not just a token listing."
     }
   ]
 }
