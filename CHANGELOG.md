@@ -1470,3 +1470,34 @@
   test: 110/110 companies succeeded, 0 failed, 73 total matches (1
   new) - Istra Research attempted successfully with 0 matches, exactly
   as expected.
+
+## 2026-08-24 — Session 43: real-URL re-verification of media-list guessed negatives
+- Re-checked all 108 hebrew_media_round2 names that Session 40 only
+  ever checked at a best-guess domain, this time with real per-name
+  web research - same standard as Session 40's own "18 companies"
+  pass. All 108 are now real-URL re-verified (0 remain guessed-only).
+- The 4 explicitly flagged names: Moovit and Lumen added (Lumen
+  disambiguated from Lumen Technologies, its real careers page is a
+  white-labeled Comeet integration); BondIT confirmed unscannable (no
+  open positions, mailto-only, at its corrected real domain
+  bonditglobal.com); Clew Medical left honestly unresolved after a
+  consistent ConnectTimeout on 2 separate real fetch attempts.
+- 17 more real net new companies found via real per-name research
+  that a guessed domain had missed: Sygnia, Rapyd, Otorio, Gloat,
+  Insightec, Scopio Labs, Checkmarx, Silverfort, Dataloop, Gong.io,
+  AI21 Labs, Tabnine, Foretellix, Arbe Robotics, WSC Sports, Natural
+  Intelligence, Arpeely. Checkmarx is a notable reversal of a Session
+  38 "no signal found" conclusion - real, working Comeet integration
+  with 36 jobs (3 genuinely Israel-located) found this session.
+- 5 more confirmed acquisitions/unsupported-platform entries added to
+  companies_unscannable.json: Minerva Labs (Rapid7), Seebo (Augury),
+  Aporia (Coralogix, already a live company here), Digital Turbine
+  (Workday).
+- companies.json: 110 -> 129 (19 net new: 18 Comeet, 1 Greenhouse).
+  companies_unscannable.json: 125 -> 130.
+- Test suite: 162/162 passing, unchanged. Live python run.py smoke
+  test: 129 attempted, 128 succeeded, 1 failed (Orca Security,
+  pre-existing and untouched this session - ReadTimeout confirmed
+  transient by an immediate clean retry). 81 total matches (8 new),
+  including new DevOps matches from Lumen, Rapyd, Checkmarx,
+  Silverfort, and Gong.io confirmed live.

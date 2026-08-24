@@ -813,6 +813,157 @@
       "ats_uid": "59.009",
       "career_page": "https://www.comeet.com/jobs/istra/59.009",
       "note": "Session 41: added per Elad's explicit decision, following Session 40's discovery. Real, confirmed quantitative trading firm headquartered in Lod, Israel (67 employees, founded 2008) with a real, working Comeet integration - 5 real jobs at last check (Algorithm Developer, Database Reliability Engineer, Quantitative Data Scientist, Senior VLSI Design Engineer, Software Engineer). KNOWN LIMITATION, not an oversight: every job's location field literally contains the string \"Istra Research\" (the company's own name) instead of a real city or \"Israel\" - this project's RoleLocationFilter matches against real place names only, so it will structurally never produce a match for this company as things stand today, regardless of how many genuine Israel-based roles it posts. This will only change if Istra Research's own Comeet configuration starts populating a real location string. Added anyway because the ATS integration and company identity are both real and confirmed - the same standard applied to every other company in this file - even though it will show 0 matches in every scan until that upstream data quality issue resolves itself."
+    },
+    {
+      "name": "Moovit",
+      "ats": "comeet",
+      "ats_slug": "moovit",
+      "ats_uid": "63.007",
+      "career_page": "https://www.comeet.com/jobs/moovit/63.007",
+      "note": "Session 43: real-URL re-verification of a media-list guessed-URL negative. Real domain moovit.com/careers surfaced a real Comeet link in web research. Live-verified via ComeetAdapter.fetch_stage1_jobs: 2 real jobs, both genuine Ness Ziona, Israel (Head of Marketing, IT Specialist). Acquired by Intel (2020) but still operates as a distinct subsidiary with its own real Comeet careers presence, alongside Mobileye."
+    },
+    {
+      "name": "Lumen",
+      "ats": "comeet",
+      "ats_slug": "lumen",
+      "ats_uid": "1A.00E",
+      "career_page": "https://www.comeet.com/jobs/lumen/1A.00E",
+      "note": "Session 43: real-URL re-verification. Disambiguated from Lumen Technologies (unrelated US telecom giant) - this is the real Israeli metabolism-tracking device company (Tel Aviv HQ, founded 2018). Its real careers page (lumen.me/careers) is a white-labeled Comeet integration (job data served from lumen.me/careers.json, apply emails at *.comeetapply.com) - the standard comeet.com/jobs/lumen/1A.00E URL works identically. Live-verified: 3 real jobs, all genuine Tel Aviv (Senior Backend Engineer, Senior DevOps Engineer, Senior Growth Content Marketing Manager)."
+    },
+    {
+      "name": "Sygnia",
+      "ats": "comeet",
+      "ats_slug": "sygnia",
+      "ats_uid": "78.00A",
+      "career_page": "https://www.comeet.com/jobs/sygnia/78.00A",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research (sygnia.co/careers real page + comeet.com/jobs/sygnia/78.00A). Live-verified: 14 real jobs, multiple genuine Israel-located postings (Client Director for IL & MENA, Director of Product Management, Incident Response Expert, Senior Backend Engineer). Israeli cyber incident-response company."
+    },
+    {
+      "name": "Rapyd",
+      "ats": "comeet",
+      "ats_slug": "rapyd",
+      "ats_uid": "73.00E",
+      "career_page": "https://www.comeet.com/jobs/rapyd/73.00E",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research (rapyd.net/company/careers/ real page + comeet.com/jobs/rapyd/73.00E). Live-verified: 30 real jobs, many genuine Tel Aviv, Israel postings (Director of IT Operations, NOC Team Leader, Escalation Engineer, Controller). Israeli fintech-as-a-service company."
+    },
+    {
+      "name": "Otorio",
+      "ats": "comeet",
+      "ats_slug": "otorio",
+      "ats_uid": "E3.003",
+      "career_page": "https://www.comeet.com/jobs/otorio/E3.003",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Live-verified: real, valid Comeet integration but 0 current postings at check time - same confirmed-real-zero-postings shape as GigaSpaces/XM Cyber/H2Pro. Israeli OT/industrial-cybersecurity company."
+    },
+    {
+      "name": "Gloat",
+      "ats": "comeet",
+      "ats_slug": "gloat",
+      "ats_uid": "E5.000",
+      "career_page": "https://www.comeet.com/jobs/gloat/E5.000",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Live-verified: 5 real jobs, all genuine Israel locations (Senior Backend Engineer, Senior Data Engineer, Senior AI Engineer). Israeli talent-marketplace/workforce-agility company."
+    },
+    {
+      "name": "Insightec",
+      "ats": "comeet",
+      "ats_slug": "insightec",
+      "ats_uid": "4A.004",
+      "career_page": "https://www.comeet.com/jobs/insightec/4A.004",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Live-verified: 20 real jobs, genuine Israel locations (BI Analyst | Israel, Haifa; Data Science Student | Israel, Kiryat Ono) alongside many US/global roles. Israeli focused-ultrasound medical device company."
+    },
+    {
+      "name": "Scopio Labs",
+      "ats": "comeet",
+      "ats_slug": "scopiolabs",
+      "ats_uid": "87.00C",
+      "career_page": "https://www.comeet.com/jobs/scopiolabs/87.00C",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Live-verified: real, valid integration but 0 current postings at check time - same confirmed-real-zero-postings shape as GigaSpaces/H2Pro/Otorio. Israeli digital-microscopy/hematology-AI company."
+    },
+    {
+      "name": "Checkmarx",
+      "ats": "comeet",
+      "ats_slug": "checkmarx",
+      "ats_uid": "C0.008",
+      "career_page": "https://www.comeet.com/jobs/checkmarx/C0.008",
+      "note": "Session 43: real-URL re-verification of a Session 38 negative. Session 38 found 'no recognized-platform signal' for Checkmarx; this session's fresh research surfaced a real, working Comeet link. Live-verified: 36 real jobs, 3 with genuine Israel signal (DevOps Engineer | Ramat Gan, Israel, among others). Either a Session 38 miss or a platform Checkmarx adopted since then - either way, real and confirmed now. Israeli application-security company."
+    },
+    {
+      "name": "Silverfort",
+      "ats": "comeet",
+      "ats_slug": "silverfort",
+      "ats_uid": "54.007",
+      "career_page": "https://www.comeet.com/jobs/silverfort/54.007",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Live-verified: 21 real jobs, 9 with genuine Israel signal (DevOps Platform Engineer | Tel Aviv, Israel; Enterprise Applications Engineer | Tel Aviv, Israel). Israeli identity-security company."
+    },
+    {
+      "name": "Dataloop",
+      "ats": "comeet",
+      "ats_slug": "dataloop",
+      "ats_uid": "B5.00A",
+      "career_page": "https://www.comeet.com/jobs/dataloop/B5.00A",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Live-verified: real, valid integration but 0 current postings at check time - same confirmed-real-zero-postings shape as GigaSpaces/H2Pro/Otorio/Scopio Labs. Israeli AI-data-management company."
+    },
+    {
+      "name": "Gong.io",
+      "ats": "greenhouse",
+      "ats_slug": "gongio",
+      "career_page": "https://job-boards.greenhouse.io/gongio",
+      "note": "Session 43: real-URL re-verification. Real Greenhouse slug found directly in web research. Live-verified: 98 real jobs, 18 with genuine Tel Aviv signal (Application Security Team Lead, Head of AI Security, R&D Manager - AI Agentic Frameworks). Israeli-founded revenue-intelligence unicorn."
+    },
+    {
+      "name": "AI21 Labs",
+      "ats": "comeet",
+      "ats_slug": "ai21",
+      "ats_uid": "E6.001",
+      "career_page": "https://www.comeet.com/jobs/ai21/E6.001",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Confirmed real integration, 0 current postings at check time (GigaSpaces/H2Pro precedent). Israeli foundation-model AI company (Jurassic/Jamba)."
+    },
+    {
+      "name": "Tabnine",
+      "ats": "comeet",
+      "ats_slug": "tabnine",
+      "ats_uid": "39.006",
+      "career_page": "https://www.comeet.com/jobs/tabnine/39.006",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Confirmed real integration, 0 current postings at check time (GigaSpaces/H2Pro precedent). Israeli AI-coding-assistant company."
+    },
+    {
+      "name": "Foretellix",
+      "ats": "comeet",
+      "ats_slug": "foretellix",
+      "ats_uid": "84.007",
+      "career_page": "https://www.comeet.com/jobs/foretellix/84.007",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Confirmed real integration, 0 current postings at check time (GigaSpaces/H2Pro precedent). Israeli autonomous-vehicle-verification company."
+    },
+    {
+      "name": "Arbe Robotics",
+      "ats": "comeet",
+      "ats_slug": "arbe",
+      "ats_uid": "C6.001",
+      "career_page": "https://www.comeet.com/jobs/arbe/C6.001",
+      "note": "Session 43: real-URL re-verification. Real careers URL (arberobotics.com/career/, singular - different from the /careers/ guessed in the large batch) surfaced a real Comeet network request. Live-verified: 10 real jobs, ALL genuine Tel Aviv (Customer Support Manager, Radar System Engineer, Embedded SW Engineer). Israeli 4D imaging radar company."
+    },
+    {
+      "name": "WSC Sports",
+      "ats": "comeet",
+      "ats_slug": "wsc-sports",
+      "ats_uid": "93.007",
+      "career_page": "https://www.comeet.com/jobs/wsc-sports/93.007",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Live-verified: 4 real jobs, 2 with genuine Israel signal (AI Solution Manager, General Counsel). Israeli sports-video-AI company."
+    },
+    {
+      "name": "Natural Intelligence",
+      "ats": "comeet",
+      "ats_slug": "naturalint",
+      "ats_uid": "71.001",
+      "career_page": "https://www.comeet.com/jobs/naturalint/71.001",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research (naturalint.com/jobs/, disambiguated from an unrelated naturalintelligence.ai). Live-verified: 7 real jobs, all genuine Tel Aviv. Israeli comparison-shopping company."
+    },
+    {
+      "name": "Arpeely",
+      "ats": "comeet",
+      "ats_slug": "arpeely",
+      "ats_uid": "57.001",
+      "career_page": "https://www.comeet.com/jobs/arpeely/57.001",
+      "note": "Session 43: real-URL re-verification. Real Comeet link surfaced directly in web research. Live-verified: 14 real jobs, all genuine Tel Aviv, Israel. Israeli AI-powered ad-tech company."
     }
   ]
 }

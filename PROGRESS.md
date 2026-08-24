@@ -1929,3 +1929,84 @@ None — all decisions needed to start building are now in place.
   new, 72 still-open) — Istra Research attempted successfully and
   contributed 0 matches, exactly as expected given the location-field
   limitation documented above (not a regression).
+
+## Addendum — Session 43 executed: real-URL re-verification of media-list guessed negatives (2026-08-24)
+- Applied Session 40's own explicit self-critique to the weaker part
+  of its own work: 108 of the 161 `hebrew_media_round2` names had only
+  ever been checked at best-guess domains in one large concurrent
+  batch, never individually researched — proven too weak by this
+  session's own results (real careers URLs turned out to differ from
+  the guess for a large fraction of them, e.g. Bagira/Paytag-style
+  misses). Every one of those 108 got a real, individual web-research
+  pass this session, same standard as Session 40's original "18
+  companies" pass. **All 108 are now real-URL re-verified — 0 remain
+  checked only at a guessed domain.**
+- Part 1 (the 4 explicitly flagged names): **Moovit** — real Comeet
+  integration found (still a distinct careers presence post-Intel-
+  acquisition), 2 genuine Ness Ziona jobs — added. **Lumen** — real
+  identity-collision risk resolved (confirmed this is the Israeli
+  metabolism-tracker company, not Lumen Technologies the US telecom);
+  its real careers page turned out to be a white-labeled Comeet
+  integration (job data served from lumen.me/careers.json, same
+  pattern Session 35 found for Coralogix/Guesty/Upwind) — 3 genuine
+  Tel Aviv jobs — added. **BondIT** — real domain corrected
+  (bonditglobal.com, not bondit.com); the real page explicitly states
+  no open positions, mailto-only — unscannable (same pattern as
+  Majestic Labs/Line 5/Definity). **Clew Medical** — real URL
+  confirmed but got a consistent `ConnectTimeout` on 2 separate fetch
+  attempts through the Compliance Agent — a genuine network-level
+  issue, not evidence of anything; left honestly unresolved rather
+  than guessed at.
+- Part 2 (remaining ~104 names): **17 more real net new companies**
+  found and live-verified end-to-end via real per-name research
+  turning up genuine ATS links the large batch's guessed domains
+  missed entirely (mostly a company's real domain differing from the
+  `{name}.com` guess, or a real Comeet/Greenhouse link surfacing
+  directly in search results): Sygnia, Rapyd, Otorio, Gloat,
+  Insightec, Scopio Labs, Checkmarx, Silverfort, Dataloop, Gong.io,
+  AI21 Labs, Tabnine, Foretellix, Arbe Robotics, WSC Sports, Natural
+  Intelligence, Arpeely. **Checkmarx is a notable specific reversal**:
+  Session 38 concluded "no recognized-platform signal found" for it;
+  this session's fresh research surfaced a real, working Comeet link
+  with 36 jobs (3 genuinely Israel-located) — either a Session 38 miss
+  or a platform Checkmarx adopted since, but real and confirmed either
+  way, a concrete demonstration of why "checked once, found nothing"
+  is not the same as "confirmed unscannable."
+- **5 more confirmed acquisitions/unsupported-platform findings** for
+  `companies_unscannable.json`: Minerva Labs (Rapid7, 2023), Seebo
+  (Augury — its real Comeet link now 302-redirects to the comeet.com
+  homepage, a stale integration), Aporia (Coralogix — already a live
+  company in this project), Digital Turbine (Workday).
+- **Real, honest still-unresolved results, now backed by individual
+  real-URL checks instead of a guessed batch**: ~70 companies across
+  both parts, several with corrected real domains discovered along the
+  way even where no ATS signal was ultimately found (e.g. Nucleai is
+  really nucleai.ai not nucleai.io; Temi's real robot-maker domain is
+  robotemi.com, disambiguated from an unrelated transcription-service
+  company also using "Temi"; BrainQ's real careers subdomain is
+  careers.brainqtech.com). A few real, unsupported-platform findings
+  logged as unresolved rather than unscannable since this project has
+  no fingerprint detection for those platforms yet: OrCam (Zoho
+  Recruit), Intelligo (Workable), Ormat Technologies (jobs.net).
+- **Real, standing production-filter finding surfaced along the way**:
+  several genuinely Israeli-founded companies (Mesh Payments, BlueVine,
+  Intuition Robotics) were found to have real, working ATS integrations
+  with zero current Israel-located postings in the live data — kept
+  unresolved rather than added, per the standing real-Israel-location-
+  signal bar, not a sign of anything broken.
+- **companies.json: 110 → 129 (19 net new: 18 Comeet, 1 Greenhouse).
+  companies_unscannable.json: 125 → 130 (5 new).**
+- All three checkpoint sources remain fully exhausted
+  (`not_yet_checked: 0`); `hebrew_media_round2` final tally this
+  session: 38 added, 41 unscannable, 93 unresolved.
+- Docs updated: `harvesting_checkpoint.json`, `companies.json`,
+  `companies_unscannable.json`, this file, CHANGELOG.md.
+- Test suite: 162/162 passing, unchanged (no code changes this
+  session — pure data/verification work). Live `python run.py` smoke
+  test: 129 companies attempted, 128 succeeded, 1 failed (Orca
+  Security, a pre-existing Session 18 company untouched this session —
+  a `ReadTimeout`, confirmed transient by an immediate clean retry
+  which succeeded with 10 real jobs, not a regression from this
+  session's changes). 81 total matches (8 new, 73 still-open),
+  including real, live confirmation of new DevOps matches from Lumen,
+  Rapyd, Checkmarx, Silverfort, and Gong.io.

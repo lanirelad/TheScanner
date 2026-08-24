@@ -750,6 +750,36 @@
       "reason": "Media-list candidate - same real entity as Rewire (already in this file), which was acquired by Remitly and now routes through Remitly's own Workday-hosted careers site (remitly.wd5.myworkdayjobs.com).",
       "platform_if_known": "workday",
       "checked_at": "2026-08-24T15:30:00Z"
+    },
+    {
+      "name": "BondIT",
+      "reason": "Media-list candidate, real-URL re-verified in Session 43. Real domain is bonditglobal.com (not bondit.com, guessed in Session 40). Real careers page (bonditglobal.com/careers/) directly and explicitly states \"we currently do not have any open positions\" and invites only unsolicited email applications - same genuinely-no-structured-job-data pattern as Majestic Labs/Line 5/Definity, already in this file. Real, active Tel Aviv fixed-income fintech company; nothing structural to scan right now.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T17:00:00Z"
+    },
+    {
+      "name": "Minerva Labs",
+      "reason": "Media-list candidate, real-URL re-verified in Session 43. Confirmed acquired by Rapid7 (March 2023, ~$45M). No distinct Minerva Labs careers presence remains - hiring routed through Rapid7's own systems.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T18:30:00Z"
+    },
+    {
+      "name": "Seebo",
+      "reason": "Media-list candidate, real-URL re-verified in Session 43. A Comeet link found in research (comeet.com/jobs/seebo/61.00B) now 302-redirects to the comeet.com homepage - a stale/discontinued integration. LinkedIn confirms Seebo is \"now part of Augury\" (acquired). No distinct Seebo careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T18:30:00Z"
+    },
+    {
+      "name": "Aporia",
+      "reason": "Media-list candidate, real-URL re-verified in Session 43. LinkedIn confirms \"Aporia (Acquired by Coralogix)\" - Coralogix is already a live, scanned company in companies.json (Session 45/Session 35 lineage). No distinct Aporia careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T19:00:00Z"
+    },
+    {
+      "name": "Digital Turbine",
+      "reason": "Media-list candidate, real-URL re-verified in Session 43. Real careers page (digitalturbine.com/careers) redirects to digitalturbine.wd501.myworkdayjobs.com - Workday, an unsupported platform.",
+      "platform_if_known": "workday",
+      "checked_at": "2026-08-24T19:30:00Z"
     }
   ]
 }

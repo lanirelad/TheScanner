@@ -1402,7 +1402,7 @@
   "optibus.com": {
     "domain": "optibus.com",
     "allowed": true,
-    "checked_at": 1786615931.2013414
+    "checked_at": 1787596289.1872544
   },
   "opussecurity.com": {
     "domain": "opussecurity.com",
@@ -5728,5 +5728,25 @@
     "domain": "clewmed.com",
     "allowed": true,
     "checked_at": 1787575985.4892962
+  },
+  "bonditglobal.com": {
+    "domain": "bonditglobal.com",
+    "allowed": true,
+    "checked_at": 1787594949.0368357
+  },
+  "tabit.cloud": {
+    "domain": "tabit.cloud",
+    "allowed": true,
+    "checked_at": 1787595592.4354208
+  },
+  "jobs.weka.io": {
+    "domain": "jobs.weka.io",
+    "allowed": true,
+    "checked_at": 1787595986.7237096
+  },
+  "careers.getnexar.com": {
+    "domain": "careers.getnexar.com",
+    "allowed": true,
+    "checked_at": 1787595992.0656023
   }
 }

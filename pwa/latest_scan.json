@@ -1,9 +1,14 @@
 {
-  "generated_at": "2026-08-24T17:54:59Z",
-  "companies_attempted": 110,
-  "companies_succeeded": 110,
-  "companies_failed": 0,
-  "failures": [],
+  "generated_at": "2026-08-24T18:55:24Z",
+  "companies_attempted": 129,
+  "companies_succeeded": 128,
+  "companies_failed": 1,
+  "failures": [
+    {
+      "company": "Orca Security",
+      "error": "ReadTimeout: "
+    }
+  ],
   "matches": [
     {
       "job_id": "38ec1ec7373f3e1feeb5ff9ac947222db3fe3aee11942cf869262e135af426e0",
@@ -516,16 +521,6 @@
       "scan_status": "still_open"
     },
     {
-      "job_id": "e901cf213bd047ee4a4d9ddffabe84bd9a2c230ad62f77b084bac78fc1244e84",
-      "company": "Nebius",
-      "title": "Data Center IT Infrastructure Engineer",
-      "location": "Israel",
-      "role_category": "devops",
-      "label_en": "DevOps Engineer",
-      "source_url": "https://careers.nebius.com/?gh_jid=4784195101",
-      "scan_status": "still_open"
-    },
-    {
       "job_id": "0cf760c6786a3cdfe69e7267238adfb9a86431a9b7a86a40201a27aa15836fee",
       "company": "Nebius",
       "title": "Data Center IT Infrastructure Engineer",
@@ -533,6 +528,16 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://careers.nebius.com/?gh_jid=4784157101",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "e901cf213bd047ee4a4d9ddffabe84bd9a2c230ad62f77b084bac78fc1244e84",
+      "company": "Nebius",
+      "title": "Data Center IT Infrastructure Engineer",
+      "location": "Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://careers.nebius.com/?gh_jid=4784195101",
       "scan_status": "still_open"
     },
     {
@@ -663,7 +668,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://kmslh.com/careers/co/petah-tikva-israel/6E.E69/devops-team-leader/all/",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "job_id": "98d13a3c53ab941b83baf92263bbbfb629bcbffb2afc043144fda2d978e2c9cb",
@@ -734,6 +739,86 @@
       "label_en": "DevOps Engineer",
       "source_url": "https://job-boards.greenhouse.io/via/jobs/8171972002",
       "scan_status": "still_open"
+    },
+    {
+      "job_id": "36b350d246e61c1462744da39c1b260ac86f95b0bcfe20b065a2ed06506304b7",
+      "company": "Lumen",
+      "title": "Senior DevOps Engineer",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.lumen.me/careers/B5.85D",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "5280de8edff1c9242d044c1ad1edc92812bd6096e7378000977f01527e24a8fc",
+      "company": "Rapyd",
+      "title": "Senior Developer (DevOps and Infrastructure)",
+      "location": "Tel Aviv, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.rapyd.net/company/careers/positions/senior-developer-devops-and-infrastructure-tel-aviv-israel/",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "4b96e82d6c064a0896394b373c60057960a70d68f282e4bb22f5b91f6f29b427",
+      "company": "Checkmarx",
+      "title": "DevOps Engineer",
+      "location": "Ramat Gan, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://checkmarx.com/job-openings/position/52.E6E/?t=1787546199890",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "d4fb242dc424d977c7dac727a9ddec68109432e0f746871e2d836852abb17934",
+      "company": "Checkmarx",
+      "title": "DevOps Manager",
+      "location": "Ramat Gan, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://checkmarx.com/job-openings/position/52.F6F/",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "ba8045b56c36723e51dda5eb29263769fbe17538777704e221fc5d85c59bdf55",
+      "company": "Silverfort",
+      "title": "DevOps Platform Engineer",
+      "location": "Tel Aviv, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.comeet.com/jobs/silverfort/54.007/devops-platform-engineer/72.E6C",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "202a7874bf30074eee74d32b7c96faf5ab5734a9a4b55d6e2c9444aed8ae3083",
+      "company": "Gong.io",
+      "title": "Senior AI Infrastructure Engineer ",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://job-boards.greenhouse.io/gongio/jobs/4684943006",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "0a47f785a4d7ee68f6a9a9b61407616d5e1867fb721ca5fc777eccd50ddddcc6",
+      "company": "Gong.io",
+      "title": "Senior DevOps Engineer",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://job-boards.greenhouse.io/gongio/jobs/4700779006",
+      "scan_status": "new"
+    },
+    {
+      "job_id": "1d2dde43a9d54f81f8257fbc07b8d84a93a687694b947f92fab5673a045117d7",
+      "company": "Gong.io",
+      "title": "Senior SRE Engineer /Senior DevOps",
+      "location": "Tel Aviv",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://job-boards.greenhouse.io/gongio/jobs/4673075006",
+      "scan_status": "new"
     }
   ]
 }
