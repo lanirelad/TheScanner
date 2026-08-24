@@ -4,11 +4,19 @@
       "Israel", "Tel Aviv", "Tel-Aviv", "Herzliya", "Ra'anana", "Raanana",
       "Petah Tikva", "Petach Tikva", "Netanya", "Haifa", "Jerusalem",
       "Rehovot", "Yokneam", "Yokne'am", "Beer Sheva", "Be'er Sheva",
-      "Remote - Israel", "Israel (Remote)", "Hybrid - Israel"
+      "Remote - Israel", "Israel (Remote)", "Hybrid - Israel",
+      "Kfar Saba", "Kefar Saba", "Ramat Gan", "Bnei Brak", "Bene Beraq",
+      "Modi'in", "Modiin", "Caesarea", "Ness Ziona", "Nes Ziona",
+      "Rosh HaAyin", "Rosh Ha'Ayin", "Rishon LeZion", "Rishon LeTzion",
+      "Holon", "Givatayim", "Kiryat Gat", "Airport City", "Kfar Yona",
+      "Hod HaSharon", "Ramat HaSharon"
     ],
     "he": [
       "ישראל", "תל אביב", "הרצליה", "רעננה", "פתח תקווה", "נתניה", "חיפה",
-      "ירושלים", "רחובות", "יקנעם", "באר שבע", "מרחוק - ישראל", "היברידי"
+      "ירושלים", "רחובות", "יקנעם", "באר שבע", "מרחוק - ישראל", "היברידי",
+      "כפר סבא", "רמת גן", "בני ברק", "מודיעין", "קיסריה", "נס ציונה",
+      "ראש העין", "ראשון לציון", "חולון", "גבעתיים", "קרית גת", "כפר יונה",
+      "הוד השרון", "רמת השרון"
     ]
   }
 }

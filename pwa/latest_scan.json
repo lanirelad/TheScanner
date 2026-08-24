@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-24T03:35:44Z",
-  "companies_attempted": 102,
-  "companies_succeeded": 102,
+  "generated_at": "2026-08-24T11:48:15Z",
+  "companies_attempted": 104,
+  "companies_succeeded": 104,
   "companies_failed": 0,
   "failures": [],
   "matches": [
@@ -146,6 +146,16 @@
       "scan_status": "still_open"
     },
     {
+      "job_id": "512e137602e35470075b7be2233e5ee212d0ffe77cfd9aaa865c5f86d69939bb",
+      "company": "Fireblocks",
+      "title": "DevOps Team Leader",
+      "location": "Tel Aviv-Yafo, Tel Aviv District, Israel",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.fireblocks.com/careers/position?gh_jid=4706203006",
+      "scan_status": "still_open"
+    },
+    {
       "job_id": "4664a1fca3cfb87b8122182ade25fb6bcd776cd2cba7fd337c08998cc3e97eb9",
       "company": "NICE",
       "title": "Devops Student",
@@ -193,16 +203,6 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://www.taboola.com/careers/job/8070135?gh_jid=8070135",
-      "scan_status": "still_open"
-    },
-    {
-      "job_id": "3ae7837bf8a4f02c2079c1470bedb060277466f30f5814e2c05176f479afa703",
-      "company": "Torq",
-      "title": "DevOps Engineer",
-      "location": "Tel Aviv ",
-      "role_category": "devops",
-      "label_en": "DevOps Engineer",
-      "source_url": "https://job-boards.greenhouse.io/torq/jobs/5810373004",
       "scan_status": "still_open"
     },
     {
@@ -293,6 +293,16 @@
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
       "source_url": "https://www.comeet.com/jobs/cyera/17.008/senior-technical-support-engineer/94.F68",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "e1ded1ab2a20496878793a80faf6d2da96889518b23ee0f939c5cb4036799742",
+      "company": "Immunai",
+      "title": "Senior DevOps Engineer",
+      "location": "Ramat Gan",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.comeet.com/jobs/immunai/37.009/senior-devops-engineer/60.F6C",
       "scan_status": "still_open"
     },
     {
@@ -396,13 +406,13 @@
       "scan_status": "still_open"
     },
     {
-      "job_id": "f6e8e4bab8561c71c87d9d760643c71700f1e23eb9f6c2f643001ec1c3ddbbab",
+      "job_id": "d7e8272118e52061574b9b9ed94bb633f81d4003791af4a5f114d72af24923ce",
       "company": "Zenity",
       "title": "DevOps Team Lead",
       "location": "Tel Aviv",
       "role_category": "devops",
       "label_en": "DevOps Engineer",
-      "source_url": "https://zenity.io/careers/hybrid-tel-aviv-jaffa-tel-aviv-district-israel/devops-team-lead/A5.070?+job+board&gh_src=UpWest+job+board",
+      "source_url": "https://zenity.io/careers/hybrid-tel-aviv-jaffa-tel-aviv-district-israel/devops-team-lead/A5.070",
       "scan_status": "still_open"
     },
     {
@@ -466,23 +476,23 @@
       "scan_status": "still_open"
     },
     {
-      "job_id": "4a1d3acd05faad18a8184830e68cdb5e05d5416318d47681cbef104ef9a45586",
+      "job_id": "e2c32ef970b1b3a6dfbaf627c19910838a3cd3c7a88290219c7bb90247d74aaa",
       "company": "Upwind",
       "title": "Technical Support Engineer – Student Position",
       "location": "Tel Aviv",
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
-      "source_url": "https://www.upwind.io/careers/co/tel-aviv/78.E65/technical-support-engineer-student-position/all",
+      "source_url": "https://www.upwind.io/careers/co/tel-aviv/78.E65/technical-support-engineer-student-position/all#jobs",
       "scan_status": "still_open"
     },
     {
-      "job_id": "efdc1d8a2d0333ad187691ac6888c19f030ead30d835122806a9fc905b9fde55",
+      "job_id": "2bb7acd5538ea691a942d6ea4abfe714c85eb7623d28059d6e2db571e051c0f5",
       "company": "Upwind",
       "title": "Technical Support Specialist",
       "location": "Tel Aviv",
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
-      "source_url": "https://www.upwind.io/careers/co/tel-aviv/04.F41/technical-support-specialist/all",
+      "source_url": "https://www.upwind.io/careers/co/tel-aviv/04.F41/technical-support-specialist/all#jobs",
       "scan_status": "still_open"
     },
     {
@@ -673,6 +683,36 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://codevalue.com/careers/co/devops/04.20F/devops-engineer-yokneam/all/",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "4a90c65adcde61ce8c8a32408df62f98ef5501886533ffc235bc9cfb163a0962",
+      "company": "Parallel Wireless",
+      "title": "Senior/Principal Local LLM & Generative AI Platform Engineer",
+      "location": "Kfar Saba",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://jobs.lever.co/parallelwireless/233858ab-104d-42fe-8b5b-f9d86aa8f5a4",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "2951305b9bd81a1f2db4df3251322efa2c319182de4b317be97e9d5a7f7e26ec",
+      "company": "Parallel Wireless",
+      "title": "Sr. Principal, DevOps",
+      "location": "Kfar Saba",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://jobs.lever.co/parallelwireless/d47fdbd3-a0d5-45a8-94a0-19d2a640e3ae",
+      "scan_status": "still_open"
+    },
+    {
+      "job_id": "f8d3c1f530b94e9e0410747bb4b7dbd0fd6adec46a99b46c209bcedebb4ae6c2",
+      "company": "ThetaRay",
+      "title": "DevOps Engineer",
+      "location": "Israel, Hod HaSharon",
+      "role_category": "devops",
+      "label_en": "DevOps Engineer",
+      "source_url": "https://www.comeet.com/jobs/thetaray/72.00F/devops-engineer/83.F61",
       "scan_status": "still_open"
     }
   ]

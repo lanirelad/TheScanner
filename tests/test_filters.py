@@ -311,6 +311,54 @@ def test_disabled_categories_still_match_correctly_when_enabled():
     }
 
 
+# --- Location matching beyond the literal string "Israel" (Session 39) ------
+# Real bug this locks in the fix for: Session 38 caught itself missing a
+# real match (Parallel Wireless, Kfar Saba) because its own ad-hoc
+# verification script only searched for the substring "israel" in a
+# job's location. That script was never part of this codebase, but the
+# *real* production filter (this file) turned out to have the identical
+# gap for real — Kfar Saba, Ness Ziona, and other genuine Israeli tech
+# hubs simply weren't in locations.json's accepted_locations list at
+# all, so a job located at exactly one of those cities (with no country
+# name anywhere in the string) was silently rejected in production, not
+# just in a throwaway script.
+
+
+def test_kfar_saba_alone_is_accepted_without_the_word_israel():
+    # The real, exact case this session found: a genuine Parallel
+    # Wireless posting whose location field is the bare city name.
+    role_filter = _build_filter()
+    job = {"title": "Sr. Principal, DevOps", "department": None, "location": "Kfar Saba", "absolute_url": "x"}
+
+    result = role_filter.match(job)
+
+    assert result == {"matched": True, "role_category": "devops", "matched_tag": "devops"}
+
+
+def test_ness_ziona_alone_is_accepted_without_the_word_israel():
+    # The real, exact case for Foresight Automotive — confirmed via a
+    # real live scan that its Ness Ziona postings were being silently
+    # dropped before this fix (0 matches from a company with 5 real
+    # open Israel-based postings).
+    role_filter = _build_filter()
+    job = {"title": "DevOps Engineer", "department": None, "location": "Ness Ziona", "absolute_url": "x"}
+
+    result = role_filter.match(job)
+
+    assert result == {"matched": True, "role_category": "devops", "matched_tag": "devops"}
+
+
+def test_a_real_non_israeli_city_sharing_no_substring_with_any_accepted_term_is_still_rejected():
+    # Guards against the fix being so broad it stops rejecting anything —
+    # a real, unambiguous non-Israel location must still fail.
+    role_filter = _build_filter()
+    job = {"title": "DevOps Engineer", "department": None, "location": "Austin, TX", "absolute_url": "x"}
+
+    result = role_filter.match(job)
+
+    assert result == {"matched": False, "role_category": None, "matched_tag": None}
+
+
 # --- Cross-adapter shape checks ----------------------------------------------
 
 

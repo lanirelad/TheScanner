@@ -1,0 +1,2354 @@
+{
+  "_note": "Session 39. Real, structured, durable per-candidate disposition tracking across every harvesting source list, written incrementally as each name is actually checked (see discovery/checkpoint.py) rather than only at session end — built specifically so an interruption (an org spend limit stopped Session 38's Wikipedia-list research agent partway through with nothing surviving) never loses real progress again. `status` is one of added / unscannable / unresolved / not_yet_checked. `resolved_to` names the real entry in companies.json or companies_unscannable.json when status is added/unscannable — this file intentionally does not duplicate the real reasoning/detail already recorded there, only whether/what. Seeded by cross-referencing the real, current companies.json (102 entries) and companies_unscannable.json (15 entries) against each source list's real full name set, plus Session 38's explicitly-recorded checked-negative/checked-blocked Wikipedia names and a faithful transcription of Session 38's own PROGRESS.md addendum for the LinkedIn list — not guessed from prose.",
+  "sources": {
+    "wikipedia_153": {
+      "description": "The complete 153-page English Wikipedia \"Software companies of Israel\" category (Session 38 attachment) — a historical category, real elevated defunct/acquired rate expected.",
+      "candidates": {
+        "Adallom": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Microsoft (2015, ~$320M), absorbed into Microsoft Cloud App Security. No distinct Adallom entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "ALMtoolbox": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Petah Tikva ALM/DevOps software company (formerly GoMidjets). No ATS signal found via PlaywrightProbe at almtoolbox.com/careers/.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Amdocs": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Answers.com": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Founded in Jerusalem as GuruNet, but the current entity is a US-based (St. Louis, MO) subsidiary of System1 with no distinct Israel presence — original GuruNet/Answers Corp identity long since absorbed.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Any.do": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Atera Networks": {
+          "status": "added",
+          "resolved_to": "Atera",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Babylon (software)": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Israeli translation-software company (Or Yehuda) — withdrew a planned 2013 IPO and reportedly sold parts of its translation business at some point, current scope unclear. No recognized ATS signal found at guessed careers URLs; needs the real careers URL confirmed in a follow-up session.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Better Online Solutions": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed real, active NASDAQ-listed Israeli RFID/supply-chain company (BOSC). No ATS signal found via PlaywrightProbe at boscorporate.com/careers or bos-b2b.com/careers. Needs the real careers URL confirmed in a follow-up session.",
+          "checked_at": "2026-08-24T12:20:00Z"
+        },
+        "Beyond Verbal": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Confirmed via Crunchbase: operating status is \"Merged\" — small emotion-AI company (21 employees, $10M raised) with no continued independent operation found.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "BillGuard": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Prosper Marketplace (2015), renamed Prosper Daily. No distinct BillGuard entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "BluePhoenix Solutions": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Merged with ATERAS (2014), no longer an independent entity — became part of what is now Modern Systems. No distinct BluePhoenix careers presence remains.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "C-nario": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by YCD Multimedia (Oct 2011). No distinct C-nario careers presence — YCD Multimedia itself checked live this session with no recognized ATS signal (see unresolved list).",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "CallApp": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Cato Networks": {
+          "status": "added",
+          "resolved_to": "Cato Networks",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Ceedo": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Israeli endpoint-virtualization/security company. No ATS signal found via PlaywrightProbe at ceedo.com/careers/.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Cellebrite": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Check Point": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38 Part 2: real live recheck, robots.txt still genuinely blocked (curl-confirmed, not an httpx-specific artifact).",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Checkmarx": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Cimatron": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Live PlaywrightProbe: careers page redirects to sandvik.wd3.myworkdayjobs.com/cimatron-jobs. Confirms passage through 3D Systems -> Battery Ventures -> Sandvik (2021); Workday is unsupported regardless.",
+          "checked_at": "2026-08-24T12:15:00Z"
+        },
+        "Clarizen": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Planview (completed Feb 23 2021). Product continues as \"Planview Clarizen\" but no distinct Clarizen careers presence remains — folded into Planview's own (non-Israel-specific) careers site.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "ClearForest": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Thomson Reuters (April 2007), absorbed into its Text Metadata Services group. No distinct ClearForest entity remains.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "CloudEndure": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Amazon Web Services (Jan 2019, ~$200-250M), absorbed into AWS Elastic Disaster Recovery. No distinct CloudEndure careers presence.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Cogniview": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Real company but headquartered in Atlanta, Georgia (US) — despite originally Israeli roots, current operations show no Israel presence to scan.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Cognyte": {
+          "status": "added",
+          "resolved_to": "Cognyte",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Collactive": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real Israeli company (rating-manipulation software, launched 2007 with $2M from Sequoia Capital) but no confirmed current operating status found — web research mostly surfaces an unrelated \"Collactive Collagen\" nutrition-supplement brand. Needs a dedicated check.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Comverse Technology": {
+          "status": "unscannable",
+          "resolved_to": "Comverse Technology",
+          "reason": "Dissolved 2013 into Xura/Verint/Mavenir.",
+          "checked_at": null
+        },
+        "Conduit (company)": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Broke up in 2013; the ClientConnect/toolbar business merged into Perion Network (completed Jan 2014, forming an ~$800M combined company). No distinct Conduit entity remains — its real successor for scanning purposes would be Perion Network, already live-verified this session as unresolved (11 global jobs, no Israel location signal).",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "CyberArk": {
+          "status": "unscannable",
+          "resolved_to": "CyberArk",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Cyberint": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38 Part 2: real live recheck, robots.txt still genuinely blocked (curl-confirmed, not an httpx-specific artifact).",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Cybersixgill": {
+          "status": "unscannable",
+          "resolved_to": "Cybersixgill",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Cynet (company)": {
+          "status": "added",
+          "resolved_to": "Cynet",
+          "reason": "Real Comeet company (slug cynet, uid 33.00D), 14 live jobs incl. a genuine Israel-located posting (\"Career at Cynet | Israel\"). Active Israeli cybersecurity co, Rishon LeZion.",
+          "checked_at": "2026-08-24T12:20:00Z"
+        },
+        "CYREN": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "NASDAQ-listed but entered insolvency Feb 2023 after laying off its entire ~121-person workforce; Tel Aviv District Court appointed a liquidating trustee. Assets later sold to Data443. Fully defunct as an employer.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "DealHub": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Deltathree": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Confirmed defunct as of Feb 12 2009 (early VoIP telephony company).",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Digital Fuel": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by VMware, then VMware sold it to Skyview Capital in a later divestiture. No distinct, findable Digital Fuel careers presence after multiple ownership changes.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Download Valley": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Not a company — this is a Wikipedia term for a cluster/category of Israeli adware companies (analogous to \"Silicon Valley\"), not a distinct scannable entity. No action needed; excluded from further consideration.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "DriveNets": {
+          "status": "added",
+          "resolved_to": "DriveNets",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Elron Ventures": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, longstanding Israeli technology holding/investment company (similar structural role to Formula Systems, already unscannable in this file for the same reason) — likely a pure holding company with no operating job postings of its own, but not independently confirmed live this session (no ATS signal at guessed URL, no 404 confirmed either).",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "EPaper Ltd": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Could not confirm a specific, distinct real company matching this name via web research — results returned only unrelated e-paper display vendors (E Ink, E-Paper Innovation).",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Ericom Software": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38 Part 2: real live recheck, robots.txt still genuinely blocked (curl-confirmed, not an httpx-specific artifact).",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Escapex": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real fan-engagement app company (founded 2014, $18M raised) but conflicting/unclear current operating status found via web research (some results suggest continued operation, others patent-litigation-only activity). Needs a dedicated check.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Ex Libris Group": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Live PlaywrightProbe: robots.txt at exlibrisgroup.com disallows fetching /careers/. Acquired by ProQuest (2015) but blocked independent of that.",
+          "checked_at": "2026-08-24T12:15:00Z"
+        },
+        "Exanet": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Went into receivership Dec 2009; IP acquired by Dell (Feb 2010, $12M), became Dell FluidFS. No distinct Exanet entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Expand Networks": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Liquidated by Israeli court order (2011); assets sold to Riverbed Technology (Jan 2012), which discontinued the products immediately. No distinct entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Facetune": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Not a distinct company — Facetune is a product of Lightricks, which is already a confirmed, live-verified entry in companies.json (added Session 37 area). No separate action needed; not a new candidate.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Finjan Holdings": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Fortress Investment Group (finalized July 2020, $1.55/share cash-out); now operates purely as a patent-licensing/litigation shell, not an operating employer with real job postings.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Flok (company)": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Wix.com (Jan 2017); communications with customers ceased ~2017 and Wix formally shut the product down by March 2020. Fully defunct.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Formula Systems": {
+          "status": "unscannable",
+          "resolved_to": "Formula Systems",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "G.ho.st": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Confirmed defunct — closed its cloud-OS service in April 2010 due to lack of funding and competition.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Genieo": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Somoto (2014, $34M); the Genieo brand itself has since been retired/rebranded multiple times (InstallMac, MacSaver, SearchProtect) with no distinct current careers presence.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Geniusmatcher": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Confirmed permanently closed (developer of the Mally mall-navigation app).",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "GigaSpaces": {
+          "status": "added",
+          "resolved_to": "GigaSpaces",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Gigya": {
+          "status": "unscannable",
+          "resolved_to": "Gigya",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Ginger Software": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Merged with Headspace (2021) and fully rebranded to Headspace Care (Oct 2023). No distinct Ginger Software entity or careers presence remains.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Giraffic": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Israeli video-streaming-optimization startup; no confirmable current operating status found via web research this session.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Glow (company)": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed via web research: this is a US company (San Francisco-headquartered fertility app, Series B) with no Israel connection found — likely a name collision with the Wikipedia list entry, or the Wikipedia entry itself is miscategorized. Excluded pending better evidence.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Guesty": {
+          "status": "added",
+          "resolved_to": "Guesty",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "I-Logix": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Telelogic AB (2006), then Telelogic acquired by IBM (2008). Products (Rhapsody, Statemate) now under IBM Rational. No distinct I-Logix entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "IMesh": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "P2P file-sharing service; shut down entirely in 2016 after settling a 2004 RIAA lawsuit and pivoting to a licensed model that ultimately failed. Fully defunct.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Indeni (company)": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by BlueCat Networks (July 23 2023). No distinct Indeni careers presence remains — folded into BlueCat's own careers site.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Infinidat": {
+          "status": "added",
+          "resolved_to": "Infinidat",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "InstallCore": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Part of the \"Download Valley\" Israeli adware-installer cluster referenced by the Download Valley Wikipedia entry itself. Could not confirm a distinct current operating status via web research this session.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "InstallFree": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by WatchDox (Dec 2012), which itself was later acquired by BlackBerry. No distinct InstallFree entity remains.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "IOnRoad": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Harman International (2013). Tel Aviv office became a Harman R&D center directly — no distinct IOnRoad careers presence remains (same absorption pattern as Red Bend Software, already in this file).",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Jacada": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Uniphore Technologies (completed Oct 21 2021); became a privately-held subsidiary, delisted from OTC markets. No distinct Jacada careers presence remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Javelin Networks": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Symantec (Nov 2018), absorbed into Symantec endpoint security. No distinct Javelin Networks careers presence.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Simply (software company)": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Could not confirm a specific, distinct real company matching this generic name via web research — general Israeli accounting-software search results only. No ATS signal found at a guessed URL either. Needs identity confirmation before further work.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "JPEGmini": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Not a distinct company — JPEGmini is a product of Beamr Imaging Ltd, which is not yet in companies.json or companies_unscannable.json. Beamr itself (NASDAQ: BMR, still actively developing video/image compression tech) is a real candidate worth checking directly in a future session — this Wikipedia entry specifically is a product name, not the company.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Jungo Connectivity": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active, Tel Aviv Stock Exchange-listed (JNGO) Netanya-based automotive software company (driver monitoring, spun off from Cisco). No ATS signal found via PlaywrightProbe at jungo.com/careers.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "K2view": {
+          "status": "added",
+          "resolved_to": "K2view",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "KitLocate": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Yandex (March 2014); technology fully incorporated into the Yandex stack. No distinct KitLocate careers presence remains.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Lango (app)": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Originally Zlango (founded 2004, Tel Aviv, icon-based mobile messaging language). Confirmed via Crunchbase: permanently closed. Other unrelated \"Lango\" language-learning apps exist today but are not this company.",
+          "checked_at": "2026-08-24T13:10:00Z"
+        },
+        "Larch Networks": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Rosh HaAyin networking-software company (SONiC switching, founded 2009). No ATS signal found via PlaywrightProbe at larch-networks.com/careers/.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Legato (company)": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by EMC (Oct 2003, ~$1.3B). No distinct Legato entity remains; long since absorbed into EMC/Dell.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Lightricks": {
+          "status": "added",
+          "resolved_to": "Lightricks",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Lusha": {
+          "status": "added",
+          "resolved_to": "Lusha",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Magic Software Enterprises": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, confirmed status: completed a reverse-triangular merger into Matrix I.T on 2026-02-24, now a private Matrix subsidiary, delisted from Nasdaq/TASE. Real careers URL (magicsoftware.com/about-us/careers/) is robots.txt-blocked at check time.",
+          "checked_at": null
+        },
+        "Mainsoft": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Rebranded to harmon.ie (2010). No distinct Mainsoft careers presence remains under the original name (note: harmon.ie itself was not independently checked this session, name not in this candidate list).",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Mellel": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed real, tiny (indie) Mac word-processor company, still actively maintained. No ATS signal found at mellel.com/careers via PlaywrightProbe; very unlikely to have structured job postings at this scale. Low priority.",
+          "checked_at": "2026-08-24T12:20:00Z"
+        },
+        "Mercury Interactive": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Hewlett-Packard (Nov 2006, $4.5B); later moved to HPE then spun into Micro Focus. No distinct Mercury Interactive careers presence.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Metacafe": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Video platform dissolved Aug 28 2021; website and social media abandoned. Fully defunct.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Mind CTI": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Mirabilis (company)": {
+          "status": "unscannable",
+          "resolved_to": "Mirabilis",
+          "reason": "Acquired by AOL 1998, no distinct entity for 25+ years.",
+          "checked_at": null
+        },
+        "Mobileye": {
+          "status": "added",
+          "resolved_to": "Mobileye",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Monday.com": {
+          "status": "added",
+          "resolved_to": "monday.com",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "MyHeritage": {
+          "status": "added",
+          "resolved_to": "MyHeritage",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "NetManage": {
+          "status": "unscannable",
+          "resolved_to": "NetManage",
+          "reason": "Acquired by Micro Focus 2008.",
+          "checked_at": null
+        },
+        "NiCE": {
+          "status": "added",
+          "resolved_to": "NICE",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "NLayers": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by EMC Corporation (2006, $50M). No distinct NLayers entity remains.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Oblicore": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by CA Technologies (Jan 2010, $25M). No distinct Oblicore entity remains.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Odigo Messenger": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Comverse Technology (2002, ~$20M); the free IM service itself was shut down in 2004. Fully defunct.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Omek Interactive": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Intel (July 2013, $40M). No distinct Omek Interactive entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Onavo": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Facebook (2013, ~$200M); Facebook shut down the Onavo Protect app itself in Feb 2019 amid privacy concerns. Fully defunct.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Optimove": {
+          "status": "added",
+          "resolved_to": "Optimove",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "OSv": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Not an operating company — OSv is an open-source unikernel project, originally built by Cloudius Systems (now ScyllaDB) but currently maintained by a small volunteer community, not a commercial entity with job postings of its own.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "OverOps": {
+          "status": "unscannable",
+          "resolved_to": "OverOps",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "P-Cube": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Cisco Systems (Aug 2004, $200M). Product line renamed Service Control Engine; no distinct P-Cube entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Panaya": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, confirmed active Infosys subsidiary (Hod Hasharon) with its own domain (panaya.com), but no recognized-platform signal found on its real careers page.",
+          "checked_at": null
+        },
+        "Panorama Software": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed real, active Tel Aviv BI company via web research (careers page exists, actively hiring), but PlaywrightProbe found no recognized ATS signal at panorama.com/careers or usepanorama.com/careers; also a name-collision risk (multiple unrelated \"Panorama\" software companies surfaced in search). Needs a follow-up session with a more targeted URL/manual check before adding or excluding.",
+          "checked_at": "2026-08-24T12:20:00Z"
+        },
+        "Papaya Global": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38 Part 2: real live recheck, robots.txt still genuinely blocked (curl-confirmed, not an httpx-specific artifact).",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Perimeter 81": {
+          "status": "unscannable",
+          "resolved_to": "Perimeter 81",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Perion Network": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real working Greenhouse integration (job-boards.greenhouse.io/perionnetworkltd), 11 real postings, but genuinely US/global-only right now (New York, Paris, Toronto, Boston, Chicago, Washington DC) - zero Israel-located postings and no structural Israel confirmation. Not added per standing no-Israel-signal policy.",
+          "checked_at": null
+        },
+        "PerSay": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Nuance Communications (Dec 2010), absorbed into Nuance voice biometrics suite. No distinct PerSay entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Personyze": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Tel Aviv website-personalization SaaS company (18 employees, founded 2008). No ATS signal found via PlaywrightProbe at personyze.com/careers.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Qumranet": {
+          "status": "unscannable",
+          "resolved_to": "Qumranet",
+          "reason": "Acquired by Red Hat 2008, now Red Hat Israel R&D.",
+          "checked_at": null
+        },
+        "Radware": {
+          "status": "unscannable",
+          "resolved_to": "Radware",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Raz-Lee": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Israeli/US IBM Power-i security company (Herzliya) with a confirmed real careers page (razlee.com/careers-at-raz-lee/) per web research, but PlaywrightProbe found no recognized ATS signal there. Needs a manual look at the actual page — likely a non-ATS/custom contact-only careers page.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Red Bend Software": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Harman International (2015, $170M), absorbed into Harman connected-car unit. No distinct Red Bend careers presence.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "RepliWeb": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Attunity (2011, $7.8M net). No distinct RepliWeb entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Retalix": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by NCR Corp (Feb 2013, ~$650-800M). No distinct Retalix careers presence; part of NCR retail unit.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Riskified": {
+          "status": "added",
+          "resolved_to": "Riskified",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "RiT Technologies": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, confirmed active company (rittech.com), but no recognized-platform signal found on its real careers page (site itself notes no current live vacancies).",
+          "checked_at": null
+        },
+        "Riverhead Networks": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Cisco Systems (March 2004, $44M). No distinct Riverhead Networks entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Rollout.io": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by CloudBees (May 2019), not Google as sometimes assumed. Absorbed into CloudBees mobile DevOps. No distinct Rollout.io careers presence.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Sapiens International Corporation": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38 Part 2: robots.txt self-healed since the original block, but no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Sentrigo": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by McAfee (April 2011), absorbed into McAfee database security products. No distinct Sentrigo entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Shopping.com": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by eBay (2005) and still technically operating as a price-comparison sub-brand within eBay 20+ years later, but with no distinct Shopping.com careers presence — any hiring would be under eBay's own (non-Israel-specific) careers site.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Sigvalue": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Amdocs (Jan 3 2007), operating as a subsidiary billing-platform unit. Amdocs itself was already checked and confirmed negative for this project in Session 38 (checked_negative list). No distinct SigValue presence remains.",
+          "checked_at": "2026-08-24T13:10:00Z"
+        },
+        "SimiGon": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Merged with Power Breezer to form a new combined entity, Maxify (April 2022). No distinct SimiGon entity remains.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Sisense": {
+          "status": "added",
+          "resolved_to": "Sisense",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "SlickLogin": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Google (2013), absorbed into Google security infrastructure. No distinct SlickLogin entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Snappy Gifts": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active corporate-gifting company (founded 2015) but headquartered in New York with no confirmed Israel R&D presence found via web research — geography unclear, not confidently excludable or addable.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Snaptu": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Facebook (2011, $60-70M), absorbed into Facebook Lite/Internet.org efforts. No distinct Snaptu entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Soluto": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Asurion (2013, $130M) as its Israel R&D center; Asurion shut the Soluto R&D center down entirely in 2022, laying off all ~120 employees. Fully defunct as a distinct entity.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "SpotOption": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Wound down its core binary options business (Jan 2018, following Israeli regulatory ban) then also exited FX/CFDs shortly after. No evidence of a continued distinct operating business or careers presence.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "StarkWare Industries": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Starlims": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Stratoscale": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Ceased operations entirely in Dec 2019 after failed acquisition talks; laid off all 60 remaining employees. Fully defunct.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "SysAid Technologies": {
+          "status": "added",
+          "resolved_to": "SysAid",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Tdsoft": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Took control of VocalTec via reverse merger (Nov 2005); ceased to exist as an independent entity, continuing only under the VocalTec name.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Tecnomatix": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by UGS Corp (2005), then UGS acquired by Siemens (2007). Now a Siemens digital-manufacturing product line, not a distinct employer.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "TeleMessage": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38 Part 2: real live recheck, robots.txt still genuinely blocked (curl-confirmed, not an httpx-specific artifact).",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "ThetaRay": {
+          "status": "added",
+          "resolved_to": "ThetaRay",
+          "reason": "Real Comeet company (slug thetaray, uid 72.00F), 13 live jobs incl. genuine Israel/Hod HaSharon DevOps + other roles.",
+          "checked_at": "2026-08-24T12:15:00Z"
+        },
+        "Tonara (company)": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Israeli sheet-music/education app company, confirmed defunct as of Dec 8 2023.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Transmit Security": {
+          "status": "added",
+          "resolved_to": "Transmit Security",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "TTI Telecom": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by TEOCO Corporation (Aug 2010), delisted from NASDAQ, became a private TEOCO subsidiary (TEOCO Israel). No distinct TTI Telecom careers presence remains.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Ubique (company)": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by AOL (1995), then by Lotus (1998). No distinct Ubique entity has existed for over 25 years.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Umoove": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active but very small (5 employees) Jerusalem eye-tracking company. No ATS signal found via PlaywrightProbe at umoove.me/careers.",
+          "checked_at": "2026-08-24T12:50:00Z"
+        },
+        "Upright Technologies": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by DarioHealth (Jan 2021). No distinct Upright Technologies careers presence remains.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Varonis Systems": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "VaultML": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Israeli AI company (\"Vault AI\", predicts box-office/investment performance from screenplays, $9.4M raised). No ATS signal found via PlaywrightProbe at a guessed URL; needs the real careers URL confirmed.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Veriti": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Real, active Tel Aviv cybersecurity company (threat exposure management) until acquired by Check Point Software Technologies in 2025. Check Point itself is already a confirmed robots.txt-blocked domain in this project (Session 38 recheck) — no separate Veriti presence to scan.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Wanova": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by VMware/EMC (May 2012, $100M); Mirage technology absorbed into VMware desktop virtualization. No distinct Wanova entity remains.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Waves Audio": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Waze": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Google (2013, $1.3B). No distinct Waze careers presence — job listings for Waze roles are posted directly on Google Careers alongside all other Google roles, not a separate Waze careers page.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Wibiya": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Acquired by Conduit (2011, $45M); Conduit discontinued the Wibiya product itself in 2013 as it exited the toolbar business. Fully defunct.",
+          "checked_at": "2026-08-24T12:00:00Z"
+        },
+        "Wiliot": {
+          "status": "added",
+          "resolved_to": "Wiliot",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Wiz Inc.": {
+          "status": "added",
+          "resolved_to": "Wiz",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "XM Cyber": {
+          "status": "added",
+          "resolved_to": "XM Cyber",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "YCD Multimedia": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active digital-signage company (acquired C-nario in 2011). No ATS signal found via PlaywrightProbe at ycdmultimedia.com/careers.",
+          "checked_at": "2026-08-24T12:35:00Z"
+        },
+        "Zemingo Group": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Herzliya Pituah mobile-services company (\"largest mobile service house in Israel\", 58 employees). No ATS signal found via PlaywrightProbe at zemingo.com/en/careers.",
+          "checked_at": "2026-08-24T13:05:00Z"
+        },
+        "Zerto": {
+          "status": "unscannable",
+          "resolved_to": "Zerto",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "ZoomInfo": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Session 38: real live check (PlaywrightProbe), no recognized-platform signal found on the real careers page.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        }
+      }
+    },
+    "linkedin_sourced": {
+      "description": "candidates_linkedin_sourced.md — 64 names from Elad's own manual LinkedIn browsing (Session 37/38 attachment).",
+      "candidates": {
+        "Ethosia": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed by web research as an HR/recruitment agency, not a hiring employer itself.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Commit": {
+          "status": "added",
+          "resolved_to": "Commit",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "ArtAc": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Could not confirm a specific, distinct real Israeli company matching this name via web research — no clear identity found.",
+          "checked_at": "2026-08-24T13:20:00Z"
+        },
+        "Mertens": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed by web research as a staffing/placement agency (part of Malam Team group).",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Allpha Innovation": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed by web research as a staffing/outsourcing & exec-search firm, not an employer.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "comblack": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed by web research as an IT outsourcing/talent-placement house, not an end employer.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Extreme": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed by web research as an IT outsourcing/placement agency (Israeli \"Extreme\", not Extreme Networks the US company).",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Matrix": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Eitan Medical": {
+          "status": "added",
+          "resolved_to": "Eitan Medical",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Fetcherr": {
+          "status": "added",
+          "resolved_to": "Fetcherr",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Phoenix Financial": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "IAI": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Discount Bank": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "TeraSky": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Bynet Software Systems": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Flagged as a borderline systems-integrator/consulting house (project-based staffing model) — genuinely unresolved, not force-classified.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Applied Materials Israel": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Migdal Group": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Unilink": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Flagged as a borderline IT-services/staffing house — genuinely unresolved, not force-classified.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Nebius": {
+          "status": "added",
+          "resolved_to": "Nebius",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Istra Research": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active quantitative trading firm (Lod, Israel, 67 employees, founded 2008). No ATS signal found via PlaywrightProbe at istraresearch.com/careers/.",
+          "checked_at": "2026-08-24T13:20:00Z"
+        },
+        "HARMAN International": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "NeuReality": {
+          "status": "added",
+          "resolved_to": "NeuReality",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Sela": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Bynet Data Communications": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check, robots.txt-blocked at check time.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "KMS Lighthouse": {
+          "status": "added",
+          "resolved_to": "KMS Lighthouse",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "DoiT International": {
+          "status": "added",
+          "resolved_to": "DoiT International",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Chargeflow": {
+          "status": "added",
+          "resolved_to": "Chargeflow",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Paytag": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Israeli retail-tech startup (founded 2022, 8 employees, checkout/self-checkout tech). No ATS signal found via PlaywrightProbe at a guessed URL — small company, may not have structured job postings yet.",
+          "checked_at": "2026-08-24T13:20:00Z"
+        },
+        "abra": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real identity-collision risk flagged (vs. Abra, the US crypto/wallet company) — not resolved this session.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Bagira": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active, fast-growing Israeli defense-simulator company (IPO'd Tel Aviv Stock Exchange 2026 at ~$1.1B valuation, 410 employees, hiring). No ATS signal found via PlaywrightProbe at bagira.co.il/careers. High-value target for a follow-up session with the real careers URL.",
+          "checked_at": "2026-08-24T13:20:00Z"
+        },
+        "Airobotics": {
+          "status": "added",
+          "resolved_to": "Airobotics",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "SpotNet": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Israeli ISP/communications-security company. No ATS signal found via PlaywrightProbe at a guessed URL.",
+          "checked_at": "2026-08-24T13:20:00Z"
+        },
+        "Tehiru Aerial Systems": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Two related domains/names found (tehiru-aerial.com vs. tehiru.space under \"Tehiru Space Technologies\") — not disambiguated this session.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Elbit Systems Israel": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "CONTROP Precision Technologies": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check, robots.txt-blocked at check time.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Bright Data": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Planview": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "US company with an Israel R&D office — global careers portal only, not independently re-verified this session.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Cellebrite": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Xsight Labs": {
+          "status": "added",
+          "resolved_to": "Xsight Labs",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Weizmann Institute of Science": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "GitLab": {
+          "status": "added",
+          "resolved_to": "GitLab",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Camtek": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "ERGO NEXT Insurance": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "BigData Boutique": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "BDO Israel": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "SQLink Group": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Flagged as a borderline IT-consulting/staffing group — genuinely unresolved, not force-classified.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "CodeValue": {
+          "status": "added",
+          "resolved_to": "CodeValue",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Log-On Software": {
+          "status": "unscannable",
+          "resolved_to": null,
+          "reason": "Real, active, large (800-900 employee) Ramat Gan IT services/recruitment company (est. 1983). robots.txt at log-on.com disallows fetching /careers/.",
+          "checked_at": "2026-08-24T13:20:00Z"
+        },
+        "Utimaco": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Research found no confirmed Israel presence — may not belong in this scan at all, not independently confirmed.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "D-Fend Solutions": {
+          "status": "added",
+          "resolved_to": "D-Fend Solutions",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "StoreNext": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real, active Petah Tikva B2B e-commerce company (founded 2000) — its planned acquisition by Fortissimo Capital was blocked by the Israeli Competition Authority, so it remains independent. No ATS signal found via PlaywrightProbe at storenext.co.il/en/careers/.",
+          "checked_at": "2026-08-24T13:20:00Z"
+        },
+        "Cloudinary": {
+          "status": "added",
+          "resolved_to": "Cloudinary",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Parallel Wireless": {
+          "status": "added",
+          "resolved_to": "Parallel Wireless",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Chainalysis": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "US company with a Tel Aviv office — global careers page only, not independently re-verified this session.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "DAZN": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "UK/global company with an Israel innovation hub — own ATS referenced by research but not independently re-verified this session.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Logica-IT": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed by web research as an outsourcing/placement agency.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Foresight Automotive": {
+          "status": "added",
+          "resolved_to": "Foresight Automotive",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Shop Circle": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Research found no Israel connection — may not belong in this scan at all, not independently confirmed.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "IgniteTech": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Research found no Israel connection — may not belong in this scan at all, not independently confirmed.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Nanox Vision": {
+          "status": "added",
+          "resolved_to": "Nano-X Vision",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "OnTarget Communications": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Confirmed by web research as a technical-writing/training placement & recruitment agency.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Comet": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real live check (PlaywrightProbe), no recognized-platform signal found.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Centrical": {
+          "status": "unscannable",
+          "resolved_to": "Centrical",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Horizon Technologies": {
+          "status": "unresolved",
+          "resolved_to": null,
+          "reason": "Real identity-collision risk flagged — multiple unrelated companies share this name — not resolved this session.",
+          "checked_at": "2026-08-24T10:43:30Z"
+        }
+      }
+    },
+    "hebrew_media_round2": {
+      "description": "candidates_hebrew_media_round2.md — recruitx.co.il/duns100.co.il/Geektime research (Session 37/38 attachment), genuinely almost entirely untouched.",
+      "candidates": {
+        "Redis Labs": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Vdoo": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Duda": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Syte": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Panaya": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Logz.io": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Kaltura": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "OurCrowd": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Lightricks": {
+          "status": "added",
+          "resolved_to": "Lightricks",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Oribi": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "OwnBackup": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "BigID": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Atera": {
+          "status": "added",
+          "resolved_to": "Atera",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Moovit": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Guardicore": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Argus Cyber Security": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "XM Cyber": {
+          "status": "added",
+          "resolved_to": "XM Cyber",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Tufin": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Fireblocks": {
+          "status": "added",
+          "resolved_to": "Fireblocks",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Siemplify": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "IntSights": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Reblaze": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "SafeBreach": {
+          "status": "added",
+          "resolved_to": "SafeBreach",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Checkmarx": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Hub Security": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Axonius": {
+          "status": "added",
+          "resolved_to": "Axonius",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "CYE": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Silverfort": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Cyberbit": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Indeni": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Perception Point": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Otorio": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Intezer": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Ermetic": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "SecuredTouch": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Polyrize": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Minerva Labs": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Lightspin": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Avanan": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Sygnia": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Rubrik": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Semperis": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Orca Security": {
+          "status": "added",
+          "resolved_to": "Orca Security",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Rapyd": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "eToro": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Melio": {
+          "status": "added",
+          "resolved_to": "Melio",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Tipalti": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "BlueVine": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Unit": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Fundbox": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Curv": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Colu": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Pagaya": {
+          "status": "added",
+          "resolved_to": "Pagaya",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "BondIT": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Vesttoo": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Gloat": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Salt Edge": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Thetaray": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Rewire": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Personetics": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Finout": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Paygilant": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "ChargeAfter": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Tabit": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Nayax": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Mesh Payments": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Breez": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Pecan": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Trullion": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "EverC": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Selina": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Papaya Global": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Remitly Israel": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Zebra Medical Vision": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Nano-X": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "TytoCare": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Healthy.io": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Itamar Medical": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Insightec": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "OrCam": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Clew Medical": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Sweetch": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Nym Health": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "BrainQ": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Scopio Labs": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Nucleai": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "EchoCare": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Pulsenmore": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Biobeat": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Binah.ai": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "DayTwo": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Medisafe": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Lumen": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "EarlySense": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "MobileODT": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Telesofia Medical": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Kenzen": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Oxitone": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Rapid Medical": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "UltraSight": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "MediWound": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "MeMed": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "NeuroDerm": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Novotalk": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "CureMetrix": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Nexense": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Pluri Biotech": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "AnyVision": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Run:AI": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "SparkBeyond": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Via": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Cortica": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "BeyondMinds": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Hailo": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Dataloop": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Cynet": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Explorium": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Prospera": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "H2O.ai": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Deci": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Visualead": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Seebo": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Intelligo": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Aporia": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "AI21 Labs": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "WekaIO": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Nexar": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Arbe Robotics": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "D-ID": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "vHive": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Voiceitt": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Tabnine": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Anodot": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Gong.io": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Temi": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Intuition Robotics": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Roboteam": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Percepto": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Bright Machines": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "ReWalk Robotics": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Autofleet": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Airobotics": {
+          "status": "added",
+          "resolved_to": "Airobotics",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "UVeye": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Tevel": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Diagnostic Robotics": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "TechSee": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Workiz": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Guardian Optical Technologies": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Tactile Mobility": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Autotalks": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Innoviz Technologies": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Otonomo": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Cognata": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Upstream Security": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Foretellix": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "SolarEdge": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Ormat Technologies": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "StoreDot": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Electreon": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "GenCell": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Eco Wave Power": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "H2Pro": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "WSC Sports": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Natural Intelligence": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "LSports": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Zynga": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Optibus": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Glassbox": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Digital Turbine": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Priority Software": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        },
+        "Innovid": {
+          "status": "added",
+          "resolved_to": "Innovid",
+          "reason": null,
+          "checked_at": "2026-08-24T10:43:30Z"
+        },
+        "Arpeely": {
+          "status": "not_yet_checked",
+          "resolved_to": null,
+          "reason": null,
+          "checked_at": null
+        }
+      }
+    }
+  }
+}

@@ -751,6 +751,22 @@
       "ats_slug": "parallelwireless",
       "career_page": "https://jobs.lever.co/parallelwireless",
       "note": "Session 38: LinkedIn-sourced candidate — real Lever link found in web research. Initially, incorrectly, left unresolved this same session after a flawed check (searching only for the literal substring \"israel\" in each job's location, which missed real Israeli-city-only locations like \"Kfar Saba\") found zero matches among 36 postings. Corrected before finalizing the session by reading the real full location list directly: multiple genuine Kfar Saba, Israel roles exist, including a real DevOps match (\"Sr. Principal, DevOps\"). US (New Hampshire) headquartered company with a real, substantial Kfar Saba R&D presence, not just a token listing."
+    },
+    {
+      "name": "ThetaRay",
+      "ats": "comeet",
+      "ats_slug": "thetaray",
+      "ats_uid": "72.00F",
+      "career_page": "https://www.comeet.com/jobs/thetaray/72.00F",
+      "note": "Session 39: Wikipedia 153-name candidate. Real, confirmed via PlaywrightProbe (rendered_dom evidence, Comeet widget) then live-verified via ComeetAdapter.fetch_stage1_jobs: 13 real jobs, including genuine Israel, Hod HaSharon postings (Algorithm Researcher, CISO, DevOps Engineer, VP Product) alongside Madrid/Mexico City roles. AI-powered AML/fintech company headquartered in Hod HaSharon, Israel."
+    },
+    {
+      "name": "Cynet",
+      "ats": "comeet",
+      "ats_slug": "cynet",
+      "ats_uid": "33.00D",
+      "career_page": "https://www.comeet.com/jobs/cynet/33.00D",
+      "note": "Session 39: Wikipedia 153-name candidate (as \"Cynet (company)\"). PlaywrightProbe found the real Comeet uid via a network request from cynet.com/company/careers/ (slug not directly observable, guessed as \"cynet\" and confirmed live). Live-verified via ComeetAdapter.fetch_stage1_jobs: 14 real jobs, including a genuine Israel-located posting (\"Career at Cynet | Israel\") alongside UK/Spain/US roles. Active Israeli cybersecurity (XDR) company, Rishon LeZion."
     }
   ]
 }

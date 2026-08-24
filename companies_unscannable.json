@@ -90,6 +90,444 @@
       "reason": "Wikipedia \"strong likely-active subset\" candidate. The real careers page is behind an active bot-protection challenge (Radware's own \"Shieldsquare\"/PerimeterX-style product, served from perfdrive.com/hcaptcha.com) — a real browser never reaches actual page content. Notable, slightly ironic detail: Radware is itself a cybersecurity/bot-mitigation vendor, being blocked by what is very likely its own product.",
       "platform_if_known": null,
       "checked_at": "2026-08-23T18:46:18Z"
+    },
+    {
+      "name": "Mirabilis",
+      "reason": "Wikipedia 153-name historical-category candidate. Confirmed via research: acquired by AOL in June 1998 (the ICQ deal, ~$407M). No distinct Mirabilis entity has existed for over 25 years — the ICQ client itself later passed to Mail.Ru Group (now VK) in 2010. Nothing to scan; this is the historical-category caveat's most extreme real example so far.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T10:48:36Z"
+    },
+    {
+      "name": "Qumranet",
+      "reason": "Wikipedia 153-name historical-category candidate. Confirmed via research: acquired by Red Hat in September 2008 and now operates as Red Hat's own Israel R&D center — not a distinct company with its own careers presence.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T10:48:36Z"
+    },
+    {
+      "name": "NetManage",
+      "reason": "Wikipedia 153-name historical-category candidate. Confirmed via research: acquired by Micro Focus International in June 2008, now fully absorbed with no distinct careers presence.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T10:48:36Z"
+    },
+    {
+      "name": "Comverse Technology",
+      "reason": "Wikipedia 153-name historical-category candidate. Confirmed via research: ceased to exist as a unified company in 2013 following a restructuring — its telecom VAS business became Comverse Inc. (later Xura, merged into Mavenir in 2017), while Verint Systems acquired the parent holding company. No distinct \"Comverse Technology\" entity or careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T10:48:36Z"
+    },
+    {
+      "name": "Adallom",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Microsoft (2015, ~$320M), absorbed into Microsoft Cloud App Security. No distinct Adallom entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "BillGuard",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Prosper Marketplace (2015), renamed Prosper Daily. No distinct BillGuard entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "CloudEndure",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Amazon Web Services (Jan 2019, ~$200-250M), absorbed into AWS Elastic Disaster Recovery. No distinct CloudEndure careers presence.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Exanet",
+      "reason": "Wikipedia 153-name historical-category candidate. Went into receivership Dec 2009; IP acquired by Dell (Feb 2010, $12M), became Dell FluidFS. No distinct Exanet entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Expand Networks",
+      "reason": "Wikipedia 153-name historical-category candidate. Liquidated by Israeli court order (2011); assets sold to Riverbed Technology (Jan 2012), which discontinued the products immediately. No distinct entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "I-Logix",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Telelogic AB (2006), then Telelogic acquired by IBM (2008). Products (Rhapsody, Statemate) now under IBM Rational. No distinct I-Logix entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Javelin Networks",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Symantec (Nov 2018), absorbed into Symantec endpoint security. No distinct Javelin Networks careers presence.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Legato (company)",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by EMC (Oct 2003, ~$1.3B). No distinct Legato entity remains; long since absorbed into EMC/Dell.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Mercury Interactive",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Hewlett-Packard (Nov 2006, $4.5B); later moved to HPE then spun into Micro Focus. No distinct Mercury Interactive careers presence.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Metacafe",
+      "reason": "Wikipedia 153-name historical-category candidate. Video platform dissolved Aug 28 2021; website and social media abandoned. Fully defunct.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Omek Interactive",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Intel (July 2013, $40M). No distinct Omek Interactive entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Onavo",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Facebook (2013, ~$200M); Facebook shut down the Onavo Protect app itself in Feb 2019 amid privacy concerns. Fully defunct.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "P-Cube",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Cisco Systems (Aug 2004, $200M). Product line renamed Service Control Engine; no distinct P-Cube entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Red Bend Software",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Harman International (2015, $170M), absorbed into Harman connected-car unit. No distinct Red Bend careers presence.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "RepliWeb",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Attunity (2011, $7.8M net). No distinct RepliWeb entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Retalix",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by NCR Corp (Feb 2013, ~$650-800M). No distinct Retalix careers presence; part of NCR retail unit.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Riverhead Networks",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Cisco Systems (March 2004, $44M). No distinct Riverhead Networks entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Sentrigo",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by McAfee (April 2011), absorbed into McAfee database security products. No distinct Sentrigo entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "SlickLogin",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Google (2013), absorbed into Google security infrastructure. No distinct SlickLogin entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Snaptu",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Facebook (2011, $60-70M), absorbed into Facebook Lite/Internet.org efforts. No distinct Snaptu entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Wanova",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by VMware/EMC (May 2012, $100M); Mirage technology absorbed into VMware desktop virtualization. No distinct Wanova entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "PerSay",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Nuance Communications (Dec 2010), absorbed into Nuance voice biometrics suite. No distinct PerSay entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Rollout.io",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by CloudBees (May 2019). Absorbed into CloudBees mobile DevOps. No distinct Rollout.io careers presence.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "IMesh",
+      "reason": "Wikipedia 153-name historical-category candidate. P2P file-sharing service; shut down entirely in 2016 after settling a 2004 RIAA lawsuit and pivoting to a licensed model that ultimately failed. Fully defunct.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Wibiya",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Conduit (2011, $45M); Conduit discontinued the Wibiya product itself in 2013 as it exited the toolbar business. Fully defunct.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Conduit (company)",
+      "reason": "Wikipedia 153-name historical-category candidate. Broke up in 2013; the ClientConnect/toolbar business merged into Perion Network (completed Jan 2014, forming an ~$800M combined company). No distinct Conduit entity remains — its real successor, Perion Network, was already live-verified this session (11 global jobs via GreenhouseAdapter, no Israel location signal, marked unresolved).",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "CYREN",
+      "reason": "Wikipedia 153-name historical-category candidate. NASDAQ-listed but entered insolvency Feb 2023 after laying off its entire ~121-person workforce; Tel Aviv District Court appointed a liquidating trustee. Assets later sold to Data443. Fully defunct as an employer.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Finjan Holdings",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Fortress Investment Group (finalized July 2020, $1.55/share cash-out); now operates purely as a patent-licensing/litigation shell, not an operating employer with real job postings.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Clarizen",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Planview (completed Feb 23 2021). Product continues as \"Planview Clarizen\" but no distinct Clarizen careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Stratoscale",
+      "reason": "Wikipedia 153-name historical-category candidate. Ceased operations entirely in Dec 2019 after failed acquisition talks; laid off all 60 remaining employees. Fully defunct.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Soluto",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Asurion (2013, $130M) as its Israel R&D center; Asurion shut the Soluto R&D center down entirely in 2022, laying off all ~120 employees. Fully defunct as a distinct entity.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Jacada",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Uniphore Technologies (completed Oct 21 2021); became a privately-held subsidiary, delisted from OTC markets. No distinct Jacada careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Indeni (company)",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by BlueCat Networks (July 23 2023). No distinct Indeni careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:00:00Z"
+    },
+    {
+      "name": "Cimatron",
+      "reason": "Wikipedia 153-name historical-category candidate. Live PlaywrightProbe: careers page redirects to sandvik.wd3.myworkdayjobs.com/cimatron-jobs. Confirms passage through 3D Systems -> Battery Ventures -> Sandvik (2021); Workday is unsupported regardless.",
+      "platform_if_known": "workday",
+      "checked_at": "2026-08-24T12:15:00Z"
+    },
+    {
+      "name": "Ex Libris Group",
+      "reason": "Wikipedia 153-name historical-category candidate. Live PlaywrightProbe: robots.txt at exlibrisgroup.com disallows fetching /careers/. Acquired by ProQuest (2015) but blocked independent of that.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:15:00Z"
+    },
+    {
+      "name": "Waze",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Google (2013, $1.3B). No distinct Waze careers presence — job listings for Waze roles are posted directly on Google Careers alongside all other Google roles, not a separate Waze careers page.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "Ginger Software",
+      "reason": "Wikipedia 153-name historical-category candidate. Merged with Headspace (2021) and fully rebranded to Headspace Care (Oct 2023). No distinct Ginger Software entity or careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "Answers.com",
+      "reason": "Wikipedia 153-name historical-category candidate. Founded in Jerusalem as GuruNet, but the current entity is a US-based (St. Louis, MO) subsidiary of System1 with no distinct Israel presence — original GuruNet/Answers Corp identity long since absorbed.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "ClearForest",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Thomson Reuters (April 2007), absorbed into its Text Metadata Services group. No distinct ClearForest entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "Digital Fuel",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by VMware, then VMware sold it to Skyview Capital in a later divestiture. No distinct, findable Digital Fuel careers presence after multiple ownership changes.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "Tecnomatix",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by UGS Corp (2005), then UGS acquired by Siemens (2007). Now a Siemens digital-manufacturing product line, not a distinct employer.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "TTI Telecom",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by TEOCO Corporation (Aug 2010), delisted from NASDAQ, became a private TEOCO subsidiary (TEOCO Israel). No distinct TTI Telecom careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "IOnRoad",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Harman International (2013). Tel Aviv office became a Harman R&D center directly — no distinct IOnRoad careers presence remains (same absorption pattern as Red Bend Software, already in this file).",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "SpotOption",
+      "reason": "Wikipedia 153-name historical-category candidate. Wound down its core binary options business (Jan 2018, following Israeli regulatory ban) then also exited FX/CFDs shortly after. No evidence of a continued distinct operating business or careers presence.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "Veriti",
+      "reason": "Wikipedia 153-name historical-category candidate. Real, active Tel Aviv cybersecurity company (threat exposure management) until acquired by Check Point Software Technologies in 2025. Check Point itself is already a confirmed robots.txt-blocked domain in this project (Session 38 recheck) — no separate Veriti presence to scan.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "Tonara (company)",
+      "reason": "Wikipedia 153-name historical-category candidate. Israeli sheet-music/education app company, confirmed defunct as of Dec 8 2023.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "C-nario",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by YCD Multimedia (Oct 2011). No distinct C-nario careers presence — YCD Multimedia itself checked live this session with no recognized ATS signal (see PROGRESS.md unresolved list).",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:35:00Z"
+    },
+    {
+      "name": "BluePhoenix Solutions",
+      "reason": "Wikipedia 153-name historical-category candidate. Merged with ATERAS (2014), no longer an independent entity — became part of what is now Modern Systems. No distinct BluePhoenix careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:50:00Z"
+    },
+    {
+      "name": "Beyond Verbal",
+      "reason": "Wikipedia 153-name historical-category candidate. Confirmed via Crunchbase: operating status is \"Merged\" — small emotion-AI company (21 employees, $10M raised) with no continued independent operation found.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:50:00Z"
+    },
+    {
+      "name": "Deltathree",
+      "reason": "Wikipedia 153-name historical-category candidate. Confirmed defunct as of Feb 12 2009 (early VoIP telephony company).",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:50:00Z"
+    },
+    {
+      "name": "Genieo",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Somoto (2014, $34M); the Genieo brand itself has since been retired/rebranded multiple times (InstallMac, MacSaver, SearchProtect) with no distinct current careers presence.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:50:00Z"
+    },
+    {
+      "name": "Shopping.com",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by eBay (2005) and still technically operating as a price-comparison sub-brand within eBay 20+ years later, but with no distinct Shopping.com careers presence — any hiring would be under eBay's own (non-Israel-specific) careers site.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:50:00Z"
+    },
+    {
+      "name": "Mainsoft",
+      "reason": "Wikipedia 153-name historical-category candidate. Rebranded to harmon.ie (2010). No distinct Mainsoft careers presence remains under the original name.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:50:00Z"
+    },
+    {
+      "name": "Oblicore",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by CA Technologies (Jan 2010, $25M). No distinct Oblicore entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:50:00Z"
+    },
+    {
+      "name": "KitLocate",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Yandex (March 2014); technology fully incorporated into the Yandex stack. No distinct KitLocate careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:50:00Z"
+    },
+    {
+      "name": "Cogniview",
+      "reason": "Wikipedia 153-name historical-category candidate. Real company but headquartered in Atlanta, Georgia (US) — despite originally Israeli roots, current operations show no Israel presence to scan.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T12:50:00Z"
+    },
+    {
+      "name": "Flok (company)",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Wix.com (Jan 2017); communications with customers ceased ~2017 and Wix formally shut the product down by March 2020. Fully defunct.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "G.ho.st",
+      "reason": "Wikipedia 153-name historical-category candidate. Confirmed defunct — closed its cloud-OS service in April 2010 due to lack of funding and competition.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "Geniusmatcher",
+      "reason": "Wikipedia 153-name historical-category candidate. Confirmed permanently closed (developer of the Mally mall-navigation app).",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "InstallFree",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by WatchDox (Dec 2012), which itself was later acquired by BlackBerry. No distinct InstallFree entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "NLayers",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by EMC Corporation (2006, $50M). No distinct NLayers entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "Odigo Messenger",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Comverse Technology (2002, ~$20M); the free IM service itself was shut down in 2004. Fully defunct.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "SimiGon",
+      "reason": "Wikipedia 153-name historical-category candidate. Merged with Power Breezer to form a new combined entity, Maxify (April 2022). No distinct SimiGon entity remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "Tdsoft",
+      "reason": "Wikipedia 153-name historical-category candidate. Took control of VocalTec via reverse merger (Nov 2005); ceased to exist as an independent entity, continuing only under the VocalTec name.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "Ubique (company)",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by AOL (1995), then by Lotus (1998). No distinct Ubique entity has existed for over 25 years.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "Upright Technologies",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by DarioHealth (Jan 2021). No distinct Upright Technologies careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:05:00Z"
+    },
+    {
+      "name": "Lango (app)",
+      "reason": "Wikipedia 153-name historical-category candidate. Originally Zlango (founded 2004, Tel Aviv, icon-based mobile messaging language). Confirmed via Crunchbase: permanently closed. Other unrelated \"Lango\" language-learning apps exist today but are not this company.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:10:00Z"
+    },
+    {
+      "name": "Sigvalue",
+      "reason": "Wikipedia 153-name historical-category candidate. Acquired by Amdocs (Jan 3 2007), operating as a subsidiary billing-platform unit. Amdocs itself was already checked and confirmed negative for this project in Session 38 (checked_negative list). No distinct SigValue presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:10:00Z"
+    },
+    {
+      "name": "Log-On Software",
+      "reason": "LinkedIn-sourced candidate. Real, active, large (800-900 employee) Ramat Gan IT services/recruitment company (est. 1983). robots.txt at log-on.com disallows fetching /careers/.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T13:20:00Z"
     }
   ]
 }

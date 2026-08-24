@@ -2037,7 +2037,7 @@
   "thetaray.com": {
     "domain": "thetaray.com",
     "allowed": true,
-    "checked_at": 1786615958.1214972
+    "checked_at": 1787569977.8121004
   },
   "tikalknowledge.com": {
     "domain": "tikalknowledge.com",
@@ -2797,7 +2797,7 @@
   "www.cynet.com": {
     "domain": "www.cynet.com",
     "allowed": true,
-    "checked_at": 1786617883.9388225
+    "checked_at": 1787569967.6295142
   },
   "www.oracle.com": {
     "domain": "www.oracle.com",
@@ -3137,7 +3137,7 @@
   "www.personyze.com": {
     "domain": "www.personyze.com",
     "allowed": true,
-    "checked_at": 1786617927.3262258
+    "checked_at": 1787571449.5767097
   },
   "www.panoramicpower.com": {
     "domain": "www.panoramicpower.com",
@@ -3497,7 +3497,7 @@
   "www.zemingo.com": {
     "domain": "www.zemingo.com",
     "allowed": true,
-    "checked_at": 1786617963.9695287
+    "checked_at": 1787571451.4582562
   },
   "careers.wonderful.com": {
     "domain": "careers.wonderful.com",
@@ -4832,7 +4832,7 @@
   "www.magicsoftware.com": {
     "domain": "www.magicsoftware.com",
     "allowed": false,
-    "checked_at": 1787509847.89828
+    "checked_at": 1787568423.133433
   },
   "www.zoominfo.com": {
     "domain": "www.zoominfo.com",
@@ -5023,5 +5023,130 @@
     "domain": "www.starlims.com",
     "allowed": true,
     "checked_at": 1787541969.6255078
+  },
+  "www.panaya.com": {
+    "domain": "www.panaya.com",
+    "allowed": true,
+    "checked_at": 1787568399.200483
+  },
+  "rittech.com": {
+    "domain": "rittech.com",
+    "allowed": true,
+    "checked_at": 1787568408.3594284
+  },
+  "panorama.com": {
+    "domain": "panorama.com",
+    "allowed": true,
+    "checked_at": 1787569987.1376386
+  },
+  "www.boscorporate.com": {
+    "domain": "www.boscorporate.com",
+    "allowed": true,
+    "checked_at": 1787569996.0645237
+  },
+  "www.mellel.com": {
+    "domain": "www.mellel.com",
+    "allowed": true,
+    "checked_at": 1787569998.4439232
+  },
+  "exlibrisgroup.com": {
+    "domain": "exlibrisgroup.com",
+    "allowed": false,
+    "checked_at": 1787570007.6506689
+  },
+  "www.cimatron.com": {
+    "domain": "www.cimatron.com",
+    "allowed": true,
+    "checked_at": 1787570008.2905483
+  },
+  "www.bos-b2b.com": {
+    "domain": "www.bos-b2b.com",
+    "allowed": true,
+    "checked_at": 1787570583.6887503
+  },
+  "razlee.com": {
+    "domain": "razlee.com",
+    "allowed": true,
+    "checked_at": 1787570880.9161263
+  },
+  "www.jungo.com": {
+    "domain": "www.jungo.com",
+    "allowed": true,
+    "checked_at": 1787570889.8215127
+  },
+  "www.ycdmultimedia.com": {
+    "domain": "www.ycdmultimedia.com",
+    "allowed": true,
+    "checked_at": 1787570898.8222778
+  },
+  "www.babylon-software.com": {
+    "domain": "www.babylon-software.com",
+    "allowed": true,
+    "checked_at": 1787570908.6148837
+  },
+  "www.elron.com": {
+    "domain": "www.elron.com",
+    "allowed": true,
+    "checked_at": 1787570916.9318657
+  },
+  "www.simplybs.co.il": {
+    "domain": "www.simplybs.co.il",
+    "allowed": true,
+    "checked_at": 1787570917.3329132
+  },
+  "umoove.me": {
+    "domain": "umoove.me",
+    "allowed": true,
+    "checked_at": 1787571324.4562166
+  },
+  "www.ceedo.com": {
+    "domain": "www.ceedo.com",
+    "allowed": true,
+    "checked_at": 1787571326.08801
+  },
+  "www.almtoolbox.com": {
+    "domain": "www.almtoolbox.com",
+    "allowed": true,
+    "checked_at": 1787571437.398029
+  },
+  "larch-networks.com": {
+    "domain": "larch-networks.com",
+    "allowed": true,
+    "checked_at": 1787571443.4538703
+  },
+  "www.vaultai.io": {
+    "domain": "www.vaultai.io",
+    "allowed": true,
+    "checked_at": 1787571461.05466
+  },
+  "www.bagira.co.il": {
+    "domain": "www.bagira.co.il",
+    "allowed": true,
+    "checked_at": 1787571705.5372813
+  },
+  "istraresearch.com": {
+    "domain": "istraresearch.com",
+    "allowed": true,
+    "checked_at": 1787571706.5705478
+  },
+  "www.paytag.co": {
+    "domain": "www.paytag.co",
+    "allowed": true,
+    "checked_at": 1787571713.7377448
+  },
+  "www.spotnet.net": {
+    "domain": "www.spotnet.net",
+    "allowed": true,
+    "checked_at": 1787571714.656423
+  },
+  "log-on.com": {
+    "domain": "log-on.com",
+    "allowed": false,
+    "checked_at": 1787571729.6107404
+  },
+  "www.storenext.co.il": {
+    "domain": "www.storenext.co.il",
+    "allowed": true,
+    "checked_at": 1787571731.292484
   }
 }

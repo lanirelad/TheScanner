@@ -1725,3 +1725,91 @@ None — all decisions needed to start building are now in place.
   immediate clean retry, not a regression from this session's
   changes), 9 immediate new real matches from the newly added
   companies.
+
+## Addendum — Session 39 executed: resumable checkpoint + continue verification (2026-08-24)
+- **Part 1, resumable checkpoint (new standing infrastructure):**
+  `discovery/checkpoint.py` (load/save/update_candidate/summarize/
+  not_yet_checked) plus `harvesting_checkpoint.json` at repo root,
+  tracking every candidate name from 3 source lists
+  (`wikipedia_153`, `linkedin_sourced`, `hebrew_media_round2`) with a
+  `status` (`added`/`unscannable`/`unresolved`/`not_yet_checked`),
+  `resolved_to`, `reason`, and `checked_at`. `update_candidate()` does
+  a real read-modify-write to disk on every single call — the exact
+  property that would have saved Session 38's background-agent
+  spend-limit failure. Seeded accurately from real, current
+  companies.json/companies_unscannable.json plus Session 38's
+  explicitly-named checked-negative/checked-blocked lists. 7 tests in
+  `tests/test_checkpoint.py`, including one that validates the real
+  committed checkpoint file's own shape (not just a fixture).
+- **Part 2, real production location-matching bug found and fixed:**
+  audited whether Session 38's "Kfar Saba missed because the check
+  only looked for the literal substring 'israel'" lesson affected any
+  logic actually in use — it did. `locations.json`'s
+  `accepted_locations` lists (the real input to `core/filters.py`'s
+  `RoleLocationFilter`, used by every real scan) were missing several
+  genuine Israeli tech-hub city names (Kfar Saba, Ness Ziona, Rosh
+  HaAyin, Ramat Gan, Bnei Brak, Modi'in, Holon, Givatayim, Kiryat Gat,
+  Hod HaSharon, Ramat HaSharon, and Hebrew equivalents, among others).
+  Confirmed empirically both ways: `RoleLocationFilter.match()`
+  returned `matched: False` for a real Parallel Wireless "Sr.
+  Principal, DevOps | Kfar Saba" job before the fix, and Foresight
+  Automotive's real "Ness Ziona"-located postings were invisible to
+  the filter for the same reason. Fixed by adding the curated,
+  collision-checked city list; 3 new regression tests added to
+  `tests/test_filters.py`. Live end-to-end confirmation this session's
+  own smoke test: Parallel Wireless's Kfar Saba DevOps posting now
+  shows up in the real scan output.
+- **Part 3, continued verification — both the Wikipedia 153-list and
+  the LinkedIn-sourced list are now fully triaged (0 `not_yet_checked`
+  remaining in either).** Wikipedia 153-list final tally: 24 added, 80
+  unscannable, 49 unresolved. LinkedIn-sourced final tally: 17 added,
+  2 unscannable, 45 unresolved. The 4 flagged identity-collision risks
+  from Session 38 (Comet, abra, Horizon Technologies, Tehiru Aerial
+  Systems) did not come up again in either list this session — still
+  standing as flagged-unresolved, unchanged.
+- **3 real net new companies added**, each live-verified end-to-end
+  (PlaywrightProbe discovery, then a direct adapter fetch confirming
+  real jobs with genuine Israel location signal): ThetaRay (Comeet,
+  13 jobs incl. a real Hod HaSharon DevOps match — visible in this
+  session's own live smoke test output), Cynet (Comeet, 14 jobs incl.
+  a real Israel-located posting), Parallel Wireless was already added
+  Session 38.
+- **~65 real dispositions recorded for historical/acquired/defunct
+  Wikipedia candidates**, each backed by a specific, dated acquisition
+  or shutdown fact from web research rather than assumption (examples:
+  Adallom→Microsoft 2015, Onavo→Facebook shutdown 2019, Waze→Google
+  with no distinct careers presence, CYREN→liquidated 2023, Jacada→
+  Uniphore 2021, Stratoscale→ceased operations 2019, Conduit→merged
+  into the already-checked Perion Network). Two Wikipedia-153 entries
+  found live-blocked (Cimatron redirects to a Workday-hosted Sandvik
+  careers page; Ex Libris Group's robots.txt disallows `/careers/`)
+  and one LinkedIn entry found live-blocked (Log-On Software's
+  robots.txt disallows `/careers/`).
+- **Real, honest unresolved results for confirmed-active companies
+  with no recognized ATS signal at a guessed URL** (needs the real
+  careers URL confirmed in a future session): Panorama Software,
+  Mellel, Better Online Solutions, Babylon (software), Elron Ventures,
+  Raz-Lee, Jungo Connectivity, YCD Multimedia, Umoove, Ceedo,
+  ALMtoolbox, Larch Networks, Zemingo Group, VaultML, Bagira, Istra
+  Research, Paytag, SpotNet, StoreNext — all confirmed real and active
+  via web research, none confirmed scannable this session.
+- **One real self-caught data-entry bug, fixed before finalizing:** an
+  `update_candidate()` call used the key `"Raz-Lee (company)"` instead
+  of the checkpoint's real seeded key `"Raz-Lee"`, creating a duplicate
+  candidate entry. Caught during a routine post-update tally check;
+  fixed by merging the two entries back into the original key before
+  moving on.
+- **companies.json: 102 → 104. companies_unscannable.json: 15 → 88.**
+- **Media list (`hebrew_media_round2`, 161 names) not started this
+  session** — both other lists were fully exhausted first per the
+  task's own priority ordering, and reaching that point already used
+  this session's full scope. Explicit resume-from-here state for a
+  future session.
+- Docs updated: `harvesting_checkpoint.json`, `locations.json`,
+  `companies.json`, `companies_unscannable.json`, this file,
+  CHANGELOG.md.
+- Test suite: 162/162 passing (152 carried over + 7 new checkpoint
+  tests + 3 new location-matching regression tests). Live
+  `python run.py` smoke test: 104/104 companies attempted, 0 failed,
+  real matches confirmed including the new Parallel Wireless Kfar Saba
+  match and the new ThetaRay Hod HaSharon DevOps match.

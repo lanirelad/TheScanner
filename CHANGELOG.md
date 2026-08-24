@@ -1386,3 +1386,35 @@
   retry), 9 immediate new real matches.
 - Test suite: 152/152 passing, unchanged (no code changes this
   session).
+
+## 2026-08-24 — Session 39: resumable checkpoint + continue verification
+- Built `discovery/checkpoint.py` + `harvesting_checkpoint.json`: a
+  real resumable harvesting checkpoint that read-modify-writes to disk
+  on every single candidate update — the exact durability property
+  that would have saved Session 38's background-agent spend-limit
+  failure. 7 new tests in `tests/test_checkpoint.py`.
+- Found and fixed a real production bug: `locations.json`'s
+  `accepted_locations` lists were missing several genuine Israeli
+  tech-hub city names (Kfar Saba, Ness Ziona, Rosh HaAyin, Ramat Gan,
+  Bnei Brak, Modi'in, Holon, Givatayim, Kiryat Gat, Hod HaSharon, Ramat
+  HaSharon, + Hebrew equivalents) — confirmed via `RoleLocationFilter`
+  returning `matched: False` for a real Parallel Wireless Kfar Saba
+  posting before the fix. 3 new regression tests in
+  `tests/test_filters.py`.
+- Both the Wikipedia 153-list and the LinkedIn-sourced list are now
+  fully triaged (0 `not_yet_checked` remaining in either) — Wikipedia:
+  24 added/80 unscannable/49 unresolved; LinkedIn: 17 added/2
+  unscannable/45 unresolved.
+- 2 new companies added, both live-verified end-to-end (ThetaRay,
+  Cynet — both Comeet, both confirmed with real Israel-located
+  postings) — companies.json 102 -> 104.
+- ~65 real dispositions recorded for historical/acquired/defunct
+  Wikipedia candidates, each backed by a specific dated acquisition or
+  shutdown fact — companies_unscannable.json 15 -> 88.
+- Media list (`hebrew_media_round2`, 161 names) not started this
+  session — both other lists were exhausted first per the task's own
+  priority ordering.
+- Test suite: 162/162 passing (152 carried + 7 checkpoint + 3
+  location-matching). Live `python run.py` smoke test: 104/104
+  companies, 0 failed, new Parallel Wireless Kfar Saba and ThetaRay
+  Hod HaSharon matches both confirmed live.
