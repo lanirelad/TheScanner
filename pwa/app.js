@@ -277,10 +277,54 @@ async function main() {
     renderFailures(scan);
     renderBudget(usage);
     renderRoleFilters(scan);
+    // Session 44: render immediately with whatever's already in this
+    // device's localStorage — offline-first, no network wait — then
+    // reconcile with the Worker's synced state in the background and
+    // re-render only if that reconciliation actually changed anything
+    // to show. A device with no sync secret configured, or no network,
+    // gets exactly this session's pre-Session-44 behavior: one render,
+    // from local data only.
     renderJobGroups(scan);
+    syncAndRerender();
   } catch (err) {
     renderError(`Couldn't load scan data: ${err.message}`);
   }
+}
+
+/** Pulls+merges+pushes via preferences.js's syncStatuses(), then
+ * re-renders only if the merge actually changed something visible —
+ * avoids a pointless re-render (and the associated loss of e.g.
+ * in-progress text selection) on the very common case where this
+ * device was already fully up to date. Safe to call with no scan
+ * loaded yet or repeatedly in quick succession (visibilitychange can
+ * fire faster than a slow sync resolves) — guards on `currentScan`
+ * the same way every other post-load handler in this file already
+ * does, and a second call finishing before the first started is not a
+ * concern here since both would compute the same idempotent merge.
+ */
+async function syncAndRerender() {
+  if (!currentScan) return;
+  const before = JSON.stringify(loadJobStatuses());
+  const after = await syncStatuses();
+  if (JSON.stringify(after) !== before) {
+    renderJobGroups(currentScan);
+  }
+}
+
+/** Re-syncs whenever this tab/PWA regains visibility (e.g. switching
+ * back to it after marking a job applied on the phone) — the
+ * "periodically, or on visibility change" option the task called for,
+ * chosen over a fixed-interval timer since this data changes at most
+ * a few times a day and polling on a timer would just be unneeded
+ * Worker/KV traffic with no real freshness benefit over catching the
+ * moments a person actually looks at the screen again.
+ */
+function initVisibilitySync() {
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      syncAndRerender();
+    }
+  });
 }
 
 /** Delegated (not per-checkbox) so re-rendering #role-filter-toggles on
@@ -314,6 +358,12 @@ function initJobActionButtons() {
     const next = applyBtn ? toggleApplied(jobId, statuses) : toggleIgnored(jobId, statuses);
     saveJobStatuses(next);
     renderJobGroups(currentScan);
+    // Session 44: localStorage (just written above) stays the fast,
+    // offline-first source of truth for this render — this call is
+    // fire-and-forget and never awaited, so a slow/failed/offline
+    // network round-trip can't delay or break the UI update the user
+    // is actually watching for.
+    pushStatusesToServer(next);
   });
 }
 
@@ -333,6 +383,53 @@ function initThemeToggle() {
   });
 }
 
+/** Wires the Sync section's secret field (Session 44) — the one place
+ * the real shared secret ever gets typed in, and the only place it's
+ * ever stored: this device's own localStorage, via
+ * preferences.js's setSyncSecret() (see that function's docstring for
+ * why this can never be a committed file instead). Saving a new value
+ * immediately kicks off a real sync + re-render so the field's own
+ * "last synced"/error feedback reflects whether the value actually
+ * worked, not just that it was saved.
+ */
+function initSyncSettings() {
+  const input = document.getElementById("sync-secret-input");
+  const saveBtn = document.getElementById("sync-secret-save");
+  const status = document.getElementById("sync-status-text");
+  if (!input || !saveBtn || !status) return;
+
+  input.value = getSyncSecret();
+
+  async function runSyncAndReport() {
+    status.textContent = "Syncing…";
+    // checkSyncConnection gives real ok/fail feedback for this UI
+    // specifically; syncAndRerender() still runs regardless (and still
+    // never throws) so the local merge/save happens the same way it
+    // would on an ordinary background sync even if the connection
+    // check itself fails.
+    const connected = await checkSyncConnection();
+    await syncAndRerender();
+    if (connected) {
+      status.textContent = `Synced ${new Date().toLocaleTimeString()}`;
+    } else if (getSyncSecret()) {
+      status.textContent = "Sync failed — check the secret and try again";
+    } else {
+      status.textContent = "Not configured — enter the sync secret above";
+    }
+  }
+
+  saveBtn.addEventListener("click", () => {
+    setSyncSecret(input.value.trim());
+    runSyncAndReport();
+  });
+
+  if (getSyncSecret()) {
+    runSyncAndReport();
+  } else {
+    status.textContent = "Not configured — enter the sync secret above";
+  }
+}
+
 function registerServiceWorker() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js").catch((err) => {
@@ -344,5 +441,7 @@ function registerServiceWorker() {
 initThemeToggle();
 initRoleFilterToggles();
 initJobActionButtons();
+initSyncSettings();
+initVisibilitySync();
 registerServiceWorker();
 main();

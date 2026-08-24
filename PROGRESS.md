@@ -2010,3 +2010,107 @@ None — all decisions needed to start building are now in place.
   session's changes). 81 total matches (8 new, 73 still-open),
   including real, live confirmation of new DevOps matches from Lumen,
   Rapyd, Checkmarx, Silverfort, and Gong.io.
+
+## Addendum — Session 44 executed: cross-device sync for applied/ignored status (2026-08-24)
+- **Real feature session, not verification/harvesting** — Elad's
+  applied/ignored marks now sync between his own PC and phone. See
+  ADR-0033 (new) for why this is explicitly not a reversal of
+  ADR-0011/0014 — role-filter preferences stay local-only exactly as
+  before; only `application_status` gets a second, eventually-
+  consistent copy, still owned by exactly one person, still no
+  accounts, still no other install's data ever reachable from this
+  one. Full design write-up: ARCHITECTURE.md §11a.
+- **Worker side (`worker/index.js`):** new `GET`/`POST
+  /api/sync-status`, reusing the existing `SUBSCRIPTIONS` KV namespace
+  (one fixed key, `sync:job-status`) rather than a second namespace —
+  a deliberate choice given this project's real Session 41 history of
+  a KV namespace getting deleted and breaking every dependent config.
+  The route dispatch table changed from `path -> handler` to `path ->
+  {METHOD: handler}` to support GET+POST on one path — the three
+  Session 33 routes are unaffected, still POST-only. Protected by a
+  new, separate `SYNC_SECRET` Cloudflare secret (not a TRIGGER_SECRET
+  reuse — different blast radii, matching this file's existing
+  one-secret-per-concern pattern).
+- **Where the PWA's copy of that secret lives — a real constraint
+  worked through, not assumed:** DEPLOY.md already had an explicit
+  rule that secret values never go into any file this repo tracks,
+  even a gitignored one. Since this PWA deploys byte-for-byte from git
+  with no build step, there's no way to inject a server-side secret
+  into deployed client JS without violating that rule or adding a
+  build step this project deliberately doesn't have. Resolved by
+  adding a real, minimal settings UI (`pwa/index.html`'s "🔄 Sync
+  across devices" section) where Elad enters the secret once per
+  device — it lives only in that device's own `localStorage` from
+  then on, the exact same place every other per-device value already
+  lives, never the app's own source.
+- **Conflict resolution:** last-write-wins by a real `updated_at`
+  timestamp on every `application_status` entry, independently
+  implemented on both sides (`pwa/preferences.js`'s `mergeStatuses`,
+  `worker/index.js`'s `mergeJobStatuses` — no shared code, since
+  `worker/` and `pwa/` are genuinely different JS environments with no
+  bundler in this project). **A real, deliberate reversal of Session
+  28/30's "don't persist the default state" convention, forced by
+  correctness, not chosen for its own sake:** clearing a mark (NOT_SET)
+  now stores an explicit tombstone instead of deleting the key —
+  without one, a cleared mark could never outrank an older
+  "applied"/"ignored" entry pulled from another device, and would get
+  silently resurrected. This only applies to `application_status`;
+  `ROLE_FILTERS_KEY` is untouched.
+- **Migration:** `loadJobStatuses()` now normalizes THREE generations
+  of local storage shape forward (Session 28's boolean key, Session
+  30's flat-string shape, Session 44's own pre-existing-entries case),
+  stamping unknown-timestamp data with a fixed epoch sentinel so real
+  dated data from elsewhere always outranks it on first sync. Because
+  `syncStatuses()` always pushes the device's ENTIRE current map (not
+  a diff), a device's first successful sync automatically carries its
+  migrated history up to the Worker — no separate one-time migration
+  code path exists anywhere.
+- **Real test coverage, actually run in a real browser this
+  session, not just written:** `pwa/tests/preferences.test.html` grew
+  from 38 to 59 real assertions (verified via a local static server +
+  the in-app browser tool, not just read for plausibility) — the pure
+  `mergeStatuses` rule, tombstone/migration behavior, and (faking
+  `window.fetch`, the one impure boundary) the sync orchestration
+  functions. The Worker's own route logic was independently verified
+  too, by actually importing `worker/index.js` in a real browser and
+  invoking its `fetch` handler against an in-memory fake KV — confirmed
+  401 for no/wrong secret, 200 with the correct merge for a valid
+  request, an older incoming update correctly REJECTED and a newer one
+  correctly OVERWRITING (the actual conflict-resolution correctness
+  this whole feature depends on), 404 for an unknown route, and 405
+  with a helpful message for a wrong method on `/api/sync-status`.
+- **A real bug this session caught in its own test harness, not
+  shipped:** one fake-fetch test's cleanup only removed the legacy
+  localStorage key it had set, not the real `JOB_STATUS_KEY` entry
+  `syncStatuses()` itself had written as part of the behavior under
+  test — caught by noticing a stray `"oldjob"` entry when manually
+  clicking through the real app afterward (same origin, shared
+  localStorage), not by the automated assertions themselves (all 59
+  still passed either way, since the leak didn't affect any single
+  test's own correctness — it only polluted state for whatever ran
+  next). Fixed before finalizing.
+- **Real end-to-end verification against the actual deployed Cloudflare
+  Worker: NOT done this session, and disclosed as such rather than
+  assumed** — `SYNC_SECRET` doesn't exist as a real Cloudflare secret
+  yet (this route/secret is new as of this session), the same shape of
+  gap Session 33 disclosed for its own three routes before their
+  secrets existed. What WAS verified live: the pre-change Worker's
+  existing routes (confirmed `/api/sync-status` genuinely 404s and
+  `/api/trigger-scan` genuinely 401s without a secret, via a real
+  `curl` against `https://thescanner.lanirelad.workers.dev/` — this
+  environment has real outbound internet access, confirmed directly).
+  Re-checking the new route's live behavior after this session's
+  changes are pushed is a natural next step, not done here since
+  pushing wasn't yet approved at the time of writing this addendum.
+- Files changed: `worker/index.js`, `pwa/preferences.js`, `pwa/app.js`,
+  `pwa/index.html`, `pwa/styles.css`, `pwa/tests/preferences.test.html`,
+  `wrangler.jsonc` (comment only), `.claude/launch.json` (new, local
+  dev-server config for this session's own browser-based testing —
+  not part of the deployed app), `ARCHITECTURE.md`, `DECISIONS.md`
+  (new ADR-0033), `DEPLOY.md`, this file, `CHANGELOG.md`. No Python
+  files touched — the backend scan pipeline is unaffected.
+- Regression gate: pytest 162/162 passing (unchanged, no Python
+  touched). The live `python run.py` smoke test was deliberately NOT
+  re-run this session — nothing in the scan pipeline changed, and the
+  real, substantive verification this session's actual changes needed
+  was the browser-based PWA/Worker testing described above instead.

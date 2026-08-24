@@ -605,3 +605,40 @@ pages). This project's whole compliance posture (ADR-0002, ADR-0019)
 is built on only ever fetching things it has a real, defensible right
 to fetch — LinkedIn is the one real source that fails that test
 outright, regardless of how valuable its data would be.
+
+### ADR-0033 — Cross-device status sync stays single-owner; does not reopen ADR-0011/0014
+**Status:** Accepted
+**Context:** Session 44's real trigger: Elad's applied/ignored marks
+don't carry over between his own PC and phone, since ADR-0011 made
+`application_status` local-only by construction (each install's own
+`localStorage`, never written to any backend). That was the right call
+for the actual problem ADR-0011/0014 were solving — never let one
+*install's* data reach another — but it also means the same *person's*
+own two devices can never agree with each other either, a real
+usability gap once he's actually using the PWA from more than one
+device day to day.
+**Decision:** Add a Worker-backed sync path (`/api/sync-status`,
+`worker/index.js`) for `application_status` only — NOT for role-filter
+preferences, which stay exactly as local-only as ADR-0011 originally
+specified, since a display filter isn't a decision worth reconciling
+across devices the way a real "I applied to this" mark is. The synced
+data still has exactly one real owner (still no accounts, still no
+per-user anything, still nothing another install could ever read or
+write) — this is one person's own devices catching up with each other,
+gated by a single shared secret only Elad holds, not a multi-tenant
+feature. `localStorage` remains the fast, offline-first source of
+truth for every UI interaction; the Worker is a second,
+eventually-consistent copy that devices reconcile with on load/
+visibility-change, never something the UI blocks on.
+**Why:** ADR-0011's actual concern was "no *other* install's data ever
+reaches this one" (still true after this change — the Worker doesn't
+distinguish devices, it just holds one owner's own merged view) and
+ADR-0014's was "no multi-tenant backend, no accounts" (still true —
+one shared secret, one owner, no login, no per-user storage). Neither
+ADR was ever actually about a single owner's own devices being unable
+to agree with each other; that was always just an unaddressed
+consequence of the local-only design, not a deliberate protection this
+change would be undoing. Solving it needed a real design (see
+`pwa/preferences.js`'s Session 44 section for the timestamp-based
+last-write-wins conflict rule and the tombstone it requires), not a
+policy reversal.

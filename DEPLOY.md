@@ -44,16 +44,31 @@ what Elad needs to do next.
 
 ## Secrets / config
 Real secret values (the GitHub PAT, the VAPID private key, the
-trigger-scan shared secret) go into Cloudflare's own secret store only —
-`wrangler secret put <NAME>` or the dashboard's Settings → Variables →
-"Secret" type. **Never** a committed file, even a gitignored one — see
-`worker/index.js`'s own docstring for the exact secret names it expects
-(`GITHUB_PAT`, `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `TRIGGER_SECRET`)
-and the Session 33 handoff for their real values (the VAPID public key
-is safe to share; the other three are not). `.gitignore` already covers
-`.env`/`*secret*`/`*credential*`/`*.pem` as a backstop, but the real rule
-is simpler: these four values never get written to any file this repo
-tracks in the first place.
+trigger-scan shared secret, the sync shared secret) go into
+Cloudflare's own secret store only — `wrangler secret put <NAME>` or
+the dashboard's Settings → Variables → "Secret" type. **Never** a
+committed file, even a gitignored one — see `worker/index.js`'s own
+docstring for the exact secret names it expects (`GITHUB_PAT`,
+`VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `TRIGGER_SECRET`,
+`SYNC_SECRET`) and the Session 33/44 handoffs for their real values
+(the VAPID public key is safe to share; the other four are not).
+`.gitignore` already covers `.env`/`*secret*`/`*credential*`/`*.pem`
+as a backstop, but the real rule is simpler: these five values never
+get written to any file this repo tracks in the first place.
+
+**`SYNC_SECRET` is different from the other four in one way** (Session
+44, ARCHITECTURE.md §11a): the PWA itself needs to send it back on
+every `/api/sync-status` call, but this is a plain static site with no
+build step, so there's no way to inject a server-side secret into
+deployed client JS without either a build step or committing it. The
+resolution: after setting `SYNC_SECRET` as a Cloudflare secret (same
+`wrangler secret put SYNC_SECRET` / dashboard flow as the others),
+Elad enters that same value once per device into the PWA's own "🔄
+Sync across devices" section — it's stored only in that device's
+`localStorage` from then on, never in any file this repo tracks. A
+device with no value entered (or the wrong one) just gets a 401 from
+the Worker and falls back to fully local-only behavior — never a
+broken UI.
 
 ## Dependencies (confirmed, not anticipated)
 - Python 3.x — scanning pipeline (adapters, core, compliance, storage,

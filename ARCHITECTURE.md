@@ -1213,6 +1213,118 @@ material — but no real browser has ever subscribed yet. That needs a
 future session's PWA-side subscribe UI before it can be tested for
 real.
 
+## 11a. Cross-device status sync (Session 44, ADR-0011/0014/ADR-0033)
+
+Elad's own PC and phone didn't agree on which jobs he'd already marked
+applied/ignored — expected given ADR-0011's original local-only
+design, but a real usability gap for one person using the PWA from
+more than one device. See ADR-0033 for why this is genuinely not a
+reversal of ADR-0011/0014: role-filter preferences stay exactly as
+local-only as before; only `application_status` gets a second,
+eventually-consistent copy, still owned by exactly one person.
+
+```
+Device A: mark applied --> localStorage (instant, offline-first)
+                        --> fire-and-forget POST /api/sync-status
+
+Device B (later, on load / tab regains visibility):
+   GET /api/sync-status --> merge with Device B's own localStorage
+                             (last-write-wins by updated_at)
+                        --> save merged result locally
+                        --> POST the merge back up
+```
+
+**Worker side (`worker/index.js`):** `GET`/`POST /api/sync-status`,
+the first routes in this file that aren't POST-only — the route
+dispatch table changed from a flat `path -> handler` map to
+`path -> {METHOD: handler}` to support that, with the three Session 33
+routes unaffected (still POST-only, same handlers). Reuses the
+existing `SUBSCRIPTIONS` KV namespace (one fixed key,
+`sync:job-status`, holding the entire status map as one JSON blob)
+rather than a second namespace — one KV namespace to create/bind is
+strictly simpler than two, and this project has real, specific
+history (Session 41) of a KV namespace getting deleted and breaking
+every dependent config until re-created, so minimizing the number of
+namespaces that could recur is a real, not theoretical, concern.
+Protected by a shared secret (`env.SYNC_SECRET`, checked against an
+`X-Sync-Secret` header) — a SEPARATE secret from `TRIGGER_SECRET`,
+deliberately not reused, since the two protect different blast radii
+(kick off a GitHub Actions run, vs. read/write real personal
+job-status data).
+
+**Where the PWA's own copy of that secret lives, and why it can't be
+a committed file:** this repo's PWA assets deploy byte-for-byte from
+git with no build step (ADR-0029/0029a) — there is no mechanism to
+inject a real secret into a *tracked* file at deploy time without
+either a build step this project deliberately doesn't have, or
+shipping the real value in git history forever (DEPLOY.md's existing,
+explicit rule against that for every other secret in this project).
+The PWA's Sync settings section (`pwa/index.html`'s `#sync-settings`,
+wired in `pwa/app.js`'s `initSyncSettings`) is the real fix: Elad
+enters the secret once per device, and it's stored only in that
+device's own `localStorage` (`pwa/preferences.js`'s
+`getSyncSecret`/`setSyncSecret`) — the exact same place every other
+per-device value in this app already lives, never the app's own
+source.
+
+**Conflict resolution: last-write-wins by `updated_at`, independently
+implemented on both sides (`pwa/preferences.js`'s `mergeStatuses`,
+`worker/index.js`'s `mergeJobStatuses`) rather than shared code** —
+`worker/` and `pwa/` are genuinely different JS environments in this
+build-step-free project, so there's no bundler to make importing one
+from the other meaningful. Deliberately the simplest correct rule for
+this task, not a stand-in for something fancier: a status one person
+changes a few times a day from whichever device is in hand has
+genuinely rare real conflicts, and "most recent wall-clock edit wins"
+is exactly what a real person expects when the rare double-edit does
+happen — a vector-clock/CRDT scheme would be solving for a
+multi-writer contention level this app will never actually have.
+
+**A real, deliberate reversal of a previous convention this required:**
+Session 28/30 never persisted a job's *default* state (`not_set` was
+"the key is simply absent"). Session 44 changes `application_status`
+entries to always store `{status, updated_at}`, including a real
+`not_set` TOMBSTONE when a mark is cleared — without a tombstone,
+clearing a mark on one device would just delete the local key, giving
+a later merge nothing to compare timestamps against, so an older
+"applied"/"ignored" entry pulled from another device (or the Worker)
+would silently resurrect a mark the user had explicitly removed. This
+does not apply to `ROLE_FILTERS_KEY`, which is untouched and still
+follows the original "don't persist the default" rule — sync only
+ever touches `application_status`.
+
+**Migration:** a device's pre-existing Session 28/30 local-only
+history (both the original boolean key and Session 30's flat-string
+shape) is normalized forward by `loadJobStatuses()` into the new
+`{status, updated_at}` shape on every read, exactly like Session 30's
+own migration — stamped with a fixed epoch sentinel
+(`UNKNOWN_UPDATED_AT`) since their real edit time was never recorded,
+so real dated data pulled from elsewhere can always outrank them on a
+genuine first sync. Because `syncStatuses()` always pushes this
+device's ENTIRE current map (never a diff) on every sync, a device's
+first-ever successful sync automatically carries this migrated history
+up to the Worker — no separate one-time migration endpoint, flag, or
+code path exists anywhere; it falls out of the ordinary sync path for
+free.
+
+**Real test coverage:** `pwa/tests/preferences.test.html` grew from
+38 to 59 real assertions — the pure `mergeStatuses` conflict rule, the
+tombstone-based `setJobStatus`/migration behavior, and (faking the one
+impure boundary, `window.fetch`, same principle as this harness's
+existing real-localStorage tests) `pushStatusesToServer`/
+`fetchRemoteStatuses`/`checkSyncConnection`/`syncStatuses`. The
+Worker's own route logic (`GET`/`POST /api/sync-status`, the
+last-write-wins merge specifically, 401/404/405 handling) was verified
+directly this session too — not just read for correctness, but
+actually imported and invoked in a real browser against an in-memory
+fake KV standing in for `env.SUBSCRIPTIONS`, confirming (among other
+cases) that an older incoming update is correctly rejected and a newer
+one correctly overwrites, before any of this was ever pushed to the
+real deployed Worker. What's still unverified: the real live
+Cloudflare Worker round-trip, since `SYNC_SECRET` doesn't exist as a
+real Cloudflare secret yet — same shape of gap Session 33 disclosed
+for its own three routes before their secrets existed.
+
 ## 12. Environment hygiene
 
 (To be filled in as friction is discovered — e.g. Python version, OS quirks,

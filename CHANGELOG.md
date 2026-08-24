@@ -1501,3 +1501,47 @@
   transient by an immediate clean retry). 81 total matches (8 new),
   including new DevOps matches from Lumen, Rapyd, Checkmarx,
   Silverfort, and Gong.io confirmed live.
+
+## 2026-08-24 — Session 44: cross-device sync for applied/ignored status
+- Added cross-device sync for application_status (applied/ignored
+  marks) so Elad's own PC and phone converge on the same marks - not a
+  reversal of ADR-0011/0014 (new ADR-0033 documents why): role filters
+  stay local-only, there's still exactly one real owner, still no
+  accounts.
+- New Worker routes GET/POST /api/sync-status (worker/index.js),
+  reusing the existing SUBSCRIPTIONS KV namespace under a new key
+  rather than adding a second namespace. Protected by a new, separate
+  SYNC_SECRET (not a TRIGGER_SECRET reuse).
+- The PWA's copy of that secret lives only in each device's own
+  localStorage, entered once via a new "Sync across devices" settings
+  section - never in a committed file, matching DEPLOY.md's existing
+  secrets rule given this project's build-step-free static deploy.
+- Conflict resolution: last-write-wins by a real updated_at timestamp
+  on every status entry. Required a deliberate reversal of Session
+  28/30's "don't persist the default state" convention for this one
+  key: clearing a mark now stores an explicit tombstone instead of
+  deleting it, so a clear can correctly outrank an older mark pulled
+  from another device instead of getting silently resurrected.
+  Migration: three generations of local storage shape now normalize
+  forward, and a device's first successful sync automatically carries
+  its pre-existing history up to the Worker (no separate migration
+  code path).
+- Real test coverage: pwa/tests/preferences.test.html grew from 38 to
+  59 real assertions, run in a real browser via a local static server
+  this session (not just written) - the pure merge rule, tombstone/
+  migration behavior, and (faking window.fetch) the sync orchestration
+  functions. worker/index.js's own route logic was independently
+  verified too, by actually importing and invoking it in a real
+  browser against an in-memory fake KV - confirmed the actual
+  conflict-resolution correctness (an older update rejected, a newer
+  one winning), not just read for plausibility. One real bug caught in
+  the test harness's own cleanup (fixed before finalizing, never
+  shipped).
+- Real live verification against the actual deployed Cloudflare Worker
+  NOT done this session (SYNC_SECRET doesn't exist as a real
+  Cloudflare secret yet) - disclosed explicitly, same shape of gap
+  Session 33 left for its own three routes. Pre-change baseline WAS
+  verified live via real curl calls against the real deployed Worker.
+- No Python files touched; pytest 162/162 passing unchanged. Live
+  python run.py smoke test deliberately not re-run (nothing in the
+  scan pipeline changed).

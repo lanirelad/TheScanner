@@ -6,8 +6,10 @@
 </head>
 <body>
 <!--
-  Real test coverage for pwa/preferences.js's pure logic (Session 28,
-  extended with the tri-state applied/ignored/not_set model in Session 30).
+  Real test coverage for pwa/preferences.js's logic (Session 28,
+  extended with the tri-state applied/ignored/not_set model in Session
+  30, extended again in Session 44 with a timestamped {status,
+  updated_at} shape + cross-device sync).
 
   This project's test suite is pytest, but pytest can't execute
   JavaScript, and this environment has no Node.js installed (checked
@@ -20,19 +22,38 @@
   any browser (or drive it headlessly) to re-run — no build step, no
   test framework dependency, matching this whole PWA's own "no bundler,
   no framework" style.
+
+  Session 44 adds real coverage for the one part of this file that
+  touches the network (pushStatusesToServer/fetchRemoteStatuses/
+  checkSyncConnection/syncStatuses) — by temporarily replacing the real
+  global `fetch` with a fake one for the duration of each such test,
+  same "fake the one impure boundary, keep everything else real" spirit
+  as this harness's existing real-localStorage round-trip tests. This
+  is a real unit-level guarantee (does this code call the right
+  endpoint with the right method/headers/body, and merge/save/return
+  correctly given a canned response), not a substitute for the real
+  live Worker round-trip verification recorded separately in
+  PROGRESS.md's Session 44 addendum.
 -->
 <h1>preferences.js tests</h1>
 <pre id="results">Running...</pre>
 
 <script src="../preferences.js"></script>
-<script>
+<script type="module">
 "use strict";
+// type="module" (not a plain classic script, unlike preferences.js
+// itself): needed for the top-level `await test(...)` calls this
+// session's fake-fetch sync tests use below — a module script's
+// top-level scope still resolves preferences.js's globals normally
+// (const/function declared by a previously-run classic script live in
+// the shared global scope every later script, module or not, chains
+// up through for unresolved names).
 
 const results = [];
 
-function test(name, fn) {
+async function test(name, fn) {
   try {
-    fn();
+    await fn();
     results.push({ name, pass: true });
   } catch (err) {
     results.push({ name, pass: false, error: err.message });
@@ -74,7 +95,14 @@ function assertFalse(value, label) {
   if (value !== false) throw new Error(`${label || "assertFalse"}: expected false, got ${JSON.stringify(value)}`);
 }
 
-// --- isRoleEnabled / shouldShowJob ------------------------------------
+// Fixed, arbitrary timestamps for deterministic assertions — real
+// ISO8601 strings, ordered T1 < T2 < T3, so tests can assert real
+// last-write-wins outcomes without depending on wall-clock time.
+const T1 = "2026-01-01T00:00:00.000Z";
+const T2 = "2026-01-02T00:00:00.000Z";
+const T3 = "2026-01-03T00:00:00.000Z";
+
+// --- isRoleEnabled / shouldShowJob (Session 28, unchanged this session) --
 
 test("isRoleEnabled: no entry at all -> enabled (default-on)", () => {
   assertTrue(isRoleEnabled("devops", {}));
@@ -94,7 +122,7 @@ test("shouldShowJob: delegates to isRoleEnabled via job.role_category", () => {
   assertFalse(shouldShowJob(job, { devops: false }));
 });
 
-// --- toggleRoleFilter ---------------------------------------------------
+// --- toggleRoleFilter (Session 28, unchanged this session) -------------
 
 test("toggleRoleFilter: enabled -> disabled stores an explicit false", () => {
   const result = toggleRoleFilter("devops", {});
@@ -118,7 +146,7 @@ test("toggleRoleFilter: leaves other categories' state untouched", () => {
   assertEqual(result, { devops: false, technical_support: false });
 });
 
-// --- availableRoleCategories ---------------------------------------------
+// --- availableRoleCategories (Session 28, unchanged this session) ------
 
 test("availableRoleCategories: derives from matches, dedups by role_category", () => {
   const matches = [
@@ -153,20 +181,28 @@ test("availableRoleCategories: empty matches and empty filters -> empty list", (
   assertEqual(availableRoleCategories([], {}), []);
 });
 
-// --- getJobStatus / isApplied / isIgnored (Session 30 tri-state) --------
+// --- getJobStatus / isApplied / isIgnored -------------------------------
 
 test("getJobStatus: no entry -> not_set", () => {
   assertEqual(getJobStatus("abc123", {}), JOB_STATUS.NOT_SET);
 });
 
-test("getJobStatus: reads the stored value directly", () => {
+test("getJobStatus: reads the new {status, updated_at} shape", () => {
+  assertEqual(getJobStatus("abc123", { abc123: { status: "applied", updated_at: T1 } }), JOB_STATUS.APPLIED);
+  assertEqual(getJobStatus("abc123", { abc123: { status: "ignored", updated_at: T1 } }), JOB_STATUS.IGNORED);
+});
+
+test("getJobStatus: a not_set tombstone reads the same as a missing entry", () => {
+  assertEqual(getJobStatus("abc123", { abc123: { status: "not_set", updated_at: T1 } }), JOB_STATUS.NOT_SET);
+});
+
+test("getJobStatus: still reads a pre-Session-44 plain-string entry (belt-and-suspenders backward compat)", () => {
   assertEqual(getJobStatus("abc123", { abc123: "applied" }), JOB_STATUS.APPLIED);
-  assertEqual(getJobStatus("abc123", { abc123: "ignored" }), JOB_STATUS.IGNORED);
 });
 
 test("isApplied / isIgnored: agree with getJobStatus, mutually exclusive", () => {
-  const applied = { abc123: "applied" };
-  const ignored = { abc123: "ignored" };
+  const applied = { abc123: { status: "applied", updated_at: T1 } };
+  const ignored = { abc123: { status: "ignored", updated_at: T1 } };
   assertTrue(isApplied("abc123", applied));
   assertFalse(isIgnored("abc123", applied));
   assertTrue(isIgnored("abc123", ignored));
@@ -176,68 +212,89 @@ test("isApplied / isIgnored: agree with getJobStatus, mutually exclusive", () =>
 });
 
 // --- setJobStatus: the one place that enforces mutual exclusivity -------
+// Session 44: NOT_SET now stores a real tombstone (a deliberate reversal
+// of the previous "delete the key" behavior — see JOB_STATUS_KEY's
+// docstring in preferences.js for why cross-device sync requires this).
 
-test("setJobStatus: NOT_SET deletes the key, doesn't store it", () => {
-  assertEqual(setJobStatus("abc123", { abc123: "applied" }, JOB_STATUS.NOT_SET), {});
+test("setJobStatus: NOT_SET now stores an explicit tombstone, not a deleted key", () => {
+  const result = setJobStatus("abc123", { abc123: { status: "applied", updated_at: T1 } }, JOB_STATUS.NOT_SET, T2);
+  assertEqual(result, { abc123: { status: "not_set", updated_at: T2 } });
+});
+
+test("setJobStatus: stamps the given updatedAt exactly (injectable for deterministic tests)", () => {
+  const result = setJobStatus("abc123", {}, JOB_STATUS.APPLIED, T1);
+  assertEqual(result, { abc123: { status: "applied", updated_at: T1 } });
+});
+
+test("setJobStatus: defaults updatedAt to a real current timestamp when not given", () => {
+  const before = Date.now();
+  const result = setJobStatus("abc123", {}, JOB_STATUS.APPLIED);
+  const stamped = new Date(result.abc123.updated_at).getTime();
+  assertTrue(stamped >= before && stamped <= Date.now(), "updated_at must be a real, current timestamp");
 });
 
 test("setJobStatus: APPLIED overwrites a prior IGNORED outright, not both", () => {
-  const result = setJobStatus("abc123", { abc123: "ignored" }, JOB_STATUS.APPLIED);
-  assertEqual(result, { abc123: "applied" });
+  const result = setJobStatus("abc123", { abc123: { status: "ignored", updated_at: T1 } }, JOB_STATUS.APPLIED, T2);
+  assertEqual(result, { abc123: { status: "applied", updated_at: T2 } });
 });
 
 test("setJobStatus: IGNORED overwrites a prior APPLIED outright, not both", () => {
-  const result = setJobStatus("abc123", { abc123: "applied" }, JOB_STATUS.IGNORED);
-  assertEqual(result, { abc123: "ignored" });
+  const result = setJobStatus("abc123", { abc123: { status: "applied", updated_at: T1 } }, JOB_STATUS.IGNORED, T2);
+  assertEqual(result, { abc123: { status: "ignored", updated_at: T2 } });
 });
 
 test("setJobStatus: does not mutate its input (pure function)", () => {
-  const input = { abc123: "applied" };
+  const input = { abc123: { status: "applied", updated_at: T1 } };
   const inputCopy = JSON.stringify(input);
-  setJobStatus("abc123", input, JOB_STATUS.IGNORED);
+  setJobStatus("abc123", input, JOB_STATUS.IGNORED, T2);
   assertEqual(JSON.parse(inputCopy), input, "input mutated");
 });
 
 test("setJobStatus: leaves other job_ids' state untouched", () => {
-  const result = setJobStatus("abc123", { def456: "applied" }, JOB_STATUS.IGNORED);
-  assertEqual(result, { abc123: "ignored", def456: "applied" });
+  const result = setJobStatus("abc123", { def456: { status: "applied", updated_at: T1 } }, JOB_STATUS.IGNORED, T2);
+  assertEqual(result, {
+    abc123: { status: "ignored", updated_at: T2 },
+    def456: { status: "applied", updated_at: T1 },
+  });
 });
 
 // --- toggleApplied / toggleIgnored: the actual button behaviors ---------
 
 test("toggleApplied: not_set -> applied", () => {
-  assertEqual(toggleApplied("abc123", {}), { abc123: "applied" });
+  assertEqual(toggleApplied("abc123", {}, T1), { abc123: { status: "applied", updated_at: T1 } });
 });
 
-test("toggleApplied: applied -> not_set (deletes, doesn't store false-equivalent)", () => {
-  assertEqual(toggleApplied("abc123", { abc123: "applied" }), {});
+test("toggleApplied: applied -> not_set (now a tombstone, not a deleted key)", () => {
+  const result = toggleApplied("abc123", { abc123: { status: "applied", updated_at: T1 } }, T2);
+  assertEqual(result, { abc123: { status: "not_set", updated_at: T2 } });
 });
 
 test("toggleApplied: clicking Applied on an Ignored job moves it to Applied, not both", () => {
-  const result = toggleApplied("abc123", { abc123: "ignored" });
-  assertEqual(result, { abc123: "applied" });
+  const result = toggleApplied("abc123", { abc123: { status: "ignored", updated_at: T1 } }, T2);
+  assertEqual(result, { abc123: { status: "applied", updated_at: T2 } });
   assertFalse(isIgnored("abc123", result), "should no longer be ignored");
 });
 
 test("toggleIgnored: not_set -> ignored", () => {
-  assertEqual(toggleIgnored("abc123", {}), { abc123: "ignored" });
+  assertEqual(toggleIgnored("abc123", {}, T1), { abc123: { status: "ignored", updated_at: T1 } });
 });
 
-test("toggleIgnored: ignored -> not_set", () => {
-  assertEqual(toggleIgnored("abc123", { abc123: "ignored" }), {});
+test("toggleIgnored: ignored -> not_set (tombstone)", () => {
+  const result = toggleIgnored("abc123", { abc123: { status: "ignored", updated_at: T1 } }, T2);
+  assertEqual(result, { abc123: { status: "not_set", updated_at: T2 } });
 });
 
 test("toggleIgnored: clicking Ignore on an already-Applied job moves it to Ignored, not both", () => {
-  const result = toggleIgnored("abc123", { abc123: "applied" });
-  assertEqual(result, { abc123: "ignored" });
+  const result = toggleIgnored("abc123", { abc123: { status: "applied", updated_at: T1 } }, T2);
+  assertEqual(result, { abc123: { status: "ignored", updated_at: T2 } });
   assertFalse(isApplied("abc123", result), "should no longer be applied");
 });
 
 test("toggleApplied/toggleIgnored: do not mutate their input (pure functions)", () => {
-  const input = { abc123: "applied" };
+  const input = { abc123: { status: "applied", updated_at: T1 } };
   const inputCopy = JSON.stringify(input);
-  toggleApplied("abc123", input);
-  toggleIgnored("abc123", input);
+  toggleApplied("abc123", input, T2);
+  toggleIgnored("abc123", input, T2);
   assertEqual(JSON.parse(inputCopy), input, "input mutated");
 });
 
@@ -249,7 +306,10 @@ test("partitionByIgnored: splits ignored out, leaves applied/not_set in active",
     { job_id: "b", scan_status: "new" },
     { job_id: "c", scan_status: "still_open" },
   ];
-  const statuses = { a: "applied", b: "ignored" };
+  const statuses = {
+    a: { status: "applied", updated_at: T1 },
+    b: { status: "ignored", updated_at: T1 },
+  };
   const { active, ignored } = partitionByIgnored(matches, statuses);
   assertEqual(active.map((j) => j.job_id), ["a", "c"]);
   assertEqual(ignored.map((j) => j.job_id), ["b"]);
@@ -281,13 +341,13 @@ test("loadRoleFilters: malformed JSON fails safe to {}, not a thrown error", () 
   localStorage.removeItem(ROLE_FILTERS_KEY);
 });
 
-// --- loadJobStatuses: real localStorage round-trip + legacy migration ---
+// --- loadJobStatuses: real localStorage round-trip + migrations ---------
 
 test("saveJobStatuses + loadJobStatuses round-trips through real localStorage", () => {
   localStorage.removeItem(JOB_STATUS_KEY);
   localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
-  saveJobStatuses({ abc123: "ignored" });
-  assertEqual(loadJobStatuses(), { abc123: "ignored" });
+  saveJobStatuses({ abc123: { status: "ignored", updated_at: T1 } });
+  assertEqual(loadJobStatuses(), { abc123: { status: "ignored", updated_at: T1 } });
   localStorage.removeItem(JOB_STATUS_KEY);
 });
 
@@ -297,11 +357,18 @@ test("loadJobStatuses: missing keys fail safe to {}", () => {
   assertEqual(loadJobStatuses(), {});
 });
 
-test("loadJobStatuses: migrates a Session 28 legacy 'applied: true' entry", () => {
+test("loadJobStatuses: migrates a Session 28 legacy 'applied: true' entry, stamping UNKNOWN_UPDATED_AT", () => {
   localStorage.removeItem(JOB_STATUS_KEY);
   localStorage.setItem(LEGACY_APPLIED_JOBS_KEY, JSON.stringify({ oldjob: true }));
-  assertEqual(loadJobStatuses(), { oldjob: "applied" });
+  assertEqual(loadJobStatuses(), { oldjob: { status: "applied", updated_at: UNKNOWN_UPDATED_AT } });
   localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+});
+
+test("loadJobStatuses: migrates a pre-Session-44 plain-string entry under JOB_STATUS_KEY itself", () => {
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+  localStorage.setItem(JOB_STATUS_KEY, JSON.stringify({ oldjob: "ignored" }));
+  assertEqual(loadJobStatuses(), { oldjob: { status: "ignored", updated_at: UNKNOWN_UPDATED_AT } });
+  localStorage.removeItem(JOB_STATUS_KEY);
 });
 
 test("loadJobStatuses: never deletes the legacy key (migration is read-only)", () => {
@@ -312,11 +379,11 @@ test("loadJobStatuses: never deletes the legacy key (migration is read-only)", (
   localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
 });
 
-test("loadJobStatuses: an explicit new-key entry supersedes the legacy one for the same job_id", () => {
+test("loadJobStatuses: a real new-shape entry supersedes the legacy boolean for the same job_id", () => {
   localStorage.removeItem(JOB_STATUS_KEY);
   localStorage.setItem(LEGACY_APPLIED_JOBS_KEY, JSON.stringify({ shared: true }));
-  saveJobStatuses({ shared: "ignored" });
-  assertEqual(loadJobStatuses(), { shared: "ignored" });
+  saveJobStatuses({ shared: { status: "ignored", updated_at: T1 } });
+  assertEqual(loadJobStatuses(), { shared: { status: "ignored", updated_at: T1 } });
   localStorage.removeItem(JOB_STATUS_KEY);
   localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
 });
@@ -324,10 +391,262 @@ test("loadJobStatuses: an explicit new-key entry supersedes the legacy one for t
 test("loadJobStatuses: legacy and new keys merge non-overlapping job_ids", () => {
   localStorage.removeItem(JOB_STATUS_KEY);
   localStorage.setItem(LEGACY_APPLIED_JOBS_KEY, JSON.stringify({ oldjob: true }));
-  saveJobStatuses({ newjob: "ignored" });
-  assertEqual(loadJobStatuses(), { oldjob: "applied", newjob: "ignored" });
+  saveJobStatuses({ newjob: { status: "ignored", updated_at: T1 } });
+  assertEqual(loadJobStatuses(), {
+    oldjob: { status: "applied", updated_at: UNKNOWN_UPDATED_AT },
+    newjob: { status: "ignored", updated_at: T1 },
+  });
   localStorage.removeItem(JOB_STATUS_KEY);
   localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+});
+
+// --- mergeStatuses (Session 44): the real conflict-resolution rule ------
+
+test("mergeStatuses: remote entry newer than local -> remote wins", () => {
+  const local = { a: { status: "applied", updated_at: T1 } };
+  const remote = { a: { status: "ignored", updated_at: T2 } };
+  assertEqual(mergeStatuses(local, remote), { a: { status: "ignored", updated_at: T2 } });
+});
+
+test("mergeStatuses: remote entry older than local -> local wins (kept as-is)", () => {
+  const local = { a: { status: "ignored", updated_at: T2 } };
+  const remote = { a: { status: "applied", updated_at: T1 } };
+  assertEqual(mergeStatuses(local, remote), { a: { status: "ignored", updated_at: T2 } });
+});
+
+test("mergeStatuses: job_id only present remotely -> adopted", () => {
+  const local = {};
+  const remote = { a: { status: "applied", updated_at: T1 } };
+  assertEqual(mergeStatuses(local, remote), { a: { status: "applied", updated_at: T1 } });
+});
+
+test("mergeStatuses: job_id only present locally -> kept", () => {
+  const local = { a: { status: "applied", updated_at: T1 } };
+  const remote = {};
+  assertEqual(mergeStatuses(local, remote), { a: { status: "applied", updated_at: T1 } });
+});
+
+test("mergeStatuses: a newer remote NOT_SET tombstone correctly overrides an older local applied mark", () => {
+  const local = { a: { status: "applied", updated_at: T1 } };
+  const remote = { a: { status: "not_set", updated_at: T2 } };
+  const merged = mergeStatuses(local, remote);
+  assertEqual(merged, { a: { status: "not_set", updated_at: T2 } });
+  assertFalse(isApplied("a", merged), "the clear must actually take effect, not just be stored inertly");
+});
+
+test("mergeStatuses: does not mutate either input (pure function)", () => {
+  const local = { a: { status: "applied", updated_at: T1 } };
+  const remote = { a: { status: "ignored", updated_at: T2 } };
+  const localCopy = JSON.stringify(local);
+  const remoteCopy = JSON.stringify(remote);
+  mergeStatuses(local, remote);
+  assertEqual(JSON.parse(localCopy), local, "local mutated");
+  assertEqual(JSON.parse(remoteCopy), remote, "remote mutated");
+});
+
+test("mergeStatuses: multiple job_ids each resolve independently", () => {
+  const local = {
+    a: { status: "applied", updated_at: T2 }, // local newer -> stays
+    b: { status: "ignored", updated_at: T1 }, // remote newer -> replaced
+  };
+  const remote = {
+    a: { status: "ignored", updated_at: T1 },
+    b: { status: "not_set", updated_at: T3 },
+    c: { status: "applied", updated_at: T1 }, // remote-only -> adopted
+  };
+  assertEqual(mergeStatuses(local, remote), {
+    a: { status: "applied", updated_at: T2 },
+    b: { status: "not_set", updated_at: T3 },
+    c: { status: "applied", updated_at: T1 },
+  });
+});
+
+test("mergeStatuses: missing/empty remote -> local returned unchanged", () => {
+  const local = { a: { status: "applied", updated_at: T1 } };
+  assertEqual(mergeStatuses(local, {}), local);
+  assertEqual(mergeStatuses(local, undefined), local);
+});
+
+// --- Network-touching sync functions: real fetch, faked for this test ---
+// (Session 44). Same principle as this project's other test harnesses:
+// fake the one impure boundary (here, the global `fetch`), keep
+// everything else — the real functions, real localStorage — genuine.
+
+function withFakeFetch(fakeFetch, fn) {
+  const realFetch = window.fetch;
+  window.fetch = fakeFetch;
+  return Promise.resolve()
+    .then(fn)
+    .finally(() => {
+      window.fetch = realFetch;
+    });
+}
+
+function fakeJSONResponse(body, ok = true) {
+  return { ok, json: async () => body };
+}
+
+await test("pushStatusesToServer: POSTs to /api/sync-status with the secret header and full body", async () => {
+  localStorage.removeItem(SYNC_SECRET_KEY);
+  setSyncSecret("test-secret");
+  let captured = null;
+  await withFakeFetch(
+    async (url, options) => {
+      captured = { url, options };
+      return fakeJSONResponse({ ok: true, statuses: {} });
+    },
+    () => pushStatusesToServer({ a: { status: "applied", updated_at: T1 } })
+  );
+  assertEqual(captured.url, SYNC_ENDPOINT, "must call the sync endpoint");
+  assertEqual(captured.options.method, "POST", "must POST");
+  assertEqual(captured.options.headers["x-sync-secret"], "test-secret", "must send the stored secret");
+  assertEqual(JSON.parse(captured.options.body), { statuses: { a: { status: "applied", updated_at: T1 } } });
+  localStorage.removeItem(SYNC_SECRET_KEY);
+});
+
+await test("pushStatusesToServer: never throws even when fetch itself rejects (offline)", async () => {
+  await withFakeFetch(
+    async () => {
+      throw new Error("simulated offline");
+    },
+    () => pushStatusesToServer({ a: { status: "applied", updated_at: T1 } })
+  );
+  // Reaching this line at all is the real assertion — a throw inside
+  // would have failed this test via the outer test() wrapper's catch.
+});
+
+await test("fetchRemoteStatuses: GETs the endpoint and returns the response's statuses", async () => {
+  let captured = null;
+  const result = await withFakeFetch(
+    async (url, options) => {
+      captured = { url, options };
+      return fakeJSONResponse({ ok: true, statuses: { a: { status: "ignored", updated_at: T1 } } });
+    },
+    () => fetchRemoteStatuses()
+  );
+  assertEqual(captured.url, SYNC_ENDPOINT);
+  assertEqual(captured.options.method, "GET");
+  assertEqual(result, { a: { status: "ignored", updated_at: T1 } });
+});
+
+await test("fetchRemoteStatuses: a non-ok response fails safe to {}, not a thrown error", async () => {
+  const result = await withFakeFetch(
+    async () => fakeJSONResponse({ ok: false, error: "unauthorized" }, false),
+    () => fetchRemoteStatuses()
+  );
+  assertEqual(result, {});
+});
+
+await test("fetchRemoteStatuses: a rejected fetch (offline) fails safe to {}, not a thrown error", async () => {
+  const result = await withFakeFetch(
+    async () => {
+      throw new Error("simulated offline");
+    },
+    () => fetchRemoteStatuses()
+  );
+  assertEqual(result, {});
+});
+
+await test("checkSyncConnection: true only for a real ok response", async () => {
+  const okResult = await withFakeFetch(async () => fakeJSONResponse({ ok: true }, true), () => checkSyncConnection());
+  assertTrue(okResult);
+  const failResult = await withFakeFetch(async () => fakeJSONResponse({}, false), () => checkSyncConnection());
+  assertFalse(failResult);
+  const offlineResult = await withFakeFetch(
+    async () => {
+      throw new Error("offline");
+    },
+    () => checkSyncConnection()
+  );
+  assertFalse(offlineResult);
+});
+
+await test("syncStatuses: pulls, merges with local, saves the merge locally, and pushes it back", async () => {
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+  saveJobStatuses({
+    a: { status: "applied", updated_at: T2 }, // newer than remote's — must survive the merge
+    b: { status: "ignored", updated_at: T1 }, // older than remote's — must be replaced
+  });
+
+  const pushedBodies = [];
+  const merged = await withFakeFetch(
+    async (url, options) => {
+      if (options.method === "GET") {
+        return fakeJSONResponse({
+          ok: true,
+          statuses: {
+            a: { status: "ignored", updated_at: T1 },
+            b: { status: "not_set", updated_at: T2 },
+            c: { status: "applied", updated_at: T1 },
+          },
+        });
+      }
+      pushedBodies.push(JSON.parse(options.body));
+      return fakeJSONResponse({ ok: true });
+    },
+    () => syncStatuses()
+  );
+
+  const expected = {
+    a: { status: "applied", updated_at: T2 },
+    b: { status: "not_set", updated_at: T2 },
+    c: { status: "applied", updated_at: T1 },
+  };
+  assertEqual(merged, expected, "syncStatuses must return the real merged result");
+  assertEqual(loadJobStatuses(), expected, "the merge must actually be saved locally");
+  assertTrue(pushedBodies.length === 1, "must push the merged result back exactly once");
+  assertEqual(pushedBodies[0], { statuses: expected }, "must push the FULL merged map, not a diff");
+
+  localStorage.removeItem(JOB_STATUS_KEY);
+});
+
+await test("syncStatuses: this device's pre-existing local-only history is what gets pushed on a first sync (migration falls out for free)", async () => {
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+  // Simulates a device with real Session 28-era history and nothing
+  // ever synced yet.
+  localStorage.setItem(LEGACY_APPLIED_JOBS_KEY, JSON.stringify({ oldjob: true }));
+
+  let pushedBody = null;
+  await withFakeFetch(
+    async (url, options) => {
+      if (options.method === "GET") return fakeJSONResponse({ ok: true, statuses: {} });
+      pushedBody = JSON.parse(options.body);
+      return fakeJSONResponse({ ok: true });
+    },
+    () => syncStatuses()
+  );
+
+  assertEqual(
+    pushedBody,
+    { statuses: { oldjob: { status: "applied", updated_at: UNKNOWN_UPDATED_AT } } },
+    "pre-existing local-only history must be included in the very first push, not discarded"
+  );
+
+  // syncStatuses() calls saveJobStatuses() internally as part of the
+  // real behavior under test, so JOB_STATUS_KEY (not just the legacy
+  // key) now really holds the migrated "oldjob" entry — both must be
+  // cleaned up, or this leaks into any other page sharing this
+  // origin's localStorage (a real bug this test caught in itself:
+  // opening the real app at the same http://localhost origin used to
+  // run this harness surfaced a stray "oldjob" entry from an earlier,
+  // incompletely-cleaned-up run of this exact test).
+  localStorage.removeItem(JOB_STATUS_KEY);
+  localStorage.removeItem(LEGACY_APPLIED_JOBS_KEY);
+});
+
+// --- getSyncSecret / setSyncSecret: real localStorage round-trip --------
+
+test("getSyncSecret: missing key -> empty string, not an error", () => {
+  localStorage.removeItem(SYNC_SECRET_KEY);
+  assertEqual(getSyncSecret(), "");
+});
+
+test("setSyncSecret + getSyncSecret round-trips through real localStorage", () => {
+  setSyncSecret("a-real-secret");
+  assertEqual(getSyncSecret(), "a-real-secret");
+  localStorage.removeItem(SYNC_SECRET_KEY);
 });
 
 // --- report ---------------------------------------------------------------

@@ -318,6 +318,62 @@ main {
   cursor: pointer;
 }
 
+/* --- Sync settings (Session 44): the one place the shared sync
+   secret ever gets typed in, and the only place it's ever stored —
+   this device's own localStorage, never the app's own source. A
+   <details> rather than always-visible like .role-filters, since this
+   is a one-time-per-device setup step most visits never need to
+   touch again. --- */
+.sync-settings {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.sync-settings summary {
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.sync-settings-help {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin: 0.6rem 0;
+}
+
+.sync-settings-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.sync-settings-row input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 0.5rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.sync-settings-row button {
+  background: var(--radar-green-dim);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.sync-status {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin: 0.5rem 0 0;
+}
+
 /* --- Job groups + cards --- */
 .job-group h2 {
   font-size: 1rem;

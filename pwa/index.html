@@ -46,6 +46,22 @@
       <p class="budget-reset" id="budget-reset"></p>
     </section>
 
+    <details class="sync-settings" id="sync-settings">
+      <summary>🔄 Sync across devices</summary>
+      <p class="sync-settings-help">
+        Applied/ignored marks sync between this device and your other
+        devices once you enter the same sync secret on each of them
+        (set once in Cloudflare, never shown here). This value is only
+        ever stored on this device — it's never written into the app
+        itself.
+      </p>
+      <div class="sync-settings-row">
+        <input type="password" id="sync-secret-input" placeholder="Sync secret" autocomplete="off" />
+        <button type="button" id="sync-secret-save">Save</button>
+      </div>
+      <p class="sync-status" id="sync-status-text"></p>
+    </details>
+
     <section class="role-filters" id="role-filters" aria-label="Role filters" hidden>
       <h2>Show roles</h2>
       <div class="role-filter-toggles" id="role-filter-toggles">
