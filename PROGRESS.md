@@ -1898,3 +1898,34 @@ None — all decisions needed to start building are now in place.
   73 total matches (4 new, 69 still-open) — including real, live
   confirmation of the new Via Transportation Tel Aviv DevOps matches
   (Senior DevOps Engineer, Senior Platform Engineer).
+
+## Addendum — Session 41 executed: commit Session 40 + add Istra Research (2026-08-24)
+- Session 40's pending work committed and pushed (`0ab45a3`) after
+  confirming the real diff matched Session 40's own handoff exactly
+  (companies.json 109, companies_unscannable.json 125, all three
+  checkpoint sources at `not_yet_checked: 0`) — approved by Elad in
+  the prior turn.
+- **Istra Research added to `companies.json`** (Comeet, slug `istra`,
+  uid `59.009`) per Elad's explicit decision, closing out Session 40's
+  flagged edge case. Documented plainly in the entry's own `note`
+  field, not just in prose here: this is a real, confirmed company
+  (quantitative trading firm, Lod, Israel) with a real, working ATS
+  integration, but every one of its job postings' `location` field
+  literally contains the string "Istra Research" instead of a real
+  city — `RoleLocationFilter` matches against real place names only,
+  so this company will structurally produce 0 matches in every scan
+  until Istra Research's own Comeet configuration changes, independent
+  of anything in this project. Added anyway, on the same standard
+  applied to every other real, confirmed company in the file — the
+  point of documenting it this plainly is so a future session doesn't
+  mistake the permanent 0-match result for a bug or an oversight.
+- `harvesting_checkpoint.json`'s `linkedin_sourced` entry for Istra
+  Research updated from `unresolved` to `added`.
+- **companies.json: 109 → 110.**
+- Docs updated: `companies.json`, `harvesting_checkpoint.json`, this
+  file, CHANGELOG.md.
+- Test suite: 162/162 passing, unchanged. Live `python run.py` smoke
+  test: 110/110 companies succeeded, 0 failed, 73 total matches (1
+  new, 72 still-open) — Istra Research attempted successfully and
+  contributed 0 matches, exactly as expected given the location-field
+  limitation documented above (not a regression).

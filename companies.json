@@ -805,6 +805,14 @@
       "ats_slug": "via",
       "career_page": "https://job-boards.greenhouse.io/via",
       "note": "Session 40: media-list candidate. Real, confirmed via PlaywrightProbe + GreenhouseAdapter.fetch_stage1_jobs: 153 real jobs, including genuine Tel Aviv postings (Backend Engineer, DevSecOps Engineer). Global on-demand transit company (NYC HQ) with a real Israel R&D office - included per standing don't-pre-filter policy, same as GitLab (Session 38)."
+    },
+    {
+      "name": "Istra Research",
+      "ats": "comeet",
+      "ats_slug": "istra",
+      "ats_uid": "59.009",
+      "career_page": "https://www.comeet.com/jobs/istra/59.009",
+      "note": "Session 41: added per Elad's explicit decision, following Session 40's discovery. Real, confirmed quantitative trading firm headquartered in Lod, Israel (67 employees, founded 2008) with a real, working Comeet integration - 5 real jobs at last check (Algorithm Developer, Database Reliability Engineer, Quantitative Data Scientist, Senior VLSI Design Engineer, Software Engineer). KNOWN LIMITATION, not an oversight: every job's location field literally contains the string \"Istra Research\" (the company's own name) instead of a real city or \"Israel\" - this project's RoleLocationFilter matches against real place names only, so it will structurally never produce a match for this company as things stand today, regardless of how many genuine Israel-based roles it posts. This will only change if Istra Research's own Comeet configuration starts populating a real location string. Added anyway because the ATS integration and company identity are both real and confirmed - the same standard applied to every other company in this file - even though it will show 0 matches in every scan until that upstream data quality issue resolves itself."
     }
   ]
 }

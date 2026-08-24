@@ -1042,10 +1042,10 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "Istra Research": {
-          "status": "unresolved",
-          "resolved_to": null,
-          "reason": "Session 40: found a REAL, working Comeet integration (istra/59.009, discovered via a comeet.com link surfaced in web research for its real domain istrallc.com) with 5 real current job openings (Algorithm Developer, Database Reliability Engineer, Quantitative Data Scientist, Senior VLSI Design Engineer, Software Engineer). However: every single job's location field literally reads \"Istra Research\" (the company's own name) instead of a real city - Comeet's location[\"name\"] field, which this project's RoleLocationFilter depends on, contains no usable Israel-location signal at all, despite Istra Research being a confirmed real, active, Israel-based (Lod) company. This is a genuine, novel edge case (a real, functioning ATS integration whose own location metadata is unusable) rather than a simple unresolved-for-lack-of-signal - flagged explicitly for Elad's judgment on whether to add anyway given independently confirmed real-world HQ, since automated location filtering alone cannot currently produce a match for this company no matter how many real Israel-based jobs it posts.",
-          "checked_at": "2026-08-24T14:00:00Z"
+          "status": "added",
+          "resolved_to": "Istra Research",
+          "reason": "Session 41: added to companies.json per Elad's explicit decision despite the location-field edge case Session 40 found (job location literally reads the company name, not a city) - real, confirmed Comeet integration (slug istra, uid 59.009), real confirmed Lod, Israel HQ. Will contribute 0 scan matches until Istra Research's own Comeet config populates a real location string.",
+          "checked_at": "2026-08-24T16:00:00Z"
         },
         "HARMAN International": {
           "status": "unresolved",

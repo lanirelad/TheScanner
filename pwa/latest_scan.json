@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-24T13:03:22Z",
-  "companies_attempted": 109,
-  "companies_succeeded": 109,
+  "generated_at": "2026-08-24T17:54:59Z",
+  "companies_attempted": 110,
+  "companies_succeeded": 110,
   "companies_failed": 0,
   "failures": [],
   "matches": [
@@ -423,7 +423,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://zenity.io/careers/hybrid-tel-aviv-jaffa-tel-aviv-district-israel/devops-tech-lead/D6.862?pms_record_id=CAND_20260513_080938_ccb2875c&pms_email=kedarjayantkokil.work%40gmail.com&pms_log_id=d7ccba11-9f3b-46d3-b61b-37862b64c8db",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "job_id": "ebf43581dab3d34d708314b823908f2d71efc56523ca46cb6e367d692d94dfc2",
@@ -466,14 +466,14 @@
       "scan_status": "still_open"
     },
     {
-      "job_id": "05d04ec62f62751ddad4e3f3b93594788b9178bad8ed538b3620165eba434243",
+      "job_id": "e3df7e5382780d5d3fed4dead9f7e8f84a690b3292445c7aff570595bda9d123",
       "company": "Coralogix",
       "title": "Technical Support Engineer",
       "location": "Ramat Gan, Israel",
       "role_category": "technical_support",
       "label_en": "Technical Support Engineer",
-      "source_url": "https://coralogix.com/careers/co/ramat-gan-israel/C1.D6F/technical-support-engineer/all/?t=1785923275988",
-      "scan_status": "new"
+      "source_url": "https://coralogix.com/careers/co/ramat-gan-israel/C1.D6F/technical-support-engineer/all/",
+      "scan_status": "still_open"
     },
     {
       "job_id": "e2c32ef970b1b3a6dfbaf627c19910838a3cd3c7a88290219c7bb90247d74aaa",
@@ -656,14 +656,14 @@
       "scan_status": "still_open"
     },
     {
-      "job_id": "207a41be300d079e22240f95f24865fc17823e1748480716df731c7331e79093",
+      "job_id": "e93f32135a6c8c643a4e11dc82d482a622a5fb5c8a27ef1d75809a7f6c00be37",
       "company": "KMS Lighthouse",
       "title": "DevOps Team Leader",
       "location": "Petah Tikva, Israel",
       "role_category": "devops",
       "label_en": "DevOps Engineer",
-      "source_url": "https://kmslh.com/careers/co/petah-tikva-israel/6E.E69/devops-team-lead/all/",
-      "scan_status": "still_open"
+      "source_url": "https://kmslh.com/careers/co/petah-tikva-israel/6E.E69/devops-team-leader/all/",
+      "scan_status": "new"
     },
     {
       "job_id": "98d13a3c53ab941b83baf92263bbbfb629bcbffb2afc043144fda2d978e2c9cb",
@@ -723,7 +723,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://job-boards.greenhouse.io/via/jobs/8356511002",
-      "scan_status": "new"
+      "scan_status": "still_open"
     },
     {
       "job_id": "bf3678489a0c15155db51abc77a5a1313963de9af02b267473944442d416350c",
@@ -733,7 +733,7 @@
       "role_category": "devops",
       "label_en": "DevOps Engineer",
       "source_url": "https://job-boards.greenhouse.io/via/jobs/8171972002",
-      "scan_status": "new"
+      "scan_status": "still_open"
     }
   ]
 }

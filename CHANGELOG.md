@@ -1454,3 +1454,19 @@
   session). Live python run.py smoke test: 109/109 companies
   succeeded, 0 failed, 73 total matches (4 new), including the new Via
   Transportation Tel Aviv DevOps matches confirmed live.
+
+## 2026-08-24 — Session 41: commit Session 40 + add Istra Research
+- Committed and pushed Session 40's pending work (0ab45a3) after
+  confirming the real diff matched its own handoff exactly.
+- Added Istra Research to companies.json (Comeet, slug istra, uid
+  59.009) per Elad's explicit decision. Documented plainly in the
+  entry itself: every job's location field literally contains the
+  company's own name instead of a real city, so RoleLocationFilter
+  will structurally produce 0 matches for this company until Istra
+  Research's own Comeet config changes - added anyway on the same
+  standard applied to every other real, confirmed company.
+  companies.json: 109 -> 110.
+- Test suite: 162/162 passing, unchanged. Live python run.py smoke
+  test: 110/110 companies succeeded, 0 failed, 73 total matches (1
+  new) - Istra Research attempted successfully with 0 matches, exactly
+  as expected.
