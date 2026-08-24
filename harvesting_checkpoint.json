@@ -13,8 +13,8 @@
         "ALMtoolbox": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Petah Tikva ALM/DevOps software company (formerly GoMidjets). No ATS signal found via PlaywrightProbe at almtoolbox.com/careers/.",
-          "checked_at": "2026-08-24T13:05:00Z"
+          "reason": "Session 40: almtoolbox.com confirmed as the real domain. No ATS signal found at almtoolbox.com/careers/ via PlaywrightProbe. Real, active Petah Tikva ALM/DevOps company (16 employees per research) - small enough that structured postings may simply not exist.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Amdocs": {
           "status": "unresolved",
@@ -43,14 +43,14 @@
         "Babylon (software)": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Israeli translation-software company (Or Yehuda) — withdrew a planned 2013 IPO and reportedly sold parts of its translation business at some point, current scope unclear. No recognized ATS signal found at guessed careers URLs; needs the real careers URL confirmed in a follow-up session.",
-          "checked_at": "2026-08-24T12:35:00Z"
+          "reason": "Session 40: babylon-software.com confirmed as the real domain via research, but no distinct careers URL was found for it and no ATS signal at a guessed /careers path. Real, active-but-diminished (withdrew a 2013 IPO, sold parts of its business) Or Yehuda translation company.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Better Online Solutions": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Confirmed real, active NASDAQ-listed Israeli RFID/supply-chain company (BOSC). No ATS signal found via PlaywrightProbe at boscorporate.com/careers or bos-b2b.com/careers. Needs the real careers URL confirmed in a follow-up session.",
-          "checked_at": "2026-08-24T12:20:00Z"
+          "reason": "Session 40: tried boscom.com/careers/ (a real BOS-affiliated domain surfaced via research) in addition to Session 39's boscorporate.com/bos-b2b.com guesses. No ATS signal found at any of them.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Beyond Verbal": {
           "status": "unscannable",
@@ -91,8 +91,8 @@
         "Ceedo": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Israeli endpoint-virtualization/security company. No ATS signal found via PlaywrightProbe at ceedo.com/careers/.",
-          "checked_at": "2026-08-24T12:50:00Z"
+          "reason": "Session 40: ceedo.com confirmed as the real domain. No ATS signal found at ceedo.com/careers/ via PlaywrightProbe, same as Session 39. Genuine real-URL-checked negative.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Cellebrite": {
           "status": "unresolved",
@@ -229,8 +229,8 @@
         "Elron Ventures": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, longstanding Israeli technology holding/investment company (similar structural role to Formula Systems, already unscannable in this file for the same reason) — likely a pure holding company with no operating job postings of its own, but not independently confirmed live this session (no ATS signal at guessed URL, no 404 confirmed either).",
-          "checked_at": "2026-08-24T12:35:00Z"
+          "reason": "Session 40: elronventures.com confirmed as the real domain. No ATS signal found at elronventures.com/careers via PlaywrightProbe. Consistent with it being a pure investment holding company (like Formula Systems, already unscannable in this file) with no operating job postings of its own.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "EPaper Ltd": {
           "status": "unresolved",
@@ -415,8 +415,8 @@
         "Jungo Connectivity": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active, Tel Aviv Stock Exchange-listed (JNGO) Netanya-based automotive software company (driver monitoring, spun off from Cisco). No ATS signal found via PlaywrightProbe at jungo.com/careers.",
-          "checked_at": "2026-08-24T12:35:00Z"
+          "reason": "Session 40: jungo.com confirmed as the real domain (jungo.com/about-us/ is a real live page). No ATS signal found at jungo.com/careers/ via PlaywrightProbe. Real, active, TASE-listed (JNGO) company.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "K2view": {
           "status": "added",
@@ -439,8 +439,8 @@
         "Larch Networks": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Rosh HaAyin networking-software company (SONiC switching, founded 2009). No ATS signal found via PlaywrightProbe at larch-networks.com/careers/.",
-          "checked_at": "2026-08-24T13:05:00Z"
+          "reason": "Session 40: larch-networks.com confirmed as the real domain (Facebook/LinkedIn presence also confirmed real but not checkable via this project's tooling). No ATS signal found at larch-networks.com/careers/. Real, active Rosh HaAyin switching-software company (63 employees).",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Legato (company)": {
           "status": "unscannable",
@@ -475,8 +475,8 @@
         "Mellel": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Confirmed real, tiny (indie) Mac word-processor company, still actively maintained. No ATS signal found at mellel.com/careers via PlaywrightProbe; very unlikely to have structured job postings at this scale. Low priority.",
-          "checked_at": "2026-08-24T12:20:00Z"
+          "reason": "Session 40: mellel.com is confirmed as the real domain (not a guess). No ATS signal found at mellel.com/careers/ via PlaywrightProbe. Tiny indie Mac software shop - plausible this company simply has no structured job postings at all, ever.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Mercury Interactive": {
           "status": "unscannable",
@@ -595,8 +595,8 @@
         "Panorama Software": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Confirmed real, active Tel Aviv BI company via web research (careers page exists, actively hiring), but PlaywrightProbe found no recognized ATS signal at panorama.com/careers or usepanorama.com/careers; also a name-collision risk (multiple unrelated \"Panorama\" software companies surfaced in search). Needs a follow-up session with a more targeted URL/manual check before adding or excluding.",
-          "checked_at": "2026-08-24T12:20:00Z"
+          "reason": "Session 40: found and checked BOTH real careers URLs (panorama.com/careers/, panorama.com/new_careers/) plus a second \"Panorama\" domain (pansw.com/careers/, likely an unrelated/rebranded entity - not disambiguated). No recognized ATS signal at any of them via PlaywrightProbe. Real, active Tel Aviv BI company confirmed via research; genuinely no scannable signal found this session.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Papaya Global": {
           "status": "unresolved",
@@ -643,8 +643,8 @@
         "Raz-Lee": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Israeli/US IBM Power-i security company (Herzliya) with a confirmed real careers page (razlee.com/careers-at-raz-lee/) per web research, but PlaywrightProbe found no recognized ATS signal there. Needs a manual look at the actual page — likely a non-ATS/custom contact-only careers page.",
-          "checked_at": "2026-08-24T12:35:00Z"
+          "reason": "Session 40: razlee.com/careers-at-raz-lee/ is the REAL, confirmed careers URL (not a guess - found directly via research both this session and Session 39). No recognized ATS signal there via PlaywrightProbe. This is now a genuine, real-URL-checked negative.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Red Bend Software": {
           "status": "unscannable",
@@ -829,8 +829,8 @@
         "Umoove": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active but very small (5 employees) Jerusalem eye-tracking company. No ATS signal found via PlaywrightProbe at umoove.me/careers.",
-          "checked_at": "2026-08-24T12:50:00Z"
+          "reason": "Session 40: umoove.me confirmed as the real domain (www.umoove.me is the live homepage). No ATS signal found at umoove.me/careers via PlaywrightProbe. Very small (5 employees) - plausible no structured postings exist.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Upright Technologies": {
           "status": "unscannable",
@@ -847,8 +847,8 @@
         "VaultML": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Israeli AI company (\"Vault AI\", predicts box-office/investment performance from screenplays, $9.4M raised). No ATS signal found via PlaywrightProbe at a guessed URL; needs the real careers URL confirmed.",
-          "checked_at": "2026-08-24T13:05:00Z"
+          "reason": "Session 40: could not confirm a specific real domain for \"Vault AI\" (the screenplay-analysis company) via web research - search results describe the company but never surface its own website URL. Still genuinely unresolved, not a checked negative.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Veriti": {
           "status": "unscannable",
@@ -901,14 +901,14 @@
         "YCD Multimedia": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active digital-signage company (acquired C-nario in 2011). No ATS signal found via PlaywrightProbe at ycdmultimedia.com/careers.",
-          "checked_at": "2026-08-24T12:35:00Z"
+          "reason": "Session 40: ycdmultimedia.com is the real, confirmed domain (used both Session 39 and this session). No ATS signal found at ycdmultimedia.com/careers/. Genuine real-URL-checked negative.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Zemingo Group": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Herzliya Pituah mobile-services company (\"largest mobile service house in Israel\", 58 employees). No ATS signal found via PlaywrightProbe at zemingo.com/en/careers.",
-          "checked_at": "2026-08-24T13:05:00Z"
+          "reason": "Session 40: zemingo.com confirmed as the real domain. No ATS signal found at zemingo.com/en/careers via PlaywrightProbe, same as Session 39. Genuine real-URL-checked negative for a real, active 58-employee Herzliya mobile-services company.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Zerto": {
           "status": "unscannable",
@@ -1044,8 +1044,8 @@
         "Istra Research": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active quantitative trading firm (Lod, Israel, 67 employees, founded 2008). No ATS signal found via PlaywrightProbe at istraresearch.com/careers/.",
-          "checked_at": "2026-08-24T13:20:00Z"
+          "reason": "Session 40: found a REAL, working Comeet integration (istra/59.009, discovered via a comeet.com link surfaced in web research for its real domain istrallc.com) with 5 real current job openings (Algorithm Developer, Database Reliability Engineer, Quantitative Data Scientist, Senior VLSI Design Engineer, Software Engineer). However: every single job's location field literally reads \"Istra Research\" (the company's own name) instead of a real city - Comeet's location[\"name\"] field, which this project's RoleLocationFilter depends on, contains no usable Israel-location signal at all, despite Istra Research being a confirmed real, active, Israel-based (Lod) company. This is a genuine, novel edge case (a real, functioning ATS integration whose own location metadata is unusable) rather than a simple unresolved-for-lack-of-signal - flagged explicitly for Elad's judgment on whether to add anyway given independently confirmed real-world HQ, since automated location filtering alone cannot currently produce a match for this company no matter how many real Israel-based jobs it posts.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "HARMAN International": {
           "status": "unresolved",
@@ -1092,8 +1092,8 @@
         "Paytag": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Israeli retail-tech startup (founded 2022, 8 employees, checkout/self-checkout tech). No ATS signal found via PlaywrightProbe at a guessed URL — small company, may not have structured job postings yet.",
-          "checked_at": "2026-08-24T13:20:00Z"
+          "reason": "Session 40: found 2 real candidate domains, paytagrfid.com and paytagapp.com (paytag.co, guessed last session, was wrong). No ATS signal found at paytagrfid.com/careers via PlaywrightProbe. Small (8-employee) company - plausible no structured postings exist yet.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "abra": {
           "status": "unresolved",
@@ -1104,8 +1104,8 @@
         "Bagira": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active, fast-growing Israeli defense-simulator company (IPO'd Tel Aviv Stock Exchange 2026 at ~$1.1B valuation, 410 employees, hiring). No ATS signal found via PlaywrightProbe at bagira.co.il/careers. High-value target for a follow-up session with the real careers URL.",
-          "checked_at": "2026-08-24T13:20:00Z"
+          "reason": "Session 40: found the REAL domain, bagirasys.com (bagira.co.il, guessed last session, is NOT the real one). No ATS signal found at bagirasys.com/careers/ via PlaywrightProbe. Real, fast-growing (80 training facilities, IPO-track) defense-simulator company - high-value target, worth a manual look at the real site in a future session given the company's scale.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Airobotics": {
           "status": "added",
@@ -1116,8 +1116,8 @@
         "SpotNet": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Israeli ISP/communications-security company. No ATS signal found via PlaywrightProbe at a guessed URL.",
-          "checked_at": "2026-08-24T13:20:00Z"
+          "reason": "Session 40: found the REAL careers page, spotnet.co.il/careers (not a guess) - a genuinely custom-built, non-ATS page with real, structured job listings (Network Engineer, IT Team Leader, Sales Specialist, IT Support Specialist, Senior Network & Security Engineer), each with its own sub-URL (spotnet.co.il/careers/{slug}). No Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS signal, because there genuinely is none - this is a bespoke small-business site. A good CustomAdapter css_selectors candidate (same pattern as ForSight Robotics/AIR/Quantum Art, Session 36) for a future dedicated onboarding session, not a dead end.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Tehiru Aerial Systems": {
           "status": "unresolved",
@@ -1212,8 +1212,8 @@
         "Log-On Software": {
           "status": "unscannable",
           "resolved_to": null,
-          "reason": "Real, active, large (800-900 employee) Ramat Gan IT services/recruitment company (est. 1983). robots.txt at log-on.com disallows fetching /careers/.",
-          "checked_at": "2026-08-24T13:20:00Z"
+          "reason": "Real, active, large (800-900 employee) Ramat Gan IT services/recruitment company (est. 1983). robots.txt at log-on.com disallows fetching /careers/. Session 40 recheck: still blocked, unchanged from Session 39.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Utimaco": {
           "status": "unresolved",
@@ -1230,8 +1230,8 @@
         "StoreNext": {
           "status": "unresolved",
           "resolved_to": null,
-          "reason": "Real, active Petah Tikva B2B e-commerce company (founded 2000) — its planned acquisition by Fortissimo Capital was blocked by the Israeli Competition Authority, so it remains independent. No ATS signal found via PlaywrightProbe at storenext.co.il/en/careers/.",
-          "checked_at": "2026-08-24T13:20:00Z"
+          "reason": "Session 40: storenext.co.il reconfirmed as the real domain. No ATS signal found at storenext.co.il/en/careers/ via PlaywrightProbe, same as Session 39. New fact this session: StoreNext was acquired by Fortissimo Capital (completed June 15 2022, $51.9M) after an earlier Competition Authority block was resolved - now a Fortissimo portfolio company, which may explain why no distinct hiring presence is visible.",
+          "checked_at": "2026-08-24T14:00:00Z"
         },
         "Cloudinary": {
           "status": "added",
@@ -1317,52 +1317,52 @@
       "description": "candidates_hebrew_media_round2.md — recruitx.co.il/duns100.co.il/Geektime research (Session 37/38 attachment), genuinely almost entirely untouched.",
       "candidates": {
         "Redis Labs": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://redis.io/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Vdoo": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by JFrog (July 2021, ~$300M), absorbed into JFrog's DevSecOps platform. No distinct Vdoo careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Duda": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.duda.co/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Syte": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.syte.ai/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Panaya": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.panaya.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Logz.io": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Kaltura": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://corp.kaltura.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "OurCrowd": {
-          "status": "not_yet_checked",
-          "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "status": "added",
+          "resolved_to": "OurCrowd",
+          "reason": "Real Comeet company (slug ourcrowd, uid D3.00A), 5 real jobs including genuine Jerusalem/Tel Aviv locations.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Lightricks": {
           "status": "added",
@@ -1371,22 +1371,22 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "Oribi": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://oribi.io/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "OwnBackup": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://own.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "BigID": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://bigid.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Atera": {
           "status": "added",
@@ -1395,22 +1395,22 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "Moovit": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Intel (May 2020, ~$900M); continues operating as a subsidiary alongside Mobileye with real users, but no distinct Moovit-branded careers presence found - hiring likely routed through Intel/Mobileye's own systems. No ATS signal found at moovit.com/careers/ via PlaywrightProbe.",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "Guardicore": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Akamai (Oct 2021, $610.4M), absorbed into Akamai's Zero Trust portfolio. No distinct Guardicore careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Argus Cyber Security": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Continental AG (2017, $430M), rebranded to PlaxidityX (Aug 2024). No distinct \"Argus Cyber Security\" careers presence remains under that name.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "XM Cyber": {
           "status": "added",
@@ -1419,10 +1419,10 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "Tufin": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /careers - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Fireblocks": {
           "status": "added",
@@ -1431,22 +1431,22 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "Siemplify": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Google (Jan 2022, ~$500M), absorbed into Google Cloud Chronicle, rebranded Google Security Operations (April 2024). No distinct Siemplify careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "IntSights": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Rapid7 (July 2021, $335M), fully integrated into Rapid7's Insight Platform. No distinct IntSights careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Reblaze": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.reblaze.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "SafeBreach": {
           "status": "added",
@@ -1455,16 +1455,16 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "Checkmarx": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://checkmarx.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Hub Security": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://hubsecurity.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Axonius": {
           "status": "added",
@@ -1473,100 +1473,100 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "CYE": {
-          "status": "not_yet_checked",
-          "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "status": "added",
+          "resolved_to": "CYE",
+          "reason": "Real Lever company (slug CYE), 12 real jobs including a genuine Herzliya, Israel location.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Silverfort": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.silverfort.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Cyberbit": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.cyberbit.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Indeni": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Same real company as \"Indeni (company)\" already unscannable in companies_unscannable.json (acquired by BlueCat Networks, July 2023).",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "Perception Point": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://perception-point.io/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Otorio": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.otorio.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Intezer": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://intezer.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Ermetic": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Tenable (Oct 2023, ~$265M), integrated into Tenable's cloud security offerings. No distinct Ermetic careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "SecuredTouch": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Ping Identity (June 2021, $39.9M), now part of the PingOne Cloud Platform. No distinct SecuredTouch careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Polyrize": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Varonis Systems (Oct 2020) - not Zscaler. No distinct Polyrize careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Minerva Labs": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.minerva-labs.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Lightspin": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Cisco Systems (closed Q4 FY2023, ~$200-250M). No distinct Lightspin careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Avanan": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Check Point Software Technologies (Sept 2021, ~$227M), sold as Check Point Harmony Email and Collaboration. Check Point itself is already a confirmed robots.txt-blocked domain in this project (Session 38). No distinct Avanan presence to scan.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Sygnia": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.sygnia.co/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Rubrik": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /company/careers - confirmed non-transient via immediate re-check. Also: no confirmed Israel R&D presence found via research (US-founded, Palo Alto HQ) - the robots.txt block makes this moot regardless.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Semperis": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.semperis.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Orca Security": {
           "status": "added",
@@ -1575,16 +1575,16 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "Rapyd": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.rapyd.net/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "eToro": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /company/careers/ - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Melio": {
           "status": "added",
@@ -1593,40 +1593,40 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "Tipalti": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://tipalti.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "BlueVine": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.bluevine.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Unit": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.unit.co/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Fundbox": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://fundbox.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Curv": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by PayPal (2021), absorbed into PayPal's blockchain/digital-assets unit. No distinct Curv careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Colu": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /careers - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Pagaya": {
           "status": "added",
@@ -1635,532 +1635,532 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "BondIT": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Real, active Israeli fixed-income fintech company (raised $14M, Liquidnet integration 2023). No ATS signal found at a guessed bondit.com/careers URL via PlaywrightProbe - real domain/URL not independently confirmed this session.",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "Vesttoo": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Collapsed in a ~$4 billion fraud scandal involving fake letters of credit; declared bankruptcy Sept 2023; still in active litigation/criminal proceedings as of late 2024. Not a real operating employer.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Gloat": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://gloat.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Salt Edge": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Real fintech company, but HQ confirmed in Toronto/Ottawa, Canada, with Moldova + a smaller Israel office mentioned in passing - not confidently an Israel-founded/headquartered company. Not checked live given the weak connection; needs disambiguation before further work.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Thetaray": {
-          "status": "not_yet_checked",
-          "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "status": "added",
+          "resolved_to": "ThetaRay",
+          "reason": "Same real company as ThetaRay, already added to companies.json in Session 39 (Comeet, slug thetaray, uid 72.00F).",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "Rewire": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Remitly. Careers page redirects to careers.remitly.com, hosted on Workday (remitly.wd5.myworkdayjobs.com) - unsupported platform, and no distinct Rewire presence remains regardless.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Personetics": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://personetics.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Finout": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.finout.io/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Paygilant": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.paygilant.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "ChargeAfter": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://chargeafter.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Tabit": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.tabit.cloud/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Nayax": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Mesh Payments": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.meshpayments.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Breez": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://breez.technology/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Pecan": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Trullion": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://trullion.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "EverC": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.everc.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Selina": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.selina.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Papaya Global": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt-blocked; Session 38 finding re-confirmed still blocked this session via PlaywrightProbe.",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "Remitly Israel": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Same real entity as Rewire (already unscannable) - Remitly's careers route through its own Workday instance (remitly.wd5.myworkdayjobs.com), unsupported platform.",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "Zebra Medical Vision": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Nano-X Imaging (Nov 2021, ~$110-200M), rebranded Nanox.AI. No distinct Zebra Medical Vision careers presence remains - see Nano-X Vision, already in companies.json.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Nano-X": {
-          "status": "not_yet_checked",
-          "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "status": "added",
+          "resolved_to": "Nano-X Vision",
+          "reason": "Same real company as Nano-X Vision, already added to companies.json in Session 37 (Comeet).",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "TytoCare": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.tytocare.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Healthy.io": {
-          "status": "not_yet_checked",
-          "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "status": "added",
+          "resolved_to": "Healthy.io",
+          "reason": "Real Comeet company (slug healthy, uid B4.004), 1 real job with genuine Israel signal (Senior Developer | Tel Aviv).",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Itamar Medical": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.itamar-medical.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Insightec": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.insightec.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "OrCam": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.orcam.com/en/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Clew Medical": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Real, active AI-based ICU predictive-analytics company (FDA-cleared CLEWICU). No ATS signal found at clewmed.com/careers/ via PlaywrightProbe.",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "Sweetch": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.sweetch.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Nym Health": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.nym.health/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "BrainQ": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.brainq.co/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Scopio Labs": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://scopiolabs.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Nucleai": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.nucleai.io/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "EchoCare": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://echocare-tech.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Pulsenmore": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://pulsenmore.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Biobeat": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.bio-beat.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Binah.ai": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.binah.ai/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "DayTwo": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.daytwo.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Medisafe": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.medisafeapp.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Lumen": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Real, active Ramat HaSharon, Israel metabolism-tracking company (312 employees, Series B) - disambiguated from Lumen Technologies (unrelated US telecom giant). Real, confirmed careers URL (lumen.me/careers, not a guess) checked via PlaywrightProbe - no recognized ATS signal found there.",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "EarlySense": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://earlysense.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "MobileODT": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.mobileodt.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Telesofia Medical": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://telesofia.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Kenzen": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Real wearable heat-stress-monitoring company, but HQ confirmed in Kansas City, MO / New York, US. No Israel connection found via research - likely a source-list miscategorization.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Oxitone": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.oxitone.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Rapid Medical": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /careers - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "UltraSight": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://ultrasight.ai/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "MediWound": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://mediwound.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "MeMed": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.me-med.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "NeuroDerm": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Mitsubishi Tanabe Pharma (completed Oct 2017, $1.1B). No distinct NeuroDerm careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Novotalk": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "CureMetrix": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Real AI-mammography company, but HQ confirmed in La Jolla, California, US. No Israel connection found via research - likely a source-list miscategorization.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Nexense": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.nexense.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Pluri Biotech": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.pluri-biotech.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "AnyVision": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Rebranded to Oosto (Oct 2021), then Oosto itself was sold to Metropolis (announced Jan 2025, ~$125M). No distinct \"AnyVision\" entity or careers presence has existed for years.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Run:AI": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by NVIDIA (completed Dec 2024, $700-800M). Its software is being open-sourced as part of the integration; no distinct Run:AI careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "SparkBeyond": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.sparkbeyond.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Via": {
-          "status": "not_yet_checked",
-          "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "status": "added",
+          "resolved_to": "Via Transportation",
+          "reason": "Real Greenhouse company (slug via), 153 jobs incl. genuine Tel Aviv postings (Backend Engineer, DevSecOps Engineer).",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "Cortica": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://cortica.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "BeyondMinds": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.beyondminds.ai/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Hailo": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://hailo.ai/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Dataloop": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://dataloop.ai/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Cynet": {
-          "status": "not_yet_checked",
-          "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "status": "added",
+          "resolved_to": "Cynet",
+          "reason": "Same real company as Cynet, already added to companies.json in Session 39 (Comeet, slug cynet, uid 33.00D).",
+          "checked_at": "2026-08-24T15:30:00Z"
         },
         "Explorium": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Prospera": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Valmont Industries (2021, $300M). No distinct Prospera careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "H2O.ai": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Real ML/AI company, but no Israel R&D office or connection found via research. Likely a source-list miscategorization.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Deci": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by NVIDIA (May 2024, ~$300M), dissolved as an independent corporate entity. No distinct Deci careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Visualead": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.visualead.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Seebo": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.seebo.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Intelligo": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://intelligogroup.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Aporia": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.aporia.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "AI21 Labs": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.ai21.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "WekaIO": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.weka.io/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Nexar": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.getnexar.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Arbe Robotics": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://arberobotics.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "D-ID": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.d-id.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "vHive": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.vhive.ai/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Voiceitt": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.voiceitt.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Tabnine": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.tabnine.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Anodot": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.anodot.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Gong.io": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.gong.io/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Temi": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.robotemi.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Intuition Robotics": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.intuitionrobotics.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Roboteam": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://robo-team.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Percepto": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://percepto.co/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Bright Machines": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Real Israeli R&D center (Yakum) confirmed via research, founded by Israeli CEO Lior Susan - but the center was closed (announced via Calcalist) after ~6 years. No current Israel presence to scan.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "ReWalk Robotics": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://rewalk.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Autofleet": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.autofleet.io/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Airobotics": {
           "status": "added",
@@ -2169,172 +2169,172 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "UVeye": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://uveye.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Tevel": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://tevel-tech.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Diagnostic Robotics": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.diagnosticrobotics.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "TechSee": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Workiz": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.workiz.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Guardian Optical Technologies": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://guardianoptical.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Tactile Mobility": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://tactilemobility.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Autotalks": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.auto-talks.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Innoviz Technologies": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://innoviz.tech/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Otonomo": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Acquired by Urgent.ly (Feb 2023). No distinct Otonomo careers presence remains.",
+          "checked_at": "2026-08-24T14:30:00Z"
         },
         "Cognata": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.cognata.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Upstream Security": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://upstream.auto/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Foretellix": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://foretellix.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "SolarEdge": {
-          "status": "not_yet_checked",
+          "status": "unscannable",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "robots.txt disallows fetching /us/careers - confirmed non-transient via immediate re-check.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Ormat Technologies": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.ormat.com/en/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "StoreDot": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.store-dot.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Electreon": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://electreon.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "GenCell": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.gencellenergy.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Eco Wave Power": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.ecowavepower.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "H2Pro": {
-          "status": "not_yet_checked",
-          "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "status": "added",
+          "resolved_to": "H2Pro",
+          "reason": "Real Comeet company (slug h2pro, uid A7.001) confirmed via PlaywrightProbe, 0 current postings (same shape as GigaSpaces/XM Cyber precedent).",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "WSC Sports": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://wsc-sports.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Natural Intelligence": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.naturalintelligence.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "LSports": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://lsports.eu/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Zynga": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Real, confirmed Israel R&D presence (\"mavens by Zynga\", Tel Aviv office completed 2024, Zynga Israel Ltd. entity exists) - but no ATS signal found via PlaywrightProbe at zynga.com/jobs/careers/, likely because Zynga (a large public company, part of Take-Two Interactive) uses an internal/enterprise ATS this project does not recognize.",
+          "checked_at": "2026-08-24T15:00:00Z"
         },
         "Optibus": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.optibus.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Glassbox": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.glassbox.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Digital Turbine": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.digitalturbine.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Priority Software": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://www.priority-software.com/careers/) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         },
         "Innovid": {
           "status": "added",
@@ -2343,10 +2343,10 @@
           "checked_at": "2026-08-24T10:43:30Z"
         },
         "Arpeely": {
-          "status": "not_yet_checked",
+          "status": "unresolved",
           "resolved_to": null,
-          "reason": null,
-          "checked_at": null
+          "reason": "Session 40: checked a real best-guess domain (https://arpeely.com/careers) via PlaywrightProbe. No recognized ATS signal (Greenhouse/Lever/Comeet/Workday/SmartRecruiters/iCIMS) found. Real, active company per general knowledge, but this session did not independently confirm the exact real careers URL via web research for every name at this volume - a guessed-but-plausible domain, not a confirmed-real one the way the 18-company Part-1 follow-ups were. Worth a dedicated web-research pass in a future session before concluding genuinely unscannable.",
+          "checked_at": "2026-08-24T15:15:00Z"
         }
       }
     }

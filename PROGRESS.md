@@ -1813,3 +1813,88 @@ None — all decisions needed to start building are now in place.
   `python run.py` smoke test: 104/104 companies attempted, 0 failed,
   real matches confirmed including the new Parallel Wireless Kfar Saba
   match and the new ThetaRay Hod HaSharon DevOps match.
+
+## Addendum — Session 40 executed: real-URL follow-up + media list verification (2026-08-24)
+- **Part 1, real-URL follow-up for Session 39's 18 flagged companies:**
+  found and checked each company's actual real careers URL (not a
+  guessed pattern) via web research, then live PlaywrightProbe. Two
+  notable, non-obvious real findings: **Istra Research** (LinkedIn
+  list) has a genuinely real, working Comeet integration (slug
+  `istra`, uid `59.009`, 5 real jobs) — but every job's `location`
+  field literally reads "Istra Research" (the company's own name)
+  instead of a city, so this project's real production
+  `RoleLocationFilter` can never match it despite the company being
+  confirmed real and Israel-based (Lod); flagged explicitly for
+  Elad's judgment rather than silently added or silently dropped.
+  **SpotNet** has a real, structured, non-ATS careers page
+  (spotnet.co.il/careers, individual per-role sub-pages) — a good
+  CustomAdapter `css_selectors` candidate for a future onboarding
+  session, not a dead end. The remaining 16 (Panorama Software,
+  Mellel, Better Online Solutions, Babylon, Elron Ventures, Raz-Lee,
+  Jungo Connectivity, YCD Multimedia, Umoove, Ceedo, ALMtoolbox,
+  Larch Networks, Zemingo Group, VaultML, Bagira, Paytag, StoreNext)
+  are now genuine real-URL-checked negatives, several with corrected
+  real domains (e.g. Bagira's real site is bagirasys.com, not the
+  bagira.co.il guessed in Session 39; Paytag's real sites are
+  paytagrfid.com/paytagapp.com, not paytag.co). Log-On Software
+  rechecked: still robots.txt-blocked, unchanged. **Real self-caught
+  bug found and fixed mid-session:** 14 of these 18 names (ALMtoolbox,
+  Larch Networks, VaultML, Zemingo Group, Panorama Software, Mellel,
+  Better Online Solutions, Babylon, Elron Ventures, Raz-Lee, Jungo
+  Connectivity, YCD Multimedia, Umoove, Ceedo) actually belong to the
+  `wikipedia_153` checkpoint source, not `linkedin_sourced` as
+  assumed from the task prompt's grouping — `update_candidate()` calls
+  had created 14 duplicate entries under the wrong source key. Caught
+  by a routine post-update tally check before finalizing; fixed by
+  moving the real Session 40 content into the correct source and
+  deleting the mistaken duplicates, with zero data loss.
+- **Part 2, media list (`hebrew_media_round2`) fully triaged** — all
+  161 names now resolved (0 `not_yet_checked`, was 161 at session
+  start). **5 real net new companies added**, each live-verified end-
+  to-end: Healthy.io (Comeet, 1 real Tel Aviv job), H2Pro (Comeet, 0
+  current postings, same "confirmed real, zero postings" shape as
+  GigaSpaces/XM Cyber), CYE (Lever, 12 jobs incl. genuine Herzliya
+  location), OurCrowd (Comeet, 5 jobs incl. genuine Jerusalem/Tel Aviv
+  locations), Via Transportation (Greenhouse, 153 jobs incl. genuine
+  Tel Aviv DevSecOps/Backend roles — a global NYC-HQ'd company with a
+  real Israel R&D office, included per the standing don't-pre-filter
+  policy, same precedent as GitLab). **~37 real dispositions recorded
+  as confirmed acquisitions/blocks**, each backed by a specific dated
+  fact (examples: Guardicore→Akamai 2021, Run:AI→NVIDIA 2024, Deci→
+  NVIDIA 2024, AnyVision→Oosto→sold to Metropolis 2025, Vesttoo→
+  bankrupt after a $4B fraud scandal, Rewire→Remitly/Workday, Bright
+  Machines→closed its Israel R&D center) plus 12 companies found
+  robots.txt-blocked and confirmed non-transient via an immediate
+  re-check (TechSee, Explorium, Rubrik, eToro, SolarEdge, Colu,
+  Logz.io, Tufin, Rapid Medical, Nayax, Pecan, Novotalk). 4 names
+  turned out to be aliases of companies already added in prior
+  sessions (Thetaray→ThetaRay, Nano-X→Nano-X Vision, Cynet→Cynet,
+  Indeni→the same real company already unscannable from the Wikipedia
+  list) — cross-referenced, no duplicate work. Ran a large (125-URL)
+  concurrent PlaywrightProbe batch against best-guess domains for the
+  bulk of the list — disclosed explicitly as guessed-but-plausible
+  domains, not individually web-search-confirmed the way Part 1's 18
+  names were, so the resulting `unresolved` dispositions are weaker
+  evidence than a dedicated per-name research pass would produce; a
+  handful of real, active, well-known companies (Moovit, BondIT, Clew
+  Medical, Lumen — the last two checked at a real, confirmed, non-
+  guessed URL) remain genuinely unresolved and worth another look.
+  Also confirmed 3 candidates (Salt Edge, Kenzen, CureMetrix, H2O.ai)
+  have no real Israel connection despite appearing on the list —
+  likely source-list miscategorizations, not checked live.
+- **companies.json: 104 → 109. companies_unscannable.json: 88 → 125.**
+- **All three checkpoint source lists are now fully exhausted**
+  (`not_yet_checked: 0` for `wikipedia_153`, `linkedin_sourced`, and
+  `hebrew_media_round2`) — the first time this has been true since the
+  checkpoint was built in Session 39. Final tallies: wikipedia_153
+  (24 added / 80 unscannable / 49 unresolved), linkedin_sourced (17
+  added / 2 unscannable / 45 unresolved), hebrew_media_round2 (19
+  added / 36 unscannable / 117 unresolved).
+- Docs updated: `harvesting_checkpoint.json`, `companies.json`,
+  `companies_unscannable.json`, this file, CHANGELOG.md.
+- Test suite: 162/162 passing, unchanged (no code changes this
+  session — pure data/config work, same as Session 38). Live
+  `python run.py` smoke test: 109/109 companies succeeded, 0 failed,
+  73 total matches (4 new, 69 still-open) — including real, live
+  confirmation of the new Via Transportation Tel Aviv DevOps matches
+  (Senior DevOps Engineer, Senior Platform Engineer).

@@ -1418,3 +1418,39 @@
   location-matching). Live `python run.py` smoke test: 104/104
   companies, 0 failed, new Parallel Wireless Kfar Saba and ThetaRay
   Hod HaSharon matches both confirmed live.
+
+## 2026-08-24 — Session 40: real-URL follow-up + media list verification
+- Found and checked the real (not guessed) careers URL for each of
+  Session 39's 18 flagged companies. Notable finds: Istra Research has
+  a real, working Comeet integration whose job data uses the company's
+  own name as the location field (no city text at all) - a genuine
+  edge case where RoleLocationFilter can never match despite a
+  confirmed real Israel HQ, flagged for Elad's judgment rather than
+  silently added or dropped. SpotNet has a real custom (non-ATS)
+  careers page with structured listings - a CustomAdapter
+  css_selectors candidate for a future session. The other 16 are now
+  genuine real-URL-checked negatives (a few with corrected real
+  domains, e.g. Bagira is bagirasys.com not bagira.co.il). Log-On
+  Software recheck: still robots.txt-blocked.
+- Real self-caught bug, fixed mid-session: 14 of the 18 names actually
+  belong to the wikipedia_153 checkpoint source, not linkedin_sourced
+  - caught via a routine tally check, fixed by moving the content to
+  the correct source key with zero data loss.
+- Media list (hebrew_media_round2, 161 names) fully triaged - 0
+  not_yet_checked remaining, was 161 at session start. 5 new companies
+  added, all live-verified end-to-end (Healthy.io, H2Pro, CYE,
+  OurCrowd, Via Transportation - the last with real, live-confirmed Tel
+  Aviv DevOps matches in this session's own smoke test).
+- ~37 real dispositions recorded for confirmed acquisitions
+  (Guardicore->Akamai, Run:AI->NVIDIA, Deci->NVIDIA, AnyVision->Oosto->
+  Metropolis, Vesttoo's fraud-driven bankruptcy, Rewire->Remitly/
+  Workday, Bright Machines closing its Israel R&D center) and 12
+  robots.txt-blocked companies confirmed non-transient via immediate
+  re-check (Rubrik, eToro, SolarEdge, TechSee, and 8 others).
+- companies.json: 104 -> 109. companies_unscannable.json: 88 -> 125.
+  All three checkpoint sources now fully exhausted for the first time
+  since the checkpoint was built.
+- Test suite: 162/162 passing, unchanged (no code changes this
+  session). Live python run.py smoke test: 109/109 companies
+  succeeded, 0 failed, 73 total matches (4 new), including the new Via
+  Transportation Tel Aviv DevOps matches confirmed live.

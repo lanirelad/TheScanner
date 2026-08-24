@@ -767,6 +767,44 @@
       "ats_uid": "33.00D",
       "career_page": "https://www.comeet.com/jobs/cynet/33.00D",
       "note": "Session 39: Wikipedia 153-name candidate (as \"Cynet (company)\"). PlaywrightProbe found the real Comeet uid via a network request from cynet.com/company/careers/ (slug not directly observable, guessed as \"cynet\" and confirmed live). Live-verified via ComeetAdapter.fetch_stage1_jobs: 14 real jobs, including a genuine Israel-located posting (\"Career at Cynet | Israel\") alongside UK/Spain/US roles. Active Israeli cybersecurity (XDR) company, Rishon LeZion."
+    },
+    {
+      "name": "Healthy.io",
+      "ats": "comeet",
+      "ats_slug": "healthy",
+      "ats_uid": "B4.004",
+      "career_page": "https://www.comeet.com/jobs/healthy/B4.004",
+      "note": "Session 40: media-list candidate (hebrew_media_round2). Real, confirmed via PlaywrightProbe + ComeetAdapter.fetch_stage1_jobs: 1 real job (Senior Developer | Tel Aviv). Israeli medical-imaging-AI company (urinalysis, wound care)."
+    },
+    {
+      "name": "H2Pro",
+      "ats": "comeet",
+      "ats_slug": "h2pro",
+      "ats_uid": "A7.001",
+      "career_page": "https://www.comeet.com/jobs/h2pro/A7.001",
+      "note": "Session 40: media-list candidate. Real Comeet integration confirmed via PlaywrightProbe, but 0 current job postings at check time (same 'confirmed real, zero current postings' shape as GigaSpaces/XM Cyber, added Sessions 37-38). Israeli green-hydrogen electrolysis company."
+    },
+    {
+      "name": "CYE",
+      "ats": "lever",
+      "ats_slug": "CYE",
+      "career_page": "https://jobs.lever.co/CYE",
+      "note": "Session 40: media-list candidate. Real, confirmed via PlaywrightProbe + LeverAdapter.fetch_stage1_jobs: 12 real jobs including a genuine Herzliya, Israel location (Application Security Specialist). Israeli cyber-risk-quantification company."
+    },
+    {
+      "name": "OurCrowd",
+      "ats": "comeet",
+      "ats_slug": "ourcrowd",
+      "ats_uid": "D3.00A",
+      "career_page": "https://www.comeet.com/jobs/ourcrowd/D3.00A",
+      "note": "Session 40: media-list candidate. PlaywrightProbe found the real uid via a network request (slug not directly observable, guessed as 'ourcrowd' and confirmed live). Real, confirmed via ComeetAdapter.fetch_stage1_jobs: 5 real jobs including genuine Jerusalem/Tel Aviv locations (Full Stack Developer, IT Support). Israeli equity-crowdfunding/VC platform."
+    },
+    {
+      "name": "Via Transportation",
+      "ats": "greenhouse",
+      "ats_slug": "via",
+      "career_page": "https://job-boards.greenhouse.io/via",
+      "note": "Session 40: media-list candidate. Real, confirmed via PlaywrightProbe + GreenhouseAdapter.fetch_stage1_jobs: 153 real jobs, including genuine Tel Aviv postings (Backend Engineer, DevSecOps Engineer). Global on-demand transit company (NYC HQ) with a real Israel R&D office - included per standing don't-pre-filter policy, same as GitLab (Session 38)."
     }
   ]
 }

@@ -528,6 +528,228 @@
       "reason": "LinkedIn-sourced candidate. Real, active, large (800-900 employee) Ramat Gan IT services/recruitment company (est. 1983). robots.txt at log-on.com disallows fetching /careers/.",
       "platform_if_known": null,
       "checked_at": "2026-08-24T13:20:00Z"
+    },
+    {
+      "name": "Vdoo",
+      "reason": "Media-list candidate. Acquired by JFrog (July 2021, ~$300M), absorbed into JFrog's DevSecOps platform. No distinct Vdoo careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Guardicore",
+      "reason": "Media-list candidate. Acquired by Akamai (Oct 2021, $610.4M), absorbed into Akamai's Zero Trust portfolio. No distinct Guardicore careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Argus Cyber Security",
+      "reason": "Media-list candidate. Acquired by Continental AG (2017, $430M), rebranded to PlaxidityX (Aug 2024). No distinct \"Argus Cyber Security\" careers presence remains under that name.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Siemplify",
+      "reason": "Media-list candidate. Acquired by Google (Jan 2022, ~$500M), absorbed into Google Cloud Chronicle, rebranded Google Security Operations (April 2024). No distinct Siemplify careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "IntSights",
+      "reason": "Media-list candidate. Acquired by Rapid7 (July 2021, $335M), fully integrated into Rapid7's Insight Platform. No distinct IntSights careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Ermetic",
+      "reason": "Media-list candidate. Acquired by Tenable (Oct 2023, ~$265M), integrated into Tenable's cloud security offerings. No distinct Ermetic careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "SecuredTouch",
+      "reason": "Media-list candidate. Acquired by Ping Identity (June 2021, $39.9M), now part of the PingOne Cloud Platform. No distinct SecuredTouch careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Polyrize",
+      "reason": "Media-list candidate. Acquired by Varonis Systems (Oct 2020) - not Zscaler. No distinct Polyrize careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Curv",
+      "reason": "Media-list candidate. Acquired by PayPal (2021), absorbed into PayPal's blockchain/digital-assets unit. No distinct Curv careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Zebra Medical Vision",
+      "reason": "Media-list candidate. Acquired by Nano-X Imaging (Nov 2021, ~$110-200M), rebranded Nanox.AI. No distinct Zebra Medical Vision careers presence remains - see Nano-X Vision, already in companies.json.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Itamar Medical",
+      "reason": "Media-list candidate. Acquired by ZOLL Medical (closed Dec 2021, $538M). Real Caesarea, Israel operations continue under ZOLL per research, but itamar-medical.com/careers/ showed no recognized ATS signal via PlaywrightProbe this session - hiring is likely routed through ZOLL's own careers site.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "NeuroDerm",
+      "reason": "Media-list candidate. Acquired by Mitsubishi Tanabe Pharma (completed Oct 2017, $1.1B). No distinct NeuroDerm careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Prospera",
+      "reason": "Media-list candidate. Acquired by Valmont Industries (2021, $300M). No distinct Prospera careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Run:AI",
+      "reason": "Media-list candidate. Acquired by NVIDIA (completed Dec 2024, $700-800M). Its software is being open-sourced as part of the integration; no distinct Run:AI careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Deci",
+      "reason": "Media-list candidate. Acquired by NVIDIA (May 2024, ~$300M), dissolved as an independent corporate entity. No distinct Deci careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "AnyVision",
+      "reason": "Media-list candidate. Rebranded to Oosto (Oct 2021), then Oosto itself was sold to Metropolis (announced Jan 2025, ~$125M). No distinct \"AnyVision\" entity or careers presence has existed for years.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Vesttoo",
+      "reason": "Media-list candidate. Collapsed in a ~$4 billion fraud scandal involving fake letters of credit; declared bankruptcy Sept 2023; still in active litigation/criminal proceedings as of late 2024. Not a real operating employer.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Lightspin",
+      "reason": "Media-list candidate. Acquired by Cisco Systems (closed Q4 FY2023, ~$200-250M). No distinct Lightspin careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Avanan",
+      "reason": "Media-list candidate. Acquired by Check Point Software Technologies (Sept 2021, ~$227M), sold as Check Point Harmony Email and Collaboration. Check Point itself is already a confirmed robots.txt-blocked domain in this project (Session 38). No distinct Avanan presence to scan.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Otonomo",
+      "reason": "Media-list candidate. Acquired by Urgent.ly (Feb 2023). No distinct Otonomo careers presence remains.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T14:30:00Z"
+    },
+    {
+      "name": "Rewire",
+      "reason": "Media-list candidate. Acquired by Remitly. Careers page redirects to careers.remitly.com, hosted on Workday (remitly.wd5.myworkdayjobs.com) - unsupported platform, and no distinct Rewire presence remains regardless.",
+      "platform_if_known": "workday",
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Bright Machines",
+      "reason": "Media-list candidate. Real Israeli R&D center (Yakum) confirmed via research, founded by Israeli CEO Lior Susan - but the center was closed (announced via Calcalist) after ~6 years. No current Israel presence to scan.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "TechSee",
+      "reason": "Media-list candidate. robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check (blocked twice within seconds).",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Explorium",
+      "reason": "Media-list candidate. robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Rubrik",
+      "reason": "Media-list candidate. robots.txt disallows fetching /company/careers - confirmed non-transient via immediate re-check. Also: no confirmed Israel R&D presence found via research (US-founded, Palo Alto HQ) - the robots.txt block makes this moot regardless.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "eToro",
+      "reason": "Media-list candidate. robots.txt disallows fetching /company/careers/ - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "SolarEdge",
+      "reason": "Media-list candidate. robots.txt disallows fetching /us/careers - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Colu",
+      "reason": "Media-list candidate. robots.txt disallows fetching /careers - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Logz.io",
+      "reason": "Media-list candidate. robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Tufin",
+      "reason": "Media-list candidate. robots.txt disallows fetching /careers - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Rapid Medical",
+      "reason": "Media-list candidate. robots.txt disallows fetching /careers - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Nayax",
+      "reason": "Media-list candidate. robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Pecan",
+      "reason": "Media-list candidate. robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Novotalk",
+      "reason": "Media-list candidate. robots.txt disallows fetching /careers/ - confirmed non-transient via immediate re-check.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:00:00Z"
+    },
+    {
+      "name": "Indeni",
+      "reason": "Media-list candidate - same real company as \"Indeni (company)\" already in this file (acquired by BlueCat Networks, July 2023). Cross-referenced, no new work needed.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:30:00Z"
+    },
+    {
+      "name": "Papaya Global",
+      "reason": "Media-list candidate. Session 38 found this robots.txt-blocked (Check Point/Papaya Global/Cyberint recheck); re-confirmed still blocked this session via PlaywrightProbe.",
+      "platform_if_known": null,
+      "checked_at": "2026-08-24T15:30:00Z"
+    },
+    {
+      "name": "Remitly Israel",
+      "reason": "Media-list candidate - same real entity as Rewire (already in this file), which was acquired by Remitly and now routes through Remitly's own Workday-hosted careers site (remitly.wd5.myworkdayjobs.com).",
+      "platform_if_known": "workday",
+      "checked_at": "2026-08-24T15:30:00Z"
     }
   ]
 }

@@ -162,7 +162,7 @@
   "arberobotics.com": {
     "domain": "arberobotics.com",
     "allowed": true,
-    "checked_at": 1786615874.3354475
+    "checked_at": 1787573986.4876363
   },
   "atera.com": {
     "domain": "atera.com",
@@ -767,7 +767,7 @@
   "foretellix.com": {
     "domain": "foretellix.com",
     "allowed": true,
-    "checked_at": 1786615899.0661418
+    "checked_at": 1787573968.5861151
   },
   "futuremeattechnologies.com": {
     "domain": "futuremeattechnologies.com",
@@ -797,7 +797,7 @@
   "fundbox.com": {
     "domain": "fundbox.com",
     "allowed": true,
-    "checked_at": 1786615900.075935
+    "checked_at": 1787573968.6472695
   },
   "gauzy.com": {
     "domain": "gauzy.com",
@@ -1231,8 +1231,8 @@
   },
   "moovit.com": {
     "domain": "moovit.com",
-    "allowed": false,
-    "checked_at": 1786615922.315617
+    "allowed": true,
+    "checked_at": 1787575969.6395562
   },
   "morphisec.com": {
     "domain": "morphisec.com",
@@ -1512,7 +1512,7 @@
   "personetics.com": {
     "domain": "personetics.com",
     "allowed": true,
-    "checked_at": 1786615935.922404
+    "checked_at": 1787573991.2471297
   },
   "perion.com": {
     "domain": "perion.com",
@@ -1762,7 +1762,7 @@
   "scopiolabs.com": {
     "domain": "scopiolabs.com",
     "allowed": true,
-    "checked_at": 1786615945.6582346
+    "checked_at": 1787573957.967003
   },
   "scylladb.com": {
     "domain": "scylladb.com",
@@ -1972,7 +1972,7 @@
   "tactilemobility.com": {
     "domain": "tactilemobility.com",
     "allowed": true,
-    "checked_at": 1786615955.0771234
+    "checked_at": 1787573955.4007213
   },
   "tabnine.com": {
     "domain": "tabnine.com",
@@ -2047,7 +2047,7 @@
   "tipalti.com": {
     "domain": "tipalti.com",
     "allowed": true,
-    "checked_at": 1786615958.341231
+    "checked_at": 1787573958.7318625
   },
   "tonara.com": {
     "domain": "tonara.com",
@@ -2116,8 +2116,8 @@
   },
   "trullion.com": {
     "domain": "trullion.com",
-    "allowed": false,
-    "checked_at": 1786615960.8637023
+    "allowed": true,
+    "checked_at": 1787574051.8781848
   },
   "trigo.com": {
     "domain": "trigo.com",
@@ -2587,12 +2587,12 @@
   "www.aporia.com": {
     "domain": "www.aporia.com",
     "allowed": true,
-    "checked_at": 1786617868.4762828
+    "checked_at": 1787573976.2456412
   },
   "www.ai21.com": {
     "domain": "www.ai21.com",
     "allowed": true,
-    "checked_at": 1786617868.5480704
+    "checked_at": 1787573967.758789
   },
   "aimsecurityguards.com": {
     "domain": "aimsecurityguards.com",
@@ -2647,7 +2647,7 @@
   "www.bluevine.com": {
     "domain": "www.bluevine.com",
     "allowed": true,
-    "checked_at": 1786617872.4136426
+    "checked_at": 1787573966.152961
   },
   "www.bablic.com": {
     "domain": "www.bablic.com",
@@ -2957,7 +2957,7 @@
   "www.intuitionrobotics.com": {
     "domain": "www.intuitionrobotics.com",
     "allowed": true,
-    "checked_at": 1786617902.9568648
+    "checked_at": 1787574028.8213747
   },
   "www.k2view.com": {
     "domain": "www.k2view.com",
@@ -3182,7 +3182,7 @@
   "www.rapyd.net": {
     "domain": "www.rapyd.net",
     "allowed": true,
-    "checked_at": 1786617931.2984574
+    "checked_at": 1787573956.7655602
   },
   "validate.perfdrive.com": {
     "domain": "validate.perfdrive.com",
@@ -3222,7 +3222,7 @@
   "redis.io": {
     "domain": "redis.io",
     "allowed": true,
-    "checked_at": 1786617935.8871562
+    "checked_at": 1787573971.064512
   },
   "www.redefinemeat.com": {
     "domain": "www.redefinemeat.com",
@@ -3252,7 +3252,7 @@
   "www.silverfort.com": {
     "domain": "www.silverfort.com",
     "allowed": true,
-    "checked_at": 1786617939.3376005
+    "checked_at": 1787574043.4055748
   },
   "is.com:443": {
     "domain": "is.com:443",
@@ -3312,7 +3312,7 @@
   "www.solaredge.com": {
     "domain": "www.solaredge.com",
     "allowed": false,
-    "checked_at": 1786617944.0080547
+    "checked_at": 1787573985.1729865
   },
   "sola.security": {
     "domain": "sola.security",
@@ -3342,7 +3342,7 @@
   "www.tabnine.com": {
     "domain": "www.tabnine.com",
     "allowed": true,
-    "checked_at": 1786617947.237754
+    "checked_at": 1787574007.5287144
   },
   "4point2million.com": {
     "domain": "4point2million.com",
@@ -3417,12 +3417,12 @@
   "www.tytocare.com": {
     "domain": "www.tytocare.com",
     "allowed": true,
-    "checked_at": 1786617953.5805552
+    "checked_at": 1787574076.670905
   },
   "upstream.auto": {
     "domain": "upstream.auto",
     "allowed": true,
-    "checked_at": 1786617954.2695081
+    "checked_at": 1787573967.4961705
   },
   "apply.workable.com": {
     "domain": "apply.workable.com",
@@ -3507,7 +3507,7 @@
   "www.etoro.com": {
     "domain": "www.etoro.com",
     "allowed": false,
-    "checked_at": 1786617965.5799348
+    "checked_at": 1787573964.8103087
   },
   "www.xplenty.com": {
     "domain": "www.xplenty.com",
@@ -5148,5 +5148,585 @@
     "domain": "www.storenext.co.il",
     "allowed": true,
     "checked_at": 1787571731.292484
+  },
+  "www.spotnet.co.il": {
+    "domain": "www.spotnet.co.il",
+    "allowed": true,
+    "checked_at": 1787573204.3392253
+  },
+  "www.boscom.com": {
+    "domain": "www.boscom.com",
+    "allowed": true,
+    "checked_at": 1787573220.2525206
+  },
+  "jungo.com": {
+    "domain": "jungo.com",
+    "allowed": true,
+    "checked_at": 1787573449.8905199
+  },
+  "www.umoove.me": {
+    "domain": "www.umoove.me",
+    "allowed": true,
+    "checked_at": 1787573456.4294462
+  },
+  "www.bagirasys.com": {
+    "domain": "www.bagirasys.com",
+    "allowed": true,
+    "checked_at": 1787573458.0655887
+  },
+  "paytagrfid.com": {
+    "domain": "paytagrfid.com",
+    "allowed": true,
+    "checked_at": 1787573461.4338908
+  },
+  "www.elronventures.com": {
+    "domain": "www.elronventures.com",
+    "allowed": true,
+    "checked_at": 1787573463.8728142
+  },
+  "pansw.com": {
+    "domain": "pansw.com",
+    "allowed": true,
+    "checked_at": 1787573472.467274
+  },
+  "www.beyondminds.ai": {
+    "domain": "www.beyondminds.ai",
+    "allowed": true,
+    "checked_at": 1787573933.6995296
+  },
+  "healthy.io": {
+    "domain": "healthy.io",
+    "allowed": true,
+    "checked_at": 1787573935.5929725
+  },
+  "intezer.com": {
+    "domain": "intezer.com",
+    "allowed": true,
+    "checked_at": 1787573935.6438162
+  },
+  "www.diagnosticrobotics.com": {
+    "domain": "www.diagnosticrobotics.com",
+    "allowed": true,
+    "checked_at": 1787573935.7041605
+  },
+  "www.minerva-labs.com": {
+    "domain": "www.minerva-labs.com",
+    "allowed": true,
+    "checked_at": 1787573935.8254538
+  },
+  "www.sygnia.co": {
+    "domain": "www.sygnia.co",
+    "allowed": true,
+    "checked_at": 1787573936.111418
+  },
+  "cortica.com": {
+    "domain": "cortica.com",
+    "allowed": true,
+    "checked_at": 1787573936.4478133
+  },
+  "www.itamar-medical.com": {
+    "domain": "www.itamar-medical.com",
+    "allowed": true,
+    "checked_at": 1787573936.4755213
+  },
+  "www.insightec.com": {
+    "domain": "www.insightec.com",
+    "allowed": true,
+    "checked_at": 1787573936.6503913
+  },
+  "www.orcam.com": {
+    "domain": "www.orcam.com",
+    "allowed": true,
+    "checked_at": 1787573945.3781996
+  },
+  "www.techsee.com": {
+    "domain": "www.techsee.com",
+    "allowed": false,
+    "checked_at": 1787573945.4172661
+  },
+  "hailo.ai": {
+    "domain": "hailo.ai",
+    "allowed": true,
+    "checked_at": 1787573945.83501
+  },
+  "www.workiz.com": {
+    "domain": "www.workiz.com",
+    "allowed": true,
+    "checked_at": 1787573946.0922174
+  },
+  "www.sweetch.com": {
+    "domain": "www.sweetch.com",
+    "allowed": true,
+    "checked_at": 1787573946.1155493
+  },
+  "www.nym.health": {
+    "domain": "www.nym.health",
+    "allowed": true,
+    "checked_at": 1787573946.1503356
+  },
+  "dataloop.ai": {
+    "domain": "dataloop.ai",
+    "allowed": true,
+    "checked_at": 1787573946.5252953
+  },
+  "guardianoptical.com": {
+    "domain": "guardianoptical.com",
+    "allowed": true,
+    "checked_at": 1787573946.543803
+  },
+  "www.semperis.com": {
+    "domain": "www.semperis.com",
+    "allowed": true,
+    "checked_at": 1787573946.56124
+  },
+  "www.brainq.co": {
+    "domain": "www.brainq.co",
+    "allowed": true,
+    "checked_at": 1787573955.139531
+  },
+  "www.explorium.ai": {
+    "domain": "www.explorium.ai",
+    "allowed": false,
+    "checked_at": 1787573955.437612
+  },
+  "www.visualead.com": {
+    "domain": "www.visualead.com",
+    "allowed": true,
+    "checked_at": 1787573956.2294476
+  },
+  "www.rubrik.com": {
+    "domain": "www.rubrik.com",
+    "allowed": false,
+    "checked_at": 1787573956.6356697
+  },
+  "www.seebo.com": {
+    "domain": "www.seebo.com",
+    "allowed": true,
+    "checked_at": 1787573957.458028
+  },
+  "www.auto-talks.com": {
+    "domain": "www.auto-talks.com",
+    "allowed": true,
+    "checked_at": 1787573957.4763281
+  },
+  "www.nucleai.io": {
+    "domain": "www.nucleai.io",
+    "allowed": true,
+    "checked_at": 1787573958.4325705
+  },
+  "innoviz.tech": {
+    "domain": "innoviz.tech",
+    "allowed": true,
+    "checked_at": 1787573958.4490285
+  },
+  "www.duda.co": {
+    "domain": "www.duda.co",
+    "allowed": true,
+    "checked_at": 1787573958.714609
+  },
+  "www.cognata.com": {
+    "domain": "www.cognata.com",
+    "allowed": true,
+    "checked_at": 1787573959.8384366
+  },
+  "intelligogroup.com": {
+    "domain": "intelligogroup.com",
+    "allowed": true,
+    "checked_at": 1787573960.498885
+  },
+  "echocare-tech.com": {
+    "domain": "echocare-tech.com",
+    "allowed": true,
+    "checked_at": 1787573966.085197
+  },
+  "www.unit.co": {
+    "domain": "www.unit.co",
+    "allowed": true,
+    "checked_at": 1787573967.2188468
+  },
+  "pulsenmore.com": {
+    "domain": "pulsenmore.com",
+    "allowed": true,
+    "checked_at": 1787573968.927928
+  },
+  "www.bio-beat.com": {
+    "domain": "www.bio-beat.com",
+    "allowed": true,
+    "checked_at": 1787573974.5529284
+  },
+  "www.weka.io": {
+    "domain": "www.weka.io",
+    "allowed": true,
+    "checked_at": 1787573976.5402465
+  },
+  "www.binah.ai": {
+    "domain": "www.binah.ai",
+    "allowed": true,
+    "checked_at": 1787573978.941172
+  },
+  "www.syte.ai": {
+    "domain": "www.syte.ai",
+    "allowed": true,
+    "checked_at": 1787573978.9623954
+  },
+  "www.ormat.com": {
+    "domain": "www.ormat.com",
+    "allowed": true,
+    "checked_at": 1787573979.3234444
+  },
+  "www.getnexar.com": {
+    "domain": "www.getnexar.com",
+    "allowed": true,
+    "checked_at": 1787573979.5091338
+  },
+  "gloat.com": {
+    "domain": "gloat.com",
+    "allowed": true,
+    "checked_at": 1787573981.8942492
+  },
+  "www.colu.com": {
+    "domain": "www.colu.com",
+    "allowed": false,
+    "checked_at": 1787573985.4260247
+  },
+  "www.daytwo.com": {
+    "domain": "www.daytwo.com",
+    "allowed": true,
+    "checked_at": 1787573986.7495053
+  },
+  "www.store-dot.com": {
+    "domain": "www.store-dot.com",
+    "allowed": true,
+    "checked_at": 1787573987.950047
+  },
+  "www.rewire.com": {
+    "domain": "www.rewire.com",
+    "allowed": true,
+    "checked_at": 1787573987.9861054
+  },
+  "corp.kaltura.com": {
+    "domain": "corp.kaltura.com",
+    "allowed": true,
+    "checked_at": 1787573988.5062516
+  },
+  "www.d-id.com": {
+    "domain": "www.d-id.com",
+    "allowed": true,
+    "checked_at": 1787573989.1076572
+  },
+  "electreon.com": {
+    "domain": "electreon.com",
+    "allowed": true,
+    "checked_at": 1787573991.3195472
+  },
+  "www.medisafeapp.com": {
+    "domain": "www.medisafeapp.com",
+    "allowed": true,
+    "checked_at": 1787573991.7474494
+  },
+  "logz.io": {
+    "domain": "logz.io",
+    "allowed": false,
+    "checked_at": 1787573991.802705
+  },
+  "www.ourcrowd.com": {
+    "domain": "www.ourcrowd.com",
+    "allowed": true,
+    "checked_at": 1787573993.8482714
+  },
+  "oribi.io": {
+    "domain": "oribi.io",
+    "allowed": true,
+    "checked_at": 1787573997.8847892
+  },
+  "www.vhive.ai": {
+    "domain": "www.vhive.ai",
+    "allowed": true,
+    "checked_at": 1787573998.0167477
+  },
+  "www.finout.io": {
+    "domain": "www.finout.io",
+    "allowed": true,
+    "checked_at": 1787573998.0335076
+  },
+  "www.mobileodt.com": {
+    "domain": "www.mobileodt.com",
+    "allowed": true,
+    "checked_at": 1787573998.485966
+  },
+  "www.gencellenergy.com": {
+    "domain": "www.gencellenergy.com",
+    "allowed": true,
+    "checked_at": 1787573998.780192
+  },
+  "www.voiceitt.com": {
+    "domain": "www.voiceitt.com",
+    "allowed": true,
+    "checked_at": 1787574000.5026062
+  },
+  "www.ecowavepower.com": {
+    "domain": "www.ecowavepower.com",
+    "allowed": true,
+    "checked_at": 1787574000.9273682
+  },
+  "earlysense.com": {
+    "domain": "earlysense.com",
+    "allowed": true,
+    "checked_at": 1787574002.5122159
+  },
+  "www.paygilant.com": {
+    "domain": "www.paygilant.com",
+    "allowed": true,
+    "checked_at": 1787574003.7077007
+  },
+  "chargeafter.com": {
+    "domain": "chargeafter.com",
+    "allowed": true,
+    "checked_at": 1787574008.1415036
+  },
+  "h2pro.co": {
+    "domain": "h2pro.co",
+    "allowed": true,
+    "checked_at": 1787574008.689645
+  },
+  "www.oxitone.com": {
+    "domain": "www.oxitone.com",
+    "allowed": true,
+    "checked_at": 1787574009.6096838
+  },
+  "bigid.com": {
+    "domain": "bigid.com",
+    "allowed": true,
+    "checked_at": 1787574009.7446072
+  },
+  "wsc-sports.com": {
+    "domain": "wsc-sports.com",
+    "allowed": true,
+    "checked_at": 1787574010.3029284
+  },
+  "own.com": {
+    "domain": "own.com",
+    "allowed": true,
+    "checked_at": 1787574012.034541
+  },
+  "www.anodot.com": {
+    "domain": "www.anodot.com",
+    "allowed": true,
+    "checked_at": 1787574013.8750412
+  },
+  "telesofia.com": {
+    "domain": "telesofia.com",
+    "allowed": true,
+    "checked_at": 1787574016.026202
+  },
+  "www.tabit.cloud": {
+    "domain": "www.tabit.cloud",
+    "allowed": true,
+    "checked_at": 1787574017.913689
+  },
+  "www.gong.io": {
+    "domain": "www.gong.io",
+    "allowed": true,
+    "checked_at": 1787574018.1463807
+  },
+  "www.naturalintelligence.com": {
+    "domain": "www.naturalintelligence.com",
+    "allowed": true,
+    "checked_at": 1787574021.9938357
+  },
+  "ultrasight.ai": {
+    "domain": "ultrasight.ai",
+    "allowed": true,
+    "checked_at": 1787574022.7748413
+  },
+  "www.tufin.com": {
+    "domain": "www.tufin.com",
+    "allowed": false,
+    "checked_at": 1787574022.9200292
+  },
+  "www.rapid-medical.com": {
+    "domain": "www.rapid-medical.com",
+    "allowed": false,
+    "checked_at": 1787574024.148537
+  },
+  "lsports.eu": {
+    "domain": "lsports.eu",
+    "allowed": true,
+    "checked_at": 1787574025.5303135
+  },
+  "www.reblaze.com": {
+    "domain": "www.reblaze.com",
+    "allowed": true,
+    "checked_at": 1787574026.093428
+  },
+  "www.meshpayments.com": {
+    "domain": "www.meshpayments.com",
+    "allowed": true,
+    "checked_at": 1787574026.7539003
+  },
+  "hubsecurity.com": {
+    "domain": "hubsecurity.com",
+    "allowed": true,
+    "checked_at": 1787574026.7774527
+  },
+  "www.nayax.com": {
+    "domain": "www.nayax.com",
+    "allowed": false,
+    "checked_at": 1787574027.8285372
+  },
+  "breez.technology": {
+    "domain": "breez.technology",
+    "allowed": true,
+    "checked_at": 1787574033.1315901
+  },
+  "cyesec.com": {
+    "domain": "cyesec.com",
+    "allowed": true,
+    "checked_at": 1787574034.315056
+  },
+  "mediwound.com": {
+    "domain": "mediwound.com",
+    "allowed": true,
+    "checked_at": 1787574034.341815
+  },
+  "www.optibus.com": {
+    "domain": "www.optibus.com",
+    "allowed": true,
+    "checked_at": 1787574037.705155
+  },
+  "www.glassbox.com": {
+    "domain": "www.glassbox.com",
+    "allowed": true,
+    "checked_at": 1787574037.8206658
+  },
+  "robo-team.com": {
+    "domain": "robo-team.com",
+    "allowed": true,
+    "checked_at": 1787574038.6617184
+  },
+  "www.robotemi.com": {
+    "domain": "www.robotemi.com",
+    "allowed": true,
+    "checked_at": 1787574039.6737466
+  },
+  "www.me-med.com": {
+    "domain": "www.me-med.com",
+    "allowed": true,
+    "checked_at": 1787574041.120851
+  },
+  "percepto.co": {
+    "domain": "percepto.co",
+    "allowed": true,
+    "checked_at": 1787574045.7796397
+  },
+  "www.digitalturbine.com": {
+    "domain": "www.digitalturbine.com",
+    "allowed": true,
+    "checked_at": 1787574048.0602908
+  },
+  "www.pecan.ai": {
+    "domain": "www.pecan.ai",
+    "allowed": false,
+    "checked_at": 1787574048.3193007
+  },
+  "rewalk.com": {
+    "domain": "rewalk.com",
+    "allowed": true,
+    "checked_at": 1787574053.941849
+  },
+  "www.priority-software.com": {
+    "domain": "www.priority-software.com",
+    "allowed": true,
+    "checked_at": 1787574054.518201
+  },
+  "perception-point.io": {
+    "domain": "perception-point.io",
+    "allowed": true,
+    "checked_at": 1787574055.894006
+  },
+  "www.everc.com": {
+    "domain": "www.everc.com",
+    "allowed": true,
+    "checked_at": 1787574056.2072082
+  },
+  "www.nexense.com": {
+    "domain": "www.nexense.com",
+    "allowed": true,
+    "checked_at": 1787574056.8248982
+  },
+  "www.cyberbit.com": {
+    "domain": "www.cyberbit.com",
+    "allowed": true,
+    "checked_at": 1787574057.4661655
+  },
+  "www.autofleet.io": {
+    "domain": "www.autofleet.io",
+    "allowed": true,
+    "checked_at": 1787574061.2064934
+  },
+  "www.pluri-biotech.com": {
+    "domain": "www.pluri-biotech.com",
+    "allowed": true,
+    "checked_at": 1787574063.9069412
+  },
+  "novotalk.com": {
+    "domain": "novotalk.com",
+    "allowed": false,
+    "checked_at": 1787574064.8015172
+  },
+  "www.sparkbeyond.com": {
+    "domain": "www.sparkbeyond.com",
+    "allowed": true,
+    "checked_at": 1787574065.5644917
+  },
+  "www.otorio.com": {
+    "domain": "www.otorio.com",
+    "allowed": true,
+    "checked_at": 1787574065.9220276
+  },
+  "www.selina.com": {
+    "domain": "www.selina.com",
+    "allowed": true,
+    "checked_at": 1787574066.2087557
+  },
+  "arpeely.com": {
+    "domain": "arpeely.com",
+    "allowed": true,
+    "checked_at": 1787574068.6254172
+  },
+  "uveye.com": {
+    "domain": "uveye.com",
+    "allowed": true,
+    "checked_at": 1787574068.7372937
+  },
+  "tevel-tech.com": {
+    "domain": "tevel-tech.com",
+    "allowed": true,
+    "checked_at": 1787574082.085668
+  },
+  "www.zynga.com": {
+    "domain": "www.zynga.com",
+    "allowed": true,
+    "checked_at": 1787575611.8636262
+  },
+  "www.lumen.me": {
+    "domain": "www.lumen.me",
+    "allowed": true,
+    "checked_at": 1787575953.6267407
+  },
+  "ridewithvia.com": {
+    "domain": "ridewithvia.com",
+    "allowed": true,
+    "checked_at": 1787575961.0896182
+  },
+  "www.bondit.com": {
+    "domain": "www.bondit.com",
+    "allowed": true,
+    "checked_at": 1787575974.4690447
+  },
+  "clewmed.com": {
+    "domain": "clewmed.com",
+    "allowed": true,
+    "checked_at": 1787575985.4892962
   }
 }
